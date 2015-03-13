@@ -1,15 +1,15 @@
 //
-//  PeopleController.swift
+//  SettingsController.swift
 //  Musicians-Wanted
 //
-//  Created by Kari Gilbertson on 3/11/15.
+//  Created by Kari Gilbertson on 3/12/15.
 //  Copyright (c) 2015 Kari Gilbertson. All rights reserved.
 //
 
 import Foundation
 import UIKit
 
-class PeopleController: UIViewController {
+class SettingsController: UIViewController {
     
     @IBOutlet weak var feedButton: UIBarButtonItem?
     @IBOutlet weak var peopleButton: UIBarButtonItem?
@@ -20,7 +20,7 @@ class PeopleController: UIViewController {
     @IBOutlet weak var setttingsButton: UIBarButtonItem?
     
     override init(nibName nibNameOrNil: String!, bundle nibBundleOrNil: NSBundle!) {
-        super.init(nibName: "peopleView", bundle:nil)
+        super.init(nibName: "settingsView", bundle:nil)
     }
     
     required init(coder aDecoder: NSCoder) {
@@ -33,7 +33,7 @@ class PeopleController: UIViewController {
         self.presentViewController(navigationController, animated: true, completion: nil)
     }
     @IBAction func switchPeople(peopleButton: UIBarButtonItem) {
-        let pc = PeopleController(nibName: "feedView", bundle: nil)
+        let pc = PeopleController(nibName: "peopleView", bundle: nil)
         var navigationController = UINavigationController(rootViewController: pc)
         self.presentViewController(navigationController, animated: true, completion: nil)
     }
@@ -76,4 +76,3 @@ class PeopleController: UIViewController {
     
     
 }
-

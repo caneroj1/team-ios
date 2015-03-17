@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6751" systemVersion="14C109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6736"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="GroupController" customModule="Musicians_Wanted" customModuleProvider="target">
+            <connections>
+                <outlet property="eventButton" destination="5o3-e0-P9g" id="rEc-Wy-JBB"/>
+                <outlet property="feedButton" destination="Xuq-Uq-AiD" id="Ffm-2o-Ro4"/>
+                <outlet property="groupButton" destination="azQ-n3-CCK" id="LKf-Xq-lMh"/>
+                <outlet property="messageButton" destination="dLd-dU-Fnc" id="zel-K6-aZ9"/>
+                <outlet property="peopleButton" destination="Vwb-ol-Bal" id="GdL-r0-JOj"/>
+                <outlet property="profileButton" destination="76s-hZ-aSe" id="TLA-sU-0WM"/>
+                <outlet property="setttingsButton" destination="u7J-EE-6Fr" id="LnU-nB-KBW"/>
+                <outlet property="view" destination="iN0-l3-epB" id="4ZD-CN-nbl"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB">
+            <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6MR-Q3-6ka">
+                    <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                    <items>
+                        <barButtonItem image="newspaper-7.png" width="45" id="Xuq-Uq-AiD">
+                            <connections>
+                                <action selector="switchFeed:" destination="-1" id="z0i-PV-7bs"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem image="man-7.png" width="45" id="Vwb-ol-Bal">
+                            <connections>
+                                <action selector="switchPeople:" destination="-1" id="egP-cT-L8C"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem image="calendar-7.png" width="45" id="5o3-e0-P9g">
+                            <connections>
+                                <action selector="switchEvent:" destination="-1" id="A33-ws-PqU"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem image="music-7.png" width="45" id="azQ-n3-CCK">
+                            <connections>
+                                <action selector="switchGroup:" destination="-1" id="l1x-Ds-Ute"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem image="message-7.png" width="45" id="dLd-dU-Fnc">
+                            <connections>
+                                <action selector="switchMessage:" destination="-1" id="VQZ-xq-fxk"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem image="circle-user-7.png" width="45" id="76s-hZ-aSe">
+                            <connections>
+                                <action selector="switchProfile:" destination="-1" id="Rg3-vu-LuT"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem image="gear-7.png" width="45" id="u7J-EE-6Fr">
+                            <connections>
+                                <action selector="switchSettings:" destination="-1" id="J2M-xy-OzS"/>
+                            </connections>
+                        </barButtonItem>
+                    </items>
+                    <variation key="widthClass=compact" fixedFrame="YES">
+                        <rect key="frame" x="0.0" y="556" width="400" height="44"/>
+                    </variation>
+                </toolbar>
+                <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0Hi-Pn-KMR">
+                    <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                    <items>
+                        <navigationItem title="Groups" id="dNo-RQ-TSN"/>
+                    </items>
+                    <variation key="widthClass=compact" fixedFrame="YES">
+                        <rect key="frame" x="0.0" y="81" width="400" height="44"/>
+                    </variation>
+                </navigationBar>
+            </subviews>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+            <variation key="default">
+                <mask key="subviews">
+                    <exclude reference="6MR-Q3-6ka"/>
+                    <exclude reference="0Hi-Pn-KMR"/>
+                </mask>
+            </variation>
+            <variation key="widthClass=compact">
+                <mask key="subviews">
+                    <include reference="6MR-Q3-6ka"/>
+                    <include reference="0Hi-Pn-KMR"/>
+                </mask>
+            </variation>
+            <point key="canvasLocation" x="213" y="429"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="calendar-7.png" width="30" height="30"/>
+        <image name="circle-user-7.png" width="30" height="30"/>
+        <image name="gear-7.png" width="30" height="30"/>
+        <image name="man-7.png" width="29" height="30"/>
+        <image name="message-7.png" width="30" height="30"/>
+        <image name="music-7.png" width="30" height="30"/>
+        <image name="newspaper-7.png" width="30" height="30"/>
+    </resources>
+</document>

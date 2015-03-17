@@ -44,8 +44,8 @@ class InboxViewController: UIViewController, UITableViewDelegate, UITableViewDat
         
         cell.textLabel?.text = inboxMgr.messages[indexPath.row].name
         cell.detailTextLabel?.text = inboxMgr.messages[indexPath.row].subject
-        
-        
+        cell.backgroundColor = UIColor.groupTableViewBackgroundColor()
+  
         return cell
     }
 

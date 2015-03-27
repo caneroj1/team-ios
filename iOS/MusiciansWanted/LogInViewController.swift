@@ -27,7 +27,7 @@ class LogInViewController: UIViewController {
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if(usernameField.text != "" && passwordField.text != "") {
-            println("MAKING A REQUEST")
+            println("MAKING A LOGIN REQUEST")
             var request = NSMutableURLRequest(URL: NSURL(string: "http://localhost:3000/api/login")!)
             var session = NSURLSession.sharedSession()
             request.HTTPMethod = "POST"
@@ -41,7 +41,7 @@ class LogInViewController: UIViewController {
             request.addValue("application/json", forHTTPHeaderField: "Content-Type")
             request.addValue("application/json", forHTTPHeaderField: "Accept")
             request.addValue(apiKey, forHTTPHeaderField: "mw-token")
-            println("GOTHERE")
+            
             var task = session.dataTaskWithRequest(request, completionHandler: {data, response, error -> Void in
                 println("Response: \(response)")
                 var strData = NSString(data: data, encoding: NSUTF8StringEncoding)
@@ -73,7 +73,6 @@ class LogInViewController: UIViewController {
                 }
             })
             task.resume()
-            print("here!")
         }
     }
     /*

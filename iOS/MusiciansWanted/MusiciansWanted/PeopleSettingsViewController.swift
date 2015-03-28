@@ -55,7 +55,7 @@ class PeopleSettingViewController: UIViewController {
             upperAgeTxt.backgroundColor = UIColor.whiteColor()
             lowerAge = lowerAgeTxt.text.toInt()!
             upperAge = upperAgeTxt.text.toInt()!
-        }else{
+        } else {
             lowerAgeTxt.enabled = false
             lowerAgeTxt.backgroundColor = UIColor.lightGrayColor()
             upperAgeTxt.enabled = false

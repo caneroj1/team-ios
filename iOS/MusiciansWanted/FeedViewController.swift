@@ -9,6 +9,7 @@
 import UIKit
 
 class FeedViewController: UIViewController {
+    var refreshToken = ""
     
     override func viewDidLoad() {
         super.viewDidLoad()

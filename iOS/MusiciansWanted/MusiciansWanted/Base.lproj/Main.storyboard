@@ -381,7 +381,7 @@
             </objects>
             <point key="canvasLocation" x="899" y="567"/>
         </scene>
-        <!--Log In View Controller-->
+        <!--Item-->
         <scene sceneID="xDe-r5-XwW">
             <objects>
                 <viewController id="qzr-uA-NNI" customClass="LogInViewController" customModule="MusiciansWanted" customModuleProvider="target" sceneMemberID="viewController">
@@ -440,12 +440,13 @@
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <segue destination="49e-Tb-3d3" kind="modal" id="phZ-uw-jIv"/>
+                                    <action selector="logInAction:" destination="qzr-uA-NNI" eventType="touchUpInside" id="ifg-BL-LAQ"/>
                                 </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" red="0.082352941176470587" green="0.082352941176470587" blue="0.082352941176470587" alpha="1" colorSpace="calibratedRGB"/>
                     </view>
+                    <tabBarItem key="tabBarItem" title="Item" id="Q9o-aO-r5d"/>
                     <connections>
                         <outlet property="passwordField" destination="qtd-Lb-atW" id="sSl-72-t2i"/>
                         <outlet property="usernameField" destination="rmi-op-DB9" id="2ME-Eh-WBu"/>
@@ -472,6 +473,7 @@
                         <segue destination="6Xr-17-a5O" kind="relationship" relationship="viewControllers" id="7Eo-dQ-Mhz"/>
                         <segue destination="a9w-0K-7ZO" kind="relationship" relationship="viewControllers" id="51X-NY-Bdr"/>
                         <segue destination="gHP-YS-LV8" kind="relationship" relationship="viewControllers" id="qR8-rQ-6LL"/>
+                        <segue destination="qzr-uA-NNI" kind="relationship" relationship="viewControllers" id="e3y-Om-jxp"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="HuB-VB-40B" sceneMemberID="firstResponder"/>
@@ -501,7 +503,7 @@
         <!--Recent-->
         <scene sceneID="MUi-WW-qu8">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="YVO-iY-F53" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="FeedViewController" automaticallyAdjustsScrollViewInsets="NO" useStoryboardIdentifierAsRestorationIdentifier="YES" id="YVO-iY-F53" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Recent" image="feed" id="acW-dT-cKf"/>
                     <toolbarItems/>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" barStyle="black" prompted="NO"/>

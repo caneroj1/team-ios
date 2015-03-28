@@ -30,7 +30,9 @@ extension UIImage {
 }
 
 class GlobalTabBarController: UITabBarController {
-
+    var refreshToken:String = ""
+    var userID:Int = 0
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 

@@ -35,7 +35,6 @@ class GlobalTabBarController: UITabBarController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
         // you can add this code to you AppDelegate application:didFinishLaunchingWithOptions:
         // or add it to viewDidLoad method of your TabBarController class
         //let tabcolor1 = UIColor(red: 240.0/255.0, green: 240.0/255.0, blue: 239.0/255.0, alpha: 1.0)

@@ -24,6 +24,8 @@
 		01F50F931AB20E4300FE9051 /* GlobalTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01F50F921AB20E4300FE9051 /* GlobalTabBarController.swift */; };
 		01F50F951AB2424A00FE9051 /* FeedSettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01F50F941AB2424A00FE9051 /* FeedSettingsViewController.swift */; };
 		44017C321AC35ED00087A47B /* LogInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44017C311AC35ED00087A47B /* LogInViewController.swift */; };
+		44470F511AC873150077B042 /* ApiData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44470F501AC873150077B042 /* ApiData.swift */; };
+		44470F551AC884F30077B042 /* EditProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44470F541AC884F30077B042 /* EditProfileViewController.swift */; };
 		44ABCAE81AC72A410083A0F8 /* SwiftyJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44ABCAE71AC72A410083A0F8 /* SwiftyJSON.swift */; };
 		44ABCAEA1AC730C20083A0F8 /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44ABCAE91AC730C20083A0F8 /* DataManager.swift */; };
 /* End PBXBuildFile section */
@@ -60,6 +62,8 @@
 		01F50F921AB20E4300FE9051 /* GlobalTabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GlobalTabBarController.swift; sourceTree = "<group>"; };
 		01F50F941AB2424A00FE9051 /* FeedSettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeedSettingsViewController.swift; sourceTree = "<group>"; };
 		44017C311AC35ED00087A47B /* LogInViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LogInViewController.swift; path = ../LogInViewController.swift; sourceTree = "<group>"; };
+		44470F501AC873150077B042 /* ApiData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ApiData.swift; sourceTree = "<group>"; };
+		44470F541AC884F30077B042 /* EditProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditProfileViewController.swift; sourceTree = "<group>"; };
 		44ABCAE71AC72A410083A0F8 /* SwiftyJSON.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftyJSON.swift; sourceTree = "<group>"; };
 		44ABCAE91AC730C20083A0F8 /* DataManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -85,6 +89,7 @@
 		012C27B71AAB7CEE0024F5C3 = {
 			isa = PBXGroup;
 			children = (
+				44470F501AC873150077B042 /* ApiData.swift */,
 				44ABCAE91AC730C20083A0F8 /* DataManager.swift */,
 				44ABCAE71AC72A410083A0F8 /* SwiftyJSON.swift */,
 				012C27C21AAB7CEE0024F5C3 /* MusiciansWanted */,
@@ -115,6 +120,7 @@
 				01B5941B1AB36C5D0044AA16 /* PeopleCell.xib */,
 				01153FA51AB2980100B96401 /* PeopleSettingsViewController.swift */,
 				01266BC11AB0F03F003D2354 /* ProfileViewController.swift */,
+				44470F541AC884F30077B042 /* EditProfileViewController.swift */,
 				01266BBF1AB0D705003D2354 /* InboxViewController.swift */,
 				01B594151AB35B090044AA16 /* InboxManager.swift */,
 				01266BBB1AB0D4A2003D2354 /* MessageViewController.swift */,
@@ -252,6 +258,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				44470F551AC884F30077B042 /* EditProfileViewController.swift in Sources */,
 				01F50F931AB20E4300FE9051 /* GlobalTabBarController.swift in Sources */,
 				01266BC01AB0D705003D2354 /* InboxViewController.swift in Sources */,
 				01B5941E1AB371700044AA16 /* PeopleViewCell.swift in Sources */,
@@ -263,6 +270,7 @@
 				01B594181AB369830044AA16 /* PeopleViewController.swift in Sources */,
 				44017C321AC35ED00087A47B /* LogInViewController.swift in Sources */,
 				01153FA61AB2980100B96401 /* PeopleSettingsViewController.swift in Sources */,
+				44470F511AC873150077B042 /* ApiData.swift in Sources */,
 				01B594161AB35B090044AA16 /* InboxManager.swift in Sources */,
 				44ABCAE81AC72A410083A0F8 /* SwiftyJSON.swift in Sources */,
 				01266BBC1AB0D4A2003D2354 /* MessageViewController.swift in Sources */,

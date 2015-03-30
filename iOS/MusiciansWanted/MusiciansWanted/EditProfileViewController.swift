@@ -44,6 +44,34 @@ class EditProfileViewController: UIViewController {
         ageLabel.text = "\(sliderValue)"
     }
 
+    @IBAction func updateProfileButtonPress(sender: AnyObject) {
+        if nameField.text == "" || emailField.text == "" {
+            SweetAlert().showAlert("Uh oh!", subTitle: "Some required fields were left blank.", style: AlertStyle.Error)
+            return
+        }
+        else {
+            // submit the data to update the current user
+            var url = "/api/users/\(MusiciansWanted.userId)"
+            var params: Dictionary<String, AnyObject> = ["name": nameField.text, "email": emailField.text, "age": Int(ageSlider.value)]
+            DataManager.makePatchRequest(url, params: params, completion: { (data, error) -> Void in
+                var json = JSON(data: data!)
+                var errorString = DataManager.checkForErrors(json)
+                if errorString != "" {
+                    dispatch_async(dispatch_get_main_queue()) {
+                        SweetAlert().showAlert("Oops!", subTitle: errorString, style: AlertStyle.Error)
+                        return
+                    }
+                }
+                else {
+                    dispatch_async(dispatch_get_main_queue()) {
+                        SweetAlert().showAlert("Success!", subTitle: "Your profile has been updated.", style: AlertStyle.Success)
+                        return
+                    }
+                }
+            })
+        }
+    }
+    
     /*
     // MARK: - Navigation
 

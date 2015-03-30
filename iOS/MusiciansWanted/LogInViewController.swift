@@ -43,13 +43,11 @@ class LogInViewController: UIViewController {
                     }
                     else {
                         if json["errors"] == "There was a problem logging into soundcloud" {
-                            alert = UIAlertController(title: "Oops!", message: "That email and password combination is incorrect.", preferredStyle: UIAlertControllerStyle.Alert)
+                            SweetAlert().showAlert("Oops!", subTitle: "That email and password combination is incorrect.", style: AlertStyle.Error)
                         }
                         else {
-                            alert = UIAlertController(title: "Uh oh", message: "Please use your SoundCloud email address to log in.", preferredStyle: UIAlertControllerStyle.Alert)
+                            SweetAlert().showAlert("Oops!", subTitle: "Please use your SoundCloud email address to log in.", style: AlertStyle.Error)
                         }
-                        alert.addAction(UIAlertAction(title: "Try Again", style: UIAlertActionStyle.Default, handler: nil))
-                        self.presentViewController(alert, animated: true, completion: nil)
                     }
                 }
             })

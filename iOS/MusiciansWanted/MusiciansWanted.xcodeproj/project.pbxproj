@@ -28,6 +28,7 @@
 		44470F551AC884F30077B042 /* EditProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44470F541AC884F30077B042 /* EditProfileViewController.swift */; };
 		44ABCAE81AC72A410083A0F8 /* SwiftyJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44ABCAE71AC72A410083A0F8 /* SwiftyJSON.swift */; };
 		44ABCAEA1AC730C20083A0F8 /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44ABCAE91AC730C20083A0F8 /* DataManager.swift */; };
+		44E7A4291AC9F7A7007B9CED /* SweetAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44E7A4281AC9F7A7007B9CED /* SweetAlert.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -66,6 +67,7 @@
 		44470F541AC884F30077B042 /* EditProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditProfileViewController.swift; sourceTree = "<group>"; };
 		44ABCAE71AC72A410083A0F8 /* SwiftyJSON.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftyJSON.swift; sourceTree = "<group>"; };
 		44ABCAE91AC730C20083A0F8 /* DataManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataManager.swift; sourceTree = "<group>"; };
+		44E7A4281AC9F7A7007B9CED /* SweetAlert.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SweetAlert.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -89,6 +91,7 @@
 		012C27B71AAB7CEE0024F5C3 = {
 			isa = PBXGroup;
 			children = (
+				44E7A4281AC9F7A7007B9CED /* SweetAlert.swift */,
 				44470F501AC873150077B042 /* ApiData.swift */,
 				44ABCAE91AC730C20083A0F8 /* DataManager.swift */,
 				44ABCAE71AC72A410083A0F8 /* SwiftyJSON.swift */,
@@ -262,6 +265,7 @@
 				01F50F931AB20E4300FE9051 /* GlobalTabBarController.swift in Sources */,
 				01266BC01AB0D705003D2354 /* InboxViewController.swift in Sources */,
 				01B5941E1AB371700044AA16 /* PeopleViewCell.swift in Sources */,
+				44E7A4291AC9F7A7007B9CED /* SweetAlert.swift in Sources */,
 				44ABCAEA1AC730C20083A0F8 /* DataManager.swift in Sources */,
 				01B5941A1AB369DB0044AA16 /* FeedViewController.swift in Sources */,
 				012C27C61AAB7CEE0024F5C3 /* AppDelegate.swift in Sources */,

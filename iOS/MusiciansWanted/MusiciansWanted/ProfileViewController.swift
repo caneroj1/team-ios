@@ -29,9 +29,13 @@ class ProfileViewController: UIViewController {
         })
     }
     
+    override func viewWillAppear(animated: Bool) {
+        populateProfile()
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        populateProfile()
+//        populateProfile()
         // Do any additional setup after loading the view.
     }
 

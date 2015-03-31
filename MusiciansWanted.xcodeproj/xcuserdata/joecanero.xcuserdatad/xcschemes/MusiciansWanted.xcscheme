@@ -14,10 +14,10 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "D1EFB4FB1AB0BCFA00BBC8C2"
-               BuildableName = "Musicians-Wanted.app"
-               BlueprintName = "Musicians-Wanted"
-               ReferencedContainer = "container:Musicians-Wanted.xcodeproj">
+               BlueprintIdentifier = "012C27BF1AAB7CEE0024F5C3"
+               BuildableName = "MusiciansWanted.app"
+               BlueprintName = "MusiciansWanted"
+               ReferencedContainer = "container:MusiciansWanted.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
          <BuildActionEntry
@@ -28,10 +28,10 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "D1EFB5101AB0BCFB00BBC8C2"
-               BuildableName = "Musicians-WantedTests.xctest"
-               BlueprintName = "Musicians-WantedTests"
-               ReferencedContainer = "container:Musicians-Wanted.xcodeproj">
+               BlueprintIdentifier = "012C27D61AAB7CEE0024F5C3"
+               BuildableName = "MusiciansWantedTests.xctest"
+               BlueprintName = "MusiciansWantedTests"
+               ReferencedContainer = "container:MusiciansWanted.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -46,20 +46,20 @@
             skipped = "NO">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "D1EFB5101AB0BCFB00BBC8C2"
-               BuildableName = "Musicians-WantedTests.xctest"
-               BlueprintName = "Musicians-WantedTests"
-               ReferencedContainer = "container:Musicians-Wanted.xcodeproj">
+               BlueprintIdentifier = "012C27D61AAB7CEE0024F5C3"
+               BuildableName = "MusiciansWantedTests.xctest"
+               BlueprintName = "MusiciansWantedTests"
+               ReferencedContainer = "container:MusiciansWanted.xcodeproj">
             </BuildableReference>
          </TestableReference>
       </Testables>
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "D1EFB4FB1AB0BCFA00BBC8C2"
-            BuildableName = "Musicians-Wanted.app"
-            BlueprintName = "Musicians-Wanted"
-            ReferencedContainer = "container:Musicians-Wanted.xcodeproj">
+            BlueprintIdentifier = "012C27BF1AAB7CEE0024F5C3"
+            BuildableName = "MusiciansWanted.app"
+            BlueprintName = "MusiciansWanted"
+            ReferencedContainer = "container:MusiciansWanted.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
    </TestAction>
@@ -76,10 +76,10 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "D1EFB4FB1AB0BCFA00BBC8C2"
-            BuildableName = "Musicians-Wanted.app"
-            BlueprintName = "Musicians-Wanted"
-            ReferencedContainer = "container:Musicians-Wanted.xcodeproj">
+            BlueprintIdentifier = "012C27BF1AAB7CEE0024F5C3"
+            BuildableName = "MusiciansWanted.app"
+            BlueprintName = "MusiciansWanted"
+            ReferencedContainer = "container:MusiciansWanted.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
       <AdditionalOptions>
@@ -95,10 +95,10 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "D1EFB4FB1AB0BCFA00BBC8C2"
-            BuildableName = "Musicians-Wanted.app"
-            BlueprintName = "Musicians-Wanted"
-            ReferencedContainer = "container:Musicians-Wanted.xcodeproj">
+            BlueprintIdentifier = "012C27BF1AAB7CEE0024F5C3"
+            BuildableName = "MusiciansWanted.app"
+            BlueprintName = "MusiciansWanted"
+            ReferencedContainer = "container:MusiciansWanted.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>

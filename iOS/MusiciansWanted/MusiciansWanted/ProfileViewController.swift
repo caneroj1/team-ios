@@ -15,6 +15,7 @@ class ProfileViewController: UIViewController {
     @IBOutlet weak var emailLabel: UILabel!
     @IBOutlet weak var ageLabel: UILabel!
     @IBOutlet weak var locationLabel: UILabel!
+    @IBOutlet weak var profileImage: UIImageView!
     
     func populateProfile() {
         var url = "/api/users/\(MusiciansWanted.userId)"
@@ -35,7 +36,6 @@ class ProfileViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-//        populateProfile()
         // Do any additional setup after loading the view.
     }
 

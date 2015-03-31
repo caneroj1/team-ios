@@ -18,17 +18,17 @@
 		012C27DE1AAB7CEE0024F5C3 /* MusiciansWantedTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 012C27DD1AAB7CEE0024F5C3 /* MusiciansWantedTests.swift */; };
 		01B594161AB35B090044AA16 /* InboxManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01B594151AB35B090044AA16 /* InboxManager.swift */; };
 		01B594181AB369830044AA16 /* PeopleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01B594171AB369830044AA16 /* PeopleViewController.swift */; };
-		01B5941A1AB369DB0044AA16 /* FeedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01B594191AB369DB0044AA16 /* FeedViewController.swift */; };
 		01B5941C1AB36C5D0044AA16 /* PeopleCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 01B5941B1AB36C5D0044AA16 /* PeopleCell.xib */; };
 		01B5941E1AB371700044AA16 /* PeopleViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01B5941D1AB371700044AA16 /* PeopleViewCell.swift */; };
 		01F50F931AB20E4300FE9051 /* GlobalTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01F50F921AB20E4300FE9051 /* GlobalTabBarController.swift */; };
 		01F50F951AB2424A00FE9051 /* FeedSettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01F50F941AB2424A00FE9051 /* FeedSettingsViewController.swift */; };
-		44017C321AC35ED00087A47B /* LogInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44017C311AC35ED00087A47B /* LogInViewController.swift */; };
-		44470F511AC873150077B042 /* ApiData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44470F501AC873150077B042 /* ApiData.swift */; };
 		44470F551AC884F30077B042 /* EditProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44470F541AC884F30077B042 /* EditProfileViewController.swift */; };
-		44ABCAE81AC72A410083A0F8 /* SwiftyJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44ABCAE71AC72A410083A0F8 /* SwiftyJSON.swift */; };
-		44ABCAEA1AC730C20083A0F8 /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44ABCAE91AC730C20083A0F8 /* DataManager.swift */; };
-		44E7A4291AC9F7A7007B9CED /* SweetAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44E7A4281AC9F7A7007B9CED /* SweetAlert.swift */; };
+		44D3089F1ACB32350000F435 /* ApiData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44D3089E1ACB32350000F435 /* ApiData.swift */; };
+		44D308A11ACB323D0000F435 /* LogInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44D308A01ACB323D0000F435 /* LogInViewController.swift */; };
+		44D308A31ACB32450000F435 /* SweetAlert copy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44D308A21ACB32450000F435 /* SweetAlert copy.swift */; };
+		44D308A51ACB324E0000F435 /* SwiftyJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44D308A41ACB324E0000F435 /* SwiftyJSON.swift */; };
+		44D308A71ACB32560000F435 /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44D308A61ACB32560000F435 /* DataManager.swift */; };
+		44D308A91ACB325A0000F435 /* FeedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44D308A81ACB325A0000F435 /* FeedViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -57,17 +57,17 @@
 		012C27DD1AAB7CEE0024F5C3 /* MusiciansWantedTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MusiciansWantedTests.swift; sourceTree = "<group>"; };
 		01B594151AB35B090044AA16 /* InboxManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InboxManager.swift; sourceTree = "<group>"; };
 		01B594171AB369830044AA16 /* PeopleViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PeopleViewController.swift; sourceTree = "<group>"; };
-		01B594191AB369DB0044AA16 /* FeedViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FeedViewController.swift; path = ../FeedViewController.swift; sourceTree = "<group>"; };
 		01B5941B1AB36C5D0044AA16 /* PeopleCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PeopleCell.xib; sourceTree = "<group>"; };
 		01B5941D1AB371700044AA16 /* PeopleViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PeopleViewCell.swift; sourceTree = "<group>"; };
 		01F50F921AB20E4300FE9051 /* GlobalTabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GlobalTabBarController.swift; sourceTree = "<group>"; };
 		01F50F941AB2424A00FE9051 /* FeedSettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeedSettingsViewController.swift; sourceTree = "<group>"; };
-		44017C311AC35ED00087A47B /* LogInViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LogInViewController.swift; path = ../LogInViewController.swift; sourceTree = "<group>"; };
-		44470F501AC873150077B042 /* ApiData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ApiData.swift; sourceTree = "<group>"; };
 		44470F541AC884F30077B042 /* EditProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditProfileViewController.swift; sourceTree = "<group>"; };
-		44ABCAE71AC72A410083A0F8 /* SwiftyJSON.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftyJSON.swift; sourceTree = "<group>"; };
-		44ABCAE91AC730C20083A0F8 /* DataManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataManager.swift; sourceTree = "<group>"; };
-		44E7A4281AC9F7A7007B9CED /* SweetAlert.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SweetAlert.swift; sourceTree = "<group>"; };
+		44D3089E1ACB32350000F435 /* ApiData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ApiData.swift; sourceTree = "<group>"; };
+		44D308A01ACB323D0000F435 /* LogInViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LogInViewController.swift; sourceTree = "<group>"; };
+		44D308A21ACB32450000F435 /* SweetAlert copy.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "SweetAlert copy.swift"; sourceTree = "<group>"; };
+		44D308A41ACB324E0000F435 /* SwiftyJSON.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftyJSON.swift; sourceTree = "<group>"; };
+		44D308A61ACB32560000F435 /* DataManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataManager.swift; sourceTree = "<group>"; };
+		44D308A81ACB325A0000F435 /* FeedViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeedViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -91,10 +91,6 @@
 		012C27B71AAB7CEE0024F5C3 = {
 			isa = PBXGroup;
 			children = (
-				44E7A4281AC9F7A7007B9CED /* SweetAlert.swift */,
-				44470F501AC873150077B042 /* ApiData.swift */,
-				44ABCAE91AC730C20083A0F8 /* DataManager.swift */,
-				44ABCAE71AC72A410083A0F8 /* SwiftyJSON.swift */,
 				012C27C21AAB7CEE0024F5C3 /* MusiciansWanted */,
 				012C27DA1AAB7CEE0024F5C3 /* MusiciansWantedTests */,
 				012C27C11AAB7CEE0024F5C3 /* Products */,
@@ -113,10 +109,14 @@
 		012C27C21AAB7CEE0024F5C3 /* MusiciansWanted */ = {
 			isa = PBXGroup;
 			children = (
-				44017C311AC35ED00087A47B /* LogInViewController.swift */,
+				44D308A81ACB325A0000F435 /* FeedViewController.swift */,
+				44D308A61ACB32560000F435 /* DataManager.swift */,
+				44D308A41ACB324E0000F435 /* SwiftyJSON.swift */,
+				44D308A21ACB32450000F435 /* SweetAlert copy.swift */,
+				44D308A01ACB323D0000F435 /* LogInViewController.swift */,
+				44D3089E1ACB32350000F435 /* ApiData.swift */,
 				012C27C51AAB7CEE0024F5C3 /* AppDelegate.swift */,
 				01F50F921AB20E4300FE9051 /* GlobalTabBarController.swift */,
-				01B594191AB369DB0044AA16 /* FeedViewController.swift */,
 				01F50F941AB2424A00FE9051 /* FeedSettingsViewController.swift */,
 				01B594171AB369830044AA16 /* PeopleViewController.swift */,
 				01B5941D1AB371700044AA16 /* PeopleViewCell.swift */,
@@ -261,22 +261,22 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				44D308A91ACB325A0000F435 /* FeedViewController.swift in Sources */,
 				44470F551AC884F30077B042 /* EditProfileViewController.swift in Sources */,
 				01F50F931AB20E4300FE9051 /* GlobalTabBarController.swift in Sources */,
+				44D3089F1ACB32350000F435 /* ApiData.swift in Sources */,
 				01266BC01AB0D705003D2354 /* InboxViewController.swift in Sources */,
 				01B5941E1AB371700044AA16 /* PeopleViewCell.swift in Sources */,
-				44E7A4291AC9F7A7007B9CED /* SweetAlert.swift in Sources */,
-				44ABCAEA1AC730C20083A0F8 /* DataManager.swift in Sources */,
-				01B5941A1AB369DB0044AA16 /* FeedViewController.swift in Sources */,
+				44D308A31ACB32450000F435 /* SweetAlert copy.swift in Sources */,
 				012C27C61AAB7CEE0024F5C3 /* AppDelegate.swift in Sources */,
 				01F50F951AB2424A00FE9051 /* FeedSettingsViewController.swift in Sources */,
 				01266BC31AB0F03F003D2354 /* ProfileViewController.swift in Sources */,
+				44D308A51ACB324E0000F435 /* SwiftyJSON.swift in Sources */,
 				01B594181AB369830044AA16 /* PeopleViewController.swift in Sources */,
-				44017C321AC35ED00087A47B /* LogInViewController.swift in Sources */,
 				01153FA61AB2980100B96401 /* PeopleSettingsViewController.swift in Sources */,
-				44470F511AC873150077B042 /* ApiData.swift in Sources */,
 				01B594161AB35B090044AA16 /* InboxManager.swift in Sources */,
-				44ABCAE81AC72A410083A0F8 /* SwiftyJSON.swift in Sources */,
+				44D308A71ACB32560000F435 /* DataManager.swift in Sources */,
+				44D308A11ACB323D0000F435 /* LogInViewController.swift in Sources */,
 				01266BBC1AB0D4A2003D2354 /* MessageViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ProfileViewController: UIViewController {
+class ProfileViewController: UIViewController, UINavigationControllerDelegate, UIImagePickerControllerDelegate {
 
     // IB items for the main profile view
     @IBOutlet weak var nameLabel: UILabel!
@@ -17,21 +17,34 @@ class ProfileViewController: UIViewController {
     @IBOutlet weak var locationLabel: UILabel!
     @IBOutlet weak var profileImage: UIImageView!
     
+    @IBAction func openCameraRoll(sender: AnyObject) {
+        let imagePicker = UIImagePickerController()
+        imagePicker.delegate = self
+        self.presentViewController(imagePicker, animated: true, completion: nil)
+    }
+    
+    func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [NSObject : AnyObject]) {
+        self.dismissViewControllerAnimated(true, completion: nil)
+        let pickedImage = info[UIImagePickerControllerOriginalImage] as UIImage
+        profileImage.image = Toucan(image: pickedImage).resizeByScaling(CGSizeMake(140, 140)).image
+    }
+    
     func populateProfile() {
         var url = "/api/users/\(MusiciansWanted.userId)"
         DataManager.makeGetRequest(url, completion: { (data, error) -> Void in
             var json = JSON(data: data!)
             dispatch_async(dispatch_get_main_queue()) {
-                self.nameLabel.text = (json["name"] != nil) ? json["name"].stringValue : "None Given"
+                self.nameLabel.text = (json["name"] != nil) ? json["name"].stringValue : "No Name Given"
                 self.emailLabel.text = json["email"].stringValue
-                self.ageLabel.text = (json["age"] != nil) ? json["age"].stringValue : "None Given"
-                self.locationLabel.text = (json["location"] != nil) ? json["location"].stringValue : "None Given"
+                self.ageLabel.text = (json["age"] != nil) ? json["age"].stringValue : "No Age Given"
+                self.locationLabel.text = (json["location"] != nil) ? json["location"].stringValue : "No Location Given"
             }
         })
     }
     
     override func viewWillAppear(animated: Bool) {
         populateProfile()
+//        profileImage.image = UIImage(named: "anonymous")
     }
     
     override func viewDidLoad() {
@@ -50,7 +63,7 @@ class ProfileViewController: UIViewController {
             destination.nameText = self.nameLabel.text!
             destination.emailText = self.emailLabel.text!
             
-            if self.ageLabel.text == "None Given" {
+            if self.ageLabel.text == "No Age Given" {
                 destination.ageText = "\(20)"
                 destination.ageValue = 20
             }
@@ -60,7 +73,7 @@ class ProfileViewController: UIViewController {
                 destination.ageValue = str.floatValue
             }
             
-            if self.locationLabel.text == "None Given" {
+            if self.locationLabel.text == "No Location Given" {
                 destination.locationBool = false
             }
             else {

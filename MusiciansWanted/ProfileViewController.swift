@@ -14,7 +14,8 @@ class ProfileViewController: UIViewController, UINavigationControllerDelegate, U
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var emailLabel: UILabel!
     @IBOutlet weak var ageLabel: UILabel!
-    @IBOutlet weak var locationLabel: UILabel!
+    @IBOutlet weak var jamLabel: UILabel!
+    @IBOutlet weak var bandLabel: UILabel!
     @IBOutlet weak var profileImage: UIImageView!
     
     @IBAction func openCameraRoll(sender: AnyObject) {
@@ -43,7 +44,8 @@ class ProfileViewController: UIViewController, UINavigationControllerDelegate, U
                 self.nameLabel.text = (json["name"] != nil) ? json["name"].stringValue : "No Name Given"
                 self.emailLabel.text = json["email"].stringValue
                 self.ageLabel.text = (json["age"] != nil) ? json["age"].stringValue : "No Age Given"
-                self.locationLabel.text = (json["location"] != nil) ? json["location"].stringValue : "No Location Given"
+                self.jamLabel.text = json["looking_to_jam"] ? "Yes" : "No"
+                self.bandLabel.text = json["looking_for_band"] ? "Yes" : "No"
             }
         })
     }
@@ -79,11 +81,18 @@ class ProfileViewController: UIViewController, UINavigationControllerDelegate, U
                 destination.ageValue = str.floatValue
             }
             
-            if self.locationLabel.text == "No Location Given" {
-                destination.locationBool = false
+            if self.jamLabel.text == "No" {
+                destination.jamBool = false
             }
             else {
-                destination.locationBool = true
+                destination.jamBool = true
+            }
+            
+            if self.bandLabel.text == "No" {
+                destination.bandBool = false
+            }
+            else {
+                destination.bandBool = true
             }
         }
     }

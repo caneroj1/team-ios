@@ -539,7 +539,7 @@
         <!--Events-->
         <scene sceneID="6R2-LG-Tbr">
             <objects>
-                <viewController id="w7X-jA-GXK" sceneMemberID="viewController">
+                <viewController id="w7X-jA-GXK" customClass="EventsViewController" customModule="MusiciansWanted" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="7Nz-x3-HOp">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

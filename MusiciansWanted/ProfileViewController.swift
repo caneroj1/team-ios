@@ -26,7 +26,13 @@ class ProfileViewController: UIViewController, UINavigationControllerDelegate, U
     func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [NSObject : AnyObject]) {
         self.dismissViewControllerAnimated(true, completion: nil)
         let pickedImage = info[UIImagePickerControllerOriginalImage] as UIImage
-        profileImage.image = Toucan(image: pickedImage).resizeByScaling(CGSizeMake(140, 140)).image
+        let newImage = Toucan(image: pickedImage).resizeByScaling(CGSizeMake(140, 140)).image as UIImage
+        
+        DataManager.uploadImage("/api/s3upload", userID: MusiciansWanted.userId, image: newImage, completion: { (data, error) -> Void in
+            
+        })
+        
+        profileImage.image = newImage
     }
     
     func populateProfile() {

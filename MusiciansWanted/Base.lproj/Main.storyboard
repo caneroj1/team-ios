@@ -350,7 +350,7 @@
         <!--Profile-->
         <scene sceneID="mf8-gp-66u">
             <objects>
-                <viewController id="Yfn-HE-0gN" customClass="ProfileViewController" customModule="MusiciansWanted" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="UserProfile" id="Yfn-HE-0gN" customClass="ProfileViewController" customModule="MusiciansWanted" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="5rm-0k-aRe">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="700"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -456,7 +456,7 @@
                         <outlet property="bandLabel" destination="xWj-FN-4uJ" id="YXK-uo-z4l"/>
                         <outlet property="emailLabel" destination="3Cy-9T-aKJ" id="fpB-FC-hd8"/>
                         <outlet property="jamLabel" destination="PSW-UN-Bwy" id="VC9-h4-n5O"/>
-                        <outlet property="locationLabel" destination="QRQ-kv-EXA" id="SKp-Ao-fW3"/>
+                        <outlet property="locationLabel" destination="QRQ-kv-EXA" id="IGd-SU-U20"/>
                         <outlet property="nameLabel" destination="LT3-sG-i0W" id="wJS-OR-MT6"/>
                         <outlet property="profileImage" destination="Lew-ma-6Zx" id="btw-Tz-M1V"/>
                     </connections>
@@ -580,7 +580,6 @@
                         <outlet property="bandSwitch" destination="U6n-Gd-lWM" id="GKq-ur-pfE"/>
                         <outlet property="emailField" destination="WyX-6W-xem" id="ZKS-iw-hLU"/>
                         <outlet property="jamSwitch" destination="lZZ-U9-5H8" id="hi5-Ng-UhS"/>
-                        <outlet property="locationSwitch" destination="lZZ-U9-5H8" id="p11-Og-PRX"/>
                         <outlet property="nameField" destination="yQc-HS-bPU" id="ITO-JE-rEC"/>
                     </connections>
                 </viewController>

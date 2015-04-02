@@ -7,7 +7,7 @@
         <!--Recent Posts-->
         <scene sceneID="hNz-n2-bh7">
             <objects>
-                <viewController id="9pv-A4-QxB" customClass="FeedViewController" customModule="MusiciansWanted" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="9pv-A4-QxB" customClass="FeedViewController" customModule="MW" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="tsR-hK-woN">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -37,7 +37,7 @@
         <!--Settings-->
         <scene sceneID="oal-e7-2gx">
             <objects>
-                <viewController id="DtW-tB-GFW" customClass="FeedSettingsViewController" customModule="MusiciansWanted" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="DtW-tB-GFW" customClass="FeedSettingsViewController" customModule="MW" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="sKp-FU-LEY">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -65,7 +65,7 @@
         <!--People-->
         <scene sceneID="wg7-f3-ORb">
             <objects>
-                <viewController id="8rJ-Kc-sve" customClass="PeopleViewController" customModule="MusiciansWanted" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="8rJ-Kc-sve" customClass="PeopleViewController" customModule="MW" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="QS5-Rx-YEW">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -110,7 +110,7 @@
         <!--Settings-->
         <scene sceneID="dBq-YC-oNI">
             <objects>
-                <viewController id="bSm-Oa-M1f" customClass="PeopleSettingViewController" customModule="MusiciansWanted" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="bSm-Oa-M1f" customClass="PeopleSettingViewController" customModule="MW" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Ddu-BQ-klD">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -294,7 +294,7 @@
         <!--Inbox-->
         <scene sceneID="Fr2-44-BUK">
             <objects>
-                <viewController id="Vdh-P5-C0b" customClass="InboxViewController" customModule="MusiciansWanted" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="Vdh-P5-C0b" customClass="InboxViewController" customModule="MW" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="HZw-2M-K1r">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -335,7 +335,7 @@
         <!--User-->
         <scene sceneID="XSo-9o-c4D">
             <objects>
-                <viewController id="zwV-G8-hSx" customClass="MessageViewController" customModule="MusiciansWanted" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="zwV-G8-hSx" customClass="MessageViewController" customModule="MW" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="unm-yd-ZNY">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -350,7 +350,7 @@
         <!--Profile-->
         <scene sceneID="mf8-gp-66u">
             <objects>
-                <viewController id="Yfn-HE-0gN" customClass="ProfileViewController" customModule="MusiciansWanted" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="Yfn-HE-0gN" customClass="ProfileViewController" customModule="MW" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="5rm-0k-aRe">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -438,7 +438,7 @@
         <!--Edit Profile-->
         <scene sceneID="ZRi-iF-4kV">
             <objects>
-                <viewController id="UEX-Rw-heQ" customClass="EditProfileViewController" customModule="MusiciansWanted" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="UEX-Rw-heQ" customClass="EditProfileViewController" customModule="MW" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="PsP-Ai-Alt">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -539,7 +539,7 @@
         <!--Events-->
         <scene sceneID="6R2-LG-Tbr">
             <objects>
-                <viewController id="w7X-jA-GXK" customClass="EventsViewController" customModule="MusiciansWanted" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="w7X-jA-GXK" customClass="EventsViewController" customModule="MW" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="7Nz-x3-HOp">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -556,12 +556,12 @@
         <!--Item-->
         <scene sceneID="xDe-r5-XwW">
             <objects>
-                <viewController id="qzr-uA-NNI" customClass="LogInViewController" customModule="MusiciansWanted" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="qzr-uA-NNI" customClass="LogInViewController" customModule="MW" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Vws-XD-eNH">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Musicians Wanted" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="fb7-Ar-mzD">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="MW" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="fb7-Ar-mzD">
                                 <rect key="frame" x="0.0" y="71" width="320" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" name="MarkerFelt-Thin" family="Marker Felt" pointSize="30"/>
@@ -631,7 +631,7 @@
         <!--Global Tab Bar Controller-->
         <scene sceneID="yl2-sM-qoP">
             <objects>
-                <tabBarController storyboardIdentifier="GlobalTabBarController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="49e-Tb-3d3" customClass="GlobalTabBarController" customModule="MusiciansWanted" customModuleProvider="target" sceneMemberID="viewController">
+                <tabBarController storyboardIdentifier="GlobalTabBarController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="49e-Tb-3d3" customClass="GlobalTabBarController" customModule="MW" customModuleProvider="target" sceneMemberID="viewController">
                     <navigationItem key="navigationItem" id="shU-MA-6X4"/>
                     <nil key="simulatedBottomBarMetrics"/>
                     <tabBar key="tabBar" contentMode="scaleToFill" barStyle="black" id="W28-zg-YXA">

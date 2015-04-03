@@ -18,23 +18,12 @@ class PeopleSettingViewController: UIViewController {
     @IBOutlet weak var lowerAgeTxt: UITextField!
     @IBOutlet weak var upperAgeTxt: UITextField!
     
-    @IBOutlet weak var locationSettingBtn: UITableViewCell!
-    @IBOutlet weak var genreSettingBtn: UITableViewCell!
-    @IBOutlet weak var instrumentSettingBtn: UITableViewCell!
-    
     var lowerAge:Int = 0
     var upperAge:Int = 100
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
-        
-        locationSettingBtn.textLabel?.text = "Location"
-        locationSettingBtn.detailTextLabel?.text = "Ewing, NJ"
-        genreSettingBtn.textLabel?.text = "Genre"
-        genreSettingBtn.detailTextLabel?.text = "Any"
-        instrumentSettingBtn.textLabel?.text = "Instrument"
-        instrumentSettingBtn.detailTextLabel?.text = "Any"
     }
     
     override func didReceiveMemoryWarning() {

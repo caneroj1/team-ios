@@ -8,7 +8,7 @@
 
 import UIKit
 
-var selectedSort = 0
+var selectedSort = 1
 
 class FeedSettingsViewController: UIViewController, UIPickerViewDelegate {
 

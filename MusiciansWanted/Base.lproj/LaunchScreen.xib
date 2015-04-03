@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6751" systemVersion="14A388b" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" launchScreen="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6254" systemVersion="13F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" launchScreen="YES" useTraitCollections="YES">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6736"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6247"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
@@ -10,16 +11,24 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="bg" translatesAutoresizingMaskIntoConstraints="NO" id="CRz-fW-mSv">
-                    <rect key="frame" x="0.0" y="117" width="377" height="341"/>
+                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="bg" translatesAutoresizingMaskIntoConstraints="NO" id="CRz-fW-mSv">
+                    <rect key="frame" x="0.0" y="-256" width="320" height="1080"/>
                     <color key="tintColor" red="0.84307065217391308" green="0.0" blue="0.079256361473127188" alpha="1" colorSpace="calibratedRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="width" secondItem="CRz-fW-mSv" secondAttribute="height" multiplier="377:341" id="jrL-py-cYC"/>
+                    </constraints>
+                    <variation key="default">
+                        <mask key="constraints">
+                            <exclude reference="jrL-py-cYC"/>
+                        </mask>
+                    </variation>
                     <variation key="widthClass=compact" fixedFrame="YES">
                         <rect key="frame" x="0.0" y="137" width="320" height="299"/>
                     </variation>
                 </imageView>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Musicians Wanted" textAlignment="center" lineBreakMode="tailTruncation" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wwN-Dn-wL2">
-                    <rect key="frame" x="2" y="214" width="373" height="147"/>
-                    <fontDescription key="fontDescription" name="MarkerFelt-Thin" family="Marker Felt" pointSize="36"/>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Musicians Wanted" textAlignment="center" lineBreakMode="tailTruncation" minimumFontSize="18" translatesAutoresizingMaskIntoConstraints="NO" id="wwN-Dn-wL2">
+                    <rect key="frame" x="2" y="244" width="316" height="80"/>
+                    <fontDescription key="fontDescription" name="MarkerFelt-Thin" family="Marker Felt" pointSize="72"/>
                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <nil key="highlightedColor"/>
                     <color key="shadowColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
@@ -30,6 +39,14 @@
                 </label>
             </subviews>
             <color key="backgroundColor" cocoaTouchSystemColor="darkTextColor"/>
+            <constraints>
+                <constraint firstItem="CRz-fW-mSv" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="AQ4-hQ-332"/>
+                <constraint firstAttribute="trailing" secondItem="wwN-Dn-wL2" secondAttribute="trailing" constant="2" id="Ffd-Mv-R2e"/>
+                <constraint firstAttribute="centerY" secondItem="CRz-fW-mSv" secondAttribute="centerY" id="RdX-PD-rYu"/>
+                <constraint firstItem="wwN-Dn-wL2" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="2" id="fVZ-a0-Bkn"/>
+                <constraint firstAttribute="trailing" secondItem="CRz-fW-mSv" secondAttribute="trailing" id="i2V-Ae-agV"/>
+                <constraint firstAttribute="centerY" secondItem="wwN-Dn-wL2" secondAttribute="centerY" id="pPf-WF-j33"/>
+            </constraints>
             <nil key="simulatedStatusBarMetrics"/>
             <simulatedOrientationMetrics key="simulatedOrientationMetrics"/>
             <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>

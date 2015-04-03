@@ -13,13 +13,15 @@ class EditProfileViewController: UIViewController {
     var emailText: String = ""
     var nameText: String = ""
     var ageValue: Float = 0
-    var locationBool: Bool = true
+    var bandBool: Bool = true
+    var jamBool: Bool = true
     
     @IBOutlet weak var ageSlider: UISlider!
     @IBOutlet weak var emailField: UITextField!
     @IBOutlet weak var nameField: UITextField!
     @IBOutlet weak var ageLabel: UILabel!
-    @IBOutlet weak var locationSwitch: UISwitch!
+    @IBOutlet weak var jamSwitch: UISwitch!
+    @IBOutlet weak var bandSwitch: UISwitch!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -31,7 +33,8 @@ class EditProfileViewController: UIViewController {
         ageLabel.text = ageText
         emailField.text = emailText
         nameField.text = nameText
-        locationSwitch.setOn(locationBool, animated: false)
+        bandSwitch.setOn(bandBool, animated: false)
+        jamSwitch.setOn(jamBool, animated: false)
     }
 
     override func didReceiveMemoryWarning() {
@@ -52,7 +55,7 @@ class EditProfileViewController: UIViewController {
         else {
             // submit the data to update the current user
             var url = "/api/users/\(MusiciansWanted.userId)"
-            var params: Dictionary<String, AnyObject> = ["name": nameField.text, "email": emailField.text, "age": Int(ageSlider.value)]
+            var params: Dictionary<String, AnyObject> = ["name": nameField.text, "email": emailField.text, "age": Int(ageSlider.value), "looking_to_jam": jamSwitch.on, "looking_for_band": bandSwitch.on]
             DataManager.makePatchRequest(url, params: params, completion: { (data, error) -> Void in
                 var json = JSON(data: data!)
                 var errorString = DataManager.checkForErrors(json)
@@ -72,14 +75,13 @@ class EditProfileViewController: UIViewController {
         }
     }
     
-    /*
+    
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
+//    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+//        
+//    }
+    
 
 }

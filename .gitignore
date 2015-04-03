@@ -15,4 +15,5 @@ xcuserdata
 *.moved-aside
 DerivedData
 *.xcuserstate
-MW.xcodeproj/project.xcworkspace/xcuserdata/hankharvey.xcuserdatad/UserInterfaceState.xcuserstate
+
+MW.xcodeproj/project.xcworkspace/xcuserdata/*

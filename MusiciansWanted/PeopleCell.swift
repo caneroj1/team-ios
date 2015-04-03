@@ -1,25 +1,27 @@
 //
-//  PeopleViewCell.swift
+//  PeopleCell.swift
 //  MusiciansWanted
 //
-//  Created by Nick on 3/13/15.
+//  Created by Nick on 3/27/15.
 //  Copyright (c) 2015 iOS Team. All rights reserved.
 //
 
 import UIKit
 
-class PeopleViewCell: UITableViewCell {
+class PeopleCell: UITableViewCell {
 
     @IBOutlet var imgProfilePic: UIImageView!
     @IBOutlet var lblProfileName: UILabel!
     @IBOutlet var lblLocation: UILabel!
-    @IBOutlet var lblInstruments: UILabel!
-    @IBOutlet var lblGenres: UILabel!
-    
+    @IBOutlet var lblAge: UILabel!
+    @IBOutlet var lblInstrument: UILabel!
+    @IBOutlet var lblGenre: UILabel!
     
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
+        
+        
     }
 
     override func setSelected(selected: Bool, animated: Bool) {

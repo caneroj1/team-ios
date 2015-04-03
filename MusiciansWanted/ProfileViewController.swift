@@ -9,13 +9,20 @@
 import UIKit
 
 class ProfileViewController: UIViewController, UINavigationControllerDelegate, UIImagePickerControllerDelegate {
-
+    // MARK: - Instances Variables and IB Outlets
+    
+    var needToLoadPicture = true
+    
     // IB items for the main profile view
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var emailLabel: UILabel!
     @IBOutlet weak var ageLabel: UILabel!
+    @IBOutlet weak var jamLabel: UILabel!
+    @IBOutlet weak var bandLabel: UILabel!
     @IBOutlet weak var locationLabel: UILabel!
     @IBOutlet weak var profileImage: UIImageView!
+    
+    // MARK: - Image Functionality
     
     @IBAction func openCameraRoll(sender: AnyObject) {
         let imagePicker = UIImagePickerController()
@@ -26,8 +33,19 @@ class ProfileViewController: UIViewController, UINavigationControllerDelegate, U
     func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [NSObject : AnyObject]) {
         self.dismissViewControllerAnimated(true, completion: nil)
         let pickedImage = info[UIImagePickerControllerOriginalImage] as UIImage
-        profileImage.image = Toucan(image: pickedImage).resizeByScaling(CGSizeMake(140, 140)).image
+        let newImage = Toucan(image: pickedImage).resizeByScaling(CGSizeMake(140, 140)).image as UIImage
+        
+        DataManager.uploadImage("/api/s3upload", userID: MusiciansWanted.userId, image: newImage, completion: { (data, error) -> Void in
+            dispatch_async(dispatch_get_main_queue()) {
+                SweetAlert().showAlert("Sweet!", subTitle: "Profile picture successfully changed!", style: AlertStyle.Success)
+                return
+            }
+        })
+        
+        profileImage.image = newImage
     }
+    
+    // MARK: - API Requests
     
     func populateProfile() {
         var url = "/api/users/\(MusiciansWanted.userId)"
@@ -38,13 +56,39 @@ class ProfileViewController: UIViewController, UINavigationControllerDelegate, U
                 self.emailLabel.text = json["email"].stringValue
                 self.ageLabel.text = (json["age"] != nil) ? json["age"].stringValue : "No Age Given"
                 self.locationLabel.text = (json["location"] != nil) ? json["location"].stringValue : "No Location Given"
+                self.jamLabel.text = json["looking_to_jam"] ? "Yes" : "No"
+                self.bandLabel.text = json["looking_for_band"] ? "Yes" : "No"
             }
         })
     }
     
+    func getProfileImage() {
+        var url = "/api/s3get?user_id=\(MusiciansWanted.userId)"
+        DataManager.makeGetRequest(url, completion: { (data, error) -> Void in
+            if data != nil {
+                var json = JSON(data: data!)
+                if json["picture"] != nil {
+                    var base64String = json["picture"].stringValue
+                    let decodedString = NSData(base64EncodedString: base64String, options: NSDataBase64DecodingOptions.IgnoreUnknownCharacters)
+                    dispatch_async(dispatch_get_main_queue()) {
+                        self.profileImage.image = UIImage(data: decodedString!)
+                    }
+                }
+            }
+            else {
+                self.profileImage.image = UIImage(named: "anonymous")
+            }
+        })
+    }
+    
+    // MARK: - Native Functions
+    
     override func viewWillAppear(animated: Bool) {
         populateProfile()
-//        profileImage.image = UIImage(named: "anonymous")
+        if needToLoadPicture {
+            getProfileImage()
+            needToLoadPicture = false
+        }
     }
     
     override func viewDidLoad() {
@@ -56,6 +100,8 @@ class ProfileViewController: UIViewController, UINavigationControllerDelegate, U
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+    
+    // MARK: - Navigation
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if(segue.identifier == "editProfileSegue") {
@@ -73,24 +119,19 @@ class ProfileViewController: UIViewController, UINavigationControllerDelegate, U
                 destination.ageValue = str.floatValue
             }
             
-            if self.locationLabel.text == "No Location Given" {
-                destination.locationBool = false
+            if self.jamLabel.text == "No" {
+                destination.jamBool = false
             }
             else {
-                destination.locationBool = true
+                destination.jamBool = true
+            }
+            
+            if self.bandLabel.text == "No" {
+                destination.bandBool = false
+            }
+            else {
+                destination.bandBool = true
             }
         }
     }
-    
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }

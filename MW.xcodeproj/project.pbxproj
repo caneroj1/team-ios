@@ -119,20 +119,14 @@
 				44D308A41ACB324E0000F435 /* SwiftyJSON.swift */,
 				44D308A21ACB32450000F435 /* SweetAlert copy.swift */,
 				44D308A01ACB323D0000F435 /* LogInViewController.swift */,
-				ADEF52911ACB796F0059855D /* EventsViewController.swift */,
 				44D3089E1ACB32350000F435 /* ApiData.swift */,
 				012C27C51AAB7CEE0024F5C3 /* AppDelegate.swift */,
 				01F50F921AB20E4300FE9051 /* GlobalTabBarController.swift */,
-				01F50F941AB2424A00FE9051 /* FeedSettingsViewController.swift */,
-				010AEBCE1ACE239D0066E4FA /* PeopleCell.swift */,
-				010AEBCF1ACE239D0066E4FA /* PeopleManager.swift */,
-				010AEBD01ACE239D0066E4FA /* PeopleTableViewController.swift */,
-				01153FA51AB2980100B96401 /* PeopleSettingsViewController.swift */,
-				01266BC11AB0F03F003D2354 /* ProfileViewController.swift */,
-				44470F541AC884F30077B042 /* EditProfileViewController.swift */,
-				01266BBF1AB0D705003D2354 /* InboxViewController.swift */,
-				01B594151AB35B090044AA16 /* InboxManager.swift */,
-				01266BBB1AB0D4A2003D2354 /* MessageViewController.swift */,
+				01FCDE7E1ACEFE3A002F3A56 /* News Feed */,
+				01FCDE7F1ACEFE53002F3A56 /* People */,
+				01FCDE801ACEFE6F002F3A56 /* Inbox */,
+				01FCDE811ACEFE79002F3A56 /* Events */,
+				01FCDE821ACEFE87002F3A56 /* Profile */,
 				012C27CB1AAB7CEE0024F5C3 /* Main.storyboard */,
 				012C27CE1AAB7CEE0024F5C3 /* Images.xcassets */,
 				012C27D01AAB7CEE0024F5C3 /* LaunchScreen.xib */,
@@ -164,6 +158,52 @@
 				012C27DC1AAB7CEE0024F5C3 /* Info.plist */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		01FCDE7E1ACEFE3A002F3A56 /* News Feed */ = {
+			isa = PBXGroup;
+			children = (
+				01F50F941AB2424A00FE9051 /* FeedSettingsViewController.swift */,
+			);
+			name = "News Feed";
+			sourceTree = "<group>";
+		};
+		01FCDE7F1ACEFE53002F3A56 /* People */ = {
+			isa = PBXGroup;
+			children = (
+				010AEBD01ACE239D0066E4FA /* PeopleTableViewController.swift */,
+				01153FA51AB2980100B96401 /* PeopleSettingsViewController.swift */,
+				010AEBCF1ACE239D0066E4FA /* PeopleManager.swift */,
+				010AEBCE1ACE239D0066E4FA /* PeopleCell.swift */,
+			);
+			name = People;
+			sourceTree = "<group>";
+		};
+		01FCDE801ACEFE6F002F3A56 /* Inbox */ = {
+			isa = PBXGroup;
+			children = (
+				01B594151AB35B090044AA16 /* InboxManager.swift */,
+				01266BBB1AB0D4A2003D2354 /* MessageViewController.swift */,
+				01266BBF1AB0D705003D2354 /* InboxViewController.swift */,
+			);
+			name = Inbox;
+			sourceTree = "<group>";
+		};
+		01FCDE811ACEFE79002F3A56 /* Events */ = {
+			isa = PBXGroup;
+			children = (
+				ADEF52911ACB796F0059855D /* EventsViewController.swift */,
+			);
+			name = Events;
+			sourceTree = "<group>";
+		};
+		01FCDE821ACEFE87002F3A56 /* Profile */ = {
+			isa = PBXGroup;
+			children = (
+				44470F541AC884F30077B042 /* EditProfileViewController.swift */,
+				01266BC11AB0F03F003D2354 /* ProfileViewController.swift */,
+			);
+			name = Profile;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

@@ -11,8 +11,6 @@
 		010AEBD21ACE239D0066E4FA /* PeopleManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 010AEBCF1ACE239D0066E4FA /* PeopleManager.swift */; };
 		010AEBD31ACE239D0066E4FA /* PeopleTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 010AEBD01ACE239D0066E4FA /* PeopleTableViewController.swift */; };
 		01153FA61AB2980100B96401 /* PeopleSettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01153FA51AB2980100B96401 /* PeopleSettingsViewController.swift */; };
-		01266BBC1AB0D4A2003D2354 /* MessageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01266BBB1AB0D4A2003D2354 /* MessageViewController.swift */; };
-		01266BC01AB0D705003D2354 /* InboxViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01266BBF1AB0D705003D2354 /* InboxViewController.swift */; };
 		01266BC31AB0F03F003D2354 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01266BC11AB0F03F003D2354 /* ProfileViewController.swift */; };
 		012C27C61AAB7CEE0024F5C3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 012C27C51AAB7CEE0024F5C3 /* AppDelegate.swift */; };
 		012C27CD1AAB7CEE0024F5C3 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 012C27CB1AAB7CEE0024F5C3 /* Main.storyboard */; };
@@ -22,6 +20,8 @@
 		01B594161AB35B090044AA16 /* InboxManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01B594151AB35B090044AA16 /* InboxManager.swift */; };
 		01F50F931AB20E4300FE9051 /* GlobalTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01F50F921AB20E4300FE9051 /* GlobalTabBarController.swift */; };
 		01F50F951AB2424A00FE9051 /* FeedSettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01F50F941AB2424A00FE9051 /* FeedSettingsViewController.swift */; };
+		01FCDE841ACF0500002F3A56 /* InboxTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01FCDE831ACF0500002F3A56 /* InboxTableViewController.swift */; };
+		01FCDE861ACF05EA002F3A56 /* InboxCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01FCDE851ACF05EA002F3A56 /* InboxCell.swift */; };
 		44470F551AC884F30077B042 /* EditProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44470F541AC884F30077B042 /* EditProfileViewController.swift */; };
 		44566E871ACB4E3200D9F6A4 /* Toucan.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44566E861ACB4E3200D9F6A4 /* Toucan.swift */; };
 		44D3089F1ACB32350000F435 /* ApiData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44D3089E1ACB32350000F435 /* ApiData.swift */; };
@@ -48,8 +48,6 @@
 		010AEBCF1ACE239D0066E4FA /* PeopleManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PeopleManager.swift; sourceTree = "<group>"; };
 		010AEBD01ACE239D0066E4FA /* PeopleTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PeopleTableViewController.swift; sourceTree = "<group>"; };
 		01153FA51AB2980100B96401 /* PeopleSettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PeopleSettingsViewController.swift; sourceTree = "<group>"; };
-		01266BBB1AB0D4A2003D2354 /* MessageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessageViewController.swift; sourceTree = "<group>"; };
-		01266BBF1AB0D705003D2354 /* InboxViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InboxViewController.swift; sourceTree = "<group>"; };
 		01266BC11AB0F03F003D2354 /* ProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		012C27C01AAB7CEE0024F5C3 /* MW.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MW.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		012C27C41AAB7CEE0024F5C3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -63,6 +61,8 @@
 		01B594151AB35B090044AA16 /* InboxManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InboxManager.swift; sourceTree = "<group>"; };
 		01F50F921AB20E4300FE9051 /* GlobalTabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GlobalTabBarController.swift; sourceTree = "<group>"; };
 		01F50F941AB2424A00FE9051 /* FeedSettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeedSettingsViewController.swift; sourceTree = "<group>"; };
+		01FCDE831ACF0500002F3A56 /* InboxTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InboxTableViewController.swift; sourceTree = "<group>"; };
+		01FCDE851ACF05EA002F3A56 /* InboxCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InboxCell.swift; sourceTree = "<group>"; };
 		44470F541AC884F30077B042 /* EditProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditProfileViewController.swift; sourceTree = "<group>"; };
 		44566E861ACB4E3200D9F6A4 /* Toucan.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Toucan.swift; sourceTree = "<group>"; };
 		44D3089E1ACB32350000F435 /* ApiData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ApiData.swift; sourceTree = "<group>"; };
@@ -183,8 +183,8 @@
 			isa = PBXGroup;
 			children = (
 				01B594151AB35B090044AA16 /* InboxManager.swift */,
-				01266BBB1AB0D4A2003D2354 /* MessageViewController.swift */,
-				01266BBF1AB0D705003D2354 /* InboxViewController.swift */,
+				01FCDE831ACF0500002F3A56 /* InboxTableViewController.swift */,
+				01FCDE851ACF05EA002F3A56 /* InboxCell.swift */,
 			);
 			name = Inbox;
 			sourceTree = "<group>";
@@ -312,7 +312,7 @@
 				44470F551AC884F30077B042 /* EditProfileViewController.swift in Sources */,
 				01F50F931AB20E4300FE9051 /* GlobalTabBarController.swift in Sources */,
 				44D3089F1ACB32350000F435 /* ApiData.swift in Sources */,
-				01266BC01AB0D705003D2354 /* InboxViewController.swift in Sources */,
+				01FCDE841ACF0500002F3A56 /* InboxTableViewController.swift in Sources */,
 				44566E871ACB4E3200D9F6A4 /* Toucan.swift in Sources */,
 				44D308A31ACB32450000F435 /* SweetAlert copy.swift in Sources */,
 				012C27C61AAB7CEE0024F5C3 /* AppDelegate.swift in Sources */,
@@ -323,9 +323,9 @@
 				010AEBD31ACE239D0066E4FA /* PeopleTableViewController.swift in Sources */,
 				01B594161AB35B090044AA16 /* InboxManager.swift in Sources */,
 				010AEBD11ACE239D0066E4FA /* PeopleCell.swift in Sources */,
+				01FCDE861ACF05EA002F3A56 /* InboxCell.swift in Sources */,
 				44D308A71ACB32560000F435 /* DataManager.swift in Sources */,
 				44D308A11ACB323D0000F435 /* LogInViewController.swift in Sources */,
-				01266BBC1AB0D4A2003D2354 /* MessageViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

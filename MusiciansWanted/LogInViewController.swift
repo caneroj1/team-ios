@@ -31,9 +31,11 @@ class LogInViewController: UIViewController {
             var paramsDictionary = ["username": usernameField.text, "password": passwordField.text]
             DataManager.makePostRequest("/api/login", params: paramsDictionary, completion: { (data, error) -> Void in
                 let json = JSON(data: data!)
+                println(json)
                 dispatch_async(dispatch_get_main_queue()) {
                     var alert:UIAlertController = UIAlertController()
                     var refreshToken: String? = json["refresh_token"].stringValue
+                    
                     if (refreshToken? != "") {
                         let viewController = self.storyboard?.instantiateViewControllerWithIdentifier("GlobalTabBarController") as GlobalTabBarController
                         // set the data for the struct so that we can access it anywhere
@@ -46,7 +48,7 @@ class LogInViewController: UIViewController {
                             SweetAlert().showAlert("Oops!", subTitle: "That email and password combination is incorrect.", style: AlertStyle.Error)
                         }
                         else {
-                            SweetAlert().showAlert("Oops!", subTitle: "Please use your SoundCloud email address to log in.", style: AlertStyle.Error)
+                            SweetAlert().showAlert("Oops!", subTitle: "Something went wrong.", style: AlertStyle.Error)
                         }
                     }
                 }

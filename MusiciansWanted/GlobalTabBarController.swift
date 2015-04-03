@@ -40,7 +40,7 @@ class GlobalTabBarController: UITabBarController {
         //let tabcolor1 = UIColor(red: 240.0/255.0, green: 240.0/255.0, blue: 239.0/255.0, alpha: 1.0)
         let tabcolor1 = UIColor(red: 110.0/255.0, green: 110.0/255.0, blue: 110.0/255.0, alpha: 1.0)
         let tabcolor2 = UIColor(red: 255.0/255.0, green: 90.0/255.0, blue: 0.0/255.0, alpha: 1.0)
-        let tabbarcolor = UIColor(red: 15.0/255.0, green: 15.0/255.0, blue: 15.0/255.0, alpha: 0.5)
+        let tabbarcolor = UIColor(red: 5.0/255.0, green: 5.0/255.0, blue: 10.0/255.0, alpha: 0.5)
 
         UITabBar.appearance().barTintColor = tabbarcolor
         UINavigationBar.appearance().barTintColor = tabbarcolor

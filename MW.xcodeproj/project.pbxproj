@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		010AEBD11ACE239D0066E4FA /* PeopleCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 010AEBCE1ACE239D0066E4FA /* PeopleCell.swift */; };
+		010AEBD21ACE239D0066E4FA /* PeopleManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 010AEBCF1ACE239D0066E4FA /* PeopleManager.swift */; };
+		010AEBD31ACE239D0066E4FA /* PeopleTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 010AEBD01ACE239D0066E4FA /* PeopleTableViewController.swift */; };
 		01153FA61AB2980100B96401 /* PeopleSettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01153FA51AB2980100B96401 /* PeopleSettingsViewController.swift */; };
 		01266BBC1AB0D4A2003D2354 /* MessageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01266BBB1AB0D4A2003D2354 /* MessageViewController.swift */; };
 		01266BC01AB0D705003D2354 /* InboxViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01266BBF1AB0D705003D2354 /* InboxViewController.swift */; };
@@ -17,9 +20,6 @@
 		012C27D21AAB7CEE0024F5C3 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 012C27D01AAB7CEE0024F5C3 /* LaunchScreen.xib */; };
 		012C27DE1AAB7CEE0024F5C3 /* MusiciansWantedTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 012C27DD1AAB7CEE0024F5C3 /* MusiciansWantedTests.swift */; };
 		01B594161AB35B090044AA16 /* InboxManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01B594151AB35B090044AA16 /* InboxManager.swift */; };
-		01B594181AB369830044AA16 /* PeopleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01B594171AB369830044AA16 /* PeopleViewController.swift */; };
-		01B5941C1AB36C5D0044AA16 /* PeopleCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 01B5941B1AB36C5D0044AA16 /* PeopleCell.xib */; };
-		01B5941E1AB371700044AA16 /* PeopleViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01B5941D1AB371700044AA16 /* PeopleViewCell.swift */; };
 		01F50F931AB20E4300FE9051 /* GlobalTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01F50F921AB20E4300FE9051 /* GlobalTabBarController.swift */; };
 		01F50F951AB2424A00FE9051 /* FeedSettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01F50F941AB2424A00FE9051 /* FeedSettingsViewController.swift */; };
 		44470F551AC884F30077B042 /* EditProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44470F541AC884F30077B042 /* EditProfileViewController.swift */; };
@@ -44,6 +44,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		010AEBCE1ACE239D0066E4FA /* PeopleCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PeopleCell.swift; sourceTree = "<group>"; };
+		010AEBCF1ACE239D0066E4FA /* PeopleManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PeopleManager.swift; sourceTree = "<group>"; };
+		010AEBD01ACE239D0066E4FA /* PeopleTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PeopleTableViewController.swift; sourceTree = "<group>"; };
 		01153FA51AB2980100B96401 /* PeopleSettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PeopleSettingsViewController.swift; sourceTree = "<group>"; };
 		01266BBB1AB0D4A2003D2354 /* MessageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessageViewController.swift; sourceTree = "<group>"; };
 		01266BBF1AB0D705003D2354 /* InboxViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InboxViewController.swift; sourceTree = "<group>"; };
@@ -58,9 +61,6 @@
 		012C27DC1AAB7CEE0024F5C3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		012C27DD1AAB7CEE0024F5C3 /* MusiciansWantedTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MusiciansWantedTests.swift; sourceTree = "<group>"; };
 		01B594151AB35B090044AA16 /* InboxManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InboxManager.swift; sourceTree = "<group>"; };
-		01B594171AB369830044AA16 /* PeopleViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PeopleViewController.swift; sourceTree = "<group>"; };
-		01B5941B1AB36C5D0044AA16 /* PeopleCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PeopleCell.xib; sourceTree = "<group>"; };
-		01B5941D1AB371700044AA16 /* PeopleViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PeopleViewCell.swift; sourceTree = "<group>"; };
 		01F50F921AB20E4300FE9051 /* GlobalTabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GlobalTabBarController.swift; sourceTree = "<group>"; };
 		01F50F941AB2424A00FE9051 /* FeedSettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeedSettingsViewController.swift; sourceTree = "<group>"; };
 		44470F541AC884F30077B042 /* EditProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditProfileViewController.swift; sourceTree = "<group>"; };
@@ -124,9 +124,9 @@
 				012C27C51AAB7CEE0024F5C3 /* AppDelegate.swift */,
 				01F50F921AB20E4300FE9051 /* GlobalTabBarController.swift */,
 				01F50F941AB2424A00FE9051 /* FeedSettingsViewController.swift */,
-				01B594171AB369830044AA16 /* PeopleViewController.swift */,
-				01B5941D1AB371700044AA16 /* PeopleViewCell.swift */,
-				01B5941B1AB36C5D0044AA16 /* PeopleCell.xib */,
+				010AEBCE1ACE239D0066E4FA /* PeopleCell.swift */,
+				010AEBCF1ACE239D0066E4FA /* PeopleManager.swift */,
+				010AEBD01ACE239D0066E4FA /* PeopleTableViewController.swift */,
 				01153FA51AB2980100B96401 /* PeopleSettingsViewController.swift */,
 				01266BC11AB0F03F003D2354 /* ProfileViewController.swift */,
 				44470F541AC884F30077B042 /* EditProfileViewController.swift */,
@@ -246,7 +246,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				01B5941C1AB36C5D0044AA16 /* PeopleCell.xib in Resources */,
 				012C27CD1AAB7CEE0024F5C3 /* Main.storyboard in Resources */,
 				012C27D21AAB7CEE0024F5C3 /* LaunchScreen.xib in Resources */,
 				012C27CF1AAB7CEE0024F5C3 /* Images.xcassets in Resources */,
@@ -269,20 +268,21 @@
 			files = (
 				44D308A91ACB325A0000F435 /* FeedViewController.swift in Sources */,
 				ADEF52921ACB796F0059855D /* EventsViewController.swift in Sources */,
+				010AEBD21ACE239D0066E4FA /* PeopleManager.swift in Sources */,
 				44470F551AC884F30077B042 /* EditProfileViewController.swift in Sources */,
 				01F50F931AB20E4300FE9051 /* GlobalTabBarController.swift in Sources */,
 				44D3089F1ACB32350000F435 /* ApiData.swift in Sources */,
 				01266BC01AB0D705003D2354 /* InboxViewController.swift in Sources */,
 				44566E871ACB4E3200D9F6A4 /* Toucan.swift in Sources */,
-				01B5941E1AB371700044AA16 /* PeopleViewCell.swift in Sources */,
 				44D308A31ACB32450000F435 /* SweetAlert copy.swift in Sources */,
 				012C27C61AAB7CEE0024F5C3 /* AppDelegate.swift in Sources */,
 				01F50F951AB2424A00FE9051 /* FeedSettingsViewController.swift in Sources */,
 				01266BC31AB0F03F003D2354 /* ProfileViewController.swift in Sources */,
 				44D308A51ACB324E0000F435 /* SwiftyJSON.swift in Sources */,
-				01B594181AB369830044AA16 /* PeopleViewController.swift in Sources */,
 				01153FA61AB2980100B96401 /* PeopleSettingsViewController.swift in Sources */,
+				010AEBD31ACE239D0066E4FA /* PeopleTableViewController.swift in Sources */,
 				01B594161AB35B090044AA16 /* InboxManager.swift in Sources */,
+				010AEBD11ACE239D0066E4FA /* PeopleCell.swift in Sources */,
 				44D308A71ACB32560000F435 /* DataManager.swift in Sources */,
 				44D308A11ACB323D0000F435 /* LogInViewController.swift in Sources */,
 				01266BBC1AB0D4A2003D2354 /* MessageViewController.swift in Sources */,

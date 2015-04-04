@@ -56,6 +56,19 @@ class GlobalTabBarController: UITabBarController {
             }
         }
         
+        DataManager.makeGetRequest("/api/users", completion: { (data, error) -> Void in
+            let json = JSON(data: data!)
+            
+            for user in json {
+                
+                //write if statement that filters setting based on age, looking to jam, and band
+                
+                pplMgr.addPerson(user.1["name"].stringValue, pic: "anonymous", age: user.1["age"].stringValue, genre: "Unknown", instru: "Unknown", loc: user.1["location"].stringValue)
+            }
+            
+            println("Data Loaded.")
+        })
+        
     }
 
     override func didReceiveMemoryWarning() {

@@ -76,9 +76,7 @@ class EditProfileViewController: UIViewController, UITextFieldDelegate {
                 }
                 else {
                     dispatch_async(dispatch_get_main_queue()) {
-                        SweetAlert().showAlert("Success!", subTitle: "Your profile has been updated.", style: AlertStyle.Success)
-                        self.tabBarController?.selectedIndex = 5;
-                        
+                        SweetAlert().showAlert("Success!", subTitle: "Your profile has been updated.", style: AlertStyle.Success)                        
                         return
                     }
                 }

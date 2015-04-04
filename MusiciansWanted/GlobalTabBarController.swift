@@ -104,24 +104,13 @@ class GlobalTabBarController: UITabBarController, CLLocationManagerDelegate {
         case .NotDetermined:
             locationManager.requestWhenInUseAuthorization()
         case .Restricted, .Denied, .AuthorizedAlways:
-            let url = "/api/users/\(MusiciansWanted.userId)"
-            let userParams = ["location": ""]
-            let params = ["user": userParams]
-            
-            DataManager.makePatchRequest(url, params: params, completion: { (data, error) -> Void in
-            })
+            setLocationTracking("")
             MusiciansWanted.locationServicesDisabled = true
         }
     }
     
     func locationManager(manager: CLLocationManager!, didFailWithError error: NSError!) {
-        let url = "/api/users/\(MusiciansWanted.userId)"
-        let userParams = ["location": ""]
-        let params = ["user": userParams]
-        
-        DataManager.makePatchRequest(url, params: params, completion: { (data, error) -> Void in
-        })
-        
+        setLocationTracking("")
         println("Error while updating location " + error.localizedDescription)
     }
     
@@ -129,9 +118,12 @@ class GlobalTabBarController: UITabBarController, CLLocationManagerDelegate {
         locationManager.stopUpdatingLocation()
         let locationString = placemark.subThoroughfare + " " + placemark.thoroughfare + " " + placemark.subLocality
         locationString.stringByAppendingString(" " + placemark.locality + " " + placemark.postalCode + " " + placemark.country)
-        
+        setLocationTracking(locationString)
+    }
+    
+    func setLocationTracking(location: String) {
         let url = "/api/users/\(MusiciansWanted.userId)"
-        let userParams = ["location": locationString]
+        let userParams = ["location": location]
         let params = ["user": userParams]
         
         DataManager.makePatchRequest(url, params: params, completion: { (data, error) -> Void in

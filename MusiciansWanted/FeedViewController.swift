@@ -20,14 +20,7 @@ class FeedViewController: UIViewController {
                     message: "Location tracking allows us to provide more accurate search results for other users and events.",
                     preferredStyle: .Alert)
                 
-                let cancelAction = UIAlertAction(title: "Cancel", style: .Cancel, handler: { (cancelAction) -> Void in
-                    let url = "/api/users/\(MusiciansWanted.userId)"
-                    let userParams = ["location": ""]
-                    let params = ["user": userParams]
-                    
-                    DataManager.makePatchRequest(url, params: params, completion: { (data, error) -> Void in
-                    })
-                })
+                let cancelAction = UIAlertAction(title: "Cancel", style: .Cancel, handler: nil)
                 
                 alertController.addAction(cancelAction)
                 

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6751" systemVersion="14C1514" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="qzr-uA-NNI">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6247"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6736"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
@@ -349,6 +349,7 @@
                             <constraint firstItem="xWj-FN-4uJ" firstAttribute="bottom" secondItem="9Yt-Cp-eZv" secondAttribute="bottom" id="adD-xg-je3"/>
                             <constraint firstAttribute="centerX" secondItem="LT3-sG-i0W" secondAttribute="centerX" id="arq-yp-Mwd"/>
                             <constraint firstItem="QRQ-kv-EXA" firstAttribute="leading" secondItem="5rm-0k-aRe" secondAttribute="leadingMargin" constant="10" id="b1f-Gz-e7h"/>
+                            <constraint firstItem="plA-8o-Nzd" firstAttribute="top" secondItem="9Yt-Cp-eZv" secondAttribute="bottom" constant="75" id="bOb-Mg-wha"/>
                             <constraint firstItem="PSW-UN-Bwy" firstAttribute="bottom" secondItem="KBL-SB-NWU" secondAttribute="bottom" id="dIx-5g-1qj"/>
                             <constraint firstAttribute="trailingMargin" secondItem="mpY-5v-bBv" secondAttribute="trailing" constant="10" id="en9-Eb-rVl"/>
                             <constraint firstItem="jqD-tL-N7W" firstAttribute="leading" secondItem="5rm-0k-aRe" secondAttribute="leadingMargin" constant="10" id="fpB-0n-AyE"/>
@@ -361,6 +362,7 @@
                             <constraint firstAttribute="trailingMargin" secondItem="9Yt-Cp-eZv" secondAttribute="trailing" constant="10" id="tTp-cH-JKJ"/>
                             <constraint firstItem="QRQ-kv-EXA" firstAttribute="top" secondItem="mpY-5v-bBv" secondAttribute="bottom" constant="5" id="v0u-BO-DiS"/>
                             <constraint firstItem="Lew-ma-6Zx" firstAttribute="trailing" secondItem="396-QQ-x3l" secondAttribute="trailing" id="vze-dC-DL1"/>
+                            <constraint firstItem="9Yt-Cp-eZv" firstAttribute="top" secondItem="KBL-SB-NWU" secondAttribute="bottom" constant="20" id="yGp-uq-LJZ"/>
                             <constraint firstItem="KBL-SB-NWU" firstAttribute="leading" secondItem="5rm-0k-aRe" secondAttribute="leadingMargin" constant="10" id="ycB-yS-WAX"/>
                             <constraint firstAttribute="trailingMargin" secondItem="3Cy-9T-aKJ" secondAttribute="trailing" constant="10" id="zC0-7I-huK"/>
                         </constraints>

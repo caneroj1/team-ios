@@ -33,7 +33,7 @@ class ProfileViewController: UIViewController, UINavigationControllerDelegate, U
     func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [NSObject : AnyObject]) {
         self.dismissViewControllerAnimated(true, completion: nil)
         let pickedImage = info[UIImagePickerControllerOriginalImage] as UIImage
-        let newImage = Toucan(image: pickedImage).resizeByScaling(CGSizeMake(140, 140)).image as UIImage
+        let newImage = Toucan(image: pickedImage).resizeByScaling(CGSizeMake(280, 140)).image as UIImage
         
         DataManager.uploadImage("/api/s3upload", userID: MusiciansWanted.userId, image: newImage, completion: { (data, error) -> Void in
             dispatch_async(dispatch_get_main_queue()) {
@@ -70,8 +70,11 @@ class ProfileViewController: UIViewController, UINavigationControllerDelegate, U
                 if json["picture"] != nil {
                     var base64String = json["picture"].stringValue
                     let decodedString = NSData(base64EncodedString: base64String, options: NSDataBase64DecodingOptions.IgnoreUnknownCharacters)
+                    var downloadedImage = UIImage(data: decodedString!)!
+                    var newImage = Toucan(image: downloadedImage).resize(CGSizeMake(280, 140), fitMode: Toucan.Resize.FitMode.Scale).image
+                    println(downloadedImage)
                     dispatch_async(dispatch_get_main_queue()) {
-                        self.profileImage.image = UIImage(data: decodedString!)
+                        self.profileImage.image = newImage
                     }
                 }
             }

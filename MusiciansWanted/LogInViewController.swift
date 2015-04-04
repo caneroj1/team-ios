@@ -31,7 +31,6 @@ class LogInViewController: UIViewController {
             var paramsDictionary = ["username": usernameField.text, "password": passwordField.text]
             DataManager.makePostRequest("/api/login", params: paramsDictionary, completion: { (data, error) -> Void in
                 let json = JSON(data: data!)
-                println(json)
                 dispatch_async(dispatch_get_main_queue()) {
                     var alert:UIAlertController = UIAlertController()
                     var refreshToken: String? = json["refresh_token"].stringValue

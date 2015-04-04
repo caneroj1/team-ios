@@ -25,8 +25,15 @@ class PeopleTableViewController: UITableViewController {
         pplMgr.addPerson("Peter DePasquale", pic: "people", age: "Male, not a day over 25", genre: "Heavy Metal", instru: "Maracas", loc: "Mahwah, NJ")
         pplMgr.addPerson("Nicholas Amuso", pic: "people", age: "Male, 20", genre: "Electronic, Hip-Hop", instru: "Drums", loc: "Teaneck, NJ")
         pplMgr.addPerson("Marco Polo", pic: "people", age: "Male, 35", genre: "Country", instru: "Violin, Bass, Flute", loc: "Philadelphia, PA")
+        
+        /*
+        DataManager.makeGetRequest("/api/users", completion: { (data, error) -> Void in
+            let json = JSON(data: data!)
+            
+        })
+        */
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.

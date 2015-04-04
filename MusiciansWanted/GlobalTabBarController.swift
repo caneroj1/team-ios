@@ -62,8 +62,37 @@ class GlobalTabBarController: UITabBarController {
             for user in json {
                 
                 //write if statement that filters setting based on age, looking to jam, and band
+                var profileImage = UIImage(named: "anonymous")!
+                var userId = user.1["id"];
+                //println(userId);
+                var url = "/api/s3get?user_id=\(userId)"
+                DataManager.makeGetRequest(url, completion: { (data, error) -> Void in
+                    if data != nil {
+                        var json = JSON(data: data!)
+                        if json["picture"] != nil {
+                            var base64String = json["picture"].stringValue
+                            let decodedString = NSData(base64EncodedString: base64String, options: NSDataBase64DecodingOptions.IgnoreUnknownCharacters)
+                            dispatch_async(dispatch_get_main_queue()) {
+                                profileImage = UIImage(data: decodedString!)!
+                                
+                                //temporary 
+                                pplMgr.addPerson(user.1["name"].stringValue, pic: profileImage, age: user.1["age"].stringValue, genre: "Unknown", instru: "Unknown", loc: user.1["location"].stringValue)
+                            }
+                        }
+                        else {
+                            pplMgr.addPerson(user.1["name"].stringValue, pic: profileImage, age: user.1["age"].stringValue, genre: "Unknown", instru: "Unknown", loc: user.1["location"].stringValue)
+                            
+                           
+                        }
+                    }
+                    else {
+                        pplMgr.addPerson(user.1["name"].stringValue, pic: profileImage, age: user.1["age"].stringValue, genre: "Unknown", instru: "Unknown", loc: user.1["location"].stringValue)
                 
-                pplMgr.addPerson(user.1["name"].stringValue, pic: "anonymous", age: user.1["age"].stringValue, genre: "Unknown", instru: "Unknown", loc: user.1["location"].stringValue)
+                    }
+                })
+
+                
+                
             }
             
             println("Data Loaded.")
@@ -75,7 +104,6 @@ class GlobalTabBarController: UITabBarController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
 
     /*
     // MARK: - Navigation

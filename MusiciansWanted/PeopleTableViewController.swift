@@ -31,6 +31,8 @@ class PeopleTableViewController: UITableViewController {
             }
         })*/
         
+        tableView.reloadData()
+        
     }
     
     override func didReceiveMemoryWarning() {
@@ -59,7 +61,7 @@ class PeopleTableViewController: UITableViewController {
         let person = pplMgr.person[indexPath.row]
         
         cell.lblProfileName.text = person.profname
-        cell.imgProfilePic.image = UIImage(named: person.profpic)
+        cell.imgProfilePic.image = person.profpic
         cell.lblLocation.text = person.location
         cell.lblAge.text = person.age
         cell.lblInstrument.text = person.instrument

@@ -19,19 +19,18 @@ class PeopleTableViewController: UITableViewController {
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem()
         
-        pplMgr.addPerson("Ultra Lord", pic: "Ultra Lord", age: "Male, 45", genre: "Rock, Heavy Metal", instru: "Vocals", loc: "Retroville, NJ")
-        pplMgr.addPerson("Kari Gilbertson", pic: "people", age: "Female, 22", genre: "Indie, Alternative", instru: "Acoustic Guitar, Electric Guitar, Piano", loc: "Trenton, NJ")
-        pplMgr.addPerson("Hank Harvey", pic: "people", age: "Male, 20", genre: "Techno", instru: "Triangle", loc: "South Jersey, NJ")
-        pplMgr.addPerson("Peter DePasquale", pic: "people", age: "Male, not a day over 25", genre: "Heavy Metal", instru: "Maracas", loc: "Mahwah, NJ")
-        pplMgr.addPerson("Nicholas Amuso", pic: "people", age: "Male, 20", genre: "Electronic, Hip-Hop", instru: "Drums", loc: "Teaneck, NJ")
-        pplMgr.addPerson("Marco Polo", pic: "people", age: "Male, 35", genre: "Country", instru: "Violin, Bass, Flute", loc: "Philadelphia, PA")
-        
-        /*
+        /* some how make update every time view loads
         DataManager.makeGetRequest("/api/users", completion: { (data, error) -> Void in
             let json = JSON(data: data!)
             
-        })
-        */
+            for user in json {
+                
+                //write if statement that filters setting based on age, looking to jam, and band
+                
+                pplMgr.addPerson(user.1["name"].stringValue, pic: "anonymous", age: user.1["age"].stringValue, genre: "Unknown", instru: "Unknown", loc: user.1["location"].stringValue)
+            }
+        })*/
+        
     }
     
     override func didReceiveMemoryWarning() {

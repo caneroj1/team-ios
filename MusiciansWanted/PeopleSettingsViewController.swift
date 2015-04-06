@@ -8,7 +8,7 @@
 
 import UIKit
 
-class PeopleSettingViewController: UIViewController {
+class PeopleSettingViewController: UIViewController, UITextFieldDelegate {
     
     @IBOutlet weak var contactsOnly: UISwitch!
     @IBOutlet weak var agesOption: UISwitch!
@@ -18,8 +18,8 @@ class PeopleSettingViewController: UIViewController {
     @IBOutlet weak var lowerAgeTxt: UITextField!
     @IBOutlet weak var upperAgeTxt: UITextField!
     
-    var lowerAge:Int = 0
-    var upperAge:Int = 100
+    var lowerAge:Int = 13;
+    var upperAge:Int = 75;
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -29,6 +29,15 @@ class PeopleSettingViewController: UIViewController {
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    override func touchesBegan(touches: NSSet, withEvent event: UIEvent) {
+        self.view.endEditing(true);
+    }
+    
+    func textFieldShouldReturn(textField: UITextField) -> Bool {
+        textField.resignFirstResponder();
+        return true;
     }
     
     @IBAction func contactsOnlyStateChanged(sender: UISwitch) {
@@ -59,16 +68,15 @@ class PeopleSettingViewController: UIViewController {
         if let lowerNumber = NSNumberFormatter().numberFromString(lowerAgeTxt.text) {
             lowerAge = lowerNumber.integerValue
         } else {
-            // what ever error code you need to write
-            lowerAge = 0
+            lowerAge = 13
         }
         
-        if lowerAge < 0 {
-            lowerAge = 0
+        if lowerAge < 13 {
+            lowerAge = 13
         } else if lowerAge >= upperAge {
             lowerAge = upperAge - 1
-        } else if lowerAge > 99 {
-            lowerAge = 99
+        } else if lowerAge > 74 {
+            lowerAge = 74
         }
         
         lowerAgeTxt.text = "\(lowerAge)"
@@ -80,16 +88,15 @@ class PeopleSettingViewController: UIViewController {
         if let upperNumber = NSNumberFormatter().numberFromString(upperAgeTxt.text) {
             upperAge = upperNumber.integerValue
         } else {
-            // what ever error code you need to write
-            upperAge = 100
+            upperAge = 75
         }
         
-        if upperAge > 100 {
-            upperAge = 100
+        if upperAge > 75 {
+            upperAge = 75
         } else if upperAge <= lowerAge {
             upperAge = lowerAge + 1
-        } else if upperAge < 1 {
-            upperAge = 1
+        } else if upperAge < 14 {
+            upperAge = 14
         }
         
         upperAgeTxt.text = "\(upperAge)"

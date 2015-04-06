@@ -8,7 +8,7 @@
 
 import UIKit
 
-class EditProfileViewController: UIViewController {
+class EditProfileViewController: UIViewController, UITextFieldDelegate {
     var ageText: String = ""
     var emailText: String = ""
     var nameText: String = ""
@@ -42,6 +42,15 @@ class EditProfileViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
+    override func touchesBegan(touches: NSSet, withEvent event: UIEvent) {
+        self.view.endEditing(true);
+    }
+    
+    func textFieldShouldReturn(textField: UITextField) -> Bool {
+        textField.resignFirstResponder();
+        return true;
+    }
+    
     @IBAction func ageSliderChanged(sender: UISlider) {
         var sliderValue = Int(sender.value)
         ageLabel.text = "\(sliderValue)"
@@ -67,7 +76,7 @@ class EditProfileViewController: UIViewController {
                 }
                 else {
                     dispatch_async(dispatch_get_main_queue()) {
-                        SweetAlert().showAlert("Success!", subTitle: "Your profile has been updated.", style: AlertStyle.Success)
+                        SweetAlert().showAlert("Success!", subTitle: "Your profile has been updated.", style: AlertStyle.Success)                        
                         return
                     }
                 }

@@ -30,7 +30,7 @@ class PeopleTableViewController: UITableViewController {
                 pplMgr.addPerson(user.1["name"].stringValue, pic: "anonymous", age: user.1["age"].stringValue, genre: "Unknown", instru: "Unknown", loc: user.1["location"].stringValue)
             }
         })*/
-        
+        pplMgr.loadPeople();
         tableView.reloadData()
         
     }

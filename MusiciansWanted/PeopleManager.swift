@@ -36,6 +36,9 @@ class PeopleManager: NSObject {
         DataManager.makeGetRequest("/api/users", completion: { (data, error) -> Void in
             let json = JSON(data: data!)
             
+            // replace with for index in lowerBound..upperBound
+            // I would assume something like var user = json[index].1 next
+            // replace all user.1 with just user
             for user in json {
                 
                 //write if statement that filters setting based on age, looking to jam, and band

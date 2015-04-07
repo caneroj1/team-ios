@@ -10,6 +10,9 @@ import UIKit
 
 class PeopleTableViewController: UITableViewController {
 
+    var expandingView = false;
+    var ttlPpl = 99;
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -19,14 +22,12 @@ class PeopleTableViewController: UITableViewController {
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem()
         
-        pplMgr.addPerson("Ultra Lord", pic: "Ultra Lord", age: "Male, 45", genre: "Rock, Heavy Metal", instru: "Vocals", loc: "Retroville, NJ")
-        pplMgr.addPerson("Kari Gilbertson", pic: "people", age: "Female, 22", genre: "Indie, Alternative", instru: "Acoustic Guitar, Electric Guitar, Piano", loc: "Trenton, NJ")
-        pplMgr.addPerson("Hank Harvey", pic: "people", age: "Male, 20", genre: "Techno", instru: "Triangle", loc: "South Jersey, NJ")
-        pplMgr.addPerson("Peter DePasquale", pic: "people", age: "Male, not a day over 25", genre: "Heavy Metal", instru: "Maracas", loc: "Mahwah, NJ")
-        pplMgr.addPerson("Nicholas Amuso", pic: "people", age: "Male, 20", genre: "Electronic, Hip-Hop", instru: "Drums", loc: "Teaneck, NJ")
-        pplMgr.addPerson("Marco Polo", pic: "people", age: "Male, 35", genre: "Country", instru: "Violin, Bass, Flute", loc: "Philadelphia, PA")
+        
+        pplMgr.loadPeople(0,upper: ttlPpl);
+        tableView.reloadData()
+        
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -53,13 +54,31 @@ class PeopleTableViewController: UITableViewController {
         let person = pplMgr.person[indexPath.row]
         
         cell.lblProfileName.text = person.profname
-        cell.imgProfilePic.image = UIImage(named: person.profpic)
+        cell.imgProfilePic.image = person.profpic
         cell.lblLocation.text = person.location
         cell.lblAge.text = person.age
         cell.lblInstrument.text = person.instrument
         cell.lblGenre.text = person.genre
         
         return cell
+    }
+    
+    override func scrollViewDidScroll(scrollView: UIScrollView) {
+        var currentOffset = scrollView.contentOffset.y;
+        var maximumOffset = scrollView.contentSize.height - scrollView.frame.size.height;
+        
+        if (maximumOffset - currentOffset <= 20.0 && expandingView == false) {
+            println("expanding size");
+            expandingView = true
+            ttlPpl = pplMgr.person.count + 100;
+            
+            pplMgr.loadPeople(pplMgr.person.count, upper: ttlPpl)
+       
+        }
+        else if (pplMgr.person.count >= ttlPpl) {
+            expandingView = false;
+            tableView.reloadData()
+        }
     }
     
     override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {

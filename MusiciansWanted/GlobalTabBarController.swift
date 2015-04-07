@@ -95,7 +95,6 @@ class GlobalTabBarController: UITabBarController {
                 
             }
             
-            println("Data Loaded.")
         })
         
     }

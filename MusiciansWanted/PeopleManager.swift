@@ -31,24 +31,33 @@ class PeopleManager: NSObject {
         }
     }
     
-    func loadPeople(){
+    func loadPeople(lower: Int, upper: Int) {
         
         DataManager.makeGetRequest("/api/users", completion: { (data, error) -> Void in
             let json = JSON(data: data!)
             
-            // replace with for index in lowerBound..upperBound
-            // I would assume something like var user = json[index].1 next
-            // replace all user.1 with just user
-            for user in json {
+            //for user in json {
+            for index in lower...upper {
                 
+                if index >= json.count {
+                    println("loop broken.");
+                    break;
+                }
+                var user = json[index]
+                var userId = user["id"];
+
                 //write if statement that filters setting based on age, looking to jam, and band
+                //Add basic information of users
                 var profileImage = UIImage(named: "anonymous")!
                 
-                pplMgr.addPerson(user.1["id"].intValue, name: user.1["name"].stringValue, pic: profileImage, age: user.1["age"].stringValue, genre: "id: " + user.1["id"].stringValue, instru: "Unknown", loc: user.1["location"].stringValue)
+                pplMgr.addPerson(user["id"].intValue, name: user["name"].stringValue, pic: profileImage, age: user["age"].stringValue, genre: "id: " + user["id"].stringValue, instru: "Unknown", loc: user["location"].stringValue)
                 
-                if user.1["has_profile_pic"].stringValue == "true"
+                println("Adding user \(userId)");
+                
+                
+                //Load in profile images
+                if user["has_profile_pic"].stringValue == "true"
                 {
-                    var userId = user.1["id"];
                     println("loading profile picture of \(userId)");
                     var url = "/api/s3get?user_id=\(userId)"
                     DataManager.makeGetRequest(url, completion: { (data, error) -> Void in
@@ -60,13 +69,14 @@ class PeopleManager: NSObject {
                                 dispatch_async(dispatch_get_main_queue()) {
                                     profileImage = UIImage(data: decodedString!)!
                                 
-                                    pplMgr.addPerson(user.1["id"].intValue, name: user.1["name"].stringValue, pic: profileImage, age: user.1["age"].stringValue, genre: "id: " + user.1["id"].stringValue, instru: "Unknown", loc: user.1["location"].stringValue)
+                                    pplMgr.addPerson(user["id"].intValue, name: user["name"].stringValue, pic: profileImage, age: user["age"].stringValue, genre: "id: " + user["id"].stringValue, instru: "Unknown", loc: user["location"].stringValue)
                                 }
                             }
                         }
                     
                     })
                 }
+                
             }
             
             println("Data Loaded.")

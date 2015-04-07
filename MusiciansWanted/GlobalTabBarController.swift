@@ -56,7 +56,7 @@ class GlobalTabBarController: UITabBarController {
             }
         }
         
-        pplMgr.loadPeople();
+        pplMgr.loadPeople(0,upper: 99);
     }
 
     override func didReceiveMemoryWarning() {

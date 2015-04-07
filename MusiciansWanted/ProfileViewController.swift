@@ -58,6 +58,7 @@ class ProfileViewController: UIViewController, UINavigationControllerDelegate, U
                 self.locationLabel.text = (json["location"] != nil) ? json["location"].stringValue : "No Location Given"
                 self.jamLabel.text = json["looking_to_jam"] ? "Yes" : "No"
                 self.bandLabel.text = json["looking_for_band"] ? "Yes" : "No"
+                
             }
         })
     }

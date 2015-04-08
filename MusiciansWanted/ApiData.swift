@@ -11,4 +11,5 @@ import Foundation
 struct MusiciansWanted {
     static var userId: Int = 0
     static var refreshToken = ""
+    static var locationServicesDisabled: Bool?
 }

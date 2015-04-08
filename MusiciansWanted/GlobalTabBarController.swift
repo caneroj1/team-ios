@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import CoreLocation
 
 extension UIImage {
     func imageWithColor(tintColor: UIColor) -> UIImage {
@@ -29,9 +30,10 @@ extension UIImage {
     }
 }
 
-class GlobalTabBarController: UITabBarController {
+class GlobalTabBarController: UITabBarController, CLLocationManagerDelegate {
     var refreshToken:String = ""
     var userID:Int = 0
+    let locationManager = CLLocationManager()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -56,52 +58,81 @@ class GlobalTabBarController: UITabBarController {
             }
         }
         
-        DataManager.makeGetRequest("/api/users", completion: { (data, error) -> Void in
-            let json = JSON(data: data!)
-            
-            for user in json {
-                
-                //write if statement that filters setting based on age, looking to jam, and band
-                var profileImage = UIImage(named: "anonymous")!
-                var userId = user.1["id"];
-                //println(userId);
-                var url = "/api/s3get?user_id=\(userId)"
-                DataManager.makeGetRequest(url, completion: { (data, error) -> Void in
-                    if data != nil {
-                        var json = JSON(data: data!)
-                        if json["picture"] != nil {
-                            var base64String = json["picture"].stringValue
-                            let decodedString = NSData(base64EncodedString: base64String, options: NSDataBase64DecodingOptions.IgnoreUnknownCharacters)
-                            dispatch_async(dispatch_get_main_queue()) {
-                                profileImage = UIImage(data: decodedString!)!
-                                
-                                //temporary 
-                                pplMgr.addPerson(user.1["name"].stringValue, pic: profileImage, age: user.1["age"].stringValue, genre: "Unknown", instru: "Unknown", loc: user.1["location"].stringValue)
-                            }
-                        }
-                        else {
-                            pplMgr.addPerson(user.1["name"].stringValue, pic: profileImage, age: user.1["age"].stringValue, genre: "Unknown", instru: "Unknown", loc: user.1["location"].stringValue)
-                            
-                           
-                        }
-                    }
-                    else {
-                        pplMgr.addPerson(user.1["name"].stringValue, pic: profileImage, age: user.1["age"].stringValue, genre: "Unknown", instru: "Unknown", loc: user.1["location"].stringValue)
-                
-                    }
-                })
-
-                
-                
-            }
-            
-        })
+        // start up location services
+        locationManager.delegate = self
+        locationManager.desiredAccuracy = kCLLocationAccuracyBest
         
+        switch CLLocationManager.authorizationStatus() {
+        case .AuthorizedWhenInUse:
+            locationManager.startUpdatingLocation()
+            MusiciansWanted.locationServicesDisabled = false
+        case .NotDetermined:
+            locationManager.requestWhenInUseAuthorization()
+        case .Restricted, .Denied, .AuthorizedAlways:
+            MusiciansWanted.locationServicesDisabled = true
+        }
+        pplMgr.loadPeople(0,upper: 99);
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    // MARK: - Location Services
+    func locationManager(manager: CLLocationManager!, didUpdateLocations locations: [AnyObject]!) {
+        CLGeocoder().reverseGeocodeLocation(locationManager.location, completionHandler: { (placemarks, error) -> Void in
+            if (error != nil) {
+                println("Reverse geocoder failed with error " + error.localizedDescription)
+                return
+            }
+            
+            if placemarks.count > 0 {
+                let pm = placemarks[0] as CLPlacemark
+                self.useLocationInfo(pm)
+            }
+            else {
+                println("Problem with the data received from the geocoder.")
+            }
+        })
+    }
+    
+    func locationManager(manager: CLLocationManager!, didChangeAuthorizationStatus status: CLAuthorizationStatus) {
+        switch CLLocationManager.authorizationStatus() {
+        case .AuthorizedWhenInUse:
+            locationManager.startUpdatingLocation()
+            MusiciansWanted.locationServicesDisabled = false
+        case .NotDetermined:
+            locationManager.requestWhenInUseAuthorization()
+        case .Restricted, .Denied, .AuthorizedAlways:
+            setLocationTracking("")
+            MusiciansWanted.locationServicesDisabled = true
+        }
+    }
+    
+    func locationManager(manager: CLLocationManager!, didFailWithError error: NSError!) {
+        setLocationTracking("")
+        println("Error while updating location " + error.localizedDescription)
+    }
+    
+    func useLocationInfo(placemark: CLPlacemark) {
+        locationManager.stopUpdatingLocation()
+        let subThoroughfare: String = (placemark.subThoroughfare != nil) ? placemark.subThoroughfare : ""
+        let thoroughfare: String = (placemark.thoroughfare != nil) ? placemark.thoroughfare : ""
+        var locationString = "\(subThoroughfare) \(thoroughfare) \(placemark.subLocality) "
+        
+        locationString = locationString.stringByAppendingString("\(placemark.locality) \(placemark.postalCode) \(placemark.country)")
+        
+        setLocationTracking(locationString)
+    }
+    
+    func setLocationTracking(location: String) {
+        let url = "/api/users/\(MusiciansWanted.userId)"
+        let userParams = ["location": location]
+        let params = ["user": userParams]
+        
+        DataManager.makePatchRequest(url, params: params, completion: { (data, error) -> Void in
+        })
     }
 
     /*

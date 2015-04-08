@@ -10,6 +10,9 @@ import UIKit
 
 class PeopleTableViewController: UITableViewController {
 
+    var expandingView = false;
+    var ttlPpl = 99;
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -19,18 +22,8 @@ class PeopleTableViewController: UITableViewController {
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem()
         
-        /* some how make update every time view loads
-        DataManager.makeGetRequest("/api/users", completion: { (data, error) -> Void in
-            let json = JSON(data: data!)
-            
-            for user in json {
-                
-                //write if statement that filters setting based on age, looking to jam, and band
-                
-                pplMgr.addPerson(user.1["name"].stringValue, pic: "anonymous", age: user.1["age"].stringValue, genre: "Unknown", instru: "Unknown", loc: user.1["location"].stringValue)
-            }
-        })*/
         
+        pplMgr.loadPeople(0,upper: ttlPpl);
         tableView.reloadData()
         
     }
@@ -68,6 +61,23 @@ class PeopleTableViewController: UITableViewController {
         cell.lblGenre.text = person.genre
         
         return cell
+    }
+    
+    override func scrollViewDidScroll(scrollView: UIScrollView) {
+        var currentOffset = scrollView.contentOffset.y;
+        var maximumOffset = scrollView.contentSize.height - scrollView.frame.size.height;
+        
+        if (maximumOffset - currentOffset <= 20.0 && expandingView == false) {
+            expandingView = true
+            ttlPpl = pplMgr.person.count + 100;
+            
+            pplMgr.loadPeople(pplMgr.person.count, upper: ttlPpl)
+       
+        }
+        else if (pplMgr.person.count >= ttlPpl) {
+            expandingView = false;
+            tableView.reloadData()
+        }
     }
     
     override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {

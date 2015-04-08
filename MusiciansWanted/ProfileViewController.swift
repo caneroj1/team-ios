@@ -12,6 +12,7 @@ class ProfileViewController: UIViewController, UINavigationControllerDelegate, U
     // MARK: - Instances Variables and IB Outlets
     
     var needToLoadPicture = true
+    var genderString: String?
     var searchRadius: Int = 10
     
     // IB items for the main profile view
@@ -61,6 +62,12 @@ class ProfileViewController: UIViewController, UINavigationControllerDelegate, U
                 self.jamLabel.text = json["looking_to_jam"] ? "Yes" : "No"
                 self.bandLabel.text = json["looking_for_band"] ? "Yes" : "No"
                 self.searchRadius = json["search_radius"].stringValue.toInt()!
+                self.genderString = json["gender"].stringValue
+
+                if self.genderString != "none" {
+                    self.ageLabel.text = "\(self.genderString!.capitalizedString), \(self.ageLabel.text!)"
+                }
+                
                 self.editProfileButton.enabled = true
             }
         })
@@ -118,6 +125,7 @@ class ProfileViewController: UIViewController, UINavigationControllerDelegate, U
             destination.emailText = self.emailLabel.text!
             destination.radiusValue = Float(self.searchRadius)
             destination.radiusLabel = "\(self.searchRadius) miles"
+            destination.gender = self.genderString!
             
             if self.ageLabel.text == "No Age Given" {
                 destination.ageText = "\(20)"

@@ -17,6 +17,7 @@ class EditProfileViewController: UIViewController, UITextFieldDelegate {
     var jamBool: Bool = true
     var radiusValue: Float = 0
     var radiusLabel: String = ""
+    var gender: String = ""
     
     @IBOutlet weak var ageSlider: UISlider!
     @IBOutlet weak var emailField: UITextField!
@@ -26,6 +27,7 @@ class EditProfileViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var bandSwitch: UISwitch!
     @IBOutlet weak var locationRadiusSlider: UISlider!
     @IBOutlet weak var locationRadiusLabel: UILabel!
+    @IBOutlet weak var genderControl: UISegmentedControl!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -41,6 +43,14 @@ class EditProfileViewController: UIViewController, UITextFieldDelegate {
         jamSwitch.setOn(jamBool, animated: false)
         locationRadiusSlider.value = radiusValue
         locationRadiusLabel.text = radiusLabel
+        
+        println(gender)
+        
+        if gender != "none" {
+            var genderIndex = (gender == "male") ? 0 : 1
+            genderControl.selectedSegmentIndex = genderIndex
+
+        }
     }
 
     override func didReceiveMemoryWarning() {
@@ -74,8 +84,21 @@ class EditProfileViewController: UIViewController, UITextFieldDelegate {
         }
         else {
             // submit the data to update the current user
+            var gender: String?
+            
+            switch genderControl.selectedSegmentIndex {
+                case 0:
+                    gender = "male"
+                    
+                case 1:
+                    gender = "female"
+                    
+                default:
+                    gender = ""
+            }
+            
             var url = "/api/users/\(MusiciansWanted.userId)"
-            var userParams: Dictionary<String, AnyObject> = ["name": nameField.text, "email": emailField.text, "age": Int(ageSlider.value), "looking_to_jam": jamSwitch.on, "looking_for_band": bandSwitch.on, "search_radius": Int(locationRadiusSlider.value)]
+            var userParams: Dictionary<String, AnyObject> = ["name": nameField.text, "email": emailField.text, "age": Int(ageSlider.value), "looking_to_jam": jamSwitch.on, "looking_for_band": bandSwitch.on, "search_radius": Int(locationRadiusSlider.value), "gender": gender!]
             var params = ["user": userParams]
             DataManager.makePatchRequest(url, params: params, completion: { (data, error) -> Void in
                 var json = JSON(data: data!)

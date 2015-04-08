@@ -529,13 +529,34 @@
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Gender" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QMg-8b-Aj0">
+                                <rect key="frame" x="26" y="572" width="143" height="25"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="143" id="AbW-7c-NOf"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="21"/>
+                                <color key="textColor" red="0.99607843137254903" green="0.99607843137254903" blue="0.99607843137254903" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" translatesAutoresizingMaskIntoConstraints="NO" id="Jcx-x3-TR3">
+                                <rect key="frame" x="341" y="572" width="233" height="29"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="233" id="6jf-cY-ea5"/>
+                                </constraints>
+                                <segments>
+                                    <segment title="Male"/>
+                                    <segment title="Female"/>
+                                </segments>
+                            </segmentedControl>
                         </subviews>
                         <color key="backgroundColor" red="0.19882579413489879" green="0.22308026194667202" blue="0.27269446331521741" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstItem="cHI-iy-Fh5" firstAttribute="top" secondItem="GW6-r4-wkJ" secondAttribute="top" id="0Gs-Lk-g7t"/>
                             <constraint firstItem="K96-DD-fWS" firstAttribute="leading" secondItem="PsP-Ai-Alt" secondAttribute="leadingMargin" constant="10" id="0I2-Q0-ppu"/>
+                            <constraint firstItem="Jcx-x3-TR3" firstAttribute="leading" secondItem="PsP-Ai-Alt" secondAttribute="leadingMargin" constant="325" id="3jz-yY-mEy"/>
                             <constraint firstItem="pw7-TI-EvJ" firstAttribute="leading" secondItem="PsP-Ai-Alt" secondAttribute="leadingMargin" constant="10" id="5Rj-pa-ohN"/>
                             <constraint firstItem="RXe-c9-BZE" firstAttribute="top" secondItem="WD9-8w-SCf" secondAttribute="bottom" constant="8" id="6gt-4q-3og"/>
+                            <constraint firstItem="QMg-8b-Aj0" firstAttribute="top" secondItem="ch2-hJ-8jQ" secondAttribute="bottom" constant="8" id="7Ki-E8-P8t"/>
                             <constraint firstAttribute="trailingMargin" secondItem="pw7-TI-EvJ" secondAttribute="trailing" constant="10" id="7UH-Pe-OFU"/>
                             <constraint firstItem="BFP-QC-U8e" firstAttribute="leading" secondItem="PsP-Ai-Alt" secondAttribute="leadingMargin" constant="10" id="95h-Kn-YaN"/>
                             <constraint firstItem="zpm-83-ks9" firstAttribute="top" secondItem="cHI-iy-Fh5" secondAttribute="bottom" constant="8" id="9E8-mU-GG3"/>
@@ -548,6 +569,7 @@
                             <constraint firstItem="RXe-c9-BZE" firstAttribute="top" secondItem="idB-HG-9G9" secondAttribute="bottom" constant="8" id="FhK-bO-9o4"/>
                             <constraint firstAttribute="trailingMargin" secondItem="rzv-oE-rJq" secondAttribute="trailing" constant="10" id="Fme-Pu-KtL"/>
                             <constraint firstAttribute="trailingMargin" secondItem="yQc-HS-bPU" secondAttribute="trailing" constant="10" id="IIS-u0-Jai"/>
+                            <constraint firstItem="QMg-8b-Aj0" firstAttribute="leading" secondItem="PsP-Ai-Alt" secondAttribute="leadingMargin" constant="10" id="IY8-hb-apW"/>
                             <constraint firstItem="WyX-6W-xem" firstAttribute="top" secondItem="CwX-sf-adc" secondAttribute="bottom" constant="8" id="J9Q-bZ-GaQ"/>
                             <constraint firstItem="cHI-iy-Fh5" firstAttribute="leading" secondItem="PsP-Ai-Alt" secondAttribute="leadingMargin" constant="10" id="Knu-gg-jSN"/>
                             <constraint firstAttribute="trailingMargin" secondItem="cHI-iy-Fh5" secondAttribute="trailing" constant="10" id="Mex-ag-TPG"/>
@@ -558,6 +580,7 @@
                             <constraint firstAttribute="trailingMargin" secondItem="zpm-83-ks9" secondAttribute="trailing" constant="10" id="Pft-nW-i0b"/>
                             <constraint firstItem="Jzs-jc-9Js" firstAttribute="leading" secondItem="PsP-Ai-Alt" secondAttribute="leadingMargin" constant="522" id="Q12-oc-6cy"/>
                             <constraint firstItem="RXe-c9-BZE" firstAttribute="leading" secondItem="PsP-Ai-Alt" secondAttribute="leadingMargin" constant="10" id="QIN-fO-Zvs"/>
+                            <constraint firstItem="QMg-8b-Aj0" firstAttribute="leading" secondItem="ch2-hJ-8jQ" secondAttribute="leading" id="QT0-iR-w0L"/>
                             <constraint firstItem="CwX-sf-adc" firstAttribute="top" secondItem="yQc-HS-bPU" secondAttribute="bottom" constant="25" id="SLv-pM-XV9"/>
                             <constraint firstItem="WD9-8w-SCf" firstAttribute="centerX" secondItem="GW6-r4-wkJ" secondAttribute="centerX" id="T3w-4K-FUz"/>
                             <constraint firstItem="U6n-Gd-lWM" firstAttribute="top" secondItem="zpm-83-ks9" secondAttribute="bottom" constant="15" id="U3g-v8-Urb"/>
@@ -571,6 +594,7 @@
                             <constraint firstAttribute="trailingMargin" secondItem="U6n-Gd-lWM" secondAttribute="trailing" constant="10" id="Zs4-C3-n0d"/>
                             <constraint firstAttribute="trailingMargin" secondItem="WyX-6W-xem" secondAttribute="trailing" constant="10" id="Zu7-al-tDl"/>
                             <constraint firstItem="WyX-6W-xem" firstAttribute="leading" secondItem="PsP-Ai-Alt" secondAttribute="leadingMargin" constant="10" id="aeU-nr-qPW"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="QMg-8b-Aj0" secondAttribute="trailing" constant="415" id="bGs-aV-Wzp"/>
                             <constraint firstItem="K96-DD-fWS" firstAttribute="top" secondItem="BFP-QC-U8e" secondAttribute="bottom" constant="8" id="cDE-tv-q02"/>
                             <constraint firstAttribute="trailingMargin" secondItem="idB-HG-9G9" secondAttribute="trailing" constant="10" id="dEk-cr-5Yn"/>
                             <constraint firstItem="ch2-hJ-8jQ" firstAttribute="trailing" secondItem="WD9-8w-SCf" secondAttribute="trailing" id="dxd-JL-5a3"/>
@@ -584,13 +608,16 @@
                             <constraint firstItem="U6n-Gd-lWM" firstAttribute="leading" secondItem="PsP-Ai-Alt" secondAttribute="leadingMargin" constant="509" id="lLg-vX-YS1"/>
                             <constraint firstItem="GW6-r4-wkJ" firstAttribute="top" secondItem="rzv-oE-rJq" secondAttribute="bottom" constant="16" id="ngY-v0-VjD"/>
                             <constraint firstItem="WD9-8w-SCf" firstAttribute="leading" secondItem="PsP-Ai-Alt" secondAttribute="leadingMargin" constant="505" id="oQm-xS-6TC"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="Jcx-x3-TR3" secondAttribute="trailing" constant="10" id="otx-1I-sf0"/>
                             <constraint firstItem="CwX-sf-adc" firstAttribute="leading" secondItem="PsP-Ai-Alt" secondAttribute="leadingMargin" constant="10" id="pii-7T-CMs"/>
                             <constraint firstItem="GW6-r4-wkJ" firstAttribute="leading" secondItem="PsP-Ai-Alt" secondAttribute="leadingMargin" constant="509" id="qW1-IB-HkC"/>
                             <constraint firstItem="idB-HG-9G9" firstAttribute="leading" secondItem="PsP-Ai-Alt" secondAttribute="leadingMargin" constant="10" id="rbb-SX-QHa"/>
                             <constraint firstItem="yQc-HS-bPU" firstAttribute="top" secondItem="hr8-Ji-4aU" secondAttribute="bottom" constant="8" id="sjE-sc-2JX"/>
                             <constraint firstItem="zpm-83-ks9" firstAttribute="leading" secondItem="PsP-Ai-Alt" secondAttribute="leadingMargin" constant="10" id="syF-9U-y9R"/>
+                            <constraint firstItem="Jcx-x3-TR3" firstAttribute="trailing" secondItem="ch2-hJ-8jQ" secondAttribute="trailing" id="tCR-BD-9iz"/>
                             <constraint firstItem="idB-HG-9G9" firstAttribute="top" secondItem="K96-DD-fWS" secondAttribute="bottom" constant="23" id="wXb-II-2kr"/>
                             <constraint firstItem="RXe-c9-BZE" firstAttribute="top" secondItem="idB-HG-9G9" secondAttribute="bottom" constant="7" id="xbF-8n-sjj"/>
+                            <constraint firstItem="Jcx-x3-TR3" firstAttribute="top" secondItem="ch2-hJ-8jQ" secondAttribute="bottom" constant="8" id="xp6-jY-bmX"/>
                             <constraint firstItem="zpm-83-ks9" firstAttribute="top" secondItem="GW6-r4-wkJ" secondAttribute="bottom" constant="1" id="ylC-Nq-Yu8"/>
                         </constraints>
                         <variation key="default">
@@ -600,9 +627,13 @@
                                 <exclude reference="YlV-XR-GIE"/>
                                 <exclude reference="DRL-nD-O8Y"/>
                                 <exclude reference="dxd-JL-5a3"/>
+                                <exclude reference="IY8-hb-apW"/>
+                                <exclude reference="bGs-aV-Wzp"/>
                                 <exclude reference="Q12-oc-6cy"/>
                                 <exclude reference="qW1-IB-HkC"/>
                                 <exclude reference="lLg-vX-YS1"/>
+                                <exclude reference="3jz-yY-mEy"/>
+                                <exclude reference="otx-1I-sf0"/>
                                 <exclude reference="T3w-4K-FUz"/>
                                 <exclude reference="oQm-xS-6TC"/>
                             </mask>
@@ -623,6 +654,7 @@
                         <outlet property="ageSlider" destination="rzv-oE-rJq" id="D4H-Hw-7P7"/>
                         <outlet property="bandSwitch" destination="U6n-Gd-lWM" id="GKq-ur-pfE"/>
                         <outlet property="emailField" destination="WyX-6W-xem" id="ZKS-iw-hLU"/>
+                        <outlet property="genderControl" destination="Jcx-x3-TR3" id="NjF-SY-uxr"/>
                         <outlet property="jamSwitch" destination="GW6-r4-wkJ" id="4cR-fe-zOy"/>
                         <outlet property="locationRadiusLabel" destination="WD9-8w-SCf" id="cER-c4-PLE"/>
                         <outlet property="locationRadiusSlider" destination="ch2-hJ-8jQ" id="ixK-RM-lYH"/>

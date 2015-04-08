@@ -11,6 +11,7 @@ struct people {
     var genre = "None"
     var instrument = "None"
     var location = "Unknown"
+    var indexPth: NSIndexPath = NSIndexPath();
 }
 
 class PeopleManager: NSObject {

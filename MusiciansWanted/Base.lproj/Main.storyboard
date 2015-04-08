@@ -584,27 +584,6 @@
             </objects>
             <point key="canvasLocation" x="2362" y="1411"/>
         </scene>
-        <!--Events-->
-        <scene sceneID="6R2-LG-Tbr">
-            <objects>
-                <viewController id="w7X-jA-GXK" customClass="EventsViewController" customModule="MW" customModuleProvider="target" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="Bzj-lO-KN9"/>
-                        <viewControllerLayoutGuide type="bottom" id="d4e-5f-kqc"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="7Nz-x3-HOp">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" red="0.93725490196078431" green="0.93725490196078431" blue="0.95686274509803926" alpha="1" colorSpace="calibratedRGB"/>
-                    </view>
-                    <navigationItem key="navigationItem" title="Events" id="jDx-fe-XjQ"/>
-                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" barStyle="black" prompted="NO"/>
-                    <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="9im-dT-f83" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1685.625" y="708.75"/>
-        </scene>
         <!--Item-->
         <scene sceneID="xDe-r5-XwW">
             <objects>
@@ -839,9 +818,6 @@
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
-                    <connections>
-                        <segue destination="w7X-jA-GXK" kind="relationship" relationship="rootViewController" id="0jv-e3-jiq"/>
-                    </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="1JE-qE-Sje" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

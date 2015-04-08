@@ -12,6 +12,7 @@ class PeopleTableViewController: UITableViewController {
 
     var expandingView = false;
     var ttlPpl = 99;
+    var sortedArr = Array(pplMgr.person.keys).sorted(<)
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -24,6 +25,12 @@ class PeopleTableViewController: UITableViewController {
         
         
         pplMgr.loadPeople(0,upper: ttlPpl);
+        sortedArr = Array(pplMgr.person.keys).sorted(<)
+        
+        for key in sortedArr {
+            println(pplMgr.person[key])
+        }
+        
         tableView.reloadData()
         
     }
@@ -51,14 +58,25 @@ class PeopleTableViewController: UITableViewController {
         
         let cell = tableView.dequeueReusableCellWithIdentifier("Cell", forIndexPath: indexPath) as PeopleCell
         
-        let person = pplMgr.person[indexPath.row]
+        let person = pplMgr.person[sortedArr[indexPath.row]];
         
-        cell.lblProfileName.text = person.profname
-        cell.imgProfilePic.image = person.profpic
-        cell.lblLocation.text = person.location
-        cell.lblAge.text = person.age
-        cell.lblInstrument.text = person.instrument
-        cell.lblGenre.text = person.genre
+        cell.lblProfileName.text = person?.profname
+        cell.imgProfilePic.image = person?.profpic
+        cell.lblLocation.text = person?.location
+        cell.lblAge.text = person?.age
+        cell.lblInstrument.text = person?.instrument
+        cell.lblGenre.text = person?.genre
+
+        
+        /*
+        // Sample Data
+        cell.lblProfileName.text = "Rob"
+        cell.imgProfilePic.image = UIImage(named: "Ultra Lord")
+        cell.lblLocation.text = "Trenton, NJ"
+        cell.lblAge.text = "8"
+        cell.lblInstrument.text = "Trumpet"
+        cell.lblGenre.text = "Trance"
+        */
         
         return cell
     }

@@ -14,6 +14,9 @@ class ProfileViewController: UIViewController, UINavigationControllerDelegate, U
     var needToLoadPicture = true
     var genderString: String?
     var searchRadius: Int = 10
+    var userAge: Int?
+    var noAge: Bool?
+    var ageText = ""
     
     // IB items for the main profile view
     @IBOutlet weak var nameLabel: UILabel!
@@ -58,6 +61,14 @@ class ProfileViewController: UIViewController, UINavigationControllerDelegate, U
                 self.nameLabel.text = (json["name"] != nil) ? json["name"].stringValue : "No Name Given"
                 self.emailLabel.text = json["email"].stringValue
                 self.ageLabel.text = (json["age"] != nil) ? json["age"].stringValue : "No Age Given"
+                
+                if let age = self.ageLabel.text!.toInt() {
+                    self.userAge = age
+                }
+                
+                self.ageText = self.ageLabel.text!
+                self.noAge = (self.ageLabel.text == "No Age Given")
+                
                 self.locationLabel.text = (json["location"] != nil) ? json["location"].stringValue : "No Location Given"
                 self.jamLabel.text = json["looking_to_jam"] ? "Yes" : "No"
                 self.bandLabel.text = json["looking_for_band"] ? "Yes" : "No"
@@ -83,7 +94,7 @@ class ProfileViewController: UIViewController, UINavigationControllerDelegate, U
                     let decodedString = NSData(base64EncodedString: base64String, options: NSDataBase64DecodingOptions.IgnoreUnknownCharacters)
                     var downloadedImage = UIImage(data: decodedString!)!
                     var newImage = Toucan(image: downloadedImage).resize(CGSizeMake(280, 140), fitMode: Toucan.Resize.FitMode.Scale).image
-                    println(downloadedImage)
+
                     dispatch_async(dispatch_get_main_queue()) {
                         self.profileImage.image = newImage
                     }
@@ -127,14 +138,13 @@ class ProfileViewController: UIViewController, UINavigationControllerDelegate, U
             destination.radiusLabel = "\(self.searchRadius) miles"
             destination.gender = self.genderString!
             
-            if self.ageLabel.text == "No Age Given" {
+            if noAge! {
                 destination.ageText = "\(20)"
                 destination.ageValue = 20
             }
             else {
-                destination.ageText = self.ageLabel.text!
-                var str = NSString(string: self.ageLabel.text!)
-                destination.ageValue = str.floatValue
+                destination.ageText = self.ageText
+                destination.ageValue = Float(self.userAge!)
             }
             
             if self.jamLabel.text == "No" {

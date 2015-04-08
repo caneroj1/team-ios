@@ -44,8 +44,6 @@ class EditProfileViewController: UIViewController, UITextFieldDelegate {
         locationRadiusSlider.value = radiusValue
         locationRadiusLabel.text = radiusLabel
         
-        println(gender)
-        
         if gender != "none" {
             var genderIndex = (gender == "male") ? 0 : 1
             genderControl.selectedSegmentIndex = genderIndex

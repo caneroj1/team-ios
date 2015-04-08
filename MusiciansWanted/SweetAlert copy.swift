@@ -35,7 +35,8 @@ class SweetAlert: UIViewController {
     var imageView:UIImageView?
     var subTitleTextView = UITextView()
     var userAction:((isOtherButton: Bool) -> Void)? = nil
-    let kFont = "Helvetica"
+    let kFont = "Helvetica Neue Light"
+    let mwColor: UInt = 0xff5500
 
     override init() {
         super.init()
@@ -68,13 +69,13 @@ class SweetAlert: UIViewController {
         titleLabel.numberOfLines = 1
         titleLabel.textAlignment = .Center
         titleLabel.font = UIFont(name: kFont, size:25)
-        titleLabel.textColor = UIColorFromRGB(0x575757)
+        titleLabel.textColor = UIColorFromRGB(mwColor)
     }
     
     func setupSubtitleTextView() {
         subTitleTextView.text = ""
         subTitleTextView.textAlignment = .Center
-        subTitleTextView.font = UIFont(name: kFont, size:16)
+        subTitleTextView.font = UIFont(name: kFont, size:18)
         subTitleTextView.textColor = UIColorFromRGB(0x797979)
         subTitleTextView.editable = false
     }
@@ -223,7 +224,7 @@ class SweetAlert: UIViewController {
     }
 
     func showAlert(title: String, subTitle: String?, style: AlertStyle,buttonTitle: String, action: ((isOtherButton: Bool) -> Void)? = nil) -> SweetAlert {
-        self.showAlert(title, subTitle: subTitle, style: style, buttonTitle: buttonTitle,buttonColor: UIColorFromRGB(0xAEDEF4))
+        self.showAlert(title, subTitle: subTitle, style: style, buttonTitle: buttonTitle,buttonColor: UIColorFromRGB(mwColor))
         userAction = action
         return self
 

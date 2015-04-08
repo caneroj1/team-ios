@@ -30,6 +30,8 @@
 		44D308A51ACB324E0000F435 /* SwiftyJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44D308A41ACB324E0000F435 /* SwiftyJSON.swift */; };
 		44D308A71ACB32560000F435 /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44D308A61ACB32560000F435 /* DataManager.swift */; };
 		44D308A91ACB325A0000F435 /* FeedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44D308A81ACB325A0000F435 /* FeedViewController.swift */; };
+		AD85DC5F1AD452C400D6E369 /* EventsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD85DC5E1AD452C400D6E369 /* EventsManager.swift */; };
+		AD85DC611AD45F2800D6E369 /* EventsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD85DC601AD45F2800D6E369 /* EventsCell.swift */; };
 		AD97B1351AD2C06B007645C1 /* EventsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD97B1341AD2C06B007645C1 /* EventsTableViewController.swift */; };
 /* End PBXBuildFile section */
 
@@ -71,6 +73,8 @@
 		44D308A41ACB324E0000F435 /* SwiftyJSON.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftyJSON.swift; sourceTree = "<group>"; };
 		44D308A61ACB32560000F435 /* DataManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataManager.swift; sourceTree = "<group>"; };
 		44D308A81ACB325A0000F435 /* FeedViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeedViewController.swift; sourceTree = "<group>"; };
+		AD85DC5E1AD452C400D6E369 /* EventsManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventsManager.swift; sourceTree = "<group>"; };
+		AD85DC601AD45F2800D6E369 /* EventsCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventsCell.swift; sourceTree = "<group>"; };
 		AD97B1341AD2C06B007645C1 /* EventsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventsTableViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -193,6 +197,8 @@
 			isa = PBXGroup;
 			children = (
 				AD97B1341AD2C06B007645C1 /* EventsTableViewController.swift */,
+				AD85DC5E1AD452C400D6E369 /* EventsManager.swift */,
+				AD85DC601AD45F2800D6E369 /* EventsCell.swift */,
 			);
 			name = Events;
 			sourceTree = "<group>";
@@ -306,6 +312,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AD85DC5F1AD452C400D6E369 /* EventsManager.swift in Sources */,
 				44D308A91ACB325A0000F435 /* FeedViewController.swift in Sources */,
 				010AEBD21ACE239D0066E4FA /* PeopleManager.swift in Sources */,
 				44470F551AC884F30077B042 /* EditProfileViewController.swift in Sources */,
@@ -321,6 +328,7 @@
 				01153FA61AB2980100B96401 /* PeopleSettingsViewController.swift in Sources */,
 				010AEBD31ACE239D0066E4FA /* PeopleTableViewController.swift in Sources */,
 				01B594161AB35B090044AA16 /* InboxManager.swift in Sources */,
+				AD85DC611AD45F2800D6E369 /* EventsCell.swift in Sources */,
 				010AEBD11ACE239D0066E4FA /* PeopleCell.swift in Sources */,
 				01FCDE861ACF05EA002F3A56 /* InboxCell.swift in Sources */,
 				44D308A71ACB32560000F435 /* DataManager.swift in Sources */,

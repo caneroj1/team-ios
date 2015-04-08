@@ -117,8 +117,12 @@ class GlobalTabBarController: UITabBarController, CLLocationManagerDelegate {
     
     func useLocationInfo(placemark: CLPlacemark) {
         locationManager.stopUpdatingLocation()
-        let locationString = placemark.subThoroughfare + " " + placemark.thoroughfare + " " + placemark.subLocality
-        locationString.stringByAppendingString(" " + placemark.locality + " " + placemark.postalCode + " " + placemark.country)
+        let subThoroughfare: String = (placemark.subThoroughfare != nil) ? placemark.subThoroughfare : ""
+        let thoroughfare: String = (placemark.thoroughfare != nil) ? placemark.thoroughfare : ""
+        var locationString = "\(subThoroughfare) \(thoroughfare) \(placemark.subLocality) "
+        
+        locationString = locationString.stringByAppendingString("\(placemark.locality) \(placemark.postalCode) \(placemark.country)")
+        
         setLocationTracking(locationString)
     }
     

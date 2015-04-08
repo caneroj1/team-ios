@@ -67,6 +67,8 @@ class PeopleTableViewController: UITableViewController {
         cell.lblInstrument.text = person?.instrument
         cell.lblGenre.text = person?.genre
 
+        //Save indexPath.row in pplMgr.person
+        //tableView.reloadRowsAtIndexPaths(indexPaths: [AnyObject], withRowAnimation: UITableViewRowAnimation)
         
         /*
         // Sample Data

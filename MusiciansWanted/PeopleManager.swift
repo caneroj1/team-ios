@@ -15,11 +15,25 @@ struct people {
 
 class PeopleManager: NSObject {
     
-    var person = [people]()
+    var person = [Int:people]()
+    //var person = [people]()
     
     func addPerson(id: Int, name: String, pic: UIImage, age: String, genre: String, instru: String, loc: String){
         
-        if person.count >= id {
+        var tempPerson: people = people()
+        
+        tempPerson.id = id;
+        tempPerson.profname = name;
+        tempPerson.profpic = pic;
+        tempPerson.age = age;
+        tempPerson.genre = genre;
+        tempPerson.instrument = instru;
+        tempPerson.location = loc;
+        
+        person[id] = tempPerson;
+        //person.updateValue(tempPerson, forKey: id)
+        
+        /*if person.count >= id {
             person[id-1].profname = name;
             person[id-1].profpic = pic;
             person[id-1].age = age;
@@ -29,7 +43,7 @@ class PeopleManager: NSObject {
         }
         else {
             person.append(people(id: id, profname: name, profpic: pic, age: age, genre: genre, instrument: instru, location: loc))
-        }
+        }*/
     }
     
     func loadPeople(lower: Int, upper: Int) {
@@ -38,6 +52,7 @@ class PeopleManager: NSObject {
         switch CLLocationManager.authorizationStatus() {
         case .AuthorizedWhenInUse:
             url = "/api/users/\(MusiciansWanted.userId)/near_me"
+            //url = "/api/users"
         case .Restricted, .Denied, .AuthorizedAlways, .NotDetermined:
             url = "/api/users"
         }

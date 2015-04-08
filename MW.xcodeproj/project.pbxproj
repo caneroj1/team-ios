@@ -113,15 +113,10 @@
 		012C27C21AAB7CEE0024F5C3 /* MusiciansWanted */ = {
 			isa = PBXGroup;
 			children = (
-				44566E861ACB4E3200D9F6A4 /* Toucan.swift */,
-				44D308A81ACB325A0000F435 /* FeedViewController.swift */,
-				44D308A61ACB32560000F435 /* DataManager.swift */,
-				44D308A41ACB324E0000F435 /* SwiftyJSON.swift */,
-				44D308A21ACB32450000F435 /* SweetAlert copy.swift */,
-				44D308A01ACB323D0000F435 /* LogInViewController.swift */,
-				01F50F921AB20E4300FE9051 /* GlobalTabBarController.swift */,
-				44D3089E1ACB32350000F435 /* ApiData.swift */,
 				012C27C51AAB7CEE0024F5C3 /* AppDelegate.swift */,
+				44C06A661AD5790D004E88D7 /* Navigation */,
+				44C06A651AD578F8004E88D7 /* Login */,
+				44C06A641AD578D0004E88D7 /* Support */,
 				01FCDE7E1ACEFE3A002F3A56 /* News Feed */,
 				01FCDE7F1ACEFE53002F3A56 /* People */,
 				01FCDE801ACEFE6F002F3A56 /* Inbox */,
@@ -163,6 +158,7 @@
 		01FCDE7E1ACEFE3A002F3A56 /* News Feed */ = {
 			isa = PBXGroup;
 			children = (
+				44D308A81ACB325A0000F435 /* FeedViewController.swift */,
 				01F50F941AB2424A00FE9051 /* FeedSettingsViewController.swift */,
 			);
 			name = "News Feed";
@@ -204,6 +200,34 @@
 				01266BC11AB0F03F003D2354 /* ProfileViewController.swift */,
 			);
 			name = Profile;
+			sourceTree = "<group>";
+		};
+		44C06A641AD578D0004E88D7 /* Support */ = {
+			isa = PBXGroup;
+			children = (
+				44D3089E1ACB32350000F435 /* ApiData.swift */,
+				44D308A21ACB32450000F435 /* SweetAlert copy.swift */,
+				44566E861ACB4E3200D9F6A4 /* Toucan.swift */,
+				44D308A41ACB324E0000F435 /* SwiftyJSON.swift */,
+				44D308A61ACB32560000F435 /* DataManager.swift */,
+			);
+			name = Support;
+			sourceTree = "<group>";
+		};
+		44C06A651AD578F8004E88D7 /* Login */ = {
+			isa = PBXGroup;
+			children = (
+				44D308A01ACB323D0000F435 /* LogInViewController.swift */,
+			);
+			name = Login;
+			sourceTree = "<group>";
+		};
+		44C06A661AD5790D004E88D7 /* Navigation */ = {
+			isa = PBXGroup;
+			children = (
+				01F50F921AB20E4300FE9051 /* GlobalTabBarController.swift */,
+			);
+			name = Navigation;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

@@ -12,6 +12,7 @@ class ProfileViewController: UIViewController, UINavigationControllerDelegate, U
     // MARK: - Instances Variables and IB Outlets
     
     var needToLoadPicture = true
+    var searchRadius: Int = 10
     
     // IB items for the main profile view
     @IBOutlet weak var nameLabel: UILabel!
@@ -21,6 +22,7 @@ class ProfileViewController: UIViewController, UINavigationControllerDelegate, U
     @IBOutlet weak var bandLabel: UILabel!
     @IBOutlet weak var locationLabel: UILabel!
     @IBOutlet weak var profileImage: UIImageView!
+    @IBOutlet weak var editProfileButton: UIBarButtonItem!
     
     // MARK: - Image Functionality
     
@@ -58,7 +60,8 @@ class ProfileViewController: UIViewController, UINavigationControllerDelegate, U
                 self.locationLabel.text = (json["location"] != nil) ? json["location"].stringValue : "No Location Given"
                 self.jamLabel.text = json["looking_to_jam"] ? "Yes" : "No"
                 self.bandLabel.text = json["looking_for_band"] ? "Yes" : "No"
-                
+                self.searchRadius = json["search_radius"].stringValue.toInt()!
+                self.editProfileButton.enabled = true
             }
         })
     }
@@ -88,6 +91,7 @@ class ProfileViewController: UIViewController, UINavigationControllerDelegate, U
     // MARK: - Native Functions
     
     override func viewWillAppear(animated: Bool) {
+        editProfileButton.enabled = false
         populateProfile()
         if needToLoadPicture {
             getProfileImage()
@@ -112,6 +116,8 @@ class ProfileViewController: UIViewController, UINavigationControllerDelegate, U
             var destination = segue.destinationViewController as EditProfileViewController
             destination.nameText = self.nameLabel.text!
             destination.emailText = self.emailLabel.text!
+            destination.radiusValue = Float(self.searchRadius)
+            destination.radiusLabel = "\(self.searchRadius) miles"
             
             if self.ageLabel.text == "No Age Given" {
                 destination.ageText = "\(20)"

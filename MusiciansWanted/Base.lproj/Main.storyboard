@@ -668,7 +668,7 @@
         <!--Events-->
         <scene sceneID="6R2-LG-Tbr">
             <objects>
-                <viewController id="w7X-jA-GXK" customClass="EventsViewController" customModule="MW" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="w7X-jA-GXK" customModule="MW" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Bzj-lO-KN9"/>
                         <viewControllerLayoutGuide type="bottom" id="d4e-5f-kqc"/>

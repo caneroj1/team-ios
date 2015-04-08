@@ -68,7 +68,6 @@ class PeopleTableViewController: UITableViewController {
         var maximumOffset = scrollView.contentSize.height - scrollView.frame.size.height;
         
         if (maximumOffset - currentOffset <= 20.0 && expandingView == false) {
-            println("expanding size");
             expandingView = true
             ttlPpl = pplMgr.person.count + 100;
             

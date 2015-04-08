@@ -49,7 +49,7 @@ class PeopleManager: NSObject {
             for index in lower...upper {
                 
                 if index >= json.count {
-                    println("loop broken.");
+                    
                     break;
                 }
                 var user = json[index]
@@ -61,13 +61,13 @@ class PeopleManager: NSObject {
                 
                 pplMgr.addPerson(user["id"].intValue, name: user["name"].stringValue, pic: profileImage, age: user["age"].stringValue, genre: "id: " + user["id"].stringValue, instru: "Unknown", loc: user["location"].stringValue)
                 
-                println("Adding user \(userId)");
+                
                 
                 
                 //Load in profile images
                 if user["has_profile_pic"].stringValue == "true"
                 {
-                    println("loading profile picture of \(userId)");
+                    
                     var url = "/api/s3get?user_id=\(userId)"
                     DataManager.makeGetRequest(url, completion: { (data, error) -> Void in
                         if data != nil {
@@ -88,7 +88,7 @@ class PeopleManager: NSObject {
                 
             }
             
-            println("Data Loaded.")
+            
         })
     }
 }

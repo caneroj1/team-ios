@@ -71,7 +71,6 @@ class GlobalTabBarController: UITabBarController, CLLocationManagerDelegate {
         case .Restricted, .Denied, .AuthorizedAlways:
             MusiciansWanted.locationServicesDisabled = true
         }
-        pplMgr.loadPeople(0,upper: 99);
     }
 
     override func didReceiveMemoryWarning() {

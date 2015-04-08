@@ -27,10 +27,6 @@ class PeopleTableViewController: UITableViewController {
         pplMgr.loadPeople(0,upper: ttlPpl);
         sortedArr = Array(pplMgr.person.keys).sorted(<)
         
-        for key in sortedArr {
-            println(pplMgr.person[key])
-        }
-        
         tableView.reloadData()
         
     }
@@ -43,21 +39,20 @@ class PeopleTableViewController: UITableViewController {
     // MARK: - Table view data source
 
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        // #warning Potentially incomplete method implementation.
         // Return the number of sections.
         return 1
     }
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete method implementation.
         // Return the number of rows in the section.
-        return pplMgr.person.count
+        return sortedArr.count
     }
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         
         let cell = tableView.dequeueReusableCellWithIdentifier("Cell", forIndexPath: indexPath) as PeopleCell
         
+        //Display the user information in the cell
         let person = pplMgr.person[sortedArr[indexPath.row]];
         
         cell.lblProfileName.text = person?.profname
@@ -66,19 +61,9 @@ class PeopleTableViewController: UITableViewController {
         cell.lblAge.text = person?.age
         cell.lblInstrument.text = person?.instrument
         cell.lblGenre.text = person?.genre
-
-        //Save indexPath.row in pplMgr.person
-        //tableView.reloadRowsAtIndexPaths(indexPaths: [AnyObject], withRowAnimation: UITableViewRowAnimation)
         
-        /*
-        // Sample Data
-        cell.lblProfileName.text = "Rob"
-        cell.imgProfilePic.image = UIImage(named: "Ultra Lord")
-        cell.lblLocation.text = "Trenton, NJ"
-        cell.lblAge.text = "8"
-        cell.lblInstrument.text = "Trumpet"
-        cell.lblGenre.text = "Trance"
-        */
+        // Save the indexPath of the user
+        pplMgr.person[sortedArr[indexPath.row]]?.indexPth = indexPath
         
         return cell
     }
@@ -97,6 +82,7 @@ class PeopleTableViewController: UITableViewController {
         }
         else if (pplMgr.person.count >= ttlPpl) {
             expandingView = false;
+            sortedArr = Array(pplMgr.person.keys).sorted(<)
             tableView.reloadData()
         }
     }

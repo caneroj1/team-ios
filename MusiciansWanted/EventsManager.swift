@@ -42,6 +42,8 @@ class EventsManager: NSObject {
         DataManager.makeGetRequest("/api/events", completion: { (data, error) -> Void in
             let json = JSON(data: data!)
             
+            println("my json \(json)")
+            
             //for event in json {
             for index in lower...upper {
                 
@@ -54,7 +56,7 @@ class EventsManager: NSObject {
                 
                 //write if statement that filters setting based on age, looking to jam, and band
                 //Add basic information of events
-                var eventImage = UIImage(named: "default")!
+                var eventImage = UIImage(named: "UltraLord")!
                 
                 eventManager.addEvents(eventData["id"].intValue, name: eventData["title"].stringValue, picture: eventImage, date: eventData["event_time"].stringValue, genre: "id: " + eventData["id"].stringValue, location: eventData["location"].stringValue)
                 

@@ -18,6 +18,8 @@ class EventsTableViewController: UITableViewController {
 
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem()
+        eventManager.loadEvents(0,upper: 10);
+        tableView.reloadData()
     }
 
     override func didReceiveMemoryWarning() {
@@ -41,23 +43,26 @@ class EventsTableViewController: UITableViewController {
         
         
         //not clear on this, I'm thinking 1
-        return 10//eventManager.event.count
+        return eventManager.event.count
     }
 
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("Event", forIndexPath: indexPath) as! EventsCell
 
-        //var event = eventManager.event[indexPath.row]
+        var event = eventManager.event[indexPath.row]
         
         // Configure the cell...
-        //cell.EventDescription.text = event.eventLocation
+        cell.EventDescription.text = event.eventLocation
         //cell.EventImage.image = event.eventPicture
         //cell.EventTitle.text = event.eventName
 
-        cell.EventDescription.text = "The time to see ultra lord"
+        //cell.EventDescription.text = "The time to see ultra lord"
         cell.EventImage.image = UIImage(named: "UltraLord")
         cell.EventTitle.text = "The Event"
+        
+        //left off creating button to reload table
+        
         
         return cell
     }

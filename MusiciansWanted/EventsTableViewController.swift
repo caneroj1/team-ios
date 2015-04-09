@@ -55,9 +55,9 @@ class EventsTableViewController: UITableViewController {
         //cell.EventImage.image = event.eventPicture
         //cell.EventTitle.text = event.eventName
 
-        cell.EventDescription.text = "Dopest shit you've ever seen in your life"
-        cell.EventImage.image = UIImage(named: "anonymous")
-        cell.EventTitle.text = "Sausage Fest"
+        cell.EventDescription.text = "The time to see ultra lord"
+        cell.EventImage.image = UIImage(named: "UltraLord")
+        cell.EventTitle.text = "The Event"
         
         return cell
     }

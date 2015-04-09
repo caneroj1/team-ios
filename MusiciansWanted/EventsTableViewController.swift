@@ -32,7 +32,7 @@ class EventsTableViewController: UITableViewController {
         // Return the number of sections.
         
         //Number of sections will have to be number of events currently loaded
-        return 0
+        return 1
     }
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -41,15 +41,24 @@ class EventsTableViewController: UITableViewController {
         
         
         //not clear on this, I'm thinking 1
-        return 0
+        return 10//eventManager.event.count
     }
 
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("Cell", forIndexPath: indexPath) as EventsCell
+        let cell = tableView.dequeueReusableCellWithIdentifier("Event", forIndexPath: indexPath) as EventsCell
 
+        //var event = eventManager.event[indexPath.row]
+        
         // Configure the cell...
+        //cell.EventDescription.text = event.eventLocation
+        //cell.EventImage.image = event.eventPicture
+        //cell.EventTitle.text = event.eventName
 
+        cell.EventDescription.text = "Dopest shit you've ever seen in your life"
+        cell.EventImage.image = UIImage(named: "anonymous")
+        cell.EventTitle.text = "Sausage Fest"
+        
         return cell
     }
 

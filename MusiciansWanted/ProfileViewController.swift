@@ -38,7 +38,7 @@ class ProfileViewController: UIViewController, UINavigationControllerDelegate, U
     
     func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [NSObject : AnyObject]) {
         self.dismissViewControllerAnimated(true, completion: nil)
-        let pickedImage = info[UIImagePickerControllerOriginalImage] as UIImage
+        let pickedImage = info[UIImagePickerControllerOriginalImage] as! UIImage
         let newImage = Toucan(image: pickedImage).resizeByScaling(CGSizeMake(280, 140)).image as UIImage
         
         DataManager.uploadImage("/api/s3upload", userID: MusiciansWanted.userId, image: newImage, completion: { (data, error) -> Void in
@@ -131,7 +131,7 @@ class ProfileViewController: UIViewController, UINavigationControllerDelegate, U
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if(segue.identifier == "editProfileSegue") {
-            var destination = segue.destinationViewController as EditProfileViewController
+            var destination = segue.destinationViewController as! EditProfileViewController
             destination.nameText = self.nameLabel.text!
             destination.emailText = self.emailLabel.text!
             destination.radiusValue = Float(self.searchRadius)

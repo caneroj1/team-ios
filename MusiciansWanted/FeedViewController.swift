@@ -13,7 +13,7 @@ class FeedViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        if let needToDisplayLocationservices = MusiciansWanted.locationServicesDisabled? {
+        if let needToDisplayLocationservices = MusiciansWanted.locationServicesDisabled {
             if needToDisplayLocationservices {
                 let alertController = UIAlertController(
                     title: "Location Services Disabled",

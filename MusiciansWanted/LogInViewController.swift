@@ -34,8 +34,8 @@ class LogInViewController: UIViewController {
                 dispatch_async(dispatch_get_main_queue()) {
                     var alert:UIAlertController = UIAlertController()
                     var refreshToken: String? = json["refresh_token"].stringValue
-                    if (refreshToken? != "") {
-                        let viewController = self.storyboard?.instantiateViewControllerWithIdentifier("GlobalTabBarController") as GlobalTabBarController
+                    if (refreshToken != "") {
+                        let viewController = self.storyboard?.instantiateViewControllerWithIdentifier("GlobalTabBarController") as! GlobalTabBarController
                         // set the data for the struct so that we can access it anywhere
                         MusiciansWanted.refreshToken = refreshToken!
                         MusiciansWanted.userId = json["user_id"].stringValue.toInt()!

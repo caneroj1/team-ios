@@ -44,7 +44,7 @@ class InboxTableViewController: UITableViewController {
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         
-        let cell = tableView.dequeueReusableCellWithIdentifier("Msg", forIndexPath: indexPath) as InboxCell
+        let cell = tableView.dequeueReusableCellWithIdentifier("Msg", forIndexPath: indexPath) as! InboxCell
         
         let message = inboxMgr.messages[indexPath.row]
        

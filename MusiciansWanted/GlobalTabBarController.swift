@@ -52,7 +52,7 @@ class GlobalTabBarController: UITabBarController, CLLocationManagerDelegate {
         
         self.tabBar.tintColor = tabcolor2
         
-        for item in self.tabBar.items as [UITabBarItem] {
+        for item in self.tabBar.items as! [UITabBarItem] {
             if let image = item.image {
                 item.image = image.imageWithColor(tabcolor1).imageWithRenderingMode(.AlwaysOriginal)
             }
@@ -88,7 +88,7 @@ class GlobalTabBarController: UITabBarController, CLLocationManagerDelegate {
             }
             
             if placemarks.count > 0 {
-                let pm = placemarks[0] as CLPlacemark
+                let pm = placemarks[0] as! CLPlacemark
                 self.useLocationInfo(pm)
             }
             else {

@@ -46,7 +46,7 @@ class EventsTableViewController: UITableViewController {
 
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("Event", forIndexPath: indexPath) as EventsCell
+        let cell = tableView.dequeueReusableCellWithIdentifier("Event", forIndexPath: indexPath) as! EventsCell
 
         //var event = eventManager.event[indexPath.row]
         

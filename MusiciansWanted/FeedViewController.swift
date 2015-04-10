@@ -37,7 +37,8 @@ class FeedViewController: UIViewController, UITableViewDelegate, UITableViewData
                 self.presentViewController(alertController, animated: true, completion: nil)
             }
         }
-        
+        tableView.separatorStyle = UITableViewCellSeparatorStyle.SingleLine
+        tableView.separatorColor = UIColor.grayColor()
         tableViewDataSource.feedDelegate = self
         tableViewDataSource.getNotifications(MusiciansWanted.userId)
 
@@ -45,7 +46,6 @@ class FeedViewController: UIViewController, UITableViewDelegate, UITableViewData
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        println("IN CELL")
         var cell: FeedViewTableCell = tableView.dequeueReusableCellWithIdentifier("FeedViewCell") as! FeedViewTableCell
         
         let index = indexPath.row
@@ -55,15 +55,11 @@ class FeedViewController: UIViewController, UITableViewDelegate, UITableViewData
         cell.dateLabel.text = notification.date
         cell.locationLabel.text = notification.location
         cell.iconForCell.image = UIImage(named: notification.imageString)
-        cell.contentView.layer.borderColor = UIColor.blackColor().CGColor
-        cell.contentView.layer.borderWidth = 0.4
         
         return cell
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        println("here")
-        println(tableViewDataSource.rows())
         return tableViewDataSource.rows()
     }
     
@@ -77,7 +73,8 @@ class FeedViewController: UIViewController, UITableViewDelegate, UITableViewData
     }
     
     func addedNewItem(item: Notification) {
-        println("reloading")
-        tableView.reloadData()
+        dispatch_async(dispatch_get_main_queue()) {
+            self.tableView.reloadData()
+        }
     }
 }

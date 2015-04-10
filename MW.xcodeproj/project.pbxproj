@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0104A5101AD837E800173F96 /* PeopleDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0104A50F1AD837E800173F96 /* PeopleDelegate.swift */; };
 		010AEBD11ACE239D0066E4FA /* PeopleCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 010AEBCE1ACE239D0066E4FA /* PeopleCell.swift */; };
 		010AEBD21ACE239D0066E4FA /* PeopleManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 010AEBCF1ACE239D0066E4FA /* PeopleManager.swift */; };
 		010AEBD31ACE239D0066E4FA /* PeopleTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 010AEBD01ACE239D0066E4FA /* PeopleTableViewController.swift */; };
@@ -48,6 +49,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0104A50F1AD837E800173F96 /* PeopleDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PeopleDelegate.swift; sourceTree = "<group>"; };
 		010AEBCE1ACE239D0066E4FA /* PeopleCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PeopleCell.swift; sourceTree = "<group>"; };
 		010AEBCF1ACE239D0066E4FA /* PeopleManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PeopleManager.swift; sourceTree = "<group>"; };
 		010AEBD01ACE239D0066E4FA /* PeopleTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PeopleTableViewController.swift; sourceTree = "<group>"; };
@@ -180,6 +182,7 @@
 			isa = PBXGroup;
 			children = (
 				010AEBD01ACE239D0066E4FA /* PeopleTableViewController.swift */,
+				0104A50F1AD837E800173F96 /* PeopleDelegate.swift */,
 				01153FA51AB2980100B96401 /* PeopleSettingsViewController.swift */,
 				010AEBCF1ACE239D0066E4FA /* PeopleManager.swift */,
 				010AEBCE1ACE239D0066E4FA /* PeopleCell.swift */,
@@ -362,6 +365,7 @@
 				01B594161AB35B090044AA16 /* InboxManager.swift in Sources */,
 				444951C01AD719640013A4DD /* FeedViewTableCell.swift in Sources */,
 				44DFBAAF1AD7731E00DDA8AB /* FeedViewDelegate.swift in Sources */,
+				0104A5101AD837E800173F96 /* PeopleDelegate.swift in Sources */,
 				010AEBD11ACE239D0066E4FA /* PeopleCell.swift in Sources */,
 				01FCDE861ACF05EA002F3A56 /* InboxCell.swift in Sources */,
 				44D308A71ACB32560000F435 /* DataManager.swift in Sources */,

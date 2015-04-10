@@ -10,7 +10,7 @@ import UIKit
 import CoreLocation
 
 class LogInViewController: UIViewController, CLLocationManagerDelegate {
-
+    
     let locationManager = CLLocationManager()
     var ourLocation: String?
     
@@ -37,13 +37,13 @@ class LogInViewController: UIViewController, CLLocationManagerDelegate {
         // Do any additional setup after loading the view.
     }
     
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-
+        
         // Dispose of any resources that can be recreated.
     }
-   
+    
     @IBAction func logInAction(sender: AnyObject!) {
         if(usernameField.text != "" && passwordField.text != "") {
             var paramsDictionary = ["username": usernameField.text, "password": passwordField.text]
@@ -59,7 +59,7 @@ class LogInViewController: UIViewController, CLLocationManagerDelegate {
                         MusiciansWanted.refreshToken = refreshToken!
                         MusiciansWanted.userId = json["user_id"].stringValue.toInt()!
                         self.setLocationTracking()
-
+                        
                     }
                     else {
                         if json["errors"] == "There was a problem logging into soundcloud" {
@@ -140,12 +140,11 @@ class LogInViewController: UIViewController, CLLocationManagerDelegate {
     
     /*
     // MARK: - Navigation
-
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+    // Get the new view controller using segue.destinationViewController.
+    // Pass the selected object to the new view controller.
     }
     */
-
+    
 }

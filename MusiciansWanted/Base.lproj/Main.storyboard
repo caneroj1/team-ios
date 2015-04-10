@@ -35,9 +35,13 @@
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Location" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Fjy-au-v9U">
-                                                    <rect key="frame" x="57" y="52" width="535" height="19"/>
-                                                    <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="16"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Location" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Fjy-au-v9U">
+                                                    <rect key="frame" x="57" y="41" width="234" height="41"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="41" id="8AP-3c-htF"/>
+                                                        <constraint firstAttribute="width" constant="234" id="hQ8-dA-6b8"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="13"/>
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
@@ -48,7 +52,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="n5c-OW-7PJ">
-                                                    <rect key="frame" x="8" y="24" width="36" height="36"/>
+                                                    <rect key="frame" x="8" y="8" width="36" height="36"/>
                                                 </imageView>
                                             </subviews>
                                             <constraints>
@@ -57,14 +61,12 @@
                                                 <constraint firstItem="6Xr-Ar-D7J" firstAttribute="top" secondItem="4Gw-8m-Epk" secondAttribute="bottom" constant="-1" id="A9m-bC-b5o"/>
                                                 <constraint firstItem="4Gw-8m-Epk" firstAttribute="trailing" secondItem="xSS-aP-5CV" secondAttribute="trailingMargin" id="ATR-QI-lFc"/>
                                                 <constraint firstItem="4Gw-8m-Epk" firstAttribute="leading" secondItem="xSS-aP-5CV" secondAttribute="leadingMargin" constant="49" id="Oxp-BT-pDZ"/>
-                                                <constraint firstItem="Fjy-au-v9U" firstAttribute="top" secondItem="6Xr-Ar-D7J" secondAttribute="bottom" constant="12" id="SMv-lE-k0u"/>
-                                                <constraint firstItem="Fjy-au-v9U" firstAttribute="bottom" secondItem="xSS-aP-5CV" secondAttribute="bottomMargin" constant="-11" id="T6k-51-bYU"/>
-                                                <constraint firstItem="Fjy-au-v9U" firstAttribute="leading" secondItem="xSS-aP-5CV" secondAttribute="leadingMargin" constant="49" id="W8g-ip-e1J"/>
+                                                <constraint firstItem="Fjy-au-v9U" firstAttribute="bottom" secondItem="n5c-OW-7PJ" secondAttribute="bottom" constant="38" id="biR-HD-Y4d"/>
                                                 <constraint firstItem="6Xr-Ar-D7J" firstAttribute="trailing" secondItem="xSS-aP-5CV" secondAttribute="trailingMargin" id="gGx-aM-CVl"/>
-                                                <constraint firstItem="Fjy-au-v9U" firstAttribute="trailing" secondItem="xSS-aP-5CV" secondAttribute="trailingMargin" id="h1q-Lb-0bU"/>
                                                 <constraint firstItem="6Xr-Ar-D7J" firstAttribute="leading" secondItem="xSS-aP-5CV" secondAttribute="leadingMargin" constant="49" id="rzb-SC-Map"/>
-                                                <constraint firstItem="n5c-OW-7PJ" firstAttribute="top" secondItem="xSS-aP-5CV" secondAttribute="topMargin" constant="16" id="tic-6m-Wh3"/>
-                                                <constraint firstAttribute="bottomMargin" secondItem="n5c-OW-7PJ" secondAttribute="bottom" constant="22" id="wIK-TH-fbp"/>
+                                                <constraint firstItem="n5c-OW-7PJ" firstAttribute="top" secondItem="xSS-aP-5CV" secondAttribute="topMargin" id="tic-6m-Wh3"/>
+                                                <constraint firstAttribute="bottomMargin" secondItem="n5c-OW-7PJ" secondAttribute="bottom" constant="38" id="wIK-TH-fbp"/>
+                                                <constraint firstItem="Fjy-au-v9U" firstAttribute="leading" secondItem="6Xr-Ar-D7J" secondAttribute="leading" id="xei-99-OWX"/>
                                                 <constraint firstItem="4Gw-8m-Epk" firstAttribute="leading" secondItem="n5c-OW-7PJ" secondAttribute="trailing" constant="13" id="zMM-vA-AAL"/>
                                             </constraints>
                                         </tableViewCellContentView>

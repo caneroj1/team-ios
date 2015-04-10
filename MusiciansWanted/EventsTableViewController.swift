@@ -10,16 +10,7 @@ import UIKit
 
 class EventsTableViewController: UITableViewController {
     
-    var pressed = false;
-    
-    var eventAmount = 10;
-    
-    @IBAction func reloadTable(sender: UIBarButtonItem) {
-        pressed = true;
-        eventAmount += 10;
-        eventManager.loadEvents(0,upper: eventAmount);
-        tableView.reloadData()
-    }
+    var eventAmount = 99;
 
 
     override func viewDidLoad() {
@@ -64,23 +55,23 @@ class EventsTableViewController: UITableViewController {
 
         var event = eventManager.event[indexPath.row]
         
-        if(pressed == false)
-        {
-            cell.EventDescription.text = "Please wait a second, then press the refresh button to get new events. Thanks!"
+        // Configure the cell...
+        cell.EventDescription.text = event.eventLocation
+        //cell.EventImage.image = event.eventPicture
+        //cell.EventTitle.text = event.eventName
             
-        } else {
-            // Configure the cell...
-            cell.EventDescription.text = event.eventLocation
-            //cell.EventImage.image = event.eventPicture
-            //cell.EventTitle.text = event.eventName
-            
-            //cell.EventDescription.text = "The time to see ultra lord"
-            cell.EventImage.image = UIImage(named: "UltraLord")
-            cell.EventTitle.text = "The Event"
-        }
+        //cell.EventDescription.text = "The time to see ultra lord"
+        cell.EventImage.image = UIImage(named: "UltraLord")
+        cell.EventTitle.text = "The Event"
         
         
         return cell
+    }
+    
+    func addedNewItem(item: EventsManager) {
+        dispatch_async(dispatch_get_main_queue()) {
+            self.tableView.reloadData()
+        }
     }
 
 

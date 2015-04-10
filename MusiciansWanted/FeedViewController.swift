@@ -8,8 +8,14 @@
 
 import UIKit
 
-class FeedViewController: UIViewController {
+class FeedViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+    @IBOutlet weak var tableView: UITableView!
     var refreshToken = ""
+    var tableViewDataSource = FeedViewDataManager()
+    
+    override func viewWillAppear(animated: Bool) {
+        tableViewDataSource.getNotifications(MusiciansWanted.userId)
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -36,6 +42,17 @@ class FeedViewController: UIViewController {
         }
 
         // Do any additional setup after loading the view, typically from a nib.
+    }
+    
+    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+        var cell: FeedViewTableCell = tableView.dequeueReusableCellWithIdentifier("FeedCell") as! FeedViewTableCell
+        
+        
+        return cell
+    }
+    
+    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 0
     }
     
     override func didReceiveMemoryWarning() {

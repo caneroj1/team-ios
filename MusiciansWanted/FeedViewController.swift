@@ -72,6 +72,10 @@ class FeedViewController: UIViewController, UITableViewDelegate, UITableViewData
         return 90.0
     }
     
+    func tableView(tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+        return 0
+    }
+    
     func addedNewItem(item: Notification) {
         dispatch_async(dispatch_get_main_queue()) {
             self.tableView.reloadData()

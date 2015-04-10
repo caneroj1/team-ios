@@ -1,7 +1,7 @@
 import UIKit
 import CoreLocation
 
-var pplMgr: PeopleManager = PeopleManager()
+//var pplMgr: PeopleManager = PeopleManager()
 
 struct people {
     var id = 0
@@ -24,6 +24,7 @@ class PeopleManager: NSObject {
     var isProcessComplete = false
     var arrPerson = [Int]()
     var person = [Int:people]()
+    var peopleDelegate: PeopleDelegate?
     
     func addPerson(id: Int, name: String, pic: UIImage, age: String, genre: String, instru: String, loc: String, distance: Double, band: Bool, jam: Bool){
         
@@ -87,9 +88,11 @@ class PeopleManager: NSObject {
                 
                 self.isLoadingPeople = false
                 self.isProcessComplete = true
+                self.peopleDelegate!.addedNewItem()
                 println("Data Loaded.")
                 
             }
+            
         })
     }
     
@@ -100,7 +103,7 @@ class PeopleManager: NSObject {
         //Add basic information of users
         var profileImage = UIImage(named: "anonymous")!
         
-        pplMgr.addPerson(user["id"].intValue, name: user["name"].stringValue, pic: profileImage, age: user["age"].stringValue, genre: "Unknown", instru: "Unknown", loc: user["location"].stringValue, distance: user["distance"].doubleValue, band: user["looking_for_band"].boolValue, jam: user["looking_to_jam"].boolValue)
+        self.addPerson(user["id"].intValue, name: user["name"].stringValue, pic: profileImage, age: user["age"].stringValue, genre: "Unknown", instru: "Unknown", loc: user["location"].stringValue, distance: user["distance"].doubleValue, band: user["looking_for_band"].boolValue, jam: user["looking_to_jam"].boolValue)
         
         println("Adding user \(userId)");
         
@@ -119,7 +122,7 @@ class PeopleManager: NSObject {
                         dispatch_sync(dispatch_get_main_queue()) {
                             profileImage = UIImage(data: decodedString!)!
                             
-                            pplMgr.addPerson(user["id"].intValue, name: user["name"].stringValue, pic: profileImage, age: user["age"].stringValue, genre: "Unknown", instru: "Unknown", loc: user["location"].stringValue, distance: user["distance"].doubleValue, band: user["looking_for_band"].boolValue, jam: user["looking_to_jam"].boolValue)
+                            self.addPerson(user["id"].intValue, name: user["name"].stringValue, pic: profileImage, age: user["age"].stringValue, genre: "Unknown", instru: "Unknown", loc: user["location"].stringValue, distance: user["distance"].doubleValue, band: user["looking_for_band"].boolValue, jam: user["looking_to_jam"].boolValue)
                         }
                     }
                 }

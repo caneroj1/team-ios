@@ -8,9 +8,10 @@
 
 import UIKit
 
-class PeopleTableViewController: UITableViewController {
+class PeopleTableViewController: UITableViewController, PeopleDelegate {
 
     var ttlPpl = 24;
+    var pplMgr = PeopleManager()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -22,6 +23,8 @@ class PeopleTableViewController: UITableViewController {
         // self.navigationItem.rightBarButtonItem = self.editButtonItem()
         
         
+        pplMgr.peopleDelegate = self
+        //pplMgr.getNotifications(MusiciansWanted.userId)
         pplMgr.loadPeople(pplMgr.arrPerson.count, upper: ttlPpl)
         
     }
@@ -67,22 +70,23 @@ class PeopleTableViewController: UITableViewController {
         var currentOffset = scrollView.contentOffset.y;
         var maximumOffset = scrollView.contentSize.height - scrollView.frame.size.height;
         
-        if (maximumOffset - currentOffset <= 20.0 && pplMgr.isLoadingPeople == false && pplMgr.arrPerson.count > 9) {
+        if (maximumOffset - currentOffset <= 20.0 && pplMgr.isLoadingPeople == false) {
             println("expanding size");
             ttlPpl = pplMgr.arrPerson.count + 10;
             
             pplMgr.loadPeople(pplMgr.arrPerson.count, upper: ttlPpl)
        
         }
-        else if (pplMgr.isProcessComplete) {
-            println("Table Reloading")
-            tableView.reloadData()
-            pplMgr.isProcessComplete = false
-        }
     }
     
     override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
         
         return 80
+    }
+    
+    func addedNewItem() {
+        dispatch_async(dispatch_get_main_queue()) {
+            self.tableView.reloadData()
+        }
     }
 }

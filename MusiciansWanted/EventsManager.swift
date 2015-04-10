@@ -42,8 +42,6 @@ class EventsManager: NSObject {
         DataManager.makeGetRequest("/api/events", completion: { (data, error) -> Void in
             let json = JSON(data: data!)
             
-            println("my json \(json)")
-            
             //for event in json {
             for index in lower...upper {
                 

@@ -9,6 +9,18 @@
 import UIKit
 
 class EventsTableViewController: UITableViewController {
+    
+    var pressed = false;
+    
+    var eventAmount = 10;
+    
+    @IBAction func reloadTable(sender: UIBarButtonItem) {
+        pressed = true;
+        eventAmount += 10;
+        eventManager.loadEvents(0,upper: eventAmount);
+        tableView.reloadData()
+    }
+
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -18,7 +30,7 @@ class EventsTableViewController: UITableViewController {
 
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem()
-        eventManager.loadEvents(0,upper: 10);
+        eventManager.loadEvents(0,upper: eventAmount);
         tableView.reloadData()
     }
 
@@ -52,16 +64,20 @@ class EventsTableViewController: UITableViewController {
 
         var event = eventManager.event[indexPath.row]
         
-        // Configure the cell...
-        cell.EventDescription.text = event.eventLocation
-        //cell.EventImage.image = event.eventPicture
-        //cell.EventTitle.text = event.eventName
-
-        //cell.EventDescription.text = "The time to see ultra lord"
-        cell.EventImage.image = UIImage(named: "UltraLord")
-        cell.EventTitle.text = "The Event"
-        
-        //left off creating button to reload table
+        if(pressed == false)
+        {
+            cell.EventDescription.text = "Please wait a second, then press the refresh button to get new events. Thanks!"
+            
+        } else {
+            // Configure the cell...
+            cell.EventDescription.text = event.eventLocation
+            //cell.EventImage.image = event.eventPicture
+            //cell.EventTitle.text = event.eventName
+            
+            //cell.EventDescription.text = "The time to see ultra lord"
+            cell.EventImage.image = UIImage(named: "UltraLord")
+            cell.EventTitle.text = "The Event"
+        }
         
         
         return cell

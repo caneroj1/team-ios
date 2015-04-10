@@ -10,9 +10,7 @@ import UIKit
 
 class PeopleTableViewController: UITableViewController {
 
-    var expandingView = false;
-    var ttlPpl = 99;
-    var sortedArr = Array(pplMgr.person.keys).sorted(<)
+    var ttlPpl = 24;
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -24,10 +22,7 @@ class PeopleTableViewController: UITableViewController {
         // self.navigationItem.rightBarButtonItem = self.editButtonItem()
         
         
-        pplMgr.loadPeople(0,upper: ttlPpl);
-        sortedArr = Array(pplMgr.person.keys).sorted(<)
-        
-        tableView.reloadData()
+        pplMgr.loadPeople(pplMgr.arrPerson.count, upper: ttlPpl)
         
     }
     
@@ -45,7 +40,7 @@ class PeopleTableViewController: UITableViewController {
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // Return the number of rows in the section.
-        return sortedArr.count
+        return pplMgr.arrPerson.count
     }
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
@@ -53,7 +48,7 @@ class PeopleTableViewController: UITableViewController {
         let cell = tableView.dequeueReusableCellWithIdentifier("Cell", forIndexPath: indexPath) as PeopleCell
         
         //Display the user information in the cell
-        let person = pplMgr.person[sortedArr[indexPath.row]];
+        let person = pplMgr.person[pplMgr.arrPerson[indexPath.row]];
         
         cell.lblProfileName.text = person?.profname
         cell.imgProfilePic.image = person?.profpic
@@ -63,7 +58,7 @@ class PeopleTableViewController: UITableViewController {
         cell.lblGenre.text = person?.genre
         
         // Save the indexPath of the user
-        pplMgr.person[sortedArr[indexPath.row]]?.indexPth = indexPath
+        pplMgr.person[pplMgr.arrPerson[indexPath.row]]?.indexPth = indexPath
         
         return cell
     }
@@ -72,18 +67,17 @@ class PeopleTableViewController: UITableViewController {
         var currentOffset = scrollView.contentOffset.y;
         var maximumOffset = scrollView.contentSize.height - scrollView.frame.size.height;
         
-        if (maximumOffset - currentOffset <= 20.0 && expandingView == false) {
+        if (maximumOffset - currentOffset <= 20.0 && pplMgr.isLoadingPeople == false && pplMgr.arrPerson.count > 9) {
             println("expanding size");
-            expandingView = true
-            ttlPpl = pplMgr.person.count + 100;
+            ttlPpl = pplMgr.arrPerson.count + 10;
             
-            pplMgr.loadPeople(pplMgr.person.count, upper: ttlPpl)
+            pplMgr.loadPeople(pplMgr.arrPerson.count, upper: ttlPpl)
        
         }
-        else if (pplMgr.person.count >= ttlPpl) {
-            expandingView = false;
-            sortedArr = Array(pplMgr.person.keys).sorted(<)
+        else if (pplMgr.isProcessComplete) {
+            println("Table Reloading")
             tableView.reloadData()
+            pplMgr.isProcessComplete = false
         }
     }
     

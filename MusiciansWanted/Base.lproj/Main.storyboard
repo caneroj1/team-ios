@@ -309,7 +309,13 @@
                             <outlet property="delegate" destination="twR-KP-ogk" id="ZWN-I7-Y0F"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" id="asv-KY-9eG"/>
+                    <navigationItem key="navigationItem" id="asv-KY-9eG">
+                        <barButtonItem key="rightBarButtonItem" image="refresh" id="IqV-se-sgn">
+                            <connections>
+                                <action selector="reloadTable:" destination="twR-KP-ogk" id="x32-PB-9II"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Etf-Fa-y9V" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -1148,6 +1154,7 @@
         <image name="options" width="30" height="30"/>
         <image name="people" width="30" height="30"/>
         <image name="prof1" width="30" height="30"/>
+        <image name="refresh" width="32" height="32"/>
         <image name="write" width="30" height="30"/>
     </resources>
     <color key="tintColor" red="1" green="0.31096480790199221" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>

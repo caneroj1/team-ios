@@ -33,6 +33,7 @@
 		44D308A51ACB324E0000F435 /* SwiftyJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44D308A41ACB324E0000F435 /* SwiftyJSON.swift */; };
 		44D308A71ACB32560000F435 /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44D308A61ACB32560000F435 /* DataManager.swift */; };
 		44D308A91ACB325A0000F435 /* FeedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44D308A81ACB325A0000F435 /* FeedViewController.swift */; };
+		44DFBAAF1AD7731E00DDA8AB /* FeedViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44DFBAAE1AD7731E00DDA8AB /* FeedViewDelegate.swift */; };
 		ADEF52921ACB796F0059855D /* EventsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADEF52911ACB796F0059855D /* EventsViewController.swift */; };
 /* End PBXBuildFile section */
 
@@ -77,6 +78,7 @@
 		44D308A41ACB324E0000F435 /* SwiftyJSON.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftyJSON.swift; sourceTree = "<group>"; };
 		44D308A61ACB32560000F435 /* DataManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataManager.swift; sourceTree = "<group>"; };
 		44D308A81ACB325A0000F435 /* FeedViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeedViewController.swift; sourceTree = "<group>"; };
+		44DFBAAE1AD7731E00DDA8AB /* FeedViewDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeedViewDelegate.swift; sourceTree = "<group>"; };
 		ADEF52911ACB796F0059855D /* EventsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventsViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -169,6 +171,7 @@
 				444951BF1AD719640013A4DD /* FeedViewTableCell.swift */,
 				444951C11AD71B3D0013A4DD /* FeedViewDataManager.swift */,
 				444951C31AD72B420013A4DD /* Notification.swift */,
+				44DFBAAE1AD7731E00DDA8AB /* FeedViewDelegate.swift */,
 			);
 			name = "News Feed";
 			sourceTree = "<group>";
@@ -358,6 +361,7 @@
 				010AEBD31ACE239D0066E4FA /* PeopleTableViewController.swift in Sources */,
 				01B594161AB35B090044AA16 /* InboxManager.swift in Sources */,
 				444951C01AD719640013A4DD /* FeedViewTableCell.swift in Sources */,
+				44DFBAAF1AD7731E00DDA8AB /* FeedViewDelegate.swift in Sources */,
 				010AEBD11ACE239D0066E4FA /* PeopleCell.swift in Sources */,
 				01FCDE861ACF05EA002F3A56 /* InboxCell.swift in Sources */,
 				44D308A71ACB32560000F435 /* DataManager.swift in Sources */,

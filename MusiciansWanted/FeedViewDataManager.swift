@@ -11,15 +11,20 @@ import Foundation
 class FeedViewDataManager: NSData {
     // dictionary of notifications indexed by ID.
     // the id will be used to keep track of which notifications have been already added.
-    var notificationDictionary = Dictionary<Int, Notification>()
+    var notificationArray = [Notification]()
+    var feedDelegate: FeedViewDelegate?
     
     func rows() -> Int {
-        return notificationDictionary.count
+        return notificationArray.count
+    }
+    
+    func getNotification(index: Int) -> Notification {
+        return notificationArray[index]
     }
     
     func formatDate(date: String) -> String {
         let formatter = NSDateFormatter()
-        formatter.dateFormat = "yyyy-MM-dd\'T\'HH:mmZ"
+        formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSS'Z"
         let newDateObject = formatter.dateFromString(date)!
         let dateFormatter = NSDateFormatter()
         dateFormatter.dateStyle = NSDateFormatterStyle.ShortStyle
@@ -34,9 +39,28 @@ class FeedViewDataManager: NSData {
             let data = JSON(data: data!)
             for notification in data {
                 let notificationData = notification.1
-                println(notificationData)
-//                let id = notification.0.toInt()!
+    
+                var id = notificationData["id"].stringValue.toInt()!
+            
+                var title = notificationData["title"].stringValue
+                var location = notificationData["location"].stringValue
+                var distanceString = notificationData["distance"].stringValue
+                var date = notificationData["created_at"].stringValue
+                var type = notificationData["notification_type"].stringValue.toInt()!
+                var image = ""
+                switch type {
+                case 0:
+                    image = "icon_calendar_small.png"
+                case 1:
+                    image = "icon_anonymous_small.png"
+                default:
+                    image = "icon_calendar_small.png"
+                }
                 
+                var newNotification = Notification(title: title, date: self.formatDate(date), location: location, distance: distanceString, imageString: image)
+
+                self.notificationArray.append(newNotification)
+                self.feedDelegate!.addedNewItem(newNotification)
             }
         })
     }

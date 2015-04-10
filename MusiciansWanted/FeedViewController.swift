@@ -8,17 +8,14 @@
 
 import UIKit
 
-class FeedViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class FeedViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, FeedViewDelegate {
     @IBOutlet weak var tableView: UITableView!
     var refreshToken = ""
     var tableViewDataSource = FeedViewDataManager()
     
-    override func viewWillAppear(animated: Bool) {
-        tableViewDataSource.getNotifications(MusiciansWanted.userId)
-    }
-    
     override func viewDidLoad() {
         super.viewDidLoad()
+
         if let needToDisplayLocationservices = MusiciansWanted.locationServicesDisabled {
             if needToDisplayLocationservices {
                 let alertController = UIAlertController(
@@ -40,23 +37,47 @@ class FeedViewController: UIViewController, UITableViewDelegate, UITableViewData
                 self.presentViewController(alertController, animated: true, completion: nil)
             }
         }
+        
+        tableViewDataSource.feedDelegate = self
+        tableViewDataSource.getNotifications(MusiciansWanted.userId)
 
         // Do any additional setup after loading the view, typically from a nib.
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        var cell: FeedViewTableCell = tableView.dequeueReusableCellWithIdentifier("FeedCell") as! FeedViewTableCell
+        println("IN CELL")
+        var cell: FeedViewTableCell = tableView.dequeueReusableCellWithIdentifier("FeedViewCell") as! FeedViewTableCell
         
+        let index = indexPath.row
+        let notification = tableViewDataSource.getNotification(index)
+        
+        cell.titleLabel.text = notification.title
+        cell.dateLabel.text = notification.date
+        cell.locationLabel.text = notification.location
+        cell.iconForCell.image = UIImage(named: notification.imageString)
+        cell.contentView.layer.borderColor = UIColor.blackColor().CGColor
+        cell.contentView.layer.borderWidth = 0.4
         
         return cell
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 0
+        println("here")
+        println(tableViewDataSource.rows())
+        return tableViewDataSource.rows()
     }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+        return 90.0
+    }
+    
+    func addedNewItem(item: Notification) {
+        println("reloading")
+        tableView.reloadData()
     }
 }

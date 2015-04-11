@@ -82,7 +82,7 @@ class PeopleManager: NSObject {
 
             }
             
-            dispatch_sync(dispatch_get_main_queue()) {
+            dispatch_async(dispatch_get_main_queue()) {
                 
                 self.arrPerson = Array(self.person.keys).sorted(<)
                 
@@ -118,10 +118,14 @@ class PeopleManager: NSObject {
                     if json["picture"] != nil {
                         var base64String = json["picture"].stringValue
                         let decodedString = NSData(base64EncodedString: base64String, options: NSDataBase64DecodingOptions.IgnoreUnknownCharacters)
-                        dispatch_sync(dispatch_get_main_queue()) {
+                        dispatch_async(dispatch_get_main_queue()) {
                             profileImage = UIImage(data: decodedString!)!
                             
                             self.addPerson(user["id"].intValue, name: user["name"].stringValue, pic: profileImage, age: user["age"].stringValue, genre: "Unknown", instru: "Unknown", loc: user["location"].stringValue, distance: user["distance"].doubleValue, band: user["looking_for_band"].boolValue, jam: user["looking_to_jam"].boolValue)
+                            
+                            
+                            println("loaded image of \(userId)")
+                            self.peopleDelegate!.addedNewItem()
                         }
                     }
                 }
@@ -129,6 +133,7 @@ class PeopleManager: NSObject {
             })
         }
         
+        println("added user \(userId)")
+        
     }
-    
 }

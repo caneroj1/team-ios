@@ -20,8 +20,7 @@ struct people {
 class PeopleManager: NSObject {
     
     var isNearMeURL = false
-    var isLoadingPeople = false
-    var isProcessComplete = false
+    var isLoadingPeople = true
     var arrPerson = [Int]()
     var person = [Int:people]()
     var peopleDelegate: PeopleDelegate?
@@ -88,7 +87,6 @@ class PeopleManager: NSObject {
                 self.arrPerson = Array(self.person.keys).sorted(<)
                 
                 self.isLoadingPeople = false
-                self.isProcessComplete = true
                 self.peopleDelegate!.addedNewItem()
                 println("Data Loaded.")
                 

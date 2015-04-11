@@ -74,6 +74,7 @@ class PeopleTableViewController: UITableViewController, PeopleDelegate {
             println("expanding size");
             ttlPpl = pplMgr.arrPerson.count + 10;
             
+            pplMgr.isLoadingPeople = true
             pplMgr.loadPeople(pplMgr.arrPerson.count, upper: ttlPpl)
             
         }

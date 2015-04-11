@@ -8,8 +8,6 @@
 
 import UIKit
 
-var eventManager: EventsManager = EventsManager()
-
 struct events {
     var eventId = 0
     var eventName = "Un-named"
@@ -21,7 +19,9 @@ struct events {
 
 class EventsManager: NSObject {
     
+    var eventDelegate: EventsDelegate?
     var event = [events]()
+    var isLoadingEvents = false
     
     func addEvents(tempId: Int, name: String, picture: UIImage, date: String, genre: String, location: String){
         
@@ -35,12 +35,17 @@ class EventsManager: NSObject {
         else {
             event.append(events(eventId: tempId, eventName: name, eventPicture: picture, eventDate: date, eventGenre: genre, eventLocation: location))
         }
+        
+        self.eventDelegate!.addedNewEvent()
+
     }
     
     func loadEvents(lower: Int, upper: Int) {
         
         DataManager.makeGetRequest("/api/events", completion: { (data, error) -> Void in
             let json = JSON(data: data!)
+            
+            self.isLoadingEvents = true
             
             //for event in json {
             for index in lower...upper {
@@ -56,7 +61,7 @@ class EventsManager: NSObject {
                 //Add basic information of events
                 var eventImage = UIImage(named: "UltraLord")!
                 
-                eventManager.addEvents(eventData["id"].intValue, name: eventData["title"].stringValue, picture: eventImage, date: eventData["event_time"].stringValue, genre: "id: " + eventData["id"].stringValue, location: eventData["location"].stringValue)
+                self.addEvents(eventData["id"].intValue, name: eventData["title"].stringValue, picture: eventImage, date: eventData["event_time"].stringValue, genre: "id: " + eventData["id"].stringValue, location: eventData["location"].stringValue)
                 
                 println("Adding event \(id)");
                 
@@ -75,7 +80,7 @@ class EventsManager: NSObject {
                                 dispatch_async(dispatch_get_main_queue()) {
                                     eventImage = UIImage(data: decodedString!)!
                                     
-                                    eventManager.addEvents(eventData["id"].intValue, name: eventData["title"].stringValue, picture: eventImage, date: eventData["event_time"].stringValue, genre: "id: " + eventData["id"].stringValue, location: eventData["location"].stringValue)
+                                    self.addEvents(eventData["id"].intValue, name: eventData["title"].stringValue, picture: eventImage, date: eventData["event_time"].stringValue, genre: "id: " + eventData["id"].stringValue, location: eventData["location"].stringValue)
                                 }
                             }
                         }
@@ -84,8 +89,10 @@ class EventsManager: NSObject {
                 }
                 
             }
-            
-            println("Data Loaded.")
+            dispatch_sync(dispatch_get_main_queue()) {
+                self.isLoadingEvents = false
+                println("Data Loaded.")
+            }
         })
     }
 }

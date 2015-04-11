@@ -8,12 +8,14 @@
 
 import UIKit
 
-class FeedViewController: UIViewController {
+class FeedViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, FeedViewDelegate {
+    @IBOutlet weak var tableView: UITableView!
     var refreshToken = ""
+    var tableViewDataSource = FeedViewDataManager()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        if let needToDisplayLocationservices = MusiciansWanted.locationServicesDisabled? {
+        if let needToDisplayLocationservices = MusiciansWanted.locationServicesDisabled {
             if needToDisplayLocationservices {
                 let alertController = UIAlertController(
                     title: "Location Services Disabled",
@@ -34,12 +36,48 @@ class FeedViewController: UIViewController {
                 self.presentViewController(alertController, animated: true, completion: nil)
             }
         }
+        tableView.separatorStyle = UITableViewCellSeparatorStyle.SingleLine
+        tableView.separatorColor = UIColor.grayColor()
+        tableViewDataSource.feedDelegate = self
+        tableViewDataSource.getNotifications(MusiciansWanted.userId)
 
         // Do any additional setup after loading the view, typically from a nib.
+    }
+    
+    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+        var cell: FeedViewTableCell = tableView.dequeueReusableCellWithIdentifier("FeedViewCell") as! FeedViewTableCell
+        
+        let index = indexPath.row
+        let notification = tableViewDataSource.getNotification(index)
+        
+        cell.titleLabel.text = notification.title
+        cell.dateLabel.text = notification.date
+        cell.locationLabel.text = notification.location
+        cell.iconForCell.image = UIImage(named: notification.imageString)
+        
+        return cell
+    }
+    
+    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return tableViewDataSource.rows()
     }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+        return 90.0
+    }
+    
+    func tableView(tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+        return 0
+    }
+    
+    func addedNewItem(item: Notification) {
+        dispatch_async(dispatch_get_main_queue()) {
+            self.tableView.reloadData()
+        }
     }
 }

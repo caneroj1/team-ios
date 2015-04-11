@@ -70,11 +70,12 @@ class PeopleTableViewController: UITableViewController, PeopleDelegate {
         var currentOffset = scrollView.contentOffset.y;
         var maximumOffset = scrollView.contentSize.height - scrollView.frame.size.height;
         
-        if (maximumOffset - currentOffset <= 20.0 && pplMgr.isLoadingPeople == false) {
+        if (maximumOffset - currentOffset <= 2.0 && pplMgr.isLoadingPeople == false) {
+            pplMgr.isLoadingPeople = true
             println("expanding size");
             ttlPpl = pplMgr.arrPerson.count + 10;
             
-            pplMgr.isLoadingPeople = true
+            
             pplMgr.loadPeople(pplMgr.arrPerson.count, upper: ttlPpl)
             
         }
@@ -90,4 +91,5 @@ class PeopleTableViewController: UITableViewController, PeopleDelegate {
             self.tableView.reloadData()
         }
     }
+    
 }

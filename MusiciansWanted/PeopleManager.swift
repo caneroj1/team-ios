@@ -78,6 +78,7 @@ class PeopleManager: NSObject {
                     }
                     
                     self.addUser(json[index])
+
                 }
 
             }

@@ -43,7 +43,7 @@ class GlobalTabBarController: UITabBarController, CLLocationManagerDelegate {
         let tabcolor1 = UIColor(red: 110.0/255.0, green: 110.0/255.0, blue: 110.0/255.0, alpha: 1.0)
         let tabcolor2 = UIColor(red: 255.0/255.0, green: 90.0/255.0, blue: 0.0/255.0, alpha: 1.0)
         let tabbarcolor = UIColor(red: 5.0/255.0, green: 5.0/255.0, blue: 10.0/255.0, alpha: 0.5)
-
+        
         UITabBar.appearance().barTintColor = tabbarcolor
         UINavigationBar.appearance().barTintColor = tabbarcolor
         
@@ -52,7 +52,7 @@ class GlobalTabBarController: UITabBarController, CLLocationManagerDelegate {
         
         self.tabBar.tintColor = tabcolor2
         
-        for item in self.tabBar.items as [UITabBarItem] {
+        for item in self.tabBar.items as! [UITabBarItem] {
             if let image = item.image {
                 item.image = image.imageWithColor(tabcolor1).imageWithRenderingMode(.AlwaysOriginal)
             }
@@ -72,7 +72,7 @@ class GlobalTabBarController: UITabBarController, CLLocationManagerDelegate {
             MusiciansWanted.locationServicesDisabled = true
         }
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -87,7 +87,7 @@ class GlobalTabBarController: UITabBarController, CLLocationManagerDelegate {
             }
             
             if placemarks.count > 0 {
-                let pm = placemarks[0] as CLPlacemark
+                let pm = placemarks[0] as! CLPlacemark
                 self.useLocationInfo(pm)
             }
             else {
@@ -133,15 +133,14 @@ class GlobalTabBarController: UITabBarController, CLLocationManagerDelegate {
         DataManager.makePatchRequest(url, params: params, completion: { (data, error) -> Void in
         })
     }
-
+    
     /*
     // MARK: - Navigation
-
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+    // Get the new view controller using segue.destinationViewController.
+    // Pass the selected object to the new view controller.
     }
     */
-
+    
 }

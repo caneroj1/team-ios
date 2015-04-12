@@ -425,6 +425,9 @@
                             </label>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="anonymous" translatesAutoresizingMaskIntoConstraints="NO" id="Lew-ma-6Zx">
                                 <rect key="frame" x="230" y="79" width="140" height="140"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="Lew-ma-6Zx" secondAttribute="height" multiplier="1:1" id="zyG-na-QHY"/>
+                                </constraints>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LT3-sG-i0W">
                                 <rect key="frame" x="278" y="229" width="44" height="21"/>
@@ -525,6 +528,7 @@
                         <variation key="default">
                             <mask key="constraints">
                                 <exclude reference="7R5-JN-1v7"/>
+                                <exclude reference="bOb-Mg-wha"/>
                             </mask>
                         </variation>
                     </view>

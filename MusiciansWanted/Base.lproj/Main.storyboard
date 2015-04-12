@@ -397,7 +397,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="800"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="anonymous" translatesAutoresizingMaskIntoConstraints="NO" id="Lew-ma-6Zx">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="anonymous" translatesAutoresizingMaskIntoConstraints="NO" id="Lew-ma-6Zx">
                                 <rect key="frame" x="230" y="79" width="140" height="140"/>
                                 <constraints>
                                     <constraint firstAttribute="width" relation="lessThanOrEqual" constant="160" id="9Fi-Mc-F1x"/>
@@ -528,7 +528,7 @@
                                 </constraints>
                             </view>
                         </subviews>
-                        <color key="backgroundColor" red="0.19882579410000001" green="0.22308026189999999" blue="0.27269446330000002" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="backgroundColor" red="0.5451081860496122" green="0.56576582721278512" blue="0.63158017113095233" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstItem="qXD-f3-hjZ" firstAttribute="width" secondItem="BDv-iW-4d3" secondAttribute="width" id="44H-vA-a4U"/>
                             <constraint firstItem="plA-8o-Nzd" firstAttribute="top" secondItem="BDv-iW-4d3" secondAttribute="bottom" id="60I-ww-8S6"/>
@@ -628,7 +628,7 @@
                         <rect key="frame" x="0.0" y="64" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="QRs-2G-HdD">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="QRs-2G-HdD">
                                 <rect key="frame" x="230" y="80" width="140" height="140"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="140" id="efb-RW-ZeI"/>
@@ -979,10 +979,10 @@
                                         <exclude reference="L6A-MV-Tma"/>
                                         <exclude reference="h8q-eH-a6h"/>
                                         <exclude reference="ctt-rL-uju"/>
-                                        <exclude reference="8h4-6D-HVF"/>
-                                        <exclude reference="YPn-KZ-m5i"/>
                                         <exclude reference="UNk-HS-DZe"/>
                                         <exclude reference="HHh-tl-XKF"/>
+                                        <exclude reference="8h4-6D-HVF"/>
+                                        <exclude reference="YPn-KZ-m5i"/>
                                     </mask>
                                 </variation>
                             </scrollView>

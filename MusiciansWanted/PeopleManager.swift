@@ -14,7 +14,9 @@ struct people {
     var distance = 0.01
     var looking_for_band = false
     var looking_to_jam = false
+    var email = ""
     var indexPth: NSIndexPath = NSIndexPath();
+    var gender = ""
 }
 
 class PeopleManager: NSObject {
@@ -25,7 +27,7 @@ class PeopleManager: NSObject {
     var person = [Int:people]()
     var peopleDelegate: PeopleDelegate?
     
-    func addPerson(id: Int, name: String, pic: UIImage, age: String, genre: String, instru: String, loc: String, distance: Double, band: Bool, jam: Bool){
+    func addPerson(id: Int, name: String, pic: UIImage, age: String, genre: String, instru: String, loc: String, distance: Double, band: Bool, jam: Bool, email: String, gender: String){
         
         var tempPerson: people = people()
         
@@ -39,6 +41,8 @@ class PeopleManager: NSObject {
         tempPerson.distance = distance
         tempPerson.looking_for_band = band
         tempPerson.looking_to_jam = jam
+        tempPerson.email = email
+        tempPerson.gender = gender
         
         person[id] = tempPerson;
         //person.updateValue(tempPerson, forKey: id)
@@ -102,7 +106,7 @@ class PeopleManager: NSObject {
         //Add basic information of users
         var profileImage = UIImage(named: "anonymous")!
         
-        self.addPerson(user["id"].intValue, name: user["name"].stringValue, pic: profileImage, age: user["age"].stringValue, genre: "Unknown", instru: "Unknown", loc: user["location"].stringValue, distance: user["distance"].doubleValue, band: user["looking_for_band"].boolValue, jam: user["looking_to_jam"].boolValue)
+        self.addPerson(user["id"].intValue, name: user["name"].stringValue, pic: profileImage, age: user["age"].stringValue, genre: "Unknown", instru: "Unknown", loc: user["location"].stringValue, distance: user["distance"].doubleValue, band: user["looking_for_band"].boolValue, jam: user["looking_to_jam"].boolValue, email: user["email"].stringValue, gender: user["gender"].stringValue)
         
         println("Adding user \(userId)");
         
@@ -121,8 +125,7 @@ class PeopleManager: NSObject {
                         dispatch_async(dispatch_get_main_queue()) {
                             profileImage = UIImage(data: decodedString!)!
                             
-                            self.addPerson(user["id"].intValue, name: user["name"].stringValue, pic: profileImage, age: user["age"].stringValue, genre: "Unknown", instru: "Unknown", loc: user["location"].stringValue, distance: user["distance"].doubleValue, band: user["looking_for_band"].boolValue, jam: user["looking_to_jam"].boolValue)
-                            
+                            self.addPerson(user["id"].intValue, name: user["name"].stringValue, pic: profileImage, age: user["age"].stringValue, genre: "Unknown", instru: "Unknown", loc: user["location"].stringValue, distance: user["distance"].doubleValue, band: user["looking_for_band"].boolValue, jam: user["looking_to_jam"].boolValue, email: user["email"].stringValue, gender: user["gender"].stringValue)
                             
                             println("loaded image of \(userId)")
                             self.peopleDelegate!.addedNewItem()

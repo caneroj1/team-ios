@@ -89,4 +89,16 @@ class PeopleTableViewController: UITableViewController, PeopleDelegate {
             self.tableView.reloadData()
         }
     }
+    
+    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        let person = pplMgr.person[pplMgr.arrPerson[indexPath.row]]
+        
+        let personView = self.storyboard?.instantiateViewControllerWithIdentifier("PersonViewController") as! PersonViewController
+        
+        personView.controller = "people"
+        personView.icon = person?.profpic
+        personView.id = person?.id
+        
+        self.navigationController?.pushViewController(personView, animated: true)
+    }
 }

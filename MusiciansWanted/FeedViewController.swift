@@ -75,6 +75,16 @@ class FeedViewController: UIViewController, UITableViewDelegate, UITableViewData
         return 0
     }
     
+    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        let notification = tableViewDataSource.getNotification(indexPath.row)
+        
+        let personView = self.storyboard?.instantiateViewControllerWithIdentifier("PersonViewController") as! PersonViewController
+        
+        personView.id = notification.recordId
+        
+        self.navigationController?.pushViewController(personView, animated: true)
+    }
+    
     func addedNewItem(item: Notification) {
         dispatch_async(dispatch_get_main_queue()) {
             self.tableView.reloadData()

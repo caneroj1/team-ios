@@ -47,6 +47,8 @@ class FeedViewDataManager: NSData {
                 var distanceString = notificationData["distance"].stringValue
                 var date = notificationData["created_at"].stringValue
                 var type = notificationData["notification_type"].stringValue.toInt()!
+                var recordId = notificationData["record_id"].stringValue.toInt()!
+                
                 var image = ""
                 switch type {
                 case 0:
@@ -57,7 +59,7 @@ class FeedViewDataManager: NSData {
                     image = "icon_calendar_small.png"
                 }
                 
-                var newNotification = Notification(title: title, date: self.formatDate(date), location: location, distance: distanceString, imageString: image)
+                var newNotification = Notification(title: title, date: self.formatDate(date), location: location, distance: distanceString, imageString: image, recordId: recordId)
 
                 self.notificationArray.append(newNotification)
                 self.feedDelegate!.addedNewItem(newNotification)

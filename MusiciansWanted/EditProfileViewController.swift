@@ -35,6 +35,7 @@ class EditProfileViewController: UIViewController, UITextFieldDelegate {
         // Do any additional setup after loading the view.
         
         scrollView.contentSize.height = 800
+        println(self.view.frame)
     }
     
     override func viewWillAppear(animated: Bool) {

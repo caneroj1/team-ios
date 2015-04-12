@@ -8,10 +8,11 @@
 
 import UIKit
 
-class FeedViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, FeedViewDelegate {
-    @IBOutlet weak var tableView: UITableView!
+class FeedTableViewController: UITableViewController, UITableViewDataSource, FeedViewDelegate {
     var refreshToken = ""
     var tableViewDataSource = FeedViewDataManager()
+    
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -36,15 +37,15 @@ class FeedViewController: UIViewController, UITableViewDelegate, UITableViewData
                 self.presentViewController(alertController, animated: true, completion: nil)
             }
         }
-        tableView.separatorStyle = UITableViewCellSeparatorStyle.SingleLine
-        tableView.separatorColor = UIColor.grayColor()
+
+        self.tableView.tableFooterView = UIView(frame: CGRectZero)
         tableViewDataSource.feedDelegate = self
         tableViewDataSource.getNotifications(MusiciansWanted.userId)
 
         // Do any additional setup after loading the view, typically from a nib.
     }
     
-    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         var cell: FeedViewTableCell = tableView.dequeueReusableCellWithIdentifier("FeedViewCell") as! FeedViewTableCell
         
         let index = indexPath.row
@@ -58,7 +59,7 @@ class FeedViewController: UIViewController, UITableViewDelegate, UITableViewData
         return cell
     }
     
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return tableViewDataSource.rows()
     }
     
@@ -67,15 +68,15 @@ class FeedViewController: UIViewController, UITableViewDelegate, UITableViewData
         // Dispose of any resources that can be recreated.
     }
     
-    func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+    override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
         return 90.0
     }
     
-    func tableView(tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+    override func tableView(tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
         return 0
     }
     
-    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         let notification = tableViewDataSource.getNotification(indexPath.row)
         
         let personView = self.storyboard?.instantiateViewControllerWithIdentifier("PersonViewController") as! PersonViewController

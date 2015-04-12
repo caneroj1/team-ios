@@ -18,6 +18,7 @@
 		012C27CF1AAB7CEE0024F5C3 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 012C27CE1AAB7CEE0024F5C3 /* Images.xcassets */; };
 		012C27D21AAB7CEE0024F5C3 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 012C27D01AAB7CEE0024F5C3 /* LaunchScreen.xib */; };
 		012C27DE1AAB7CEE0024F5C3 /* MusiciansWantedTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 012C27DD1AAB7CEE0024F5C3 /* MusiciansWantedTests.swift */; };
+		014C5C0A1AD97645008680D0 /* EventsDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 014C5C091AD97645008680D0 /* EventsDelegate.swift */; };
 		01B594161AB35B090044AA16 /* InboxManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01B594151AB35B090044AA16 /* InboxManager.swift */; };
 		01F50F931AB20E4300FE9051 /* GlobalTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01F50F921AB20E4300FE9051 /* GlobalTabBarController.swift */; };
 		01F50F951AB2424A00FE9051 /* FeedSettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01F50F941AB2424A00FE9051 /* FeedSettingsViewController.swift */; };
@@ -67,6 +68,7 @@
 		012C27D71AAB7CEE0024F5C3 /* MWTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MWTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		012C27DC1AAB7CEE0024F5C3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		012C27DD1AAB7CEE0024F5C3 /* MusiciansWantedTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MusiciansWantedTests.swift; sourceTree = "<group>"; };
+		014C5C091AD97645008680D0 /* EventsDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventsDelegate.swift; sourceTree = "<group>"; };
 		01B594151AB35B090044AA16 /* InboxManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InboxManager.swift; sourceTree = "<group>"; };
 		01F50F921AB20E4300FE9051 /* GlobalTabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GlobalTabBarController.swift; sourceTree = "<group>"; };
 		01F50F941AB2424A00FE9051 /* FeedSettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeedSettingsViewController.swift; sourceTree = "<group>"; };
@@ -211,6 +213,7 @@
 			isa = PBXGroup;
 			children = (
 				AD97B1341AD2C06B007645C1 /* EventsTableViewController.swift */,
+				014C5C091AD97645008680D0 /* EventsDelegate.swift */,
 				AD85DC5E1AD452C400D6E369 /* EventsManager.swift */,
 				AD85DC601AD45F2800D6E369 /* EventsCell.swift */,
 			);
@@ -377,6 +380,7 @@
 				44DFBAAF1AD7731E00DDA8AB /* FeedViewDelegate.swift in Sources */,
 				0104A5101AD837E800173F96 /* PeopleDelegate.swift in Sources */,
 				010AEBD11ACE239D0066E4FA /* PeopleCell.swift in Sources */,
+				014C5C0A1AD97645008680D0 /* EventsDelegate.swift in Sources */,
 				01FCDE861ACF05EA002F3A56 /* InboxCell.swift in Sources */,
 				44D308A71ACB32560000F435 /* DataManager.swift in Sources */,
 				AD97B1351AD2C06B007645C1 /* EventsTableViewController.swift in Sources */,

@@ -28,10 +28,13 @@ class EditProfileViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var locationRadiusSlider: UISlider!
     @IBOutlet weak var locationRadiusLabel: UILabel!
     @IBOutlet weak var genderControl: UISegmentedControl!
+    @IBOutlet var scrollView: UIScrollView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
+        
+        scrollView.contentSize.height = 800
     }
     
     override func viewWillAppear(animated: Bool) {

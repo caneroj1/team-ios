@@ -8,10 +8,10 @@
 
 import UIKit
 
-class EventsTableViewController: UITableViewController {
+class EventsTableViewController: UITableViewController, UIScrollViewDelegate, EventsDelegate {
     
     var eventAmount = 99;
-
+    var eventManager = EventsManager()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -21,6 +21,7 @@ class EventsTableViewController: UITableViewController {
 
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem()
+        eventManager.eventDelegate = self
         eventManager.loadEvents(0,upper: eventAmount);
         tableView.reloadData()
     }
@@ -68,7 +69,19 @@ class EventsTableViewController: UITableViewController {
         return cell
     }
     
-    func addedNewItem(item: EventsManager) {
+    override func scrollViewDidScroll(scrollView: UIScrollView) {
+        var currentOffset = scrollView.contentOffset.y;
+        var maximumOffset = scrollView.contentSize.height - scrollView.frame.size.height;
+        
+        if (maximumOffset - currentOffset <= 20.0 && eventManager.isLoadingEvents == false) {
+            println("expanding size");
+           
+            eventManager.isLoadingEvents = true
+            eventManager.loadEvents(eventManager.event.count, upper: eventManager.event.count + 100)
+        }
+    }
+    
+    func addedNewEvent() {
         dispatch_async(dispatch_get_main_queue()) {
             self.tableView.reloadData()
         }

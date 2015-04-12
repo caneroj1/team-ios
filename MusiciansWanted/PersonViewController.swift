@@ -35,10 +35,10 @@ class PersonViewController: UIViewController {
                 
                 let gender = json["gender"].stringValue
                 if gender == "male" {
-                    self.ageLabel.text = "Male, \(self.ageLabel.text)"
+                    self.ageLabel.text = "Male, \(self.ageLabel.text!)"
                 }
                 else if gender == "female" {
-                    self.ageLabel.text = "Female, \(self.ageLabel.text)"
+                    self.ageLabel.text = "Female, \(self.ageLabel.text!)"
                 }
             }
             

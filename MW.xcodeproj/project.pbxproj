@@ -35,7 +35,7 @@
 		44D308A31ACB32450000F435 /* SweetAlert copy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44D308A21ACB32450000F435 /* SweetAlert copy.swift */; };
 		44D308A51ACB324E0000F435 /* SwiftyJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44D308A41ACB324E0000F435 /* SwiftyJSON.swift */; };
 		44D308A71ACB32560000F435 /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44D308A61ACB32560000F435 /* DataManager.swift */; };
-		44D308A91ACB325A0000F435 /* FeedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44D308A81ACB325A0000F435 /* FeedViewController.swift */; };
+		44D308A91ACB325A0000F435 /* FeedTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44D308A81ACB325A0000F435 /* FeedTableViewController.swift */; };
 		44DFBAAF1AD7731E00DDA8AB /* FeedViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44DFBAAE1AD7731E00DDA8AB /* FeedViewDelegate.swift */; };
 		AD85DC5F1AD452C400D6E369 /* EventsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD85DC5E1AD452C400D6E369 /* EventsManager.swift */; };
 		AD85DC611AD45F2800D6E369 /* EventsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD85DC601AD45F2800D6E369 /* EventsCell.swift */; };
@@ -85,7 +85,7 @@
 		44D308A21ACB32450000F435 /* SweetAlert copy.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "SweetAlert copy.swift"; sourceTree = "<group>"; };
 		44D308A41ACB324E0000F435 /* SwiftyJSON.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftyJSON.swift; sourceTree = "<group>"; };
 		44D308A61ACB32560000F435 /* DataManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataManager.swift; sourceTree = "<group>"; };
-		44D308A81ACB325A0000F435 /* FeedViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeedViewController.swift; sourceTree = "<group>"; };
+		44D308A81ACB325A0000F435 /* FeedTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeedTableViewController.swift; sourceTree = "<group>"; };
 		44DFBAAE1AD7731E00DDA8AB /* FeedViewDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeedViewDelegate.swift; sourceTree = "<group>"; };
 		AD85DC5E1AD452C400D6E369 /* EventsManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventsManager.swift; sourceTree = "<group>"; };
 		AD85DC601AD45F2800D6E369 /* EventsCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventsCell.swift; sourceTree = "<group>"; };
@@ -176,7 +176,7 @@
 		01FCDE7E1ACEFE3A002F3A56 /* News Feed */ = {
 			isa = PBXGroup;
 			children = (
-				44D308A81ACB325A0000F435 /* FeedViewController.swift */,
+				44D308A81ACB325A0000F435 /* FeedTableViewController.swift */,
 				01F50F941AB2424A00FE9051 /* FeedSettingsViewController.swift */,
 				444951BF1AD719640013A4DD /* FeedViewTableCell.swift */,
 				444951C11AD71B3D0013A4DD /* FeedViewDataManager.swift */,
@@ -358,7 +358,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				AD85DC5F1AD452C400D6E369 /* EventsManager.swift in Sources */,
-				44D308A91ACB325A0000F435 /* FeedViewController.swift in Sources */,
+				44D308A91ACB325A0000F435 /* FeedTableViewController.swift in Sources */,
 				444951C21AD71B3D0013A4DD /* FeedViewDataManager.swift in Sources */,
 				444951C41AD72B420013A4DD /* Notification.swift in Sources */,
 				010AEBD21ACE239D0066E4FA /* PeopleManager.swift in Sources */,

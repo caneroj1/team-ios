@@ -9,13 +9,22 @@
 import UIKit
 import CoreLocation
 
-class LogInViewController: UIViewController, CLLocationManagerDelegate {
+class LogInViewController: UIViewController, CLLocationManagerDelegate, UITextFieldDelegate {
     
     let locationManager = CLLocationManager()
     var ourLocation: String?
     
     @IBOutlet weak var usernameField: UITextField!
     @IBOutlet weak var passwordField: UITextField!
+    
+    override func touchesBegan(touches: Set<NSObject>, withEvent event: UIEvent) {
+        self.view.endEditing(true);
+    }
+    
+    func textFieldShouldReturn(textField: UITextField) -> Bool {
+        textField.resignFirstResponder();
+        return true;
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()

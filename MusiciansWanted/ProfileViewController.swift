@@ -27,6 +27,7 @@ class ProfileViewController: UIViewController, UINavigationControllerDelegate, U
     @IBOutlet weak var locationLabel: UILabel!
     @IBOutlet weak var profileImage: UIImageView!
     @IBOutlet weak var editProfileButton: UIBarButtonItem!
+    @IBOutlet var scrollView: UIScrollView!
     
     // MARK: - Image Functionality
     
@@ -120,6 +121,8 @@ class ProfileViewController: UIViewController, UINavigationControllerDelegate, U
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
+        
+        scrollView.contentSize.height = 600
     }
 
     override func didReceiveMemoryWarning() {

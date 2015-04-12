@@ -87,6 +87,22 @@ class EventsTableViewController: UITableViewController, UIScrollViewDelegate, Ev
         }
     }
 
+    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        let event = eventManager.event[indexPath.row]
+        
+        println("Instantiate event view...")
+        let eventView = self.storyboard?.instantiateViewControllerWithIdentifier("EventViewController") as! EventViewController
+        
+        eventView.controller = "events"
+        eventView.icon = event.eventPicture
+        eventView.id = event.eventId
+        
+        
+        println("Load in data...")
+        self.navigationController?.pushViewController(eventView, animated: true)
+        println("Call event view...")
+    }
+    
 
     /*
     // Override to support conditional editing of the table view.

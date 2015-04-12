@@ -1127,7 +1127,6 @@
                         <segue destination="6Xr-17-a5O" kind="relationship" relationship="viewControllers" id="7Eo-dQ-Mhz"/>
                         <segue destination="a9w-0K-7ZO" kind="relationship" relationship="viewControllers" id="51X-NY-Bdr"/>
                         <segue destination="gHP-YS-LV8" kind="relationship" relationship="viewControllers" id="qR8-rQ-6LL"/>
-                        <segue destination="GeN-B5-hT7" kind="relationship" relationship="viewControllers" id="m2g-bs-0gM"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="HuB-VB-40B" sceneMemberID="firstResponder"/>

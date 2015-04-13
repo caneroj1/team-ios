@@ -29,13 +29,14 @@ class EditProfileViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var locationRadiusLabel: UILabel!
     @IBOutlet weak var genderControl: UISegmentedControl!
     @IBOutlet var scrollView: UIScrollView!
+    @IBOutlet weak var subscribeButton: UIButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         
-        scrollView.contentSize.height = 800
-        println(self.view.frame)
+//        scrollView.contentSize.height = 800
+//        scrollView.contentSize.width = self.view.frame.width
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -119,6 +120,10 @@ class EditProfileViewController: UIViewController, UITextFieldDelegate {
                 }
             })
         }
+    }
+    
+    @IBAction func subscribeToNotifications(sender: AnyObject) {
+        
     }
     
     // MARK: - Navigation

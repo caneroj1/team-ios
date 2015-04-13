@@ -22,20 +22,44 @@ class EventViewController: UIViewController {
     var icon: UIImage?
     var controller: String?
     var id: Int?
+    var userID = 1
+    var userImage = UIImage(named: "anonymous")
     
     override func viewWillAppear(animated: Bool) {
         let url = "/api/events/\(id!)"
-        println("Opening Event View Controller...")
+        
         DataManager.makeGetRequest(url, completion: { (data, error) -> Void in
             let json = JSON(data: data!)
             dispatch_async(dispatch_get_main_queue()) {
                 
                 //self.lblEventDescription.text = "N/A"
                 self.lblEventName.text = json["title"].stringValue
-                self.btnEventCreated.setTitle("Created by User " + json["created_by"].stringValue, forState: UIControlState.Normal)
                 self.btnEventDate.setTitle(json["event_time"].stringValue, forState: UIControlState.Normal)
                 self.btnEventLocation.setTitle(json["location"].stringValue, forState: UIControlState.Normal)
                 
+                self.userID = json["created_by"].intValue
+                
+                DataManager.makeGetRequest("/api/users/\(self.userID)", completion: { (data, error) -> Void in
+                    let userjson = JSON(data: data!)
+                    dispatch_async(dispatch_get_main_queue()) {
+                        self.btnEventCreated.setTitle("Created by " + userjson["name"].stringValue, forState: UIControlState.Normal)
+                        
+                        if json["has_profile_pic"].stringValue == "true" {
+                            DataManager.makeGetRequest("/api/s3get?event_id=\(self.userID)", completion: { (data, error) -> Void in
+                                var picData = JSON(data: data!)
+                                if picData["picture"] != nil {
+                                    var base64String = json["picture"].stringValue
+                                    let decodedString = NSData(base64EncodedString: base64String, options: NSDataBase64DecodingOptions.IgnoreUnknownCharacters)
+                                    var downloadedImage = UIImage(data: decodedString!)!
+                                    self.userImage = Toucan(image: downloadedImage).resize(CGSizeMake(280, 140), fitMode: Toucan.Resize.FitMode.Scale).image
+                                    
+                                }
+                            })
+                        }
+
+                    }
+                })
+
             }
             
             if let presenter = self.controller {
@@ -81,6 +105,16 @@ class EventViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
+    @IBAction func viewUser(sender: AnyObject) {
+        
+        let personView = self.storyboard?.instantiateViewControllerWithIdentifier("PersonViewController") as! PersonViewController
+        
+        personView.controller = "people"
+        personView.icon = userImage
+        personView.id = userID
+        
+        self.navigationController?.pushViewController(personView, animated: true)
+    }
     
     /*
     // MARK: - Navigation

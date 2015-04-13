@@ -36,6 +36,7 @@
 		44D308A71ACB32560000F435 /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44D308A61ACB32560000F435 /* DataManager.swift */; };
 		44D308A91ACB325A0000F435 /* FeedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44D308A81ACB325A0000F435 /* FeedViewController.swift */; };
 		44DFBAAF1AD7731E00DDA8AB /* FeedViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44DFBAAE1AD7731E00DDA8AB /* FeedViewDelegate.swift */; };
+		AD6771181ADB588700E5BF7F /* AWS.m in Sources */ = {isa = PBXBuildFile; fileRef = AD6771171ADB588700E5BF7F /* AWS.m */; };
 		AD85DC5F1AD452C400D6E369 /* EventsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD85DC5E1AD452C400D6E369 /* EventsManager.swift */; };
 		AD85DC611AD45F2800D6E369 /* EventsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD85DC601AD45F2800D6E369 /* EventsCell.swift */; };
 		AD97B1351AD2C06B007645C1 /* EventsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD97B1341AD2C06B007645C1 /* EventsTableViewController.swift */; };
@@ -86,6 +87,8 @@
 		44D308A81ACB325A0000F435 /* FeedViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeedViewController.swift; sourceTree = "<group>"; };
 		44DFBAAE1AD7731E00DDA8AB /* FeedViewDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeedViewDelegate.swift; sourceTree = "<group>"; };
 		7E375FC571E426EA4D919A0A /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		AD6771161ADB588600E5BF7F /* MW-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "MW-Bridging-Header.h"; path = "../MW-Bridging-Header.h"; sourceTree = "<group>"; };
+		AD6771171ADB588700E5BF7F /* AWS.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AWS.m; sourceTree = "<group>"; };
 		AD85DC5E1AD452C400D6E369 /* EventsManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventsManager.swift; sourceTree = "<group>"; };
 		AD85DC601AD45F2800D6E369 /* EventsCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventsCell.swift; sourceTree = "<group>"; };
 		AD97B1341AD2C06B007645C1 /* EventsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventsTableViewController.swift; sourceTree = "<group>"; };
@@ -134,6 +137,7 @@
 		012C27C21AAB7CEE0024F5C3 /* MusiciansWanted */ = {
 			isa = PBXGroup;
 			children = (
+				AD6771171ADB588700E5BF7F /* AWS.m */,
 				012C27C51AAB7CEE0024F5C3 /* AppDelegate.swift */,
 				44C06A661AD5790D004E88D7 /* Navigation */,
 				44C06A651AD578F8004E88D7 /* Login */,
@@ -146,6 +150,7 @@
 				012C27CB1AAB7CEE0024F5C3 /* Main.storyboard */,
 				012C27CE1AAB7CEE0024F5C3 /* Images.xcassets */,
 				012C27D01AAB7CEE0024F5C3 /* LaunchScreen.xib */,
+				AD6771161ADB588600E5BF7F /* MW-Bridging-Header.h */,
 				012C27C31AAB7CEE0024F5C3 /* Supporting Files */,
 			);
 			path = MusiciansWanted;
@@ -434,6 +439,7 @@
 				44DFBAAF1AD7731E00DDA8AB /* FeedViewDelegate.swift in Sources */,
 				0104A5101AD837E800173F96 /* PeopleDelegate.swift in Sources */,
 				010AEBD11ACE239D0066E4FA /* PeopleCell.swift in Sources */,
+				AD6771181ADB588700E5BF7F /* AWS.m in Sources */,
 				01FCDE861ACF05EA002F3A56 /* InboxCell.swift in Sources */,
 				44D308A71ACB32560000F435 /* DataManager.swift in Sources */,
 				AD97B1351AD2C06B007645C1 /* EventsTableViewController.swift in Sources */,
@@ -563,10 +569,13 @@
 			baseConfigurationReference = BE5A232D71C1A13AE8FD8A71 /* Pods.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				INFOPLIST_FILE = MusiciansWanted/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = MW;
+				SWIFT_OBJC_BRIDGING_HEADER = "MW-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
 			name = Debug;
 		};
@@ -575,10 +584,12 @@
 			baseConfigurationReference = 0E65F3C837786026AA6D9712 /* Pods.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				INFOPLIST_FILE = MusiciansWanted/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = MW;
+				SWIFT_OBJC_BRIDGING_HEADER = "MW-Bridging-Header.h";
 			};
 			name = Release;
 		};

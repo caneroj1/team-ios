@@ -1082,6 +1082,7 @@
                         <outlet property="locationRadiusLabel" destination="WD9-8w-SCf" id="cER-c4-PLE"/>
                         <outlet property="locationRadiusSlider" destination="ch2-hJ-8jQ" id="ixK-RM-lYH"/>
                         <outlet property="nameField" destination="yQc-HS-bPU" id="ITO-JE-rEC"/>
+                        <outlet property="phoneNumberField" destination="U9H-XT-xRB" id="tFj-1Q-0nK"/>
                         <outlet property="scrollView" destination="kH5-wd-Yyo" id="G20-gl-ha2"/>
                         <outlet property="subscribeButton" destination="K2c-i9-aCV" id="oaO-PJ-69f"/>
                     </connections>

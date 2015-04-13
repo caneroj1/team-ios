@@ -10,6 +10,15 @@ import UIKit
 
 class EventViewController: UIViewController {
     
+    @IBOutlet var lblEventName: UILabel!
+    @IBOutlet var btnEventDate: UIButton!
+    @IBOutlet var btnEventLocation: UIButton!
+    @IBOutlet var btnEventCreated: UIButton!
+    @IBOutlet var lblEventDescription: UITextView!
+    @IBOutlet var imgEvent: UIImageView!
+    @IBOutlet var scrollView: UIScrollView!
+    
+    
     var icon: UIImage?
     var controller: String?
     var id: Int?
@@ -20,24 +29,24 @@ class EventViewController: UIViewController {
         DataManager.makeGetRequest(url, completion: { (data, error) -> Void in
             let json = JSON(data: data!)
             dispatch_async(dispatch_get_main_queue()) {
-                //self.personName.text = json["name"].stringValue
-                //self.emailLabel.text = json["email"].stringValue
-                //self.jamLabel.text = json["looking_to_jam"].stringValue
-                //self.bandLabel.text = json["looking_for_band"].stringValue
-                //self.ageLabel.text = json["age"].stringValue
-                //self.locationlabel.text = json["location"].stringValue
+                
+                //self.lblEventDescription.text = "N/A"
+                self.lblEventName.text = json["title"].stringValue
+                self.btnEventCreated.setTitle("Created by User " + json["created_by"].stringValue, forState: UIControlState.Normal)
+                self.btnEventDate.setTitle(json["event_time"].stringValue, forState: UIControlState.Normal)
+                self.btnEventLocation.setTitle(json["location"].stringValue, forState: UIControlState.Normal)
                 
             }
             
             if let presenter = self.controller {
                 if presenter == "events" {
                     dispatch_async(dispatch_get_main_queue()) {
-                        //self.personIcon.image = self.icon
+                        self.imgEvent.image = self.icon
                     }
                 }
             }
             else {
-                if json["has_profile_pic"].stringValue == "true" {
+                /*if json["has_profile_pic"].stringValue == "true" {
                     DataManager.makeGetRequest("/api/s3get?event_id=\(self.id)", completion: { (data, error) -> Void in
                         var picData = JSON(data: data!)
                         if picData["picture"] != nil {
@@ -52,10 +61,10 @@ class EventViewController: UIViewController {
                         }
                     })
                 }
-                else {
+                else {*/
                     dispatch_async(dispatch_get_main_queue()) {
-                        //self.personIcon.image = UIImage(named: "anonymous")
-                    }
+                        self.imgEvent.image = UIImage(named: "anonymous")
+                    //}
                 }
             }
         })

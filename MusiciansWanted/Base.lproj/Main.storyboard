@@ -1489,6 +1489,9 @@
                                         <state key="normal" title="Created By" image="star">
                                             <color key="titleColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
+                                        <connections>
+                                            <action selector="viewUser:" destination="7kL-oD-5dO" eventType="touchUpInside" id="LPo-oD-wFO"/>
+                                        </connections>
                                     </button>
                                     <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" showsHorizontalScrollIndicator="NO" editable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="z2k-vq-Nus">
                                         <rect key="frame" x="20" y="161" width="572" height="120"/>

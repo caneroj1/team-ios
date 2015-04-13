@@ -59,11 +59,11 @@ class EventsTableViewController: UITableViewController, UIScrollViewDelegate, Ev
         // Configure the cell...
         cell.EventDescription.text = event.eventLocation
         //cell.EventImage.image = event.eventPicture
-        //cell.EventTitle.text = event.eventName
+        cell.EventTitle.text = event.eventName
             
         //cell.EventDescription.text = "The time to see ultra lord"
         cell.EventImage.image = UIImage(named: "UltraLord")
-        cell.EventTitle.text = "The Event"
+        //cell.EventTitle.text = "The Event"
         
         
         return cell
@@ -97,10 +97,7 @@ class EventsTableViewController: UITableViewController, UIScrollViewDelegate, Ev
         eventView.icon = event.eventPicture
         eventView.id = event.eventId
         
-        
-        println("Load in data...")
         self.navigationController?.pushViewController(eventView, animated: true)
-        println("Call event view...")
     }
     
 

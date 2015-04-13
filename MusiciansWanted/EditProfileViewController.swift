@@ -18,6 +18,8 @@ class EditProfileViewController: UIViewController, UITextFieldDelegate {
     var radiusValue: Float = 0
     var radiusLabel: String = ""
     var gender: String = ""
+    var cellSent: Bool = false
+    var cellPhone: String?
     
     @IBOutlet weak var ageSlider: UISlider!
     @IBOutlet weak var emailField: UITextField!
@@ -30,6 +32,7 @@ class EditProfileViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var genderControl: UISegmentedControl!
     @IBOutlet var scrollView: UIScrollView!
     @IBOutlet weak var subscribeButton: UIButton!
+    @IBOutlet weak var phoneNumberField: UITextField!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -48,6 +51,7 @@ class EditProfileViewController: UIViewController, UITextFieldDelegate {
         jamSwitch.setOn(jamBool, animated: false)
         locationRadiusSlider.value = radiusValue
         locationRadiusLabel.text = radiusLabel
+        phoneNumberField.text = cellPhone
         
         if gender != "none" {
             var genderIndex = (gender == "male") ? 0 : 1
@@ -123,7 +127,34 @@ class EditProfileViewController: UIViewController, UITextFieldDelegate {
     }
     
     @IBAction func subscribeToNotifications(sender: AnyObject) {
-        
+        if phoneNumberField.text != "" {
+            let phoneNumber = phoneNumberField.text.stringByTrimmingCharactersInSet(NSCharacterSet(charactersInString: " "))
+            let rgx = "^\\d\\d\\d-\\d\\d\\d-\\d\\d\\d\\d$"
+            let phoneNumberRegex = NSRegularExpression(pattern: rgx, options: NSRegularExpressionOptions.CaseInsensitive, error: nil)
+            if phoneNumberRegex?.matchesInString(phoneNumber, options: nil, range: NSMakeRange(0, count(phoneNumber))).count == 1 {
+                let cell = "1-\(phoneNumber)"
+                let url = (cellSent ? "/api/resubscribe" : "/api/subscribe")
+                
+                let params: Dictionary<String, AnyObject> = ["cell": cell, "id": MusiciansWanted.userId]
+                DataManager.makePostRequest(url, params: params, completion: { (data, error) -> Void in
+                    let json = JSON(data: data!)
+                    let errorString = DataManager.checkForErrors(json)
+                    if errorString != "" {
+                        dispatch_async(dispatch_get_main_queue()) {
+                            SweetAlert().showAlert("Oops!", subTitle: errorString, style: AlertStyle.Error)
+                            return
+                        }
+                    }
+                    else {
+                        dispatch_async(dispatch_get_main_queue()) {
+                            SweetAlert().showAlert("Sweet!", subTitle: json["subscription"].stringValue.capitalizedString, style: AlertStyle.Success)
+                            return
+                        }
+                        self.cellSent = true
+                    }
+                })
+            }
+        }
     }
     
     // MARK: - Navigation

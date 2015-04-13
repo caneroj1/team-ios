@@ -17,6 +17,8 @@ class ProfileViewController: UIViewController, UINavigationControllerDelegate, U
     var userAge: Int?
     var noAge: Bool?
     var ageText = ""
+    var hasCell = false
+    var myCell: String?
     
     // IB items for the main profile view
     @IBOutlet weak var nameLabel: UILabel!
@@ -75,7 +77,12 @@ class ProfileViewController: UIViewController, UINavigationControllerDelegate, U
                 self.bandLabel.text = json["looking_for_band"] ? "Yes" : "No"
                 self.searchRadius = json["search_radius"].stringValue.toInt()!
                 self.genderString = json["gender"].stringValue
+                self.hasCell = (json["cell"].stringValue != "")
 
+                if self.hasCell {
+                    self.myCell = json["cell"].stringValue
+                }
+                
                 if self.genderString != "none" {
                     self.ageLabel.text = "\(self.genderString!.capitalizedString), \(self.ageLabel.text!)"
                 }
@@ -162,6 +169,18 @@ class ProfileViewController: UIViewController, UINavigationControllerDelegate, U
             }
             else {
                 destination.bandBool = true
+            }
+            
+            if hasCell {
+                destination.cellSent = true
+                let cellString = myCell! as NSString
+                let firstThree = cellString.substringWithRange(NSMakeRange(1, 3))
+                let secondThree = cellString.substringWithRange(NSMakeRange(4, 3))
+                let lastFour = cellString.substringWithRange(NSMakeRange(7, 4))
+                destination.cellPhone = "\(firstThree)-\(secondThree)-\(lastFour)"
+            }
+            else {
+                destination.cellSent = false
             }
         }
     }

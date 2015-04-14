@@ -74,34 +74,35 @@ class EventsManager: NSObject {
                 
                 println("Adding event \(id)");
                 
+//                self.eventDelegate?.addedNewEvent()
                 
                 //Load in profile images
-                if eventData["has_profile_pic"].stringValue == "true"
-                {
-                    println("loading profile picture of \(id)");
-                    var url = "/api/s3get?event_id=\(id)"
-                    DataManager.makeGetRequest(url, completion: { (data, error) -> Void in
-                        if data != nil {
-                            var json = JSON(data: data!)
-                            if json["picture"] != nil {
-                                var base64String = json["picture"].stringValue
-                                let decodedString = NSData(base64EncodedString: base64String, options: NSDataBase64DecodingOptions.IgnoreUnknownCharacters)
-                                dispatch_async(dispatch_get_main_queue()) {
-                                    eventImage = UIImage(data: decodedString!)!
-                                    
-                                    self.addEvents(eventData["id"].intValue, name: eventData["title"].stringValue, picture: eventImage, date: eventData["event_time"].stringValue, genre: "id: " + eventData["id"].stringValue, location: eventData["location"].stringValue, latitude: latStr.doubleValue, longitude: longStr.doubleValue)
-                                }
-                            }
-                        }
-                        
-                    })
-                }
+//                if eventData["has_profile_pic"].stringValue == "true"
+//                {
+//                    println("loading profile picture of \(id)");
+//                    var url = "/api/s3get?event_id=\(id)"
+//                    DataManager.makeGetRequest(url, completion: { (data, error) -> Void in
+//                        if data != nil {
+//                            var json = JSON(data: data!)
+//                            if json["picture"] != nil {
+//                                var base64String = json["picture"].stringValue
+//                                let decodedString = NSData(base64EncodedString: base64String, options: NSDataBase64DecodingOptions.IgnoreUnknownCharacters)
+//                                dispatch_async(dispatch_get_main_queue()) {
+//                                    eventImage = UIImage(data: decodedString!)!
+//                                    
+//                                    self.addEvents(eventData["id"].intValue, name: eventData["title"].stringValue, picture: eventImage, date: eventData["event_time"].stringValue, genre: "id: " + eventData["id"].stringValue, location: eventData["location"].stringValue, latitude: latStr.doubleValue, longitude: longStr.doubleValue)
+//                                }
+//                            }
+//                        }
+//                        
+//                    })
+//                }
                 
             }
-            dispatch_sync(dispatch_get_main_queue()) {
-                self.isLoadingEvents = false
-                println("Data Loaded.")
-            }
+//            dispatch_sync(dispatch_get_main_queue()) {
+//                self.isLoadingEvents = false
+//                println("Data Loaded.")
+//            }
         })
     }
 }

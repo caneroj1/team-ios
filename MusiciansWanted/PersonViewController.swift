@@ -32,6 +32,7 @@ class PersonViewController: UIViewController {
                 self.bandLabel.text = json["looking_for_band"].stringValue
                 self.ageLabel.text = json["age"].stringValue
                 self.locationlabel.text = json["location"].stringValue
+                self.title = self.personName.text
                 
                 let gender = json["gender"].stringValue
                 if gender == "male" {

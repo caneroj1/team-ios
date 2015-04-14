@@ -94,7 +94,7 @@ class FeedViewDataManager: NSData {
                 var distanceString = notificationData["distance"].stringValue
                 var date = notificationData["created_at"].stringValue
                 var type = notificationData["notification_type"].stringValue.toInt()!
-                var recordId = notificationData["record_id"].stringValue.toInt()!
+                var recordId = 1//notificationData["record_id"].stringValue.toInt()!
                 
                 var image = ""
                 switch type {

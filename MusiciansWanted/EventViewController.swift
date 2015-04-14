@@ -63,7 +63,7 @@ class EventViewController: UIViewController {
             }
             
             if let presenter = self.controller {
-                if presenter == "events" {
+                if presenter == "events" || presenter == "maps" {
                     dispatch_async(dispatch_get_main_queue()) {
                         self.imgEvent.image = self.icon
                     }

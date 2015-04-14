@@ -7,9 +7,12 @@
 //
 
 import Foundation
+import CoreLocation
 
 struct MusiciansWanted {
     static var userId: Int = 0
     static var refreshToken = ""
     static var locationServicesDisabled: Bool?
+    static var longitude: CLLocationDegrees?
+    static var latitude: CLLocationDegrees?
 }

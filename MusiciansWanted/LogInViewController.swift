@@ -120,6 +120,10 @@ class LogInViewController: UIViewController, CLLocationManagerDelegate, UITextFi
     
     func useLocationInfo(placemark: CLPlacemark) {
         locationManager.stopUpdatingLocation()
+        
+        MusiciansWanted.latitude = placemark.location.coordinate.latitude
+        MusiciansWanted.longitude = placemark.location.coordinate.longitude
+        
         let subThoroughfare: String = (placemark.subThoroughfare != nil) ? placemark.subThoroughfare : ""
         let thoroughfare: String = (placemark.thoroughfare != nil) ? placemark.thoroughfare : ""
         var locationString = "\(subThoroughfare) \(thoroughfare) \(placemark.subLocality) "

@@ -34,7 +34,19 @@ class EventViewController: UIViewController {
                 
                 //self.lblEventDescription.text = "N/A"
                 self.lblEventName.text = json["title"].stringValue
-                self.btnEventDate.setTitle(json["event_time"].stringValue, forState: UIControlState.Normal)
+                
+                let formatter = NSDateFormatter()
+                formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSS'Z"
+                
+                let outputter = NSDateFormatter()
+                outputter.dateStyle = NSDateFormatterStyle.ShortStyle
+                outputter.timeStyle = NSDateFormatterStyle.ShortStyle
+                
+                let offset = Double(formatter.timeZone.secondsFromGMT)
+                let newDateObject = formatter.dateFromString(json["event_time"].stringValue)?.dateByAddingTimeInterval(offset)
+                
+                self.btnEventDate.setTitle(outputter.stringFromDate(newDateObject!), forState: UIControlState.Normal)
+                
                 self.btnEventLocation.setTitle(json["location"].stringValue, forState: UIControlState.Normal)
                 
                 self.userID = json["created_by"].intValue

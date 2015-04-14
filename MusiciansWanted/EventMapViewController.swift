@@ -16,9 +16,13 @@ class EventMapViewController: UIViewController, MKMapViewDelegate {
     var eventManager: EventsManager?
     
     override func viewDidLoad() {
-        let initialLocation = CLLocation(latitude: MusiciansWanted.latitude!, longitude: MusiciansWanted.longitude!)
-        
-        centerMapOnLocation(initialLocation)
+        if let latitude = MusiciansWanted.latitude {
+            if let longitude = MusiciansWanted.longitude {
+                let initialLocation = CLLocation(latitude: MusiciansWanted.latitude!, longitude: MusiciansWanted.longitude!)
+                
+                centerMapOnLocation(initialLocation)
+            }
+        }
         eventMap.delegate = self
         
         for event in eventManager!.event {

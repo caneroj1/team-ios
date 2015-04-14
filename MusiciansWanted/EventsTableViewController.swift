@@ -23,7 +23,7 @@ class EventsTableViewController: UITableViewController, UIScrollViewDelegate, Ev
         // self.navigationItem.rightBarButtonItem = self.editButtonItem()
         eventManager.eventDelegate = self
         eventManager.loadEvents(0,upper: eventAmount);
-        tableView.reloadData()
+//        tableView.reloadData()
     }
 
     override func didReceiveMemoryWarning() {
@@ -76,8 +76,8 @@ class EventsTableViewController: UITableViewController, UIScrollViewDelegate, Ev
         if (maximumOffset - currentOffset <= 20.0 && eventManager.isLoadingEvents == false) {
             println("expanding size");
            
-            eventManager.isLoadingEvents = true
-            eventManager.loadEvents(eventManager.event.count, upper: eventManager.event.count + 100)
+//            eventManager.isLoadingEvents = true
+//            eventManager.loadEvents(eventManager.event.count, upper: eventManager.event.count + 100)
         }
     }
     

@@ -22,7 +22,7 @@ class EventMapViewController: UIViewController, MKMapViewDelegate {
         eventMap.delegate = self
         
         for event in eventManager!.event {
-            var mapAnnotation = Event(title: event.eventName, locationName: event.eventLocation, coordinate: CLLocationCoordinate2D(latitude: event.latitude, longitude: event.longitude))
+            var mapAnnotation = Event(title: event.eventName, locationName: event.eventLocation, id: event.eventId, icon: event.eventPicture!, coordinate: CLLocationCoordinate2D(latitude: event.latitude, longitude: event.longitude))
             dispatch_async(dispatch_get_main_queue()) {
                 self.eventMap.addAnnotation(mapAnnotation)
             }
@@ -63,7 +63,17 @@ class EventMapViewController: UIViewController, MKMapViewDelegate {
         }
         return nil
     }
-
+    
+    func mapView(mapView: MKMapView!, annotationView view: MKAnnotationView!, calloutAccessoryControlTapped control: UIControl!) {
+        let nextView = self.storyboard?.instantiateViewControllerWithIdentifier("EventViewController") as! EventViewController
+        let annotation = view.annotation as? Event
+        nextView.id = annotation?.id
+        nextView.icon = annotation?.icon
+        nextView.controller = "maps"
+        
+        self.navigationController?.pushViewController(nextView, animated: true)
+    }
+    
     /*
     // MARK: - Navigation
 

@@ -83,17 +83,13 @@ class FeedTableViewController: UITableViewController, UITableViewDataSource, Fee
         
         if let rowLocation = notification.location {
             if count(rowLocation) > 40 {
-                println(rowLocation)
                 baseHeight += 10
             }
         }
         
         if count(notification.title) > 30 {
-            println(notification.title)
             baseHeight += 10
         }
-        
-        println(baseHeight)
         
         return baseHeight
     }
@@ -107,6 +103,7 @@ class FeedTableViewController: UITableViewController, UITableViewDataSource, Fee
         
         let personView = self.storyboard?.instantiateViewControllerWithIdentifier("PersonViewController") as! PersonViewController
         
+        println("notification: \(notification.recordId)")
         personView.id = notification.recordId
         
         self.navigationController?.pushViewController(personView, animated: true)

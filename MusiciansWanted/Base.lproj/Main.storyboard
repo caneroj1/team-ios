@@ -1721,10 +1721,10 @@
             </objects>
             <point key="canvasLocation" x="2362" y="842"/>
         </scene>
-        <!--Event Map View Controller-->
+        <!--Events Map-->
         <scene sceneID="UOi-85-Mee">
             <objects>
-                <viewController id="pxl-3C-MUm" customClass="EventMapViewController" customModule="MW" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="Events Map" id="pxl-3C-MUm" customClass="EventMapViewController" customModule="MW" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="82K-2x-zMH"/>
                         <viewControllerLayoutGuide type="bottom" id="8fA-xF-Y8z"/>
@@ -1733,7 +1733,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="2wj-Me-hAE">
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="2wj-Me-hAE">
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                             </mapView>
                         </subviews>
@@ -1745,6 +1745,7 @@
                             <constraint firstItem="2wj-Me-hAE" firstAttribute="bottom" secondItem="8fA-xF-Y8z" secondAttribute="top" id="nKJ-s8-fmp"/>
                         </constraints>
                     </view>
+                    <navigationItem key="navigationItem" title="Events Near You" id="ooX-Up-f9h"/>
                     <connections>
                         <outlet property="eventMap" destination="2wj-Me-hAE" id="9ZS-yo-Z2K"/>
                     </connections>

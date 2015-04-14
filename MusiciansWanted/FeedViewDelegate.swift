@@ -9,5 +9,6 @@
 import Foundation
 
 protocol FeedViewDelegate {
-    func addedNewItem(item: Notification)
+    func addedNewItem()
+    func stopRefreshing()
 }

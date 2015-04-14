@@ -12,10 +12,17 @@ class FeedTableViewController: UITableViewController, UITableViewDataSource, Fee
     var refreshToken = ""
     var tableViewDataSource = FeedViewDataManager()
     
-    
+    // MARK: Basic View Functions
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        self.refreshControl = UIRefreshControl()
+        self.refreshControl?.attributedTitle = NSAttributedString(string: "Loading More Notifications")
+        self.refreshControl?.addTarget(self, action: "refresh:", forControlEvents: UIControlEvents.ValueChanged)
+        self.refreshControl?.layer.zPosition = -1
+        self.tableView.addSubview(self.refreshControl!)
+        
         if let needToDisplayLocationservices = MusiciansWanted.locationServicesDisabled {
             if needToDisplayLocationservices {
                 let alertController = UIAlertController(
@@ -45,6 +52,13 @@ class FeedTableViewController: UITableViewController, UITableViewDataSource, Fee
         // Do any additional setup after loading the view, typically from a nib.
     }
     
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
+        // Dispose of any resources that can be recreated.
+    }
+    
+    // MARK: Table View Functions
+    
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         var cell: FeedViewTableCell = tableView.dequeueReusableCellWithIdentifier("FeedViewCell") as! FeedViewTableCell
         
@@ -63,13 +77,25 @@ class FeedTableViewController: UITableViewController, UITableViewDataSource, Fee
         return tableViewDataSource.rows()
     }
     
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-    
     override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-        return 90.0
+        var baseHeight: CGFloat = 90
+        let notification = tableViewDataSource.getNotification(indexPath.row)
+        
+        if let rowLocation = notification.location {
+            if count(rowLocation) > 40 {
+                println(rowLocation)
+                baseHeight += 10
+            }
+        }
+        
+        if count(notification.title) > 30 {
+            println(notification.title)
+            baseHeight += 10
+        }
+        
+        println(baseHeight)
+        
+        return baseHeight
     }
     
     override func tableView(tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
@@ -86,9 +112,26 @@ class FeedTableViewController: UITableViewController, UITableViewDataSource, Fee
         self.navigationController?.pushViewController(personView, animated: true)
     }
     
-    func addedNewItem(item: Notification) {
+    
+    // MARK: Feed View Delegate
+    
+    func addedNewItem() {
+        if self.refreshControl?.refreshing == true {
+            self.refreshControl?.endRefreshing()
+        }
+        
         dispatch_async(dispatch_get_main_queue()) {
             self.tableView.reloadData()
         }
+    }
+    
+    func stopRefreshing() {
+        self.refreshControl?.endRefreshing()
+    }
+    
+    // MARK: Refresh Control
+    
+    func refresh(sender: AnyObject) {
+        self.tableViewDataSource.refreshNotifications(MusiciansWanted.userId)
     }
 }

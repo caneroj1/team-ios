@@ -21,7 +21,7 @@
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="kqe-En-Gs6" id="yLe-l9-30C">
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Location" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FTu-SW-f09">
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Location" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FTu-SW-f09">
                                             <rect key="frame" x="57" y="41" width="234" height="41"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="41" id="HEK-9V-DzZ"/>
@@ -30,8 +30,13 @@
                                             <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="13"/>
                                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
+                                            <variation key="default">
+                                                <mask key="constraints">
+                                                    <exclude reference="HEK-9V-DzZ"/>
+                                                </mask>
+                                            </variation>
                                         </label>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gWO-t3-Zpx">
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gWO-t3-Zpx">
                                             <rect key="frame" x="57" y="4" width="535" height="21"/>
                                             <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="17"/>
                                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
@@ -39,6 +44,9 @@
                                         </label>
                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="vWH-sw-t3K">
                                             <rect key="frame" x="8" y="8" width="36" height="36"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" secondItem="vWH-sw-t3K" secondAttribute="height" multiplier="1:1" id="DIQ-iI-kWM"/>
+                                            </constraints>
                                         </imageView>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Date" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uTn-OX-UfW">
                                             <rect key="frame" x="57" y="28" width="535" height="16"/>
@@ -50,18 +58,23 @@
                                     <color key="backgroundColor" red="0.92156862750000001" green="0.92156862750000001" blue="0.94901960780000005" alpha="1" colorSpace="calibratedRGB"/>
                                     <constraints>
                                         <constraint firstItem="uTn-OX-UfW" firstAttribute="top" secondItem="gWO-t3-Zpx" secondAttribute="bottom" constant="3" id="GkA-p1-z2B"/>
-                                        <constraint firstItem="vWH-sw-t3K" firstAttribute="top" secondItem="yLe-l9-30C" secondAttribute="topMargin" id="Mzi-Yo-2IM"/>
                                         <constraint firstItem="FTu-SW-f09" firstAttribute="bottom" secondItem="vWH-sw-t3K" secondAttribute="bottom" constant="38" id="NT8-Eg-kj4"/>
-                                        <constraint firstAttribute="bottomMargin" secondItem="vWH-sw-t3K" secondAttribute="bottom" constant="37" id="OV3-QN-CrY"/>
-                                        <constraint firstItem="vWH-sw-t3K" firstAttribute="leading" secondItem="yLe-l9-30C" secondAttribute="leadingMargin" id="WU4-ib-n6F"/>
+                                        <constraint firstItem="FTu-SW-f09" firstAttribute="top" secondItem="uTn-OX-UfW" secondAttribute="bottom" constant="5" id="PM1-ti-fsR"/>
                                         <constraint firstItem="uTn-OX-UfW" firstAttribute="trailing" secondItem="yLe-l9-30C" secondAttribute="trailingMargin" id="XmL-0d-PVw"/>
                                         <constraint firstItem="gWO-t3-Zpx" firstAttribute="top" secondItem="yLe-l9-30C" secondAttribute="topMargin" constant="-4" id="fZ2-Ok-q1A"/>
                                         <constraint firstItem="uTn-OX-UfW" firstAttribute="leading" secondItem="yLe-l9-30C" secondAttribute="leadingMargin" constant="49" id="fyZ-E3-vBf"/>
                                         <constraint firstItem="gWO-t3-Zpx" firstAttribute="trailing" secondItem="yLe-l9-30C" secondAttribute="trailingMargin" id="gRT-6h-DQR"/>
+                                        <constraint firstItem="gWO-t3-Zpx" firstAttribute="leading" secondItem="vWH-sw-t3K" secondAttribute="trailing" constant="13" id="gqZ-dd-n8E"/>
                                         <constraint firstItem="gWO-t3-Zpx" firstAttribute="leading" secondItem="yLe-l9-30C" secondAttribute="leadingMargin" constant="49" id="hJC-rM-kng"/>
-                                        <constraint firstItem="gWO-t3-Zpx" firstAttribute="leading" secondItem="vWH-sw-t3K" secondAttribute="trailing" constant="13" id="pg9-sq-qva"/>
+                                        <constraint firstItem="vWH-sw-t3K" firstAttribute="leading" secondItem="yLe-l9-30C" secondAttribute="leadingMargin" id="v6v-dN-37i"/>
+                                        <constraint firstItem="vWH-sw-t3K" firstAttribute="top" secondItem="yLe-l9-30C" secondAttribute="topMargin" id="whG-5X-p99"/>
                                         <constraint firstItem="FTu-SW-f09" firstAttribute="leading" secondItem="uTn-OX-UfW" secondAttribute="leading" id="zMO-bH-3Jp"/>
                                     </constraints>
+                                    <variation key="default">
+                                        <mask key="constraints">
+                                            <exclude reference="NT8-Eg-kj4"/>
+                                        </mask>
+                                    </variation>
                                 </tableViewCellContentView>
                                 <connections>
                                     <outlet property="dateLabel" destination="uTn-OX-UfW" id="8ec-ar-Pss"/>
@@ -85,6 +98,17 @@
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <refreshControl key="refreshControl" opaque="NO" multipleTouchEnabled="YES" contentMode="center" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" id="Mch-0Y-uDk">
+                        <autoresizingMask key="autoresizingMask"/>
+                        <attributedString key="attributedTitle">
+                            <fragment content="Pull to Refresh">
+                                <attributes>
+                                    <font key="NSFont" size="12" name=".HelveticaNeueDeskInterface-Regular"/>
+                                    <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural"/>
+                                </attributes>
+                            </fragment>
+                        </attributedString>
+                    </refreshControl>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="qRx-xw-xBR" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -385,7 +409,7 @@
             </objects>
             <point key="canvasLocation" x="2362.5" y="0.0"/>
         </scene>
-        <!--Profile-->
+        <!--Your Profile-->
         <scene sceneID="mf8-gp-66u">
             <objects>
                 <viewController storyboardIdentifier="UserProfile" id="Yfn-HE-0gN" customClass="ProfileViewController" customModule="MW" customModuleProvider="target" sceneMemberID="viewController">
@@ -486,7 +510,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                 </subviews>
-                                <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                                <color key="backgroundColor" red="0.93725490196078431" green="0.93725490196078431" blue="0.95686274509803926" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="bottom" secondItem="9Yt-Cp-eZv" secondAttribute="bottom" constant="260" id="086-Gk-Acu"/>
                                     <constraint firstAttribute="centerX" secondItem="QRQ-kv-EXA" secondAttribute="centerX" id="4AW-AQ-62M"/>
@@ -590,7 +614,7 @@
                             </mask>
                         </variation>
                     </view>
-                    <navigationItem key="navigationItem" title="Profile" id="dc8-P1-hrD">
+                    <navigationItem key="navigationItem" title="Your Profile" id="dc8-P1-hrD">
                         <barButtonItem key="rightBarButtonItem" systemItem="edit" id="BmE-Za-lZ0">
                             <color key="tintColor" red="1" green="0.31096480789999997" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                             <connections>

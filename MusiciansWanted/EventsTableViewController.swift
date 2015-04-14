@@ -59,11 +59,11 @@ class EventsTableViewController: UITableViewController, UIScrollViewDelegate, Ev
         // Configure the cell...
         cell.EventDescription.text = event.eventLocation
         //cell.EventImage.image = event.eventPicture
-        //cell.EventTitle.text = event.eventName
+        cell.EventTitle.text = event.eventName
             
         //cell.EventDescription.text = "The time to see ultra lord"
         cell.EventImage.image = UIImage(named: "UltraLord")
-        cell.EventTitle.text = "The Event"
+        //cell.EventTitle.text = "The Event"
         
         
         return cell
@@ -87,6 +87,19 @@ class EventsTableViewController: UITableViewController, UIScrollViewDelegate, Ev
         }
     }
 
+    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        let event = eventManager.event[indexPath.row]
+        
+        println("Instantiate event view...")
+        let eventView = self.storyboard?.instantiateViewControllerWithIdentifier("EventViewController") as! EventViewController
+        
+        eventView.controller = "events"
+        eventView.icon = event.eventPicture
+        eventView.id = event.eventId
+        
+        self.navigationController?.pushViewController(eventView, animated: true)
+    }
+    
 
     /*
     // Override to support conditional editing of the table view.

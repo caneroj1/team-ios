@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import MapKit
 
 struct events {
     var eventId = 0
@@ -15,6 +16,8 @@ struct events {
     var eventDate = "None"
     var eventGenre = "None"
     var eventLocation = "Unknown"
+    let latitude: CLLocationDegrees
+    let longitude: CLLocationDegrees
 }
 
 class EventsManager: NSObject {
@@ -23,7 +26,7 @@ class EventsManager: NSObject {
     var event = [events]()
     var isLoadingEvents = false
     
-    func addEvents(tempId: Int, name: String, picture: UIImage, date: String, genre: String, location: String){
+    func addEvents(tempId: Int, name: String, picture: UIImage, date: String, genre: String, location: String, latitude: Double, longitude: Double){
         
         if event.count >= tempId {
             event[tempId-1].eventName = name;
@@ -33,7 +36,7 @@ class EventsManager: NSObject {
             event[tempId-1].eventLocation = location;
         }
         else {
-            event.append(events(eventId: tempId, eventName: name, eventPicture: picture, eventDate: date, eventGenre: genre, eventLocation: location))
+            event.append(events(eventId: tempId, eventName: name, eventPicture: picture, eventDate: date, eventGenre: genre, eventLocation: location, latitude: latitude, longitude: longitude))
         }
         
         self.eventDelegate!.addedNewEvent()
@@ -61,7 +64,13 @@ class EventsManager: NSObject {
                 //Add basic information of events
                 var eventImage = UIImage(named: "UltraLord")!
                 
-                self.addEvents(eventData["id"].intValue, name: eventData["title"].stringValue, picture: eventImage, date: eventData["event_time"].stringValue, genre: "id: " + eventData["id"].stringValue, location: eventData["location"].stringValue)
+                var longitude = eventData["longitude"].stringValue
+                var latitude = eventData["latitude"].stringValue
+                
+                let longStr: NSString = NSString(string: longitude)
+                let latStr: NSString = NSString(string: latitude)
+                
+                self.addEvents(eventData["id"].intValue, name: eventData["title"].stringValue, picture: eventImage, date: eventData["event_time"].stringValue, genre: "id: " + eventData["id"].stringValue, location: eventData["location"].stringValue, latitude: latStr.doubleValue, longitude: longStr.doubleValue)
                 
                 println("Adding event \(id)");
                 
@@ -80,7 +89,7 @@ class EventsManager: NSObject {
                                 dispatch_async(dispatch_get_main_queue()) {
                                     eventImage = UIImage(data: decodedString!)!
                                     
-                                    self.addEvents(eventData["id"].intValue, name: eventData["title"].stringValue, picture: eventImage, date: eventData["event_time"].stringValue, genre: "id: " + eventData["id"].stringValue, location: eventData["location"].stringValue)
+                                    self.addEvents(eventData["id"].intValue, name: eventData["title"].stringValue, picture: eventImage, date: eventData["event_time"].stringValue, genre: "id: " + eventData["id"].stringValue, location: eventData["location"].stringValue, latitude: latStr.doubleValue, longitude: longStr.doubleValue)
                                 }
                             }
                         }

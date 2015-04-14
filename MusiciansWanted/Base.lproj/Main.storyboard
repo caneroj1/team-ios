@@ -325,7 +325,7 @@
             </objects>
             <point key="canvasLocation" x="1685" y="-5"/>
         </scene>
-        <!--Events Table View Controller-->
+        <!--Events-->
         <scene sceneID="eFQ-a8-tqk">
             <objects>
                 <tableViewController id="twR-KP-ogk" customClass="EventsTableViewController" customModule="MW" customModuleProvider="target" sceneMemberID="viewController">
@@ -384,7 +384,14 @@
                             <outlet property="delegate" destination="twR-KP-ogk" id="ZWN-I7-Y0F"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" id="asv-KY-9eG"/>
+                    <navigationItem key="navigationItem" title="Events" id="rr5-MU-X4Q">
+                        <barButtonItem key="leftBarButtonItem" image="MWMapIcon" width="401" id="sNv-sy-kpJ">
+                            <connections>
+                                <segue destination="pxl-3C-MUm" kind="show" identifier="MapSegue" id="zN4-eJ-qhS"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="cme-AA-pzc"/>
+                    </navigationItem>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Etf-Fa-y9V" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -866,7 +873,7 @@
                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="U6n-Gd-lWM">
+                                    <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="U6n-Gd-lWM">
                                         <rect key="frame" x="523" y="343" width="51" height="31"/>
                                         <color key="onTintColor" red="1" green="0.31096480789999997" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                     </switch>
@@ -876,7 +883,7 @@
                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <slider opaque="NO" contentMode="scaleToFill" restorationIdentifier="radiusSlider" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="10" minValue="5" maxValue="20" translatesAutoresizingMaskIntoConstraints="NO" id="ch2-hJ-8jQ">
+                                    <slider opaque="NO" contentMode="scaleToFill" misplaced="YES" restorationIdentifier="radiusSlider" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="10" minValue="5" maxValue="20" translatesAutoresizingMaskIntoConstraints="NO" id="ch2-hJ-8jQ">
                                         <rect key="frame" x="22" y="469" width="552" height="31"/>
                                         <connections>
                                             <action selector="locationRadiusSliderChanged:" destination="UEX-Rw-heQ" eventType="valueChanged" id="tgk-Yx-qek"/>
@@ -916,7 +923,7 @@
                                         <color key="textColor" red="0.99607843137254903" green="0.99607843137254903" blue="0.99607843137254903" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" translatesAutoresizingMaskIntoConstraints="NO" id="Jcx-x3-TR3">
+                                    <segmentedControl opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" translatesAutoresizingMaskIntoConstraints="NO" id="Jcx-x3-TR3">
                                         <rect key="frame" x="455" y="507" width="117" height="29"/>
                                         <segments>
                                             <segment title="Male"/>
@@ -935,7 +942,7 @@
                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="XXX-XXX-XXXX" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="U9H-XT-xRB">
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="XXX-XXX-XXXX" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="U9H-XT-xRB">
                                         <rect key="frame" x="24" y="608" width="548" height="30"/>
                                         <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="14"/>
                                         <textInputTraits key="textInputTraits" keyboardType="numberPad" returnKeyType="done"/>
@@ -1593,7 +1600,7 @@
                                         </state>
                                     </button>
                                 </subviews>
-                                <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                                <color key="backgroundColor" red="0.93725490196078431" green="0.93725490196078431" blue="0.95686274509803926" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="trailing" secondItem="gKX-ol-3uf" secondAttribute="trailing" constant="20" id="3wP-5x-aqm"/>
                                     <constraint firstItem="mfq-zz-Lg4" firstAttribute="top" secondItem="gKX-ol-3uf" secondAttribute="bottom" constant="5" id="4fc-xK-r4X"/>
@@ -1644,7 +1651,7 @@
                                 <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="32"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
-                                <color key="shadowColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <color key="shadowColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <size key="shadowOffset" width="2" height="2"/>
                                 <variation key="default">
                                     <mask key="constraints">
@@ -1714,8 +1721,41 @@
             </objects>
             <point key="canvasLocation" x="2362" y="842"/>
         </scene>
+        <!--Event Map View Controller-->
+        <scene sceneID="UOi-85-Mee">
+            <objects>
+                <viewController id="pxl-3C-MUm" customClass="EventMapViewController" customModule="MW" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="82K-2x-zMH"/>
+                        <viewControllerLayoutGuide type="bottom" id="8fA-xF-Y8z"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="gdo-wm-7YF">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="2wj-Me-hAE">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                            </mapView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="2wj-Me-hAE" firstAttribute="leading" secondItem="gdo-wm-7YF" secondAttribute="leading" id="49F-ZR-jtB"/>
+                            <constraint firstItem="2wj-Me-hAE" firstAttribute="top" secondItem="gdo-wm-7YF" secondAttribute="top" id="LRl-3L-RTZ"/>
+                            <constraint firstAttribute="trailing" secondItem="2wj-Me-hAE" secondAttribute="trailing" id="ZIc-TB-EtF"/>
+                            <constraint firstItem="2wj-Me-hAE" firstAttribute="bottom" secondItem="8fA-xF-Y8z" secondAttribute="top" id="nKJ-s8-fmp"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="eventMap" destination="2wj-Me-hAE" id="9ZS-yo-Z2K"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="h7u-ez-Cdw" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3014" y="742"/>
+        </scene>
     </scenes>
     <resources>
+        <image name="MWMapIcon" width="40" height="40"/>
         <image name="UltraLord" width="210" height="240"/>
         <image name="anonymous" width="140" height="140"/>
         <image name="bg" width="1920" height="1080"/>

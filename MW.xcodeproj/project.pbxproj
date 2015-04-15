@@ -40,6 +40,7 @@
 		AD85DC5F1AD452C400D6E369 /* EventsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD85DC5E1AD452C400D6E369 /* EventsManager.swift */; };
 		AD85DC611AD45F2800D6E369 /* EventsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD85DC601AD45F2800D6E369 /* EventsCell.swift */; };
 		AD97B1351AD2C06B007645C1 /* EventsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD97B1341AD2C06B007645C1 /* EventsTableViewController.swift */; };
+		ADD1DA3A1ADE987500F4CE6F /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADD1DA391ADE987500F4CE6F /* Constants.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -92,6 +93,7 @@
 		AD85DC5E1AD452C400D6E369 /* EventsManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventsManager.swift; sourceTree = "<group>"; };
 		AD85DC601AD45F2800D6E369 /* EventsCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventsCell.swift; sourceTree = "<group>"; };
 		AD97B1341AD2C06B007645C1 /* EventsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventsTableViewController.swift; sourceTree = "<group>"; };
+		ADD1DA391ADE987500F4CE6F /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		BE5A232D71C1A13AE8FD8A71 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -243,6 +245,7 @@
 				44566E861ACB4E3200D9F6A4 /* Toucan.swift */,
 				44D308A41ACB324E0000F435 /* SwiftyJSON.swift */,
 				44D308A61ACB32560000F435 /* DataManager.swift */,
+				ADD1DA391ADE987500F4CE6F /* Constants.swift */,
 			);
 			name = Support;
 			sourceTree = "<group>";
@@ -421,6 +424,7 @@
 				444951C21AD71B3D0013A4DD /* FeedViewDataManager.swift in Sources */,
 				444951C41AD72B420013A4DD /* Notification.swift in Sources */,
 				010AEBD21ACE239D0066E4FA /* PeopleManager.swift in Sources */,
+				ADD1DA3A1ADE987500F4CE6F /* Constants.swift in Sources */,
 				44470F551AC884F30077B042 /* EditProfileViewController.swift in Sources */,
 				01F50F931AB20E4300FE9051 /* GlobalTabBarController.swift in Sources */,
 				44D3089F1ACB32350000F435 /* ApiData.swift in Sources */,

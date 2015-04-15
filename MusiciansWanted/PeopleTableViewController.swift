@@ -60,6 +60,14 @@ class PeopleTableViewController: UITableViewController, PeopleDelegate {
         cell.lblInstrument.text = person?.instrument
         cell.lblGenre.text = person?.genre
         
+        let mobileAnalytics = AWSMobileAnalytics(forAppId: "723abc951a394edea445c7b4babf1f7c")
+        let eventRecordClient = mobileAnalytics.eventClient
+        let eventRecord = eventRecordClient.createEventWithEventType("PeopleViewEvent")
+        
+        eventRecord.addAttribute("Hank", forKey: "People")
+        
+        eventRecordClient.recordEvent(eventRecord)
+        
         // Save the indexPath of the user
         pplMgr.person[pplMgr.arrPerson[indexPath.row]]?.indexPth = indexPath
         

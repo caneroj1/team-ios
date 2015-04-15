@@ -64,15 +64,6 @@ class EventsTableViewController: UITableViewController {
         cell.EventImage.image = UIImage(named: "UltraLord")
         cell.EventTitle.text = "The Event"
         
-        //DO NOT DELETE, FOR MOBILE ANALYTICS
-        
-//        let eventRecordClient = AWSMobileAnalytics(forAppId: "723abc951a394edea445c7b4babf1f7c").eventClient
-//        let eventRecord = eventRecordClient.createEventWithEventType("ScreenView")
-//        
-//        eventRecord.addAttribute("Event", forKey: "Screen")
-//        eventRecord.addMetric(1000, forKey: "TestMetric")  // Not useful in this case, just to demonstrate adding metrics.
-//        eventRecordClient.recordEvent(eventRecord)
-        
         
         return cell
     }

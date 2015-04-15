@@ -60,7 +60,7 @@ class PeopleTableViewController: UITableViewController, PeopleDelegate {
         cell.lblInstrument.text = person?.instrument
         cell.lblGenre.text = person?.genre
         
-        let mobileAnalytics = AWSMobileAnalytics(forAppId: "723abc951a394edea445c7b4babf1f7c")
+        let mobileAnalytics = AWSMobileAnalytics(forAppId: MobileAnalyticsAppId)
         let eventRecordClient = mobileAnalytics.eventClient
         let eventRecord = eventRecordClient.createEventWithEventType("PeopleViewEvent")
         

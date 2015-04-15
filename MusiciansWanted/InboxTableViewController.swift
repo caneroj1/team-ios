@@ -22,7 +22,7 @@ class InboxTableViewController: UITableViewController {
         inboxMgr.addMessage("Marco Polo", subject: "I found you.", time: "Today")
         inboxMgr.addMessage("Kari Gilbertson", subject: "Omg they are awesome", time: "Today")
         
-        let mobileAnalytics = AWSMobileAnalytics(forAppId: "723abc951a394edea445c7b4babf1f7c")
+        let mobileAnalytics = AWSMobileAnalytics(forAppId: MobileAnalyticsAppId)
         let eventRecordClient = mobileAnalytics.eventClient
         let eventRecord = eventRecordClient.createEventWithEventType("InboxViewEvent")
         

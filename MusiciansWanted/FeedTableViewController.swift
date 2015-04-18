@@ -44,11 +44,11 @@ class FeedTableViewController: UITableViewController, UITableViewDataSource, Fee
                 self.presentViewController(alertController, animated: true, completion: nil)
             }
         }
-
+        
         self.tableView.tableFooterView = UIView(frame: CGRectZero)
         tableViewDataSource.feedDelegate = self
         tableViewDataSource.getNotifications(MusiciansWanted.userId)
-
+        
         // Do any additional setup after loading the view, typically from a nib.
     }
     
@@ -69,15 +69,6 @@ class FeedTableViewController: UITableViewController, UITableViewDataSource, Fee
         cell.dateLabel.text = notification.date
         cell.locationLabel.text = notification.location
         cell.iconForCell.image = UIImage(named: notification.imageString)
-        
-        let mobileAnalytics = AWSMobileAnalytics(forAppId: MobileAnalyticsAppId)
-        let eventRecordClient = mobileAnalytics.eventClient
-        let eventRecord = eventRecordClient.createEventWithEventType("FeedViewEvent")
-        
-        eventRecord.addAttribute("Test", forKey: "Feed")
-        
-        eventRecordClient.recordEvent(eventRecord)
-        
         
         return cell
     }

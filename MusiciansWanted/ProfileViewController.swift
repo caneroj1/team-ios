@@ -93,7 +93,7 @@ class ProfileViewController: UIViewController, UINavigationControllerDelegate, U
     }
     
     func getProfileImage() {
-        var url = "/api/s3get?user_id=\(MusiciansWanted.userId)"
+        var url = "/api/s3ProfileGet?user_id=\(MusiciansWanted.userId)"
         DataManager.makeGetRequest(url, completion: { (data, error) -> Void in
             if data != nil {
                 var json = JSON(data: data!)

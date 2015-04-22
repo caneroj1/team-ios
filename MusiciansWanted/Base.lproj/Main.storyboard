@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7531" systemVersion="14D131" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="qzr-uA-NNI">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7531" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="qzr-uA-NNI">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7520"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
@@ -738,6 +738,9 @@
                                     <color key="titleColor" red="0.99607843139999996" green="0.99607843139999996" blue="0.99607843139999996" alpha="1" colorSpace="calibratedRGB"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <connections>
+                                    <action selector="addToContacts:" destination="GeN-B5-hT7" eventType="touchUpInside" id="CJJ-kK-gh7"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" red="0.92156862745098034" green="0.92156862745098034" blue="0.94901960784313721" alpha="1" colorSpace="calibratedRGB"/>
@@ -795,6 +798,7 @@
                     <connections>
                         <outlet property="ageLabel" destination="jHm-tj-deR" id="NAj-49-B89"/>
                         <outlet property="bandLabel" destination="bb1-2J-sAr" id="6Du-ja-cyU"/>
+                        <outlet property="contactButton" destination="wON-cy-b84" id="MDq-D4-ihc"/>
                         <outlet property="emailLabel" destination="ojN-xZ-NPA" id="uUe-X6-xeo"/>
                         <outlet property="jamLabel" destination="3Rh-oy-GXt" id="uSC-cJ-I52"/>
                         <outlet property="locationlabel" destination="RC5-GY-NRD" id="xKa-hZ-CgB"/>

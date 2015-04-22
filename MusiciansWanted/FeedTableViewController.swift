@@ -106,12 +106,17 @@ class FeedTableViewController: UITableViewController, UITableViewDataSource, Fee
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         let notification = tableViewDataSource.getNotification(indexPath.row)
         
-        let personView = self.storyboard?.instantiateViewControllerWithIdentifier("PersonViewController") as! PersonViewController
-        
-        println("notification: \(notification.recordId)")
-        personView.id = notification.recordId
-        
-        self.navigationController?.pushViewController(personView, animated: true)
+        if notification.notificationType == 0 {
+            let nextView = self.storyboard?.instantiateViewControllerWithIdentifier("EventViewController") as! EventViewController
+            nextView.id = notification.recordId
+            nextView.controller = "events"
+            self.navigationController?.pushViewController(nextView, animated: true)
+        }
+        else {
+            let nextView = self.storyboard?.instantiateViewControllerWithIdentifier("PersonViewController") as! PersonViewController
+            nextView.id = notification.recordId
+            self.navigationController?.pushViewController(nextView, animated: true)
+        }
     }
     
     

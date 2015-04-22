@@ -63,7 +63,7 @@ class FeedViewDataManager: NSData {
                         image = "icon_calendar_small.png"
                     }
                     
-                    var newNotification = Notification(title: title, date: self.formatDate(date), location: location, distance: distanceString, imageString: image, recordId: recordId)
+                    var newNotification = Notification(title: title, date: self.formatDate(date), location: location, distance: distanceString, imageString: image, recordId: recordId, notificationType: type)
                     
                     self.notificationDict.updateValue(true, forKey: id)
                     newNotifications.append(newNotification)
@@ -106,7 +106,7 @@ class FeedViewDataManager: NSData {
                     image = "icon_calendar_small.png"
                 }
                 
-                var newNotification = Notification(title: title, date: self.formatDate(date), location: location, distance: distanceString, imageString: image, recordId: recordId)
+                var newNotification = Notification(title: title, date: self.formatDate(date), location: location, distance: distanceString, imageString: image, recordId: recordId, notificationType: type)
 
                 self.notificationDict.updateValue(true, forKey: id)
                 self.notificationArray.append(newNotification)

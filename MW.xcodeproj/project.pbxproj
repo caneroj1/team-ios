@@ -36,6 +36,9 @@
 		44566E871ACB4E3200D9F6A4 /* Toucan.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44566E861ACB4E3200D9F6A4 /* Toucan.swift */; };
 		44C1D55A1ADCA375006388E5 /* EventMapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44C1D5591ADCA375006388E5 /* EventMapViewController.swift */; };
 		44C1D55C1ADCAFD5006388E5 /* EventMapData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44C1D55B1ADCAFD5006388E5 /* EventMapData.swift */; };
+		44CFD5231AE73F7900E536F3 /* ContactsDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44CFD5221AE73F7900E536F3 /* ContactsDataManager.swift */; };
+		44CFD5251AE73F9600E536F3 /* Contact.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44CFD5241AE73F9600E536F3 /* Contact.swift */; };
+		44CFD5271AE7407900E536F3 /* ContactTableDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44CFD5261AE7407900E536F3 /* ContactTableDelegate.swift */; };
 		44D3089F1ACB32350000F435 /* ApiData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44D3089E1ACB32350000F435 /* ApiData.swift */; };
 		44D308A11ACB323D0000F435 /* LogInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44D308A01ACB323D0000F435 /* LogInViewController.swift */; };
 		44D308A31ACB32450000F435 /* SweetAlert copy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44D308A21ACB32450000F435 /* SweetAlert copy.swift */; };
@@ -92,6 +95,9 @@
 		44566E861ACB4E3200D9F6A4 /* Toucan.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Toucan.swift; sourceTree = "<group>"; };
 		44C1D5591ADCA375006388E5 /* EventMapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventMapViewController.swift; sourceTree = "<group>"; };
 		44C1D55B1ADCAFD5006388E5 /* EventMapData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventMapData.swift; sourceTree = "<group>"; };
+		44CFD5221AE73F7900E536F3 /* ContactsDataManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContactsDataManager.swift; sourceTree = "<group>"; };
+		44CFD5241AE73F9600E536F3 /* Contact.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Contact.swift; sourceTree = "<group>"; };
+		44CFD5261AE7407900E536F3 /* ContactTableDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContactTableDelegate.swift; sourceTree = "<group>"; };
 		44D3089E1ACB32350000F435 /* ApiData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ApiData.swift; sourceTree = "<group>"; };
 		44D308A01ACB323D0000F435 /* LogInViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LogInViewController.swift; sourceTree = "<group>"; };
 		44D308A21ACB32450000F435 /* SweetAlert copy.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "SweetAlert copy.swift"; sourceTree = "<group>"; };
@@ -248,6 +254,9 @@
 			children = (
 				44470F541AC884F30077B042 /* EditProfileViewController.swift */,
 				01266BC11AB0F03F003D2354 /* ProfileViewController.swift */,
+				44CFD5221AE73F7900E536F3 /* ContactsDataManager.swift */,
+				44CFD5241AE73F9600E536F3 /* Contact.swift */,
+				44CFD5261AE7407900E536F3 /* ContactTableDelegate.swift */,
 			);
 			name = Profile;
 			sourceTree = "<group>";
@@ -434,12 +443,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				44CFD5251AE73F9600E536F3 /* Contact.swift in Sources */,
 				AD85DC5F1AD452C400D6E369 /* EventsManager.swift in Sources */,
 				442E54F21AE197E300718014 /* Constants.swift in Sources */,
 				444951C21AD71B3D0013A4DD /* FeedViewDataManager.swift in Sources */,
 				444951C41AD72B420013A4DD /* Notification.swift in Sources */,
 				010AEBD21ACE239D0066E4FA /* PeopleManager.swift in Sources */,
 				014A67321ADAD18300729E82 /* EventViewController.swift in Sources */,
+				44CFD5271AE7407900E536F3 /* ContactTableDelegate.swift in Sources */,
 				44470F551AC884F30077B042 /* EditProfileViewController.swift in Sources */,
 				44C1D55C1ADCAFD5006388E5 /* EventMapData.swift in Sources */,
 				44C1D55A1ADCA375006388E5 /* EventMapViewController.swift in Sources */,
@@ -459,6 +470,7 @@
 				AD85DC611AD45F2800D6E369 /* EventsCell.swift in Sources */,
 				444951C01AD719640013A4DD /* FeedViewTableCell.swift in Sources */,
 				44DFBAAF1AD7731E00DDA8AB /* FeedViewDelegate.swift in Sources */,
+				44CFD5231AE73F7900E536F3 /* ContactsDataManager.swift in Sources */,
 				0104A5101AD837E800173F96 /* PeopleDelegate.swift in Sources */,
 				010AEBD11ACE239D0066E4FA /* PeopleCell.swift in Sources */,
 				014C5C0A1AD97645008680D0 /* EventsDelegate.swift in Sources */,

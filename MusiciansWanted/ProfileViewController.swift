@@ -8,9 +8,9 @@
 
 import UIKit
 
-class ProfileViewController: UIViewController, UINavigationControllerDelegate, UIImagePickerControllerDelegate {
-    // MARK: - Instances Variables and IB Outlets
+class ProfileViewController: UIViewController, UINavigationControllerDelegate, UIImagePickerControllerDelegate, UITableViewDelegate, UITableViewDataSource, ContactTableDelegate {
     
+    // MARK: - Instances Variables and IB Outlets
     var needToLoadPicture = true
     var genderString: String?
     var searchRadius: Int = 10
@@ -19,6 +19,7 @@ class ProfileViewController: UIViewController, UINavigationControllerDelegate, U
     var ageText = ""
     var hasCell = false
     var myCell: String?
+    var contactsManager = ContactsDataManager()
     
     // IB items for the main profile view
     @IBOutlet weak var nameLabel: UILabel!
@@ -30,6 +31,7 @@ class ProfileViewController: UIViewController, UINavigationControllerDelegate, U
     @IBOutlet weak var profileImage: UIImageView!
     @IBOutlet weak var editProfileButton: UIBarButtonItem!
     @IBOutlet var scrollView: UIScrollView!
+    @IBOutlet weak var contactsTable: UITableView!
     
     // MARK: - Image Functionality
     
@@ -54,7 +56,19 @@ class ProfileViewController: UIViewController, UINavigationControllerDelegate, U
         profileImage.image = newImage
     }
     
+    // MARK: - Contact Table Delegate
+    func contactSaved() {
+        dispatch_async(dispatch_get_main_queue()) {
+            self.contactsTable.reloadData()
+        }
+    }
+    
     // MARK: - API Requests
+    
+    func populateContacts() {
+        contactsManager.contactDelegate = self
+        contactsManager.populateContacts()
+    }
     
     func populateProfile() {
         var url = "/api/users/\(MusiciansWanted.userId)"
@@ -119,6 +133,7 @@ class ProfileViewController: UIViewController, UINavigationControllerDelegate, U
     override func viewWillAppear(animated: Bool) {
         editProfileButton.enabled = false
         populateProfile()
+        populateContacts()
         if needToLoadPicture {
             getProfileImage()
             needToLoadPicture = false
@@ -135,6 +150,26 @@ class ProfileViewController: UIViewController, UINavigationControllerDelegate, U
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    // MARK: - Contacts Table View
+    
+    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        println(contactsManager.contacts)
+        return contactsManager.contacts.count
+    }
+    
+    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCellWithIdentifier("ContactCell") as! UITableViewCell
+        cell.textLabel?.text = contactsManager.contacts[indexPath.row].name
+        return cell
+    }
+    
+    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        let personView = self.storyboard?.instantiateViewControllerWithIdentifier("PersonViewController") as! PersonViewController
+        
+        personView.id = contactsManager.contacts[indexPath.row].id
+        self.navigationController?.pushViewController(personView, animated: true)
     }
     
     // MARK: - Navigation

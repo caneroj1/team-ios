@@ -42,6 +42,7 @@
 		44D308A51ACB324E0000F435 /* SwiftyJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44D308A41ACB324E0000F435 /* SwiftyJSON.swift */; };
 		44D308A71ACB32560000F435 /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44D308A61ACB32560000F435 /* DataManager.swift */; };
 		44DFBAAF1AD7731E00DDA8AB /* FeedViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44DFBAAE1AD7731E00DDA8AB /* FeedViewDelegate.swift */; };
+		AD37E3AC1AEAAF2C0051B737 /* AddEventViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD37E3AB1AEAAF2C0051B737 /* AddEventViewController.swift */; };
 		AD6771181ADB588700E5BF7F /* AWS.m in Sources */ = {isa = PBXBuildFile; fileRef = AD6771171ADB588700E5BF7F /* AWS.m */; };
 		AD85DC5F1AD452C400D6E369 /* EventsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD85DC5E1AD452C400D6E369 /* EventsManager.swift */; };
 		AD85DC611AD45F2800D6E369 /* EventsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD85DC601AD45F2800D6E369 /* EventsCell.swift */; };
@@ -99,6 +100,7 @@
 		44D308A61ACB32560000F435 /* DataManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataManager.swift; sourceTree = "<group>"; };
 		44DFBAAE1AD7731E00DDA8AB /* FeedViewDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeedViewDelegate.swift; sourceTree = "<group>"; };
 		7E375FC571E426EA4D919A0A /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		AD37E3AB1AEAAF2C0051B737 /* AddEventViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddEventViewController.swift; sourceTree = "<group>"; };
 		AD6771161ADB588600E5BF7F /* MW-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "MW-Bridging-Header.h"; path = "../MW-Bridging-Header.h"; sourceTree = "<group>"; };
 		AD6771171ADB588700E5BF7F /* AWS.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AWS.m; sourceTree = "<group>"; };
 		AD85DC5E1AD452C400D6E369 /* EventsManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventsManager.swift; sourceTree = "<group>"; };
@@ -232,6 +234,7 @@
 		01FCDE811ACEFE79002F3A56 /* Events */ = {
 			isa = PBXGroup;
 			children = (
+				AD37E3AB1AEAAF2C0051B737 /* AddEventViewController.swift */,
 				AD97B1341AD2C06B007645C1 /* EventsTableViewController.swift */,
 				014C5C091AD97645008680D0 /* EventsDelegate.swift */,
 				AD85DC5E1AD452C400D6E369 /* EventsManager.swift */,
@@ -445,6 +448,7 @@
 				44C1D55A1ADCA375006388E5 /* EventMapViewController.swift in Sources */,
 				01F50F931AB20E4300FE9051 /* GlobalTabBarController.swift in Sources */,
 				44D3089F1ACB32350000F435 /* ApiData.swift in Sources */,
+				AD37E3AC1AEAAF2C0051B737 /* AddEventViewController.swift in Sources */,
 				01FCDE841ACF0500002F3A56 /* InboxTableViewController.swift in Sources */,
 				44566E871ACB4E3200D9F6A4 /* Toucan.swift in Sources */,
 				44D308A31ACB32450000F435 /* SweetAlert copy.swift in Sources */,

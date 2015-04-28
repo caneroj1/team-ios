@@ -8,7 +8,9 @@
 
 import UIKit
 
-class AddEventViewController: UIViewController {
+var thisSort = 1
+
+class AddEventViewController: UIViewController, UIPickerViewDelegate {
     
    
     
@@ -25,8 +27,6 @@ class AddEventViewController: UIViewController {
     @IBOutlet weak var EventDescription: UITextView!
     @IBOutlet weak var scrollView: UIScrollView!
     
-    
-    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -34,8 +34,9 @@ class AddEventViewController: UIViewController {
         
         scrollView.canCancelContentTouches = false
         scrollView.delaysContentTouches = false
+        StatePicker.delegate = self
         
-        StatePicker.selectRow(selectedSort, inComponent: 0, animated: true)
+        StatePicker.selectRow(thisSort, inComponent: 0, animated: true)
     }
 
     override func didReceiveMemoryWarning() {
@@ -57,7 +58,7 @@ class AddEventViewController: UIViewController {
         
         
         var pickerLabel = UILabel()
-        pickerLabel.textColor = UIColor.whiteColor()
+        pickerLabel.textColor = UIColor.blackColor()
         pickerLabel.text = states[row]
         // pickerLabel.font = UIFont(name: pickerLabel.font.fontName, size: 15)
         pickerLabel.font = UIFont(name: "Marker Felt", size: 24) // In this use your custom font
@@ -67,7 +68,7 @@ class AddEventViewController: UIViewController {
     }
     
     func pickerView(pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int){
-        selectedSort = row
+        thisSort = row
     }
     
 

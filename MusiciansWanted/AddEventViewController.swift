@@ -8,11 +8,16 @@
 
 import UIKit
 
-var thisSort = 1
+var thisSort = 4
 
 class AddEventViewController: UIViewController, UIPickerViewDelegate {
     
-   
+    var eventtitle: String = ""
+    var address: String = ""
+    var city: String = ""
+    var eventStateRow: Int = 0
+    var zip: Int = 0
+    var eventdescription: String = ""
     
     var states = [
         "Alabama", "Alaska", "American Samoa", "Arizona", "Arkansas", "California", "Colorado", "Connecticut", "Delaware", "District of Columbia", "Florida", "Georgia", "Guam", "Hawaii", "Idaho", "Illinois", "Indiana", "Iowa", "Kansas", "Kentucky", "Louisiana", "Maine", "Maryland", "Massachusetts", "Michigan", "Minnesota", "Mississippi", "Missouri", "Montana", "Nebraska", "Nevada", "New Hampshire", "New Jersey", "New Mexico", "New York", "North Carolina", "North Dakota", "Northern Marianas Islands", "Ohio", "Oklahoma", "Oregon", "Pennsylvania", "Puerto Rico", "Rhode Island", "South Carolina", "South Dakota", "Tennessee", "Texas", "Utah", "Vermont", "Virginia", "Virgin Islands", "Washington", "West Virginia", "Wisconsin", "Wyoming"
@@ -27,6 +32,8 @@ class AddEventViewController: UIViewController, UIPickerViewDelegate {
     @IBOutlet weak var EventDescription: UITextView!
     @IBOutlet weak var scrollView: UIScrollView!
     
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -38,6 +45,16 @@ class AddEventViewController: UIViewController, UIPickerViewDelegate {
         
         StatePicker.selectRow(thisSort, inComponent: 0, animated: true)
     }
+    
+    override func viewWillAppear(animated: Bool) {
+        EventTitle.text = eventtitle
+        EventAddress.text = address
+        EventCity.text = city
+        thisSort = eventStateRow
+        EventZip.text = String(zip)
+        EventDescription.text = description
+    }
+
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -71,6 +88,35 @@ class AddEventViewController: UIViewController, UIPickerViewDelegate {
         thisSort = row
     }
     
+    @IBAction func submitInfo(sender: UIBarButtonItem) {
+        if EventTitle.text == "" || EventAddress.text == "" || EventCity.text == "" ||  EventZip.text == "" || EventDescription.text == "" {
+            SweetAlert().showAlert("Uh oh!", subTitle: "Some required fields were left blank.", style: AlertStyle.Error)
+            return
+        }
+            var url = "/api/events/"
+            var eventParams: Dictionary<String, AnyObject> = ["title": EventTitle.text, "address": EventAddress.text, "city": EventCity.text, "zip": EventZip.text, "description": EventDescription.text!]
+            var params = ["user": eventParams]
+            DataManager.makePatchRequest(url, params: params, completion: { (data, error) -> Void in
+                var json = JSON(data: data!)
+                var errorString = DataManager.checkForErrors(json)
+                if errorString != "" {
+                    dispatch_async(dispatch_get_main_queue()) {
+                        SweetAlert().showAlert("Oops!", subTitle: errorString, style: AlertStyle.Error)
+                        return
+                    }
+                }
+                else {
+                    dispatch_async(dispatch_get_main_queue()) {
+                        SweetAlert().showAlert("Success!", subTitle: "Your event has been submitted.", style: AlertStyle.Success)
+                        return
+                    }
+                }
+            })
+        }
+        
+    }
+
+    
 
     /*
     // MARK: - Navigation
@@ -82,4 +128,4 @@ class AddEventViewController: UIViewController, UIPickerViewDelegate {
     }
     */
 
-}
+

@@ -57,6 +57,7 @@ class LogInViewController: UIViewController, CLLocationManagerDelegate, UITextFi
         if(usernameField.text != "" && passwordField.text != "") {
             var paramsDictionary = ["username": usernameField.text, "password": passwordField.text]
             DataManager.makePostRequest("/api/login", params: paramsDictionary, completion: { (data, error) -> Void in
+                println(error)
                 let json = JSON(data: data!)
                 dispatch_async(dispatch_get_main_queue()) {
                     var alert:UIAlertController = UIAlertController()

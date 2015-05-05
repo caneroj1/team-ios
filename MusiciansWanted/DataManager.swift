@@ -11,7 +11,7 @@
 import Foundation
 import UIKit
 
-let mwURL = "http://45.56.101.202"
+let mwURL = "http://localhost:3000"
 
 class DataManager {
     class func makeGetRequest(url: String, completion:(data: NSData?, error: NSError?) -> Void) {
@@ -47,6 +47,7 @@ class DataManager {
         
         let loadDataTask = session.dataTaskWithRequest(request, completionHandler: { (data: NSData!, response: NSURLResponse!, error: NSError!) -> Void in
             if let responseError = error {
+                println(error)
                 completion(data: nil, error: responseError)
             } else if let requestResponse = response as? NSHTTPURLResponse {
                 completion(data: data, error: nil)

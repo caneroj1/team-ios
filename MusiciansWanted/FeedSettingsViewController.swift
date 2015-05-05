@@ -8,19 +8,19 @@
 
 import UIKit
 
-var selectedSort = 1
 
 class FeedSettingsViewController: UIViewController, UIPickerViewDelegate {
 
     var sortBy = ["Near Me","Most Recent","My Contacts","My Posts"]
+    var selectedSort = NSUserDefaults.standardUserDefaults().integerForKey("selectedSort")
 
     @IBOutlet weak var sortPicker: UIPickerView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
-       
-       sortPicker.selectRow(selectedSort, inComponent: 0, animated: true)
+        
+        sortPicker.selectRow(selectedSort, inComponent: 0, animated: true)
     }
     
     override func didReceiveMemoryWarning() {
@@ -52,5 +52,6 @@ class FeedSettingsViewController: UIViewController, UIPickerViewDelegate {
     
     func pickerView(pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int){
         selectedSort = row
+        NSUserDefaults.standardUserDefaults().setObject(selectedSort, forKey: "selectedSort")
     }
 }

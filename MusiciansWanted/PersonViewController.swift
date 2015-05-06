@@ -16,14 +16,20 @@ class PersonViewController: UIViewController {
     @IBOutlet weak var jamLabel: UILabel!
     @IBOutlet weak var bandLabel: UILabel!
     @IBOutlet weak var locationlabel: UILabel!
+    @IBOutlet weak var contactButton: UIButton!
     
     var icon: UIImage?
     var controller: String?
     var id: Int?
     
+    let darkenedColor = UIColor(red: 200.0/255.0, green: 90.0/255.0, blue: 0.0/255.0, alpha: 0.5)
+    let brightColor = UIColor(red: 255.0/255.0, green: 90.0/255.0, blue: 0.0/255.0, alpha: 1.0)
+    
     override func viewWillAppear(animated: Bool) {
-        let url = "/api/users/\(id!)"
-        DataManager.makeGetRequest(url, completion: { (data, error) -> Void in
+        contactButton.hidden = true
+        
+        let url1 = "/api/users/\(id!)"
+        DataManager.makeGetRequest(url1, completion: { (data, error) -> Void in
             let json = JSON(data: data!)
             dispatch_async(dispatch_get_main_queue()) {
                 self.personName.text = json["name"].stringValue
@@ -70,6 +76,43 @@ class PersonViewController: UIViewController {
                     dispatch_async(dispatch_get_main_queue()) {
                         self.personIcon.image = UIImage(named: "anonymous")
                     }
+                }
+            }
+        })
+        
+        let url2 = "/api/contactships/contacts/\(MusiciansWanted.userId)/knows/\(id!)"
+        DataManager.makeGetRequest(url2, completion: { (data, error) -> Void in
+            let json = JSON(data: data!)
+            dispatch_async(dispatch_get_main_queue()) {
+                self.contactButton.hidden = false
+                if json["knows"] == true {
+                    self.contactButton.backgroundColor = self.darkenedColor
+                    self.contactButton.enabled = false
+                }
+                else {
+                    self.contactButton.backgroundColor = self.brightColor
+                    self.contactButton.enabled = true
+                }
+            }
+        })
+    }
+    
+    @IBAction func addToContacts(sender: UIButton) {
+        let url = "/api/contactships"
+        let contactParams = ["user_id": "\(MusiciansWanted.userId)", "contact_id": "\(id!)"]
+
+        DataManager.makePostRequest(url, params: contactParams, completion: { (data, error) -> Void in
+            let json = JSON(data: data!)
+            let errorString = DataManager.checkForErrors(json)
+            if errorString == "" {
+                dispatch_async(dispatch_get_main_queue()) {
+                    sender.enabled = false
+                    sender.backgroundColor = self.darkenedColor
+                }
+            }
+            else {
+                dispatch_async(dispatch_get_main_queue()) {
+                    SweetAlert().showAlert("Uh oh!", subTitle: "There was a problem with the contact request. Try again later!", style: AlertStyle.Error)
                 }
             }
         })

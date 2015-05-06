@@ -30,6 +30,8 @@ class EventViewController: UIViewController {
         
         DataManager.makeGetRequest(url, completion: { (data, error) -> Void in
             let json = JSON(data: data!)
+            // we need to put error checking here in case the event doesn't exist
+            // if the event doesn't exist, data = nil
             dispatch_async(dispatch_get_main_queue()) {
                 
                 //self.lblEventDescription.text = "N/A"

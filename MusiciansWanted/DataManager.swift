@@ -11,7 +11,7 @@
 import Foundation
 import UIKit
 
-let mwURL = "http://45.56.101.202"
+let mwURL = "45.56.101.202"
 
 class DataManager {
     class func makeGetRequest(url: String, completion:(data: NSData?, error: NSError?) -> Void) {
@@ -56,7 +56,7 @@ class DataManager {
         loadDataTask.resume()
     }
     
-    class func uploadImage(url: String, userID: Int, image: UIImage, completion:(data: NSData?, error: NSError?) -> Void) {
+    class func uploadProfileImage(url: String, userID: Int, image: UIImage, completion:(data: NSData?, error: NSError?) -> Void) {
         let request = NSMutableURLRequest(URL: NSURL(string: mwURL + url)!)
         let session = NSURLSession.sharedSession()
         var apiKey = "9e0030ed1249f8db6f3352d0e0993549ab369f002ca78d0c2e0b167c831c9319519024db688cfa8af19f958c4b2183c04e88d2b7f96e062ca9b1886f6127ec1c"
@@ -88,6 +88,40 @@ class DataManager {
         
         dataTask.resume()
 
+    }
+    
+    class func uploadEventImage(url: String, eventID: String, image: UIImage, completion:(data: NSData?, error: NSError?) -> Void) {
+        let request = NSMutableURLRequest(URL: NSURL(string: mwURL + url)!)
+        let session = NSURLSession.sharedSession()
+        var apiKey = "9e0030ed1249f8db6f3352d0e0993549ab369f002ca78d0c2e0b167c831c9319519024db688cfa8af19f958c4b2183c04e88d2b7f96e062ca9b1886f6127ec1c"
+        
+        let data = UIImageJPEGRepresentation(image, 0.5)
+        let encodedImage = data.base64EncodedStringWithOptions(.allZeros)
+        
+        let params = ["image": encodedImage, "event_id": eventID]
+        
+        request.HTTPMethod = "POST"
+        request.HTTPBody = NSJSONSerialization.dataWithJSONObject(params, options: .allZeros, error: nil)
+        request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+        request.addValue("application/json", forHTTPHeaderField: "Accept")
+        request.addValue(apiKey, forHTTPHeaderField: "mw-token")
+        
+        var error: NSError?
+        
+        if let error = error {
+            println("\(error.localizedDescription)")
+        }
+        
+        let dataTask = session.dataTaskWithRequest(request, completionHandler: { (data: NSData!, response: NSURLResponse!, error: NSError!) -> Void in
+            if let responseError = error {
+                completion(data: nil, error: responseError)
+            } else if let requestResponse = response as? NSHTTPURLResponse {
+                completion(data: data, error: nil)
+            }
+        })
+        
+        dataTask.resume()
+        
     }
     
     class func makePatchRequest(url: String, params: Dictionary<String, AnyObject>, completion:(data: NSData?, error: NSError?) -> Void) {

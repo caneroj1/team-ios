@@ -44,7 +44,7 @@ class ProfileViewController: UIViewController, UINavigationControllerDelegate, U
         let pickedImage = info[UIImagePickerControllerOriginalImage] as! UIImage
         let newImage = Toucan(image: pickedImage).resizeByScaling(CGSizeMake(280, 140)).image as UIImage
         
-        DataManager.uploadImage("/api/s3ProfilePictureUpload", userID: MusiciansWanted.userId, image: newImage, completion: { (data, error) -> Void in
+        DataManager.uploadProfileImage("/api/s3ProfilePictureUpload", userID: MusiciansWanted.userId, image: newImage, completion: { (data, error) -> Void in
             dispatch_async(dispatch_get_main_queue()) {
                 SweetAlert().showAlert("Sweet!", subTitle: "Profile picture successfully changed!", style: AlertStyle.Success)
                 return

@@ -1799,7 +1799,7 @@
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <action selector="openCameraRoll:" destination="FCR-bT-rDk" eventType="touchUpInside" id="raV-PF-7I2"/>
+                                    <action selector="eventCameraRoll:" destination="FCR-bT-rDk" eventType="touchUpInside" id="Yn4-Mm-7MF"/>
                                 </connections>
                             </button>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YIR-i0-ZJD">
@@ -1984,6 +1984,7 @@
                         <outlet property="EventTitle" destination="Nc6-c7-QUR" id="tDv-i0-RYZ"/>
                         <outlet property="EventZip" destination="iRT-3m-GqF" id="h7H-QT-NCf"/>
                         <outlet property="StatePicker" destination="sMc-3h-T2H" id="SpW-0m-bSE"/>
+                        <outlet property="eventImage" destination="yrb-aX-wp2" id="deQ-OP-l2k"/>
                         <outlet property="scrollView" destination="YIR-i0-ZJD" id="eNB-lc-EZ2"/>
                     </connections>
                 </viewController>

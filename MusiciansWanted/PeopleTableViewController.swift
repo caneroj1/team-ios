@@ -56,7 +56,17 @@ class PeopleTableViewController: UITableViewController, PeopleDelegate {
         cell.lblProfileName.text = person?.profname
         cell.imgProfilePic.image = person?.profpic
         cell.lblLocation.text = person?.location
-        cell.lblAge.text = person?.age
+        
+        if person?.gender == "male" {
+            cell.lblAge.text = "Male, \(person!.age)"
+        }
+        else if person?.gender == "female" {
+            cell.lblAge.text = "Female, \(person!.age)"
+        }
+        else {
+            cell.lblAge.text = person?.age
+        }
+
         cell.lblInstrument.text = person?.instrument
         cell.lblGenre.text = person?.genre
         

@@ -41,6 +41,20 @@ class ProfileViewController: UIViewController, UINavigationControllerDelegate, U
         self.presentViewController(imagePicker, animated: true, completion: nil)
     }
     
+    @IBAction func logOut(sender: UIButton) {
+        //Store User information
+        let defaults = NSUserDefaults.standardUserDefaults()
+        
+        defaults.setObject(nil, forKey: "userId")
+        defaults.setObject(nil, forKey: "refreshToken")
+        defaults.setObject(true, forKey: "locationServicesDisabled")
+        defaults.setObject(nil, forKey: "longitude")
+        defaults.setObject(nil, forKey: "latitude")
+        
+        let viewController = self.storyboard?.instantiateViewControllerWithIdentifier("LogInViewController") as! LogInViewController
+        self.presentViewController(viewController, animated: true, completion: nil)
+    }
+    
     func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [NSObject : AnyObject]) {
         self.dismissViewControllerAnimated(true, completion: nil)
         let pickedImage = info[UIImagePickerControllerOriginalImage] as! UIImage

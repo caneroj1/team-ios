@@ -11,7 +11,7 @@
 import Foundation
 import UIKit
 
-let mwURL = "45.56.101.202"
+let mwURL = "http://45.56.101.202"
 
 class DataManager {
     class func makeGetRequest(url: String, completion:(data: NSData?, error: NSError?) -> Void) {

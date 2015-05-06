@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import CoreLocation
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -28,6 +29,29 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             region: DefaultServiceRegionType,
             credentialsProvider: credentialsProvider)
         AWSServiceManager.defaultServiceManager().defaultServiceConfiguration = configuration
+        
+        // Determine if user logged in:
+        
+        let defaults = NSUserDefaults.standardUserDefaults()
+        
+        if (defaults.objectForKey("userId") != nil) {
+            MusiciansWanted.userId = defaults.integerForKey("userId")
+            MusiciansWanted.refreshToken = defaults.stringForKey("refreshToken")!
+            MusiciansWanted.locationServicesDisabled = defaults.boolForKey("locationServicesDisabled")
+            MusiciansWanted.longitude = defaults.objectForKey("longitude") as? CLLocationDegrees
+            MusiciansWanted.latitude = defaults.objectForKey("latitude") as? CLLocationDegrees
+
+            
+            self.window = UIWindow(frame: UIScreen.mainScreen().bounds)
+            
+            var storyboard = UIStoryboard(name: "Main", bundle: nil)
+            
+            var initialViewController = storyboard.instantiateViewControllerWithIdentifier("GlobalTabBarController") as! GlobalTabBarController
+            
+            self.window?.rootViewController = initialViewController
+            self.window?.makeKeyAndVisible()
+        }
+
         
         return true
     }

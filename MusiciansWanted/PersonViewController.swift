@@ -58,10 +58,10 @@ class PersonViewController: UIViewController {
             }
             else {
                 if json["has_profile_pic"].stringValue == "true" {
-                    DataManager.makeGetRequest("/api/s3get?id=\(self.id!)", completion: { (data, error) -> Void in
+                    DataManager.makeGetRequest("/api/s3ProfileGet?user_id=\(self.id!)", completion: { (data, error) -> Void in
                         var picData = JSON(data: data!)
                         if picData["picture"] != nil {
-                            var base64String = json["picture"].stringValue
+                            var base64String = picData["picture"].stringValue
                             let decodedString = NSData(base64EncodedString: base64String, options: NSDataBase64DecodingOptions.IgnoreUnknownCharacters)
                             var downloadedImage = UIImage(data: decodedString!)!
                             var newImage = Toucan(image: downloadedImage).resize(CGSizeMake(280, 140), fitMode: Toucan.Resize.FitMode.Scale).image

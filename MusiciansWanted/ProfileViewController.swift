@@ -8,15 +8,18 @@
 
 import UIKit
 
-class ProfileViewController: UIViewController, UINavigationControllerDelegate, UIImagePickerControllerDelegate {
-    // MARK: - Instances Variables and IB Outlets
+class ProfileViewController: UIViewController, UINavigationControllerDelegate, UIImagePickerControllerDelegate, UITableViewDelegate, UITableViewDataSource, ContactTableDelegate {
     
+    // MARK: - Instances Variables and IB Outlets
     var needToLoadPicture = true
     var genderString: String?
     var searchRadius: Int = 10
     var userAge: Int?
     var noAge: Bool?
     var ageText = ""
+    var hasCell = false
+    var myCell: String?
+    var contactsManager = ContactsDataManager()
     
     // IB items for the main profile view
     @IBOutlet weak var nameLabel: UILabel!
@@ -27,6 +30,8 @@ class ProfileViewController: UIViewController, UINavigationControllerDelegate, U
     @IBOutlet weak var locationLabel: UILabel!
     @IBOutlet weak var profileImage: UIImageView!
     @IBOutlet weak var editProfileButton: UIBarButtonItem!
+    @IBOutlet var scrollView: UIScrollView!
+    @IBOutlet weak var contactsTable: UITableView!
     
     // MARK: - Image Functionality
     
@@ -36,12 +41,26 @@ class ProfileViewController: UIViewController, UINavigationControllerDelegate, U
         self.presentViewController(imagePicker, animated: true, completion: nil)
     }
     
+    @IBAction func logOut(sender: UIButton) {
+        //Store User information
+        let defaults = NSUserDefaults.standardUserDefaults()
+        
+        defaults.setObject(nil, forKey: "userId")
+        defaults.setObject(nil, forKey: "refreshToken")
+        defaults.setObject(true, forKey: "locationServicesDisabled")
+        defaults.setObject(nil, forKey: "longitude")
+        defaults.setObject(nil, forKey: "latitude")
+        
+        let viewController = self.storyboard?.instantiateViewControllerWithIdentifier("LogInViewController") as! LogInViewController
+        self.presentViewController(viewController, animated: true, completion: nil)
+    }
+    
     func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [NSObject : AnyObject]) {
         self.dismissViewControllerAnimated(true, completion: nil)
         let pickedImage = info[UIImagePickerControllerOriginalImage] as! UIImage
         let newImage = Toucan(image: pickedImage).resizeByScaling(CGSizeMake(280, 140)).image as UIImage
         
-        DataManager.uploadImage("/api/s3upload", userID: MusiciansWanted.userId, image: newImage, completion: { (data, error) -> Void in
+        DataManager.uploadProfileImage("/api/s3ProfilePictureUpload", userID: MusiciansWanted.userId, image: newImage, completion: { (data, error) -> Void in
             dispatch_async(dispatch_get_main_queue()) {
                 SweetAlert().showAlert("Sweet!", subTitle: "Profile picture successfully changed!", style: AlertStyle.Success)
                 return
@@ -51,7 +70,19 @@ class ProfileViewController: UIViewController, UINavigationControllerDelegate, U
         profileImage.image = newImage
     }
     
+    // MARK: - Contact Table Delegate
+    func contactSaved() {
+        dispatch_async(dispatch_get_main_queue()) {
+            self.contactsTable.reloadData()
+        }
+    }
+    
     // MARK: - API Requests
+    
+    func populateContacts() {
+        contactsManager.contactDelegate = self
+        contactsManager.populateContacts()
+    }
     
     func populateProfile() {
         var url = "/api/users/\(MusiciansWanted.userId)"
@@ -74,7 +105,12 @@ class ProfileViewController: UIViewController, UINavigationControllerDelegate, U
                 self.bandLabel.text = json["looking_for_band"] ? "Yes" : "No"
                 self.searchRadius = json["search_radius"].stringValue.toInt()!
                 self.genderString = json["gender"].stringValue
+                self.hasCell = (json["cell"].stringValue != "")
 
+                if self.hasCell {
+                    self.myCell = json["cell"].stringValue
+                }
+                
                 if self.genderString != "none" {
                     self.ageLabel.text = "\(self.genderString!.capitalizedString), \(self.ageLabel.text!)"
                 }
@@ -85,7 +121,7 @@ class ProfileViewController: UIViewController, UINavigationControllerDelegate, U
     }
     
     func getProfileImage() {
-        var url = "/api/s3get?user_id=\(MusiciansWanted.userId)"
+        var url = "/api/s3ProfileGet?user_id=\(MusiciansWanted.userId)"
         DataManager.makeGetRequest(url, completion: { (data, error) -> Void in
             if data != nil {
                 var json = JSON(data: data!)
@@ -111,6 +147,7 @@ class ProfileViewController: UIViewController, UINavigationControllerDelegate, U
     override func viewWillAppear(animated: Bool) {
         editProfileButton.enabled = false
         populateProfile()
+        populateContacts()
         if needToLoadPicture {
             getProfileImage()
             needToLoadPicture = false
@@ -120,11 +157,33 @@ class ProfileViewController: UIViewController, UINavigationControllerDelegate, U
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
+        
+        scrollView.contentSize.height = 600
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    // MARK: - Contacts Table View
+    
+    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        println(contactsManager.contacts)
+        return contactsManager.contacts.count
+    }
+    
+    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCellWithIdentifier("ContactCell") as! UITableViewCell
+        cell.textLabel?.text = contactsManager.contacts[indexPath.row].name
+        return cell
+    }
+    
+    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        let personView = self.storyboard?.instantiateViewControllerWithIdentifier("PersonViewController") as! PersonViewController
+        
+        personView.id = contactsManager.contacts[indexPath.row].id
+        self.navigationController?.pushViewController(personView, animated: true)
     }
     
     // MARK: - Navigation
@@ -159,6 +218,18 @@ class ProfileViewController: UIViewController, UINavigationControllerDelegate, U
             }
             else {
                 destination.bandBool = true
+            }
+            
+            if hasCell {
+                destination.cellSent = true
+                let cellString = myCell! as NSString
+                let firstThree = cellString.substringWithRange(NSMakeRange(1, 3))
+                let secondThree = cellString.substringWithRange(NSMakeRange(4, 3))
+                let lastFour = cellString.substringWithRange(NSMakeRange(7, 4))
+                destination.cellPhone = "\(firstThree)-\(secondThree)-\(lastFour)"
+            }
+            else {
+                destination.cellSent = false
             }
         }
     }

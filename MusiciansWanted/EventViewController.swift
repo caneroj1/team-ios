@@ -126,7 +126,7 @@ class EventViewController: UIViewController {
         personView.controller = "people"
         personView.icon = userImage
         personView.id = userID
-        
+                
         self.navigationController?.pushViewController(personView, animated: true)
     }
     

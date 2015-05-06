@@ -26,6 +26,26 @@ class LogInViewController: UIViewController, CLLocationManagerDelegate, UITextFi
         return true;
     }
     
+    /*override func viewWillAppear(animated: Bool) {
+        // Determine if user logged in:
+        
+        let defaults = NSUserDefaults.standardUserDefaults()
+        
+        if (defaults.objectForKey("userId") != nil) {
+            MusiciansWanted.userId = defaults.integerForKey("userId")
+            MusiciansWanted.refreshToken = defaults.stringForKey("refreshToken")!
+            MusiciansWanted.locationServicesDisabled = defaults.boolForKey("locationServicesDisabled")
+            MusiciansWanted.longitude = defaults.objectForKey("longitude") as! CLLocationDegrees
+            MusiciansWanted.latitude = defaults.objectForKey("latitude")as! CLLocationDegrees
+            
+            println("!= nil");
+            
+            let viewController = self.storyboard?.instantiateViewControllerWithIdentifier("FeedTableViewController") as! FeedTableViewController
+            self.presentViewController(viewController, animated: true, completion: nil)
+        }
+        
+    }*/
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -44,6 +64,8 @@ class LogInViewController: UIViewController, CLLocationManagerDelegate, UITextFi
         }
         
         // Do any additional setup after loading the view.
+        
+        
     }
     
     
@@ -145,6 +167,16 @@ class LogInViewController: UIViewController, CLLocationManagerDelegate, UITextFi
         
         DataManager.makePatchRequest(url, params: params, completion: { (data, error) -> Void in
             dispatch_async(dispatch_get_main_queue()) {
+                
+                //Store User information
+                let defaults = NSUserDefaults.standardUserDefaults()
+                
+                defaults.setObject(MusiciansWanted.userId, forKey: "userId")
+                defaults.setObject(MusiciansWanted.refreshToken, forKey: "refreshToken")
+                defaults.setObject(MusiciansWanted.locationServicesDisabled, forKey: "locationServicesDisabled")
+                defaults.setObject(MusiciansWanted.longitude, forKey: "longitude")
+                defaults.setObject(MusiciansWanted.latitude, forKey: "latitude")
+                                
                 let viewController = self.storyboard?.instantiateViewControllerWithIdentifier("GlobalTabBarController") as! GlobalTabBarController
                 self.presentViewController(viewController, animated: true, completion: nil)
             }

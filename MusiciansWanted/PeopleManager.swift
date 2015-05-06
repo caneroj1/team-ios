@@ -65,7 +65,7 @@ class PeopleManager: NSObject {
         
         DataManager.makeGetRequest(url!, completion: { (data, error) -> Void in
             let json = JSON(data: data!)
-            
+           
             if self.isNearMeURL {
                 for user in json {
                     self.addUser(user.1)

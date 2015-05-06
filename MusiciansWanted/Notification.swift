@@ -14,12 +14,16 @@ class Notification {
     let distance: String?
     let date: String
     let imageString: String
+    let recordId: Int
+    let notificationType: Int
     
-    init(title: String, date: String, location: String?, distance: String?, imageString: String) {
+    init(title: String, date: String, location: String?, distance: String?, imageString: String, recordId: Int, notificationType: Int) {
         self.title = title
         self.date = date
         self.location = location
         self.distance = distance
         self.imageString = imageString
+        self.recordId = recordId
+        self.notificationType = notificationType
     }
 }

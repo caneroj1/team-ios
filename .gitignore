@@ -17,3 +17,4 @@ DerivedData
 *.xcuserstate
 
 MW.xcodeproj/project.xcworkspace/xcuserdata/*
+MusiciansWanted/Constants.swift

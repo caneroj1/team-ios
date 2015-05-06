@@ -8,10 +8,10 @@
 
 import UIKit
 
-class EventsTableViewController: UITableViewController {
+class EventsTableViewController: UITableViewController, UIScrollViewDelegate, EventsDelegate {
     
     var eventAmount = 99;
-
+    var eventManager = EventsManager()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -21,8 +21,9 @@ class EventsTableViewController: UITableViewController {
 
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem()
+        eventManager.eventDelegate = self
         eventManager.loadEvents(0,upper: eventAmount);
-        tableView.reloadData()
+//        tableView.reloadData()
     }
 
     override func didReceiveMemoryWarning() {
@@ -58,22 +59,47 @@ class EventsTableViewController: UITableViewController {
         // Configure the cell...
         cell.EventDescription.text = event.eventLocation
         //cell.EventImage.image = event.eventPicture
-        //cell.EventTitle.text = event.eventName
+        cell.EventTitle.text = event.eventName
             
         //cell.EventDescription.text = "The time to see ultra lord"
         cell.EventImage.image = UIImage(named: "UltraLord")
-        cell.EventTitle.text = "The Event"
+        //cell.EventTitle.text = "The Event"
         
         
         return cell
     }
     
-    func addedNewItem(item: EventsManager) {
+    override func scrollViewDidScroll(scrollView: UIScrollView) {
+        var currentOffset = scrollView.contentOffset.y;
+        var maximumOffset = scrollView.contentSize.height - scrollView.frame.size.height;
+        
+        if (maximumOffset - currentOffset <= 20.0 && eventManager.isLoadingEvents == false) {
+            println("expanding size");
+           
+//            eventManager.isLoadingEvents = true
+//            eventManager.loadEvents(eventManager.event.count, upper: eventManager.event.count + 100)
+        }
+    }
+    
+    func addedNewEvent() {
         dispatch_async(dispatch_get_main_queue()) {
             self.tableView.reloadData()
         }
     }
 
+    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        let event = eventManager.event[indexPath.row]
+        
+        println("Instantiate event view...")
+        let eventView = self.storyboard?.instantiateViewControllerWithIdentifier("EventViewController") as! EventViewController
+        
+        eventView.controller = "events"
+        eventView.icon = event.eventPicture
+        eventView.id = event.eventId
+        
+        self.navigationController?.pushViewController(eventView, animated: true)
+    }
+    
 
     /*
     // Override to support conditional editing of the table view.
@@ -110,14 +136,14 @@ class EventsTableViewController: UITableViewController {
     }
     */
 
-    /*
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using [segue destinationViewController].
-        // Pass the selected object to the new view controller.
+        if segue.identifier == "MapSegue" {
+            let destination = segue.destinationViewController as! EventMapViewController
+            destination.eventManager = eventManager
+        }
     }
-    */
 
 }

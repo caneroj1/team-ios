@@ -21,6 +21,15 @@ class InboxTableViewController: UITableViewController {
         inboxMgr.addMessage("Robin Scherbatsky", subject: "What? That's not distracting. That's just talking about the story of a scrappy little underdog team that prevailed despite very shaky goal ending and, frankly, the declining skills of Trevor Linden.", time: "Today")
         inboxMgr.addMessage("Marco Polo", subject: "I found you.", time: "Today")
         inboxMgr.addMessage("Kari Gilbertson", subject: "Omg they are awesome", time: "Today")
+        
+        let mobileAnalytics = AWSMobileAnalytics(forAppId: MobileAnalyticsAppId)
+        let eventRecordClient = mobileAnalytics.eventClient
+        let eventRecord = eventRecordClient.createEventWithEventType("InboxViewEvent")
+        
+        eventRecord.addAttribute("Test", forKey: "Inbox")
+        
+        eventRecordClient.recordEvent(eventRecord)
+        eventRecordClient.submitEvents()
     }
     
     override func didReceiveMemoryWarning() {

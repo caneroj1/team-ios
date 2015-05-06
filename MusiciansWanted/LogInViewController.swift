@@ -9,13 +9,42 @@
 import UIKit
 import CoreLocation
 
-class LogInViewController: UIViewController, CLLocationManagerDelegate {
+class LogInViewController: UIViewController, CLLocationManagerDelegate, UITextFieldDelegate {
     
     let locationManager = CLLocationManager()
     var ourLocation: String?
     
     @IBOutlet weak var usernameField: UITextField!
     @IBOutlet weak var passwordField: UITextField!
+    
+    override func touchesBegan(touches: Set<NSObject>, withEvent event: UIEvent) {
+        self.view.endEditing(true);
+    }
+    
+    func textFieldShouldReturn(textField: UITextField) -> Bool {
+        textField.resignFirstResponder();
+        return true;
+    }
+    
+    /*override func viewWillAppear(animated: Bool) {
+        // Determine if user logged in:
+        
+        let defaults = NSUserDefaults.standardUserDefaults()
+        
+        if (defaults.objectForKey("userId") != nil) {
+            MusiciansWanted.userId = defaults.integerForKey("userId")
+            MusiciansWanted.refreshToken = defaults.stringForKey("refreshToken")!
+            MusiciansWanted.locationServicesDisabled = defaults.boolForKey("locationServicesDisabled")
+            MusiciansWanted.longitude = defaults.objectForKey("longitude") as! CLLocationDegrees
+            MusiciansWanted.latitude = defaults.objectForKey("latitude")as! CLLocationDegrees
+            
+            println("!= nil");
+            
+            let viewController = self.storyboard?.instantiateViewControllerWithIdentifier("FeedTableViewController") as! FeedTableViewController
+            self.presentViewController(viewController, animated: true, completion: nil)
+        }
+        
+    }*/
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -35,6 +64,8 @@ class LogInViewController: UIViewController, CLLocationManagerDelegate {
         }
         
         // Do any additional setup after loading the view.
+        
+        
     }
     
     
@@ -48,6 +79,7 @@ class LogInViewController: UIViewController, CLLocationManagerDelegate {
         if(usernameField.text != "" && passwordField.text != "") {
             var paramsDictionary = ["username": usernameField.text, "password": passwordField.text]
             DataManager.makePostRequest("/api/login", params: paramsDictionary, completion: { (data, error) -> Void in
+                println(error)
                 let json = JSON(data: data!)
                 dispatch_async(dispatch_get_main_queue()) {
                     var alert:UIAlertController = UIAlertController()
@@ -111,6 +143,10 @@ class LogInViewController: UIViewController, CLLocationManagerDelegate {
     
     func useLocationInfo(placemark: CLPlacemark) {
         locationManager.stopUpdatingLocation()
+        
+        MusiciansWanted.latitude = placemark.location.coordinate.latitude
+        MusiciansWanted.longitude = placemark.location.coordinate.longitude
+        
         let subThoroughfare: String = (placemark.subThoroughfare != nil) ? placemark.subThoroughfare : ""
         let thoroughfare: String = (placemark.thoroughfare != nil) ? placemark.thoroughfare : ""
         var locationString = "\(subThoroughfare) \(thoroughfare) \(placemark.subLocality) "
@@ -131,6 +167,16 @@ class LogInViewController: UIViewController, CLLocationManagerDelegate {
         
         DataManager.makePatchRequest(url, params: params, completion: { (data, error) -> Void in
             dispatch_async(dispatch_get_main_queue()) {
+                
+                //Store User information
+                let defaults = NSUserDefaults.standardUserDefaults()
+                
+                defaults.setObject(MusiciansWanted.userId, forKey: "userId")
+                defaults.setObject(MusiciansWanted.refreshToken, forKey: "refreshToken")
+                defaults.setObject(MusiciansWanted.locationServicesDisabled, forKey: "locationServicesDisabled")
+                defaults.setObject(MusiciansWanted.longitude, forKey: "longitude")
+                defaults.setObject(MusiciansWanted.latitude, forKey: "latitude")
+                                
                 let viewController = self.storyboard?.instantiateViewControllerWithIdentifier("GlobalTabBarController") as! GlobalTabBarController
                 self.presentViewController(viewController, animated: true, completion: nil)
             }

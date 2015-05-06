@@ -18,26 +18,38 @@
 		012C27CF1AAB7CEE0024F5C3 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 012C27CE1AAB7CEE0024F5C3 /* Images.xcassets */; };
 		012C27D21AAB7CEE0024F5C3 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 012C27D01AAB7CEE0024F5C3 /* LaunchScreen.xib */; };
 		012C27DE1AAB7CEE0024F5C3 /* MusiciansWantedTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 012C27DD1AAB7CEE0024F5C3 /* MusiciansWantedTests.swift */; };
+		014A67321ADAD18300729E82 /* EventViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 014A67311ADAD18300729E82 /* EventViewController.swift */; };
+		014C5C0A1AD97645008680D0 /* EventsDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 014C5C091AD97645008680D0 /* EventsDelegate.swift */; };
 		01B594161AB35B090044AA16 /* InboxManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01B594151AB35B090044AA16 /* InboxManager.swift */; };
 		01F50F931AB20E4300FE9051 /* GlobalTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01F50F921AB20E4300FE9051 /* GlobalTabBarController.swift */; };
 		01F50F951AB2424A00FE9051 /* FeedSettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01F50F941AB2424A00FE9051 /* FeedSettingsViewController.swift */; };
 		01FCDE841ACF0500002F3A56 /* InboxTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01FCDE831ACF0500002F3A56 /* InboxTableViewController.swift */; };
 		01FCDE861ACF05EA002F3A56 /* InboxCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01FCDE851ACF05EA002F3A56 /* InboxCell.swift */; };
+		09D698A591F3D8F3224F63C1 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7E375FC571E426EA4D919A0A /* libPods.a */; };
+		442E54F01AE1979300718014 /* FeedTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 442E54EF1AE1979300718014 /* FeedTableViewController.swift */; };
+		442E54F21AE197E300718014 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 442E54F11AE197E300718014 /* Constants.swift */; };
+		4434D3DE1AD9D02400344B04 /* PersonViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4434D3DD1AD9D02400344B04 /* PersonViewController.swift */; };
 		44470F551AC884F30077B042 /* EditProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44470F541AC884F30077B042 /* EditProfileViewController.swift */; };
 		444951C01AD719640013A4DD /* FeedViewTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 444951BF1AD719640013A4DD /* FeedViewTableCell.swift */; };
 		444951C21AD71B3D0013A4DD /* FeedViewDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 444951C11AD71B3D0013A4DD /* FeedViewDataManager.swift */; };
 		444951C41AD72B420013A4DD /* Notification.swift in Sources */ = {isa = PBXBuildFile; fileRef = 444951C31AD72B420013A4DD /* Notification.swift */; };
 		44566E871ACB4E3200D9F6A4 /* Toucan.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44566E861ACB4E3200D9F6A4 /* Toucan.swift */; };
+		44C1D55A1ADCA375006388E5 /* EventMapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44C1D5591ADCA375006388E5 /* EventMapViewController.swift */; };
+		44C1D55C1ADCAFD5006388E5 /* EventMapData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44C1D55B1ADCAFD5006388E5 /* EventMapData.swift */; };
+		44CFD5231AE73F7900E536F3 /* ContactsDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44CFD5221AE73F7900E536F3 /* ContactsDataManager.swift */; };
+		44CFD5251AE73F9600E536F3 /* Contact.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44CFD5241AE73F9600E536F3 /* Contact.swift */; };
+		44CFD5271AE7407900E536F3 /* ContactTableDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44CFD5261AE7407900E536F3 /* ContactTableDelegate.swift */; };
 		44D3089F1ACB32350000F435 /* ApiData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44D3089E1ACB32350000F435 /* ApiData.swift */; };
 		44D308A11ACB323D0000F435 /* LogInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44D308A01ACB323D0000F435 /* LogInViewController.swift */; };
 		44D308A31ACB32450000F435 /* SweetAlert copy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44D308A21ACB32450000F435 /* SweetAlert copy.swift */; };
 		44D308A51ACB324E0000F435 /* SwiftyJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44D308A41ACB324E0000F435 /* SwiftyJSON.swift */; };
 		44D308A71ACB32560000F435 /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44D308A61ACB32560000F435 /* DataManager.swift */; };
-		44D308A91ACB325A0000F435 /* FeedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44D308A81ACB325A0000F435 /* FeedViewController.swift */; };
+		44DFBAAF1AD7731E00DDA8AB /* FeedViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44DFBAAE1AD7731E00DDA8AB /* FeedViewDelegate.swift */; };
+		AD37E3AC1AEAAF2C0051B737 /* AddEventViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD37E3AB1AEAAF2C0051B737 /* AddEventViewController.swift */; };
+		AD6771181ADB588700E5BF7F /* AWS.m in Sources */ = {isa = PBXBuildFile; fileRef = AD6771171ADB588700E5BF7F /* AWS.m */; };
 		AD85DC5F1AD452C400D6E369 /* EventsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD85DC5E1AD452C400D6E369 /* EventsManager.swift */; };
 		AD85DC611AD45F2800D6E369 /* EventsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD85DC601AD45F2800D6E369 /* EventsCell.swift */; };
 		AD97B1351AD2C06B007645C1 /* EventsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD97B1341AD2C06B007645C1 /* EventsTableViewController.swift */; };
-		44DFBAAF1AD7731E00DDA8AB /* FeedViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44DFBAAE1AD7731E00DDA8AB /* FeedViewDelegate.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -66,26 +78,41 @@
 		012C27D71AAB7CEE0024F5C3 /* MWTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MWTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		012C27DC1AAB7CEE0024F5C3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		012C27DD1AAB7CEE0024F5C3 /* MusiciansWantedTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MusiciansWantedTests.swift; sourceTree = "<group>"; };
+		014A67311ADAD18300729E82 /* EventViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventViewController.swift; sourceTree = "<group>"; };
+		014C5C091AD97645008680D0 /* EventsDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventsDelegate.swift; sourceTree = "<group>"; };
 		01B594151AB35B090044AA16 /* InboxManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InboxManager.swift; sourceTree = "<group>"; };
 		01F50F921AB20E4300FE9051 /* GlobalTabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GlobalTabBarController.swift; sourceTree = "<group>"; };
 		01F50F941AB2424A00FE9051 /* FeedSettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeedSettingsViewController.swift; sourceTree = "<group>"; };
 		01FCDE831ACF0500002F3A56 /* InboxTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InboxTableViewController.swift; sourceTree = "<group>"; };
 		01FCDE851ACF05EA002F3A56 /* InboxCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InboxCell.swift; sourceTree = "<group>"; };
+		0E65F3C837786026AA6D9712 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
+		442E54EF1AE1979300718014 /* FeedTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeedTableViewController.swift; sourceTree = "<group>"; };
+		442E54F11AE197E300718014 /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		4434D3DD1AD9D02400344B04 /* PersonViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PersonViewController.swift; sourceTree = "<group>"; };
 		44470F541AC884F30077B042 /* EditProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditProfileViewController.swift; sourceTree = "<group>"; };
 		444951BF1AD719640013A4DD /* FeedViewTableCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeedViewTableCell.swift; sourceTree = "<group>"; };
 		444951C11AD71B3D0013A4DD /* FeedViewDataManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeedViewDataManager.swift; sourceTree = "<group>"; };
 		444951C31AD72B420013A4DD /* Notification.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Notification.swift; sourceTree = "<group>"; };
 		44566E861ACB4E3200D9F6A4 /* Toucan.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Toucan.swift; sourceTree = "<group>"; };
+		44C1D5591ADCA375006388E5 /* EventMapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventMapViewController.swift; sourceTree = "<group>"; };
+		44C1D55B1ADCAFD5006388E5 /* EventMapData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventMapData.swift; sourceTree = "<group>"; };
+		44CFD5221AE73F7900E536F3 /* ContactsDataManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContactsDataManager.swift; sourceTree = "<group>"; };
+		44CFD5241AE73F9600E536F3 /* Contact.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Contact.swift; sourceTree = "<group>"; };
+		44CFD5261AE7407900E536F3 /* ContactTableDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContactTableDelegate.swift; sourceTree = "<group>"; };
 		44D3089E1ACB32350000F435 /* ApiData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ApiData.swift; sourceTree = "<group>"; };
 		44D308A01ACB323D0000F435 /* LogInViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LogInViewController.swift; sourceTree = "<group>"; };
 		44D308A21ACB32450000F435 /* SweetAlert copy.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "SweetAlert copy.swift"; sourceTree = "<group>"; };
 		44D308A41ACB324E0000F435 /* SwiftyJSON.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftyJSON.swift; sourceTree = "<group>"; };
 		44D308A61ACB32560000F435 /* DataManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataManager.swift; sourceTree = "<group>"; };
-		44D308A81ACB325A0000F435 /* FeedViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeedViewController.swift; sourceTree = "<group>"; };
+		44DFBAAE1AD7731E00DDA8AB /* FeedViewDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeedViewDelegate.swift; sourceTree = "<group>"; };
+		7E375FC571E426EA4D919A0A /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		AD37E3AB1AEAAF2C0051B737 /* AddEventViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddEventViewController.swift; sourceTree = "<group>"; };
+		AD6771161ADB588600E5BF7F /* MW-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "MW-Bridging-Header.h"; path = "../MW-Bridging-Header.h"; sourceTree = "<group>"; };
+		AD6771171ADB588700E5BF7F /* AWS.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AWS.m; sourceTree = "<group>"; };
 		AD85DC5E1AD452C400D6E369 /* EventsManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventsManager.swift; sourceTree = "<group>"; };
 		AD85DC601AD45F2800D6E369 /* EventsCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventsCell.swift; sourceTree = "<group>"; };
 		AD97B1341AD2C06B007645C1 /* EventsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventsTableViewController.swift; sourceTree = "<group>"; };
-		44DFBAAE1AD7731E00DDA8AB /* FeedViewDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeedViewDelegate.swift; sourceTree = "<group>"; };
+		BE5A232D71C1A13AE8FD8A71 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -93,6 +120,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				09D698A591F3D8F3224F63C1 /* libPods.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -112,6 +140,8 @@
 				012C27C21AAB7CEE0024F5C3 /* MusiciansWanted */,
 				012C27DA1AAB7CEE0024F5C3 /* MusiciansWantedTests */,
 				012C27C11AAB7CEE0024F5C3 /* Products */,
+				9205962C6474830AA9D121C0 /* Pods */,
+				6B2CFBC85545EC1279FC29BA /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -127,6 +157,7 @@
 		012C27C21AAB7CEE0024F5C3 /* MusiciansWanted */ = {
 			isa = PBXGroup;
 			children = (
+				AD6771171ADB588700E5BF7F /* AWS.m */,
 				012C27C51AAB7CEE0024F5C3 /* AppDelegate.swift */,
 				44C06A661AD5790D004E88D7 /* Navigation */,
 				44C06A651AD578F8004E88D7 /* Login */,
@@ -139,6 +170,7 @@
 				012C27CB1AAB7CEE0024F5C3 /* Main.storyboard */,
 				012C27CE1AAB7CEE0024F5C3 /* Images.xcassets */,
 				012C27D01AAB7CEE0024F5C3 /* LaunchScreen.xib */,
+				AD6771161ADB588600E5BF7F /* MW-Bridging-Header.h */,
 				012C27C31AAB7CEE0024F5C3 /* Supporting Files */,
 			);
 			path = MusiciansWanted;
@@ -172,7 +204,7 @@
 		01FCDE7E1ACEFE3A002F3A56 /* News Feed */ = {
 			isa = PBXGroup;
 			children = (
-				44D308A81ACB325A0000F435 /* FeedViewController.swift */,
+				442E54EF1AE1979300718014 /* FeedTableViewController.swift */,
 				01F50F941AB2424A00FE9051 /* FeedSettingsViewController.swift */,
 				444951BF1AD719640013A4DD /* FeedViewTableCell.swift */,
 				444951C11AD71B3D0013A4DD /* FeedViewDataManager.swift */,
@@ -190,6 +222,7 @@
 				01153FA51AB2980100B96401 /* PeopleSettingsViewController.swift */,
 				010AEBCF1ACE239D0066E4FA /* PeopleManager.swift */,
 				010AEBCE1ACE239D0066E4FA /* PeopleCell.swift */,
+				4434D3DD1AD9D02400344B04 /* PersonViewController.swift */,
 			);
 			name = People;
 			sourceTree = "<group>";
@@ -207,9 +240,14 @@
 		01FCDE811ACEFE79002F3A56 /* Events */ = {
 			isa = PBXGroup;
 			children = (
+				AD37E3AB1AEAAF2C0051B737 /* AddEventViewController.swift */,
 				AD97B1341AD2C06B007645C1 /* EventsTableViewController.swift */,
+				014C5C091AD97645008680D0 /* EventsDelegate.swift */,
 				AD85DC5E1AD452C400D6E369 /* EventsManager.swift */,
 				AD85DC601AD45F2800D6E369 /* EventsCell.swift */,
+				014A67311ADAD18300729E82 /* EventViewController.swift */,
+				44C1D5591ADCA375006388E5 /* EventMapViewController.swift */,
+				44C1D55B1ADCAFD5006388E5 /* EventMapData.swift */,
 			);
 			name = Events;
 			sourceTree = "<group>";
@@ -219,6 +257,9 @@
 			children = (
 				44470F541AC884F30077B042 /* EditProfileViewController.swift */,
 				01266BC11AB0F03F003D2354 /* ProfileViewController.swift */,
+				44CFD5221AE73F7900E536F3 /* ContactsDataManager.swift */,
+				44CFD5241AE73F9600E536F3 /* Contact.swift */,
+				44CFD5261AE7407900E536F3 /* ContactTableDelegate.swift */,
 			);
 			name = Profile;
 			sourceTree = "<group>";
@@ -231,6 +272,7 @@
 				44566E861ACB4E3200D9F6A4 /* Toucan.swift */,
 				44D308A41ACB324E0000F435 /* SwiftyJSON.swift */,
 				44D308A61ACB32560000F435 /* DataManager.swift */,
+				442E54F11AE197E300718014 /* Constants.swift */,
 			);
 			name = Support;
 			sourceTree = "<group>";
@@ -251,6 +293,23 @@
 			name = Navigation;
 			sourceTree = "<group>";
 		};
+		6B2CFBC85545EC1279FC29BA /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				7E375FC571E426EA4D919A0A /* libPods.a */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		9205962C6474830AA9D121C0 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				BE5A232D71C1A13AE8FD8A71 /* Pods.debug.xcconfig */,
+				0E65F3C837786026AA6D9712 /* Pods.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -258,9 +317,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 012C27E11AAB7CEE0024F5C3 /* Build configuration list for PBXNativeTarget "MW" */;
 			buildPhases = (
+				D144CA2C3E05E6A1892E4297 /* Check Pods Manifest.lock */,
 				012C27BC1AAB7CEE0024F5C3 /* Sources */,
 				012C27BD1AAB7CEE0024F5C3 /* Frameworks */,
 				012C27BE1AAB7CEE0024F5C3 /* Resources */,
+				7729AF9D6537FD4DA9B4580F /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -300,6 +361,7 @@
 				TargetAttributes = {
 					012C27BF1AAB7CEE0024F5C3 = {
 						CreatedOnToolsVersion = 6.1.1;
+						DevelopmentTeam = RCS2VSM2RS;
 					};
 					012C27D61AAB7CEE0024F5C3 = {
 						CreatedOnToolsVersion = 6.1.1;
@@ -346,24 +408,64 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		7729AF9D6537FD4DA9B4580F /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		D144CA2C3E05E6A1892E4297 /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		012C27BC1AAB7CEE0024F5C3 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				44CFD5251AE73F9600E536F3 /* Contact.swift in Sources */,
 				AD85DC5F1AD452C400D6E369 /* EventsManager.swift in Sources */,
-				44D308A91ACB325A0000F435 /* FeedViewController.swift in Sources */,
+				442E54F21AE197E300718014 /* Constants.swift in Sources */,
 				444951C21AD71B3D0013A4DD /* FeedViewDataManager.swift in Sources */,
 				444951C41AD72B420013A4DD /* Notification.swift in Sources */,
 				010AEBD21ACE239D0066E4FA /* PeopleManager.swift in Sources */,
+				014A67321ADAD18300729E82 /* EventViewController.swift in Sources */,
+				44CFD5271AE7407900E536F3 /* ContactTableDelegate.swift in Sources */,
 				44470F551AC884F30077B042 /* EditProfileViewController.swift in Sources */,
+				44C1D55C1ADCAFD5006388E5 /* EventMapData.swift in Sources */,
+				44C1D55A1ADCA375006388E5 /* EventMapViewController.swift in Sources */,
 				01F50F931AB20E4300FE9051 /* GlobalTabBarController.swift in Sources */,
 				44D3089F1ACB32350000F435 /* ApiData.swift in Sources */,
+				AD37E3AC1AEAAF2C0051B737 /* AddEventViewController.swift in Sources */,
 				01FCDE841ACF0500002F3A56 /* InboxTableViewController.swift in Sources */,
 				44566E871ACB4E3200D9F6A4 /* Toucan.swift in Sources */,
 				44D308A31ACB32450000F435 /* SweetAlert copy.swift in Sources */,
 				012C27C61AAB7CEE0024F5C3 /* AppDelegate.swift in Sources */,
 				01F50F951AB2424A00FE9051 /* FeedSettingsViewController.swift in Sources */,
+				442E54F01AE1979300718014 /* FeedTableViewController.swift in Sources */,
 				01266BC31AB0F03F003D2354 /* ProfileViewController.swift in Sources */,
 				44D308A51ACB324E0000F435 /* SwiftyJSON.swift in Sources */,
 				01153FA61AB2980100B96401 /* PeopleSettingsViewController.swift in Sources */,
@@ -372,12 +474,16 @@
 				AD85DC611AD45F2800D6E369 /* EventsCell.swift in Sources */,
 				444951C01AD719640013A4DD /* FeedViewTableCell.swift in Sources */,
 				44DFBAAF1AD7731E00DDA8AB /* FeedViewDelegate.swift in Sources */,
+				44CFD5231AE73F7900E536F3 /* ContactsDataManager.swift in Sources */,
 				0104A5101AD837E800173F96 /* PeopleDelegate.swift in Sources */,
 				010AEBD11ACE239D0066E4FA /* PeopleCell.swift in Sources */,
+				014C5C0A1AD97645008680D0 /* EventsDelegate.swift in Sources */,
+				AD6771181ADB588700E5BF7F /* AWS.m in Sources */,
 				01FCDE861ACF05EA002F3A56 /* InboxCell.swift in Sources */,
 				44D308A71ACB32560000F435 /* DataManager.swift in Sources */,
 				AD97B1351AD2C06B007645C1 /* EventsTableViewController.swift in Sources */,
 				44D308A11ACB323D0000F435 /* LogInViewController.swift in Sources */,
+				4434D3DE1AD9D02400344B04 /* PersonViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -500,21 +606,30 @@
 		};
 		012C27E21AAB7CEE0024F5C3 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = BE5A232D71C1A13AE8FD8A71 /* Pods.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				INFOPLIST_FILE = MusiciansWanted/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = MW;
+				SWIFT_OBJC_BRIDGING_HEADER = "MW-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
 			name = Debug;
 		};
 		012C27E31AAB7CEE0024F5C3 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 0E65F3C837786026AA6D9712 /* Pods.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				INFOPLIST_FILE = MusiciansWanted/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = MW;
+				SWIFT_OBJC_BRIDGING_HEADER = "MW-Bridging-Header.h";
 			};
 			name = Release;
 		};

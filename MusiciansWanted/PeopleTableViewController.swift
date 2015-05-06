@@ -60,6 +60,14 @@ class PeopleTableViewController: UITableViewController, PeopleDelegate {
         cell.lblInstrument.text = person?.instrument
         cell.lblGenre.text = person?.genre
         
+        let mobileAnalytics = AWSMobileAnalytics(forAppId: MobileAnalyticsAppId)
+        let eventRecordClient = mobileAnalytics.eventClient
+        let eventRecord = eventRecordClient.createEventWithEventType("PeopleViewEvent")
+        
+        eventRecord.addAttribute("Hank", forKey: "People")
+        
+        eventRecordClient.recordEvent(eventRecord)
+        
         // Save the indexPath of the user
         pplMgr.person[pplMgr.arrPerson[indexPath.row]]?.indexPth = indexPath
         
@@ -70,9 +78,11 @@ class PeopleTableViewController: UITableViewController, PeopleDelegate {
         var currentOffset = scrollView.contentOffset.y;
         var maximumOffset = scrollView.contentSize.height - scrollView.frame.size.height;
         
-        if (maximumOffset - currentOffset <= 20.0 && pplMgr.isLoadingPeople == false) {
+        if (maximumOffset - currentOffset <= 2.0 && pplMgr.isLoadingPeople == false) {
+            pplMgr.isLoadingPeople = true
             println("expanding size");
             ttlPpl = pplMgr.arrPerson.count + 10;
+            
             
             pplMgr.loadPeople(pplMgr.arrPerson.count, upper: ttlPpl)
             
@@ -88,5 +98,16 @@ class PeopleTableViewController: UITableViewController, PeopleDelegate {
         dispatch_async(dispatch_get_main_queue()) {
             self.tableView.reloadData()
         }
+    }
+    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        let person = pplMgr.person[pplMgr.arrPerson[indexPath.row]]
+        
+        let personView = self.storyboard?.instantiateViewControllerWithIdentifier("PersonViewController") as! PersonViewController
+        
+        personView.controller = "people"
+        personView.icon = person?.profpic
+        personView.id = person?.id
+        
+        self.navigationController?.pushViewController(personView, animated: true)
     }
 }

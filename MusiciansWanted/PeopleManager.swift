@@ -115,7 +115,7 @@ class PeopleManager: NSObject {
         if user["has_profile_pic"].stringValue == "true"
         {
             println("loading profile picture of \(userId)");
-            var url = "/api/s3get?user_id=\(userId)"
+            var url = "/api/s3ProfileGet?user_id=\(userId)"
             DataManager.makeGetRequest(url, completion: { (data, error) -> Void in
                 if data != nil {
                     var json = JSON(data: data!)

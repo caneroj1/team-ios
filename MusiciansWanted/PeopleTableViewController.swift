@@ -13,6 +13,10 @@ class PeopleTableViewController: UITableViewController, PeopleDelegate {
     var ttlPpl = 24;
     var pplMgr = PeopleManager()
     
+    override func viewWillAppear(animated: Bool) {
+        pplMgr.loadPeople(0, upper: ttlPpl)
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -25,7 +29,7 @@ class PeopleTableViewController: UITableViewController, PeopleDelegate {
         
         pplMgr.peopleDelegate = self
         //pplMgr.getNotifications(MusiciansWanted.userId)
-        pplMgr.loadPeople(pplMgr.arrPerson.count, upper: ttlPpl)
+        //pplMgr.loadPeople(pplMgr.arrPerson.count, upper: ttlPpl)
         
     }
     

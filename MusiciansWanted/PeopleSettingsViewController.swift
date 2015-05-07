@@ -21,16 +21,31 @@ class PeopleSettingViewController: UIViewController, UITextFieldDelegate {
     var lowerAge:Int = 13;
     var upperAge:Int = 75;
     
-     var pplMgr = PeopleManager()
-    
     //Check Filters
     override func viewWillAppear(animated: Bool) {
-        contactsOnly.on = pplMgr.filters.contactsOnly
-        agesOption.on = pplMgr.filters.ageOn
-        jamOption.on = pplMgr.filters.looking_to_jam
-        bandOption.on = pplMgr.filters.looking_for_band
-        upperAge = pplMgr.filters.upperAge
-        lowerAge = pplMgr.filters.lowerAge
+        contactsOnly.on = Filters.contactsOnly
+        agesOption.on = Filters.ageOn
+        jamOption.on = Filters.looking_to_jam
+        bandOption.on = Filters.looking_for_band
+        upperAge = Filters.upperAge
+        lowerAge = Filters.lowerAge
+        lowerAgeTxt.text = "\(Filters.lowerAge)"
+        upperAgeTxt.text = "\(Filters.upperAge)"
+        
+        if agesOption.on {
+            lowerAgeTxt.enabled = true
+            lowerAgeTxt.backgroundColor = UIColor.whiteColor()
+            upperAgeTxt.enabled = true
+            upperAgeTxt.backgroundColor = UIColor.whiteColor()
+        }
+        else {
+            lowerAgeTxt.enabled = false
+            lowerAgeTxt.backgroundColor = UIColor.lightGrayColor()
+            upperAgeTxt.enabled = false
+            upperAgeTxt.backgroundColor = UIColor.lightGrayColor()
+        }
+        
+        println(Filters.upperAge)
         
         println("dat update.")
         
@@ -58,10 +73,10 @@ class PeopleSettingViewController: UIViewController, UITextFieldDelegate {
     @IBAction func contactsOnlyStateChanged(sender: UISwitch) {
         //Contacts Only Switch
         if contactsOnly.on {
-            pplMgr.filters.contactsOnly = true
+            Filters.contactsOnly = true
         }
         else {
-            pplMgr.filters.contactsOnly = false
+            Filters.contactsOnly = false
         }
     }
     
@@ -74,7 +89,7 @@ class PeopleSettingViewController: UIViewController, UITextFieldDelegate {
             upperAgeTxt.backgroundColor = UIColor.whiteColor()
             lowerAge = lowerAgeTxt.text.toInt()!
             upperAge = upperAgeTxt.text.toInt()!
-            pplMgr.filters.ageOn = true
+            Filters.ageOn = true
         } else {
             lowerAgeTxt.enabled = false
             lowerAgeTxt.backgroundColor = UIColor.lightGrayColor()
@@ -82,29 +97,29 @@ class PeopleSettingViewController: UIViewController, UITextFieldDelegate {
             upperAgeTxt.backgroundColor = UIColor.lightGrayColor()
             lowerAge = 13
             upperAge = 75
-            pplMgr.filters.ageOn = false
+            Filters.ageOn = false
         }
-        pplMgr.filters.lowerAge = lowerAge
-        pplMgr.filters.upperAge = upperAge
+        Filters.lowerAge = lowerAge
+        Filters.upperAge = upperAge
     }
     
     @IBAction func jamStateChanged(sender: UISwitch) {
         //Look to Jam Switch
         if jamOption.on {
-            pplMgr.filters.looking_to_jam = true
+            Filters.looking_to_jam = true
         }
         else {
-            pplMgr.filters.looking_to_jam = false
+            Filters.looking_to_jam = false
         }
     }
     
     @IBAction func bandStateChanged(sender: UISwitch) {
         //Looking for Band Switch
         if bandOption.on {
-            pplMgr.filters.looking_for_band = true
+            Filters.looking_for_band = true
         }
         else {
-            pplMgr.filters.looking_for_band = false
+            Filters.looking_for_band = false
         }
     }
     
@@ -125,6 +140,8 @@ class PeopleSettingViewController: UIViewController, UITextFieldDelegate {
         }
         
         lowerAgeTxt.text = "\(lowerAge)"
+        Filters.lowerAge = lowerAge
+        Filters.upperAge = upperAge
     }
     
     
@@ -145,5 +162,7 @@ class PeopleSettingViewController: UIViewController, UITextFieldDelegate {
         }
         
         upperAgeTxt.text = "\(upperAge)"
+        Filters.lowerAge = lowerAge
+        Filters.upperAge = upperAge
     }
 }

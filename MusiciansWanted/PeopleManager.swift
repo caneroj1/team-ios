@@ -19,6 +19,17 @@ struct people {
     var gender = ""
 }
 
+struct Filters {
+    var genre = ""
+    var instrument = ""
+    var looking_for_band = false
+    var looking_to_jam = false
+    var contactsOnly = false
+    var ageOn = false
+    var lowerAge = 13
+    var upperAge = 75
+}
+
 class PeopleManager: NSObject {
     
     var isNearMeURL = false
@@ -26,6 +37,7 @@ class PeopleManager: NSObject {
     var arrPerson = [Int]()
     var person = [Int:people]()
     var peopleDelegate: PeopleDelegate?
+    var filters: Filters = Filters()
     
     func addPerson(id: Int, name: String, pic: UIImage, age: String, genre: String, instru: String, loc: String, distance: Double, band: Bool, jam: Bool, email: String, gender: String){
         
@@ -68,7 +80,18 @@ class PeopleManager: NSObject {
            
             if self.isNearMeURL {
                 for user in json {
-                    self.addUser(user.1)
+                    
+                    //------- Check Filters -------
+                    // Still need to check contactsOnly, genres, and instruments
+                    
+                    if (self.filters.looking_for_band && user.1["looking_for_band"].boolValue == false) || (self.filters.looking_to_jam && user.1["looking_to_jam"].boolValue == false) || (self.filters.ageOn && (self.filters.lowerAge > user.1["age"].intValue || self.filters.upperAge < user.1["age"].intValue)) {
+                        
+                        println("\(user.1) not added.")
+                        
+                    }
+                    else {
+                        self.addUser(user.1)
+                    }
                 }
                 
             }
@@ -80,7 +103,14 @@ class PeopleManager: NSObject {
                         break;
                     }
                     
-                    self.addUser(json[index])
+                    //Check Filters
+                    if (self.filters.looking_for_band && json[index]["looking_for_band"].boolValue == false) || (self.filters.looking_to_jam && json[index]["looking_to_jam"].boolValue == false) || (self.filters.ageOn && (self.filters.lowerAge > json[index]["age"].intValue || self.filters.upperAge < json[index]["age"].intValue)) {
+                        
+                        println("\(json[index]) not added.")
+                    }
+                    else {
+                            self.addUser(json[index])
+                    }
 
                 }
 

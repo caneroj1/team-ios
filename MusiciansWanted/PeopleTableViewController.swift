@@ -75,7 +75,12 @@ class PeopleTableViewController: UITableViewController, PeopleDelegate {
             }
         
         }
-        cell.lblLocation.text = newLoc
+        if newLoc == "" || newLoc == nil {
+            cell.lblLocation.text = "Location Disabled"
+        }
+        else {
+            cell.lblLocation.text = newLoc
+        }
     
         
         if person?.gender == "male" {

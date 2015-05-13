@@ -77,7 +77,7 @@ class LogInViewController: UIViewController, CLLocationManagerDelegate, UITextFi
     
     @IBAction func logInAction(sender: AnyObject!) {
         if(usernameField.text != "" && passwordField.text != "") {
-            var paramsDictionary = ["username": usernameField.text, "password": passwordField.text]
+            var paramsDictionary = ["username": usernameField.text.lowercaseString, "password": passwordField.text]
             DataManager.makePostRequest("/api/login", params: paramsDictionary, completion: { (data, error) -> Void in
                 println(error)
                 let json = JSON(data: data!)

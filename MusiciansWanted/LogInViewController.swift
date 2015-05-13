@@ -86,10 +86,11 @@ class LogInViewController: UIViewController, CLLocationManagerDelegate, UITextFi
                     var refreshToken: String? = json["refresh_token"].stringValue
                     if (refreshToken != "") {
                         let viewController = self.storyboard?.instantiateViewControllerWithIdentifier("GlobalTabBarController") as! GlobalTabBarController
+                        self.presentViewController(viewController, animated: true, completion: nil)
                         // set the data for the struct so that we can access it anywhere
                         MusiciansWanted.refreshToken = refreshToken!
                         MusiciansWanted.userId = json["user_id"].stringValue.toInt()!
-                        self.setLocationTracking()
+                        //self.setLocationTracking()
                         
                     }
                     else {
@@ -105,6 +106,8 @@ class LogInViewController: UIViewController, CLLocationManagerDelegate, UITextFi
         }
     }
     
+    
+    /*
     // MARK: - Location Services
     func locationManager(manager: CLLocationManager!, didUpdateLocations locations: [AnyObject]!) {
         CLGeocoder().reverseGeocodeLocation(locationManager.location, completionHandler: { (placemarks, error) -> Void in
@@ -199,6 +202,7 @@ class LogInViewController: UIViewController, CLLocationManagerDelegate, UITextFi
     // Get the new view controller using segue.destinationViewController.
     // Pass the selected object to the new view controller.
     }
+    */
     */
     
 }

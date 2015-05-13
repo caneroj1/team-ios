@@ -131,6 +131,17 @@ class GlobalTabBarController: UITabBarController, CLLocationManagerDelegate {
         let params = ["user": userParams]
         
         DataManager.makePatchRequest(url, params: params, completion: { (data, error) -> Void in
+            dispatch_async(dispatch_get_main_queue()) {
+                
+                //Store User information
+                let defaults = NSUserDefaults.standardUserDefaults()
+                
+                defaults.setObject(MusiciansWanted.userId, forKey: "userId")
+                defaults.setObject(MusiciansWanted.refreshToken, forKey: "refreshToken")
+                defaults.setObject(MusiciansWanted.locationServicesDisabled, forKey: "locationServicesDisabled")
+                defaults.setObject(MusiciansWanted.longitude, forKey: "longitude")
+                defaults.setObject(MusiciansWanted.latitude, forKey: "latitude")
+            }
         })
     }
     

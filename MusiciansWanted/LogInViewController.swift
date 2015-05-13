@@ -149,15 +149,24 @@ class LogInViewController: UIViewController, CLLocationManagerDelegate, UITextFi
         
         let subThoroughfare: String = (placemark.subThoroughfare != nil) ? placemark.subThoroughfare : ""
         let thoroughfare: String = (placemark.thoroughfare != nil) ? placemark.thoroughfare : ""
-        var locationString = "\(subThoroughfare) \(thoroughfare) \(placemark.subLocality) "
+        var locationString = "\(subThoroughfare) \(thoroughfare), \(placemark.subLocality), "
         
         locationString = locationString.stringByAppendingString("\(placemark.locality) \(placemark.postalCode) \(placemark.country)")
         
+        println("subThoroughfare: \(subThoroughfare)")
+        println("thoroughfare: \(thoroughfare)")
+        println("subLocality: \(placemark.subLocality)")
+        println("locatility: \(placemark.locality)")
+        println("postalCode: \(placemark.postalCode)")
+        println("country: \(placemark.country)")
+        
         setLocationString(locationString)
+        println(locationString)
     }
     
     func setLocationString(location: String) {
         ourLocation = location
+        println(ourLocation)
     }
     
     func setLocationTracking() {

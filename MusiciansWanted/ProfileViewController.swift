@@ -100,7 +100,7 @@ class ProfileViewController: UIViewController, UINavigationControllerDelegate, U
                 self.ageText = self.ageLabel.text!
                 self.noAge = (self.ageLabel.text == "No Age Given")
                 
-                self.locationLabel.text = (json["location"] != nil) ? json["location"].stringValue : "No Location Given"
+                self.locationLabel.text = (json["location"] == nil || json["location"] == "") ? "No Location Given" : json["location"].stringValue
                 self.jamLabel.text = json["looking_to_jam"] ? "Yes" : "No"
                 self.bandLabel.text = json["looking_for_band"] ? "Yes" : "No"
                 self.searchRadius = json["search_radius"].stringValue.toInt()!

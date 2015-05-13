@@ -132,8 +132,8 @@ class AddEventViewController: UIViewController, UIPickerViewDelegate, UIImagePic
             return
         }
             var url = "/api/events"
-            var location = EventAddress.text + "," +  EventCity.text + "," + states[thisSort] + " " + EventZip.text
-            var eventParams: Dictionary<String, AnyObject> = ["title": EventTitle.text, "location": location, "description": EventDescription.text, "event_time": "2015-05-05 14:31:20 -0400","created_by": MusiciansWanted.userId]
+            var location = EventAddress.text.capitalizedString.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceCharacterSet()) + ", " +  EventCity.text.capitalizedString.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceCharacterSet()) + ", " + states[thisSort] + " " + EventZip.text.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceCharacterSet())
+            var eventParams: Dictionary<String, AnyObject> = ["title": EventTitle.text.capitalizedString, "location": location, "description": EventDescription.text, "event_time": "2015-05-05 14:31:20 -0400","created_by": MusiciansWanted.userId]
         
             //var eventParams: Dictionary<String, AnyObject> = ["title": "joe's pajama party", "location": "1101 Arch Street, Philadelphia, PA 19107", "description": "this will be fun", "event_time": "2015-05-05 14:31:20 -0400","created_by": MusiciansWanted.userId]
             var params = ["event": eventParams]

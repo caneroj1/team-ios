@@ -60,9 +60,7 @@ class PeopleTableViewController: UITableViewController, PeopleDelegate {
         cell.lblProfileName.text = person?.profname
         cell.imgProfilePic.image = person?.profpic
         
-        var newLoc = person?.location.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceCharacterSet()) //"4th St, New York, New York 10053 United States"
-        
-        println(newLoc)
+        var newLoc = person?.location.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceCharacterSet())
         
         var tmpArray1 : [String] = newLoc!.componentsSeparatedByCharactersInSet(NSCharacterSet (charactersInString: ","))
         
@@ -80,7 +78,7 @@ class PeopleTableViewController: UITableViewController, PeopleDelegate {
         cell.lblLocation.text = newLoc
         
         
-        // NOTES
+        /* ------------------- NOTES --------------------
         
         //contains
         var myString = "Swift is really easy!"
@@ -115,7 +113,7 @@ class PeopleTableViewController: UITableViewController, PeopleDelegate {
         }
         //Returns ["One", "Two", "Three", "1", "2", "3"]
         
-        //----
+        ------------------- NOTES -------------------- */
         
         if person?.gender == "male" {
             cell.lblAge.text = "Male, \(person!.age)"

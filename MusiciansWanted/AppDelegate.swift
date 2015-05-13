@@ -34,7 +34,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         let defaults = NSUserDefaults.standardUserDefaults()
         
-        /*if (defaults.objectForKey("userId") != nil) {
+        if (defaults.objectForKey("userId") != nil) {
             MusiciansWanted.userId = defaults.integerForKey("userId")
             MusiciansWanted.refreshToken = defaults.stringForKey("refreshToken")!
             MusiciansWanted.locationServicesDisabled = defaults.boolForKey("locationServicesDisabled")
@@ -50,7 +50,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             
             self.window?.rootViewController = initialViewController
             self.window?.makeKeyAndVisible()
-        }*/
+        }
 
         
         return true

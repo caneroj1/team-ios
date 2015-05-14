@@ -33,6 +33,8 @@ class EventViewController: UIViewController {
         editEventView.eventdescription = lblEventDescription.text
         editEventView.eventID = "\(id)"
         editEventView.eventtitle = lblEventName.text!
+        editEventView.eventLocation = (btnEventLocation.titleLabel?.text)!
+        editEventView.eventDate = (btnEventDate.titleLabel?.text)!
         
         self.navigationController?.pushViewController(editEventView, animated: true)
 

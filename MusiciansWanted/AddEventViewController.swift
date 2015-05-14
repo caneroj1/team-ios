@@ -94,6 +94,8 @@ class AddEventViewController: UIViewController, UITextViewDelegate, UIPickerView
     }*/
     
     override func viewWillAppear(animated: Bool) {
+        if eventID != "" {
+            
         EventTitle.text = eventtitle
         EventDescription.text = eventdescription
         
@@ -118,7 +120,12 @@ class AddEventViewController: UIViewController, UITextViewDelegate, UIPickerView
             StatePicker.selectRow(thisSort, inComponent: 0, animated: true)
         }
         
+        let dateFormatter = NSDateFormatter()
+        dateFormatter.dateFormat = "M/d/yy, h:mm a"
+        let date = dateFormatter.dateFromString(eventDate)
 
+        datePicker.setDate(date!, animated: true)
+        }
     }
 
 
@@ -209,7 +216,7 @@ class AddEventViewController: UIViewController, UITextViewDelegate, UIPickerView
         }
             var url = "/api/events"
         
-            var location = EventAddress.text.capitalizedString.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceCharacterSet()) + ", " +  EventCity.text.capitalizedString.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceCharacterSet()) + ", " + states[thisSort] + " " + EventZip.text.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceCharacterSet())
+            var location = EventAddress.text.capitalizedString.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceCharacterSet()) + "\n" +  EventCity.text.capitalizedString.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceCharacterSet()) + ", " + states[thisSort] + " : " + EventZip.text.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceCharacterSet())
         
             var date = formatDate(datePicker.date)
             println("\(date)")

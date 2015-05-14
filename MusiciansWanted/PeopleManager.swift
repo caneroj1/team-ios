@@ -19,6 +19,17 @@ struct people {
     var gender = ""
 }
 
+struct Filters {
+    static var genre = ""
+    static var instrument = ""
+    static var looking_for_band = false
+    static var looking_to_jam = false
+    static var contactsOnly = false
+    static var ageOn = false
+    static var lowerAge = 13
+    static var upperAge = 75
+}
+
 class PeopleManager: NSObject {
     
     var isNearMeURL = false
@@ -68,7 +79,21 @@ class PeopleManager: NSObject {
            
             if self.isNearMeURL {
                 for user in json {
-                    self.addUser(user.1)
+                    
+                    //------- Check Filters -------
+                    // Still need to check contactsOnly, genres, and instruments
+                    var tmp = user.1["name"].stringValue
+                    
+                    if (Filters.looking_for_band && user.1["looking_for_band"].boolValue == false) || (Filters.looking_to_jam && user.1["looking_to_jam"].boolValue == false) || (Filters.ageOn && (Filters.lowerAge > user.1["age"].intValue || Filters.upperAge < user.1["age"].intValue)) {
+                        
+                        println("\(tmp) not added.")
+                        self.person.removeValueForKey(user.1["id"].intValue)
+                        
+                    }
+                    else {
+                        self.addUser(user.1)
+                        println("USER ADD : \(tmp)")
+                    }
                 }
                 
             }
@@ -80,7 +105,18 @@ class PeopleManager: NSObject {
                         break;
                     }
                     
-                    self.addUser(json[index])
+                    //Check Filters
+                    var tmp = json[index]["name"].stringValue
+                    
+                    if (Filters.looking_for_band && json[index]["looking_for_band"].boolValue == false) || (Filters.looking_to_jam && json[index]["looking_to_jam"].boolValue == false) || (Filters.ageOn && (Filters.lowerAge > json[index]["age"].intValue || Filters.upperAge < json[index]["age"].intValue)) {
+                        
+                        println("\(tmp) not added.")
+                        self.person.removeValueForKey(json[index]["id"].intValue)
+                    }
+                    else {
+                            self.addUser(json[index])
+                            println("USER ADD : \(tmp)")
+                    }
 
                 }
 

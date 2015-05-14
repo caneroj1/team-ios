@@ -70,6 +70,7 @@ class FeedTableViewController: UITableViewController, UITableViewDataSource, Fee
         cell.locationLabel.text = notification.location
         cell.iconForCell.image = UIImage(named: notification.imageString)
         
+        
         let mobileAnalytics = AWSMobileAnalytics(forAppId: MobileAnalyticsAppId)
         let eventRecordClient = mobileAnalytics.eventClient
         let eventRecord = eventRecordClient.createEventWithEventType("FeedViewEvent")

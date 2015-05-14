@@ -13,6 +13,10 @@ class PeopleTableViewController: UITableViewController, PeopleDelegate {
     var ttlPpl = 24;
     var pplMgr = PeopleManager()
     
+    override func viewWillAppear(animated: Bool) {
+        pplMgr.loadPeople(0, upper: ttlPpl)
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -25,7 +29,7 @@ class PeopleTableViewController: UITableViewController, PeopleDelegate {
         
         pplMgr.peopleDelegate = self
         //pplMgr.getNotifications(MusiciansWanted.userId)
-        pplMgr.loadPeople(pplMgr.arrPerson.count, upper: ttlPpl)
+        //pplMgr.loadPeople(pplMgr.arrPerson.count, upper: ttlPpl)
         
     }
     
@@ -55,7 +59,29 @@ class PeopleTableViewController: UITableViewController, PeopleDelegate {
         
         cell.lblProfileName.text = person?.profname
         cell.imgProfilePic.image = person?.profpic
-        cell.lblLocation.text = person?.location
+        
+        //Format and display the location
+        var newLoc = person?.location.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceCharacterSet())
+        
+        var tmpArray1 : [String] = newLoc!.componentsSeparatedByCharactersInSet(NSCharacterSet (charactersInString: ","))
+        
+        if tmpArray1.count > 2 {
+            newLoc = tmpArray1[1].stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceCharacterSet()) + ", " + tmpArray1[2].stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceCharacterSet())
+        
+            var tmpArray2 : [String] = newLoc!.componentsSeparatedByCharactersInSet(NSCharacterSet (charactersInString: "0123456789"))
+            
+            if tmpArray2.count > 0 {
+                newLoc = tmpArray2[0].stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceCharacterSet())
+            }
+        
+        }
+        if newLoc == "" || newLoc == nil {
+            cell.lblLocation.text = "Location Disabled"
+        }
+        else {
+            cell.lblLocation.text = newLoc
+        }
+    
         
         if person?.gender == "male" {
             cell.lblAge.text = "Male, \(person!.age)"
@@ -69,6 +95,7 @@ class PeopleTableViewController: UITableViewController, PeopleDelegate {
 
         cell.lblInstrument.text = person?.instrument
         cell.lblGenre.text = person?.genre
+        
         
         let mobileAnalytics = AWSMobileAnalytics(forAppId: MobileAnalyticsAppId)
         let eventRecordClient = mobileAnalytics.eventClient

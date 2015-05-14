@@ -77,7 +77,7 @@ class LogInViewController: UIViewController, CLLocationManagerDelegate, UITextFi
     
     @IBAction func logInAction(sender: AnyObject!) {
         if(usernameField.text != "" && passwordField.text != "") {
-            var paramsDictionary = ["username": usernameField.text, "password": passwordField.text]
+            var paramsDictionary = ["username": usernameField.text.lowercaseString, "password": passwordField.text]
             DataManager.makePostRequest("/api/login", params: paramsDictionary, completion: { (data, error) -> Void in
                 println(error)
                 let json = JSON(data: data!)
@@ -86,10 +86,11 @@ class LogInViewController: UIViewController, CLLocationManagerDelegate, UITextFi
                     var refreshToken: String? = json["refresh_token"].stringValue
                     if (refreshToken != "") {
                         let viewController = self.storyboard?.instantiateViewControllerWithIdentifier("GlobalTabBarController") as! GlobalTabBarController
+                        self.presentViewController(viewController, animated: true, completion: nil)
                         // set the data for the struct so that we can access it anywhere
                         MusiciansWanted.refreshToken = refreshToken!
                         MusiciansWanted.userId = json["user_id"].stringValue.toInt()!
-                        self.setLocationTracking()
+                        //self.setLocationTracking()
                         
                     }
                     else {
@@ -105,6 +106,8 @@ class LogInViewController: UIViewController, CLLocationManagerDelegate, UITextFi
         }
     }
     
+    
+    /*
     // MARK: - Location Services
     func locationManager(manager: CLLocationManager!, didUpdateLocations locations: [AnyObject]!) {
         CLGeocoder().reverseGeocodeLocation(locationManager.location, completionHandler: { (placemarks, error) -> Void in
@@ -149,15 +152,24 @@ class LogInViewController: UIViewController, CLLocationManagerDelegate, UITextFi
         
         let subThoroughfare: String = (placemark.subThoroughfare != nil) ? placemark.subThoroughfare : ""
         let thoroughfare: String = (placemark.thoroughfare != nil) ? placemark.thoroughfare : ""
-        var locationString = "\(subThoroughfare) \(thoroughfare) \(placemark.subLocality) "
+        var locationString = "\(subThoroughfare) \(thoroughfare), \(placemark.subLocality), "
         
         locationString = locationString.stringByAppendingString("\(placemark.locality) \(placemark.postalCode) \(placemark.country)")
         
+        println("subThoroughfare: \(subThoroughfare)")
+        println("thoroughfare: \(thoroughfare)")
+        println("subLocality: \(placemark.subLocality)")
+        println("locatility: \(placemark.locality)")
+        println("postalCode: \(placemark.postalCode)")
+        println("country: \(placemark.country)")
+        
         setLocationString(locationString)
+        println(locationString)
     }
     
     func setLocationString(location: String) {
         ourLocation = location
+        println(ourLocation)
     }
     
     func setLocationTracking() {
@@ -190,6 +202,7 @@ class LogInViewController: UIViewController, CLLocationManagerDelegate, UITextFi
     // Get the new view controller using segue.destinationViewController.
     // Pass the selected object to the new view controller.
     }
+    */
     */
     
 }

@@ -34,7 +34,7 @@ class EventViewController: UIViewController {
             // if the event doesn't exist, data = nil
             dispatch_async(dispatch_get_main_queue()) {
                 
-                //self.lblEventDescription.text = "N/A"
+                self.lblEventDescription.text = json["description"].stringValue
                 self.lblEventName.text = json["title"].stringValue
                 
                 let formatter = NSDateFormatter()

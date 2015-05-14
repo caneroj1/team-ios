@@ -10,16 +10,46 @@ import UIKit
 
 class PeopleSettingViewController: UIViewController, UITextFieldDelegate {
     
-    @IBOutlet weak var contactsOnly: UISwitch!
-    @IBOutlet weak var agesOption: UISwitch!
-    @IBOutlet weak var jamOption: UISwitch!
-    @IBOutlet weak var bandOption: UISwitch!
+    @IBOutlet var contactsOnly: UISwitch!
+    @IBOutlet var agesOption: UISwitch!
+    @IBOutlet var jamOption: UISwitch!
+    @IBOutlet var bandOption: UISwitch!
     
-    @IBOutlet weak var lowerAgeTxt: UITextField!
-    @IBOutlet weak var upperAgeTxt: UITextField!
+    @IBOutlet var lowerAgeTxt: UITextField!
+    @IBOutlet var upperAgeTxt: UITextField!
     
     var lowerAge:Int = 13;
     var upperAge:Int = 75;
+    
+    //Check Filters
+    override func viewWillAppear(animated: Bool) {
+        contactsOnly.on = Filters.contactsOnly
+        agesOption.on = Filters.ageOn
+        jamOption.on = Filters.looking_to_jam
+        bandOption.on = Filters.looking_for_band
+        upperAge = Filters.upperAge
+        lowerAge = Filters.lowerAge
+        lowerAgeTxt.text = "\(Filters.lowerAge)"
+        upperAgeTxt.text = "\(Filters.upperAge)"
+        
+        if agesOption.on {
+            lowerAgeTxt.enabled = true
+            lowerAgeTxt.backgroundColor = UIColor.whiteColor()
+            upperAgeTxt.enabled = true
+            upperAgeTxt.backgroundColor = UIColor.whiteColor()
+        }
+        else {
+            lowerAgeTxt.enabled = false
+            lowerAgeTxt.backgroundColor = UIColor.lightGrayColor()
+            upperAgeTxt.enabled = false
+            upperAgeTxt.backgroundColor = UIColor.lightGrayColor()
+        }
+        
+        println(Filters.upperAge)
+        
+        println("dat update.")
+        
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -42,6 +72,12 @@ class PeopleSettingViewController: UIViewController, UITextFieldDelegate {
     
     @IBAction func contactsOnlyStateChanged(sender: UISwitch) {
         //Contacts Only Switch
+        if contactsOnly.on {
+            Filters.contactsOnly = true
+        }
+        else {
+            Filters.contactsOnly = false
+        }
     }
     
     @IBAction func ageStateChanged(sender: AnyObject) {
@@ -53,13 +89,37 @@ class PeopleSettingViewController: UIViewController, UITextFieldDelegate {
             upperAgeTxt.backgroundColor = UIColor.whiteColor()
             lowerAge = lowerAgeTxt.text.toInt()!
             upperAge = upperAgeTxt.text.toInt()!
+            Filters.ageOn = true
         } else {
             lowerAgeTxt.enabled = false
             lowerAgeTxt.backgroundColor = UIColor.lightGrayColor()
             upperAgeTxt.enabled = false
             upperAgeTxt.backgroundColor = UIColor.lightGrayColor()
-            lowerAge = 0
-            upperAge = 100
+            lowerAge = 13
+            upperAge = 75
+            Filters.ageOn = false
+        }
+        Filters.lowerAge = lowerAge
+        Filters.upperAge = upperAge
+    }
+    
+    @IBAction func jamStateChanged(sender: UISwitch) {
+        //Look to Jam Switch
+        if jamOption.on {
+            Filters.looking_to_jam = true
+        }
+        else {
+            Filters.looking_to_jam = false
+        }
+    }
+    
+    @IBAction func bandStateChanged(sender: UISwitch) {
+        //Looking for Band Switch
+        if bandOption.on {
+            Filters.looking_for_band = true
+        }
+        else {
+            Filters.looking_for_band = false
         }
     }
     
@@ -80,6 +140,8 @@ class PeopleSettingViewController: UIViewController, UITextFieldDelegate {
         }
         
         lowerAgeTxt.text = "\(lowerAge)"
+        Filters.lowerAge = lowerAge
+        Filters.upperAge = upperAge
     }
     
     
@@ -100,5 +162,7 @@ class PeopleSettingViewController: UIViewController, UITextFieldDelegate {
         }
         
         upperAgeTxt.text = "\(upperAge)"
+        Filters.lowerAge = lowerAge
+        Filters.upperAge = upperAge
     }
 }

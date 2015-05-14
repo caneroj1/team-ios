@@ -69,17 +69,17 @@ class EventsTableViewController: UITableViewController, UIScrollViewDelegate, Ev
         return cell
     }
     
-    override func scrollViewDidScroll(scrollView: UIScrollView) {
+    /*override func scrollViewDidScroll(scrollView: UIScrollView) {
         var currentOffset = scrollView.contentOffset.y;
         var maximumOffset = scrollView.contentSize.height - scrollView.frame.size.height;
         
         if (maximumOffset - currentOffset <= 20.0 && eventManager.isLoadingEvents == false) {
             println("expanding size");
            
-//            eventManager.isLoadingEvents = true
-//            eventManager.loadEvents(eventManager.event.count, upper: eventManager.event.count + 100)
+            eventManager.isLoadingEvents = true
+            eventManager.loadEvents(eventManager.event.count, upper: eventManager.event.count + 100)
         }
-    }
+    }*/
     
     func addedNewEvent() {
         dispatch_async(dispatch_get_main_queue()) {

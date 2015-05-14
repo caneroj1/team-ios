@@ -34,10 +34,10 @@ class PersonViewController: UIViewController {
             dispatch_async(dispatch_get_main_queue()) {
                 self.personName.text = json["name"].stringValue
                 self.emailLabel.text = json["email"].stringValue
-                self.jamLabel.text = json["looking_to_jam"].stringValue
-                self.bandLabel.text = json["looking_for_band"].stringValue
+                self.jamLabel.text = json["looking_to_jam"] ? "Yes" : "No"
+                self.bandLabel.text = json["looking_for_band"] ? "Yes" : "No"
                 self.ageLabel.text = json["age"].stringValue
-                self.locationlabel.text = json["location"].stringValue
+                self.locationlabel.text = (json["location"] == nil || json["location"] == "") ? "No Location Given" : json["location"].stringValue
                 self.title = self.personName.text
                 
                 let gender = json["gender"].stringValue

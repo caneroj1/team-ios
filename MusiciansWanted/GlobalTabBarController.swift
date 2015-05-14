@@ -118,7 +118,7 @@ class GlobalTabBarController: UITabBarController, CLLocationManagerDelegate {
         locationManager.stopUpdatingLocation()
         let subThoroughfare: String = (placemark.subThoroughfare != nil) ? placemark.subThoroughfare : ""
         let thoroughfare: String = (placemark.thoroughfare != nil) ? placemark.thoroughfare : ""
-        var locationString = "\(subThoroughfare) \(thoroughfare), \(placemark.subLocality), "
+        var locationString = "\(subThoroughfare) \(thoroughfare)\n\(placemark.subLocality), "
         
         var locality = placemark.locality
         
@@ -225,7 +225,7 @@ class GlobalTabBarController: UITabBarController, CLLocationManagerDelegate {
             locality = placemark.locality
         }
         
-        locationString = locationString.stringByAppendingString("\(locality) \(placemark.postalCode) \(placemark.country)")
+        locationString = locationString.stringByAppendingString("\(locality) : \(placemark.postalCode)\n\(placemark.country)")
         
         setLocationTracking(locationString)
     }

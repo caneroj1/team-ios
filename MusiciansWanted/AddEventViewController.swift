@@ -95,29 +95,30 @@ class AddEventViewController: UIViewController, UITextViewDelegate, UIPickerView
     
     override func viewWillAppear(animated: Bool) {
         EventTitle.text = eventtitle
+        EventDescription.text = eventdescription
         
         //Format and display the location
+        //[0] Address [1] City [2] State [3] Zip [4] Country
         var newLoc = eventLocation.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceCharacterSet())
         
-        var tmpArray1 : [String] = newLoc.componentsSeparatedByCharactersInSet(NSCharacterSet (charactersInString: ","))
+        var tmpArray1 : [String] = newLoc.componentsSeparatedByCharactersInSet(NSCharacterSet (charactersInString: "\n:,"))
         
-        if tmpArray1.count > 2 {
-            newLoc = tmpArray1[1].stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceCharacterSet()) + ", " + tmpArray1[2].stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceCharacterSet())
+        if tmpArray1.count > 3 {
+            EventAddress.text = tmpArray1[0].stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceCharacterSet())
+            EventCity.text = tmpArray1[1].stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceCharacterSet())
+            EventZip.text = tmpArray1[3].stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceCharacterSet())
+            var eventState = tmpArray1[2].stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceCharacterSet())
             
-            var tmpArray2 : [String] = newLoc.componentsSeparatedByCharactersInSet(NSCharacterSet (charactersInString: "0123456789"))
-            
-            if tmpArray2.count > 0 {
-                newLoc = tmpArray2[0].stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceCharacterSet())
+            for index in 0...states.count-1 {
+                if states[index] == eventState {
+                    thisSort = index
+                    break
+                }
             }
-            
+            StatePicker.selectRow(thisSort, inComponent: 0, animated: true)
         }
-
         
-        /*EventAddress.text = address
-        EventCity.text = city
-        thisSort = eventStateRow
-        EventZip.text = String(zip)
-        EventDescription.text = eventdescription*/
+
     }
 
 

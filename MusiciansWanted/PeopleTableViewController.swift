@@ -63,18 +63,12 @@ class PeopleTableViewController: UITableViewController, PeopleDelegate {
         //Format and display the location
         var newLoc = person?.location.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceCharacterSet())
         
-        var tmpArray1 : [String] = newLoc!.componentsSeparatedByCharactersInSet(NSCharacterSet (charactersInString: ","))
+        var tmpArray1 : [String] = newLoc!.componentsSeparatedByCharactersInSet(NSCharacterSet (charactersInString: "\n:"))
         
         if tmpArray1.count > 2 {
-            newLoc = tmpArray1[1].stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceCharacterSet()) + ", " + tmpArray1[2].stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceCharacterSet())
-        
-            var tmpArray2 : [String] = newLoc!.componentsSeparatedByCharactersInSet(NSCharacterSet (charactersInString: "0123456789"))
-            
-            if tmpArray2.count > 0 {
-                newLoc = tmpArray2[0].stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceCharacterSet())
-            }
-        
+            newLoc = tmpArray1[1].stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceCharacterSet())
         }
+        
         if newLoc == "" || newLoc == nil {
             cell.lblLocation.text = "Location Disabled"
         }

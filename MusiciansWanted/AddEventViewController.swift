@@ -10,7 +10,7 @@ import UIKit
 
 var thisSort = 4
 
-class AddEventViewController: UIViewController, UIPickerViewDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+class AddEventViewController: UIViewController, UITextViewDelegate, UIPickerViewDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UIScrollViewDelegate {
     
     var eventtitle: String = ""
     var hasEventPic: Bool = false
@@ -35,20 +35,65 @@ class AddEventViewController: UIViewController, UIPickerViewDelegate, UIImagePic
     @IBOutlet weak var EventDescription: UITextView!
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var eventImage: UIImageView!
+    @IBOutlet var datePicker: UIDatePicker!
     
+    @IBAction func touchZip(sender: UITextField) {
+        scrollView.contentOffset.y = scrollView.contentSize.height - scrollView.frame.size.height + 150
+        //println("\(scrollView.contentOffset.y)")
+    }
     
+    @IBAction func realeaseZip(sender: UITextField) {
+        scrollView.contentOffset.y = scrollView.contentSize.height - scrollView.frame.size.height
+        var date = formatDate(datePicker.date)
+        println("\(date)")
+    }
+    
+    func textViewDidBeginEditing(textView: UITextView) {
+        scrollView.contentOffset.y = scrollView.contentSize.height - scrollView.frame.size.height + 200
+    }
+    
+    func textViewDidEndEditing(textView: UITextView) {
+        scrollView.contentOffset.y = scrollView.contentSize.height - scrollView.frame.size.height;
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+        // NSNotificationCenter.defaultCenter().addObserver(self, selector: "keyboardNotification:", name: UIKeyboardWillChangeFrameNotification, object: nil)
+        
+        //NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("keyboardWillShow:"), name:UIKeyboardWillShowNotification, object: nil);
+        //NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("keyboardWillHide:"), name:UIKeyboardWillHideNotification, object: nil);
+        
+        /*println("\(scrollView.contentSize.height)")
+        println("\(scrollView.frame.size.height)")
+        
+        if scrollView.contentSize.height < scrollView.frame.size.height {
+            scrollView.contentSize.height = scrollView.frame.size.height + 200
+        }*/
+        
         
         scrollView.canCancelContentTouches = false
         scrollView.delaysContentTouches = false
         StatePicker.delegate = self
         
         StatePicker.selectRow(thisSort, inComponent: 0, animated: true)
+
     }
+    
+    /*func keyboardWillShow(sender: NSNotification) {
+        //self.view.frame.origin.y -= 150
+        //scrollView.contentOffset.y += 150
+        //scrollView.contentSize.height += 300
+        //scrollView.frame.size.height
+
+    }
+    
+    func keyboardWillHide(sender: NSNotification) {
+        //self.view.frame.origin.y += 150
+        //scrollView.contentOffset.y -= 150
+        //scrollView.contentSize.height -= 300
+    }*/
     
     override func viewWillAppear(animated: Bool) {
         EventTitle.text = eventtitle
@@ -126,14 +171,31 @@ class AddEventViewController: UIViewController, UIPickerViewDelegate, UIImagePic
         eventImage.image = newEventImage
     }
     
+    func formatDate(date: NSDate) -> String {
+        let formatter = NSDateFormatter()
+        formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSS'Z"
+        
+        let outputter = NSDateFormatter()
+        outputter.dateStyle = NSDateFormatterStyle.ShortStyle
+        outputter.timeStyle = NSDateFormatterStyle.ShortStyle
+        
+        let offset = Double(formatter.timeZone.secondsFromGMT)
+        return outputter.stringFromDate(date)
+    }
+    
     @IBAction func submitInfo(sender: UIBarButtonItem) {
         if EventTitle.text == "" || EventAddress.text == "" || EventCity.text == "" ||  EventZip.text == "" || EventDescription.text == "" {
             SweetAlert().showAlert("Uh oh!", subTitle: "Some required fields were left blank.", style: AlertStyle.Error)
             return
         }
             var url = "/api/events"
-            var location = EventAddress.text + "," +  EventCity.text + "," + states[thisSort] + " " + EventZip.text
-            var eventParams: Dictionary<String, AnyObject> = ["title": EventTitle.text, "location": location, "description": EventDescription.text, "event_time": "2015-05-05 14:31:20 -0400","created_by": MusiciansWanted.userId]
+        
+            var location = EventAddress.text.capitalizedString.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceCharacterSet()) + ", " +  EventCity.text.capitalizedString.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceCharacterSet()) + ", " + states[thisSort] + " " + EventZip.text.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceCharacterSet())
+        
+            var date = formatDate(datePicker.date)
+            println("\(date)")
+        
+            var eventParams: Dictionary<String, AnyObject> = ["title": EventTitle.text.capitalizedString, "location": location, "description": EventDescription.text, "event_time": date,"created_by": MusiciansWanted.userId]
         
             //var eventParams: Dictionary<String, AnyObject> = ["title": "joe's pajama party", "location": "1101 Arch Street, Philadelphia, PA 19107", "description": "this will be fun", "event_time": "2015-05-05 14:31:20 -0400","created_by": MusiciansWanted.userId]
             var params = ["event": eventParams]

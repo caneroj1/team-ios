@@ -17,6 +17,7 @@ class EventViewController: UIViewController {
     @IBOutlet var lblEventDescription: UITextView!
     @IBOutlet var imgEvent: UIImageView!
     @IBOutlet var scrollView: UIScrollView!
+    @IBOutlet var btnEdit: UIBarButtonItem!
     
     
     var icon: UIImage?
@@ -25,7 +26,21 @@ class EventViewController: UIViewController {
     var userID = 1
     var userImage = UIImage(named: "anonymous")
     
+    @IBAction func clickEdit(sender: UIBarButtonItem) {
+        let editEventView = self.storyboard?.instantiateViewControllerWithIdentifier("AddEvent") as! AddEventViewController
+        
+        //personView.controller = "people"
+        editEventView.eventdescription = lblEventDescription.text
+        editEventView.eventID = "\(id)"
+        editEventView.eventtitle = lblEventName.text!
+        
+        self.navigationController?.pushViewController(editEventView, animated: true)
+
+    }
+    
     override func viewWillAppear(animated: Bool) {
+        btnEdit.enabled = false
+        
         let url = "/api/events/\(id!)"
         
         DataManager.makeGetRequest(url, completion: { (data, error) -> Void in
@@ -73,7 +88,12 @@ class EventViewController: UIViewController {
 
                     }
                 })
-
+                
+                println("EventCreator:\t \(self.userID) \nUser:\t \(MusiciansWanted.userId)")
+                if self.userID == MusiciansWanted.userId {
+                    self.btnEdit.enabled = true
+                }
+                
             }
             
             if let presenter = self.controller {
@@ -106,6 +126,7 @@ class EventViewController: UIViewController {
                 }
             }
         })
+        
     }
     
     override func viewDidLoad() {

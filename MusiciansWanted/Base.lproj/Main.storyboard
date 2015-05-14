@@ -2163,6 +2163,23 @@
                                     <outlet property="delegate" destination="FCR-bT-rDk" id="foY-3w-aYE"/>
                                 </connections>
                             </scrollView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xeQ-MW-8Zg">
+                                <rect key="frame" x="512" y="84" width="72" height="24"/>
+                                <color key="backgroundColor" red="0.77082354323308266" green="0.0" blue="0.0" alpha="0.40000000000000002" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="24" id="Alw-NK-GGu"/>
+                                    <constraint firstAttribute="width" constant="72" id="BbQ-8X-Cto"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                <state key="normal" title="Delete">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="logOut:" destination="Yfn-HE-0gN" eventType="touchUpInside" id="fFs-2z-rO3"/>
+                                    <action selector="pressDelete:" destination="FCR-bT-rDk" eventType="touchUpInside" id="CCh-TI-rfk"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="0.54510818599999999" green="0.56576582720000002" blue="0.63158017109999998" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
@@ -2181,10 +2198,12 @@
                             <constraint firstItem="YIR-i0-ZJD" firstAttribute="leading" secondItem="B3s-DV-RnB" secondAttribute="leadingMargin" constant="-24" id="hCe-Bu-RS6"/>
                             <constraint firstItem="9rg-oJ-P3A" firstAttribute="centerX" secondItem="B3s-DV-RnB" secondAttribute="centerX" id="iTg-xK-IWF"/>
                             <constraint firstItem="yrb-aX-wp2" firstAttribute="centerX" secondItem="9rg-oJ-P3A" secondAttribute="centerX" id="j1z-pY-7Ft"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="xeQ-MW-8Zg" secondAttribute="trailing" id="lf9-JM-9ad"/>
                             <constraint firstItem="YIR-i0-ZJD" firstAttribute="top" secondItem="yrb-aX-wp2" secondAttribute="bottom" constant="15" id="oQW-YJ-3en"/>
                             <constraint firstItem="fcI-PP-Fdz" firstAttribute="trailing" secondItem="yrb-aX-wp2" secondAttribute="trailing" id="qR9-AF-tWm"/>
                             <constraint firstAttribute="centerX" secondItem="9rg-oJ-P3A" secondAttribute="centerX" id="vQq-eT-NzK"/>
                             <constraint firstAttribute="trailingMargin" secondItem="YIR-i0-ZJD" secondAttribute="trailing" constant="-20" id="vXR-Of-FGH"/>
+                            <constraint firstItem="xeQ-MW-8Zg" firstAttribute="top" secondItem="4LA-Q7-vM5" secondAttribute="bottom" constant="20" id="vxM-UW-J8N"/>
                             <constraint firstItem="fcI-PP-Fdz" firstAttribute="bottom" secondItem="yrb-aX-wp2" secondAttribute="bottom" id="xpT-z1-cMq"/>
                             <constraint firstAttribute="trailingMargin" secondItem="9rg-oJ-P3A" secondAttribute="trailing" constant="10" id="zLi-xc-gBh"/>
                         </constraints>
@@ -2223,6 +2242,7 @@
                         <outlet property="EventTitle" destination="Nc6-c7-QUR" id="tDv-i0-RYZ"/>
                         <outlet property="EventZip" destination="iRT-3m-GqF" id="h7H-QT-NCf"/>
                         <outlet property="StatePicker" destination="sMc-3h-T2H" id="SpW-0m-bSE"/>
+                        <outlet property="btnDelete" destination="xeQ-MW-8Zg" id="HDq-AR-aRN"/>
                         <outlet property="datePicker" destination="NEs-47-64D" id="FhY-rG-dW6"/>
                         <outlet property="eventImage" destination="yrb-aX-wp2" id="deQ-OP-l2k"/>
                         <outlet property="scrollView" destination="YIR-i0-ZJD" id="eNB-lc-EZ2"/>

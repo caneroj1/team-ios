@@ -35,6 +35,7 @@ class AddEventViewController: UIViewController, UITextViewDelegate, UIPickerView
     @IBOutlet weak var EventDescription: UITextView!
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var eventImage: UIImageView!
+    @IBOutlet var datePicker: UIDatePicker!
     
     @IBAction func touchZip(sender: UITextField) {
         scrollView.contentOffset.y = scrollView.contentSize.height - scrollView.frame.size.height + 150
@@ -42,7 +43,9 @@ class AddEventViewController: UIViewController, UITextViewDelegate, UIPickerView
     }
     
     @IBAction func realeaseZip(sender: UITextField) {
-        scrollView.contentOffset.y = 0
+        scrollView.contentOffset.y = scrollView.contentSize.height - scrollView.frame.size.height
+        var date = formatDate(datePicker.date)
+        println("\(date)")
     }
     
     func textViewDidBeginEditing(textView: UITextView) {
@@ -50,7 +53,7 @@ class AddEventViewController: UIViewController, UITextViewDelegate, UIPickerView
     }
     
     func textViewDidEndEditing(textView: UITextView) {
-        scrollView.contentOffset.y = 0;
+        scrollView.contentOffset.y = scrollView.contentSize.height - scrollView.frame.size.height;
     }
     
     override func viewDidLoad() {
@@ -168,14 +171,31 @@ class AddEventViewController: UIViewController, UITextViewDelegate, UIPickerView
         eventImage.image = newEventImage
     }
     
+    func formatDate(date: NSDate) -> String {
+        let formatter = NSDateFormatter()
+        formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSS'Z"
+        
+        let outputter = NSDateFormatter()
+        outputter.dateStyle = NSDateFormatterStyle.ShortStyle
+        outputter.timeStyle = NSDateFormatterStyle.ShortStyle
+        
+        let offset = Double(formatter.timeZone.secondsFromGMT)
+        return outputter.stringFromDate(date)
+    }
+    
     @IBAction func submitInfo(sender: UIBarButtonItem) {
         if EventTitle.text == "" || EventAddress.text == "" || EventCity.text == "" ||  EventZip.text == "" || EventDescription.text == "" {
             SweetAlert().showAlert("Uh oh!", subTitle: "Some required fields were left blank.", style: AlertStyle.Error)
             return
         }
             var url = "/api/events"
+        
             var location = EventAddress.text.capitalizedString.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceCharacterSet()) + ", " +  EventCity.text.capitalizedString.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceCharacterSet()) + ", " + states[thisSort] + " " + EventZip.text.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceCharacterSet())
-            var eventParams: Dictionary<String, AnyObject> = ["title": EventTitle.text.capitalizedString, "location": location, "description": EventDescription.text, "event_time": "2015-05-05 14:31:20 -0400","created_by": MusiciansWanted.userId]
+        
+            var date = formatDate(datePicker.date)
+            println("\(date)")
+        
+            var eventParams: Dictionary<String, AnyObject> = ["title": EventTitle.text.capitalizedString, "location": location, "description": EventDescription.text, "event_time": date,"created_by": MusiciansWanted.userId]
         
             //var eventParams: Dictionary<String, AnyObject> = ["title": "joe's pajama party", "location": "1101 Arch Street, Philadelphia, PA 19107", "description": "this will be fun", "event_time": "2015-05-05 14:31:20 -0400","created_by": MusiciansWanted.userId]
             var params = ["event": eventParams]

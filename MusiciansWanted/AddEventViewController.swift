@@ -173,14 +173,16 @@ class AddEventViewController: UIViewController, UITextViewDelegate, UIPickerView
     
     func formatDate(date: NSDate) -> String {
         let formatter = NSDateFormatter()
-        formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSS'Z"
+        formatter.dateFormat = "yyyy-MM-dd HH:mm:ss ZZZ"
+        let timeZone = NSTimeZone(abbreviation: "UTC");
+        formatter.timeZone = timeZone
         
-        let outputter = NSDateFormatter()
-        outputter.dateStyle = NSDateFormatterStyle.ShortStyle
-        outputter.timeStyle = NSDateFormatterStyle.ShortStyle
-        
-        let offset = Double(formatter.timeZone.secondsFromGMT)
-        return outputter.stringFromDate(date)
+//        let outputter = NSDateFormatter()
+//        outputter.dateStyle = NSDateFormatterStyle.ShortStyle
+//        outputter.timeStyle = NSDateFormatterStyle.ShortStyle
+//        
+//        let offset = Double(formatter.timeZone.secondsFromGMT)
+        return formatter.stringFromDate(date)
     }
     
     @IBAction func submitInfo(sender: UIBarButtonItem) {

@@ -10,7 +10,7 @@ import UIKit
 
 var thisSort = 4
 
-class AddEventViewController: UIViewController, UIPickerViewDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+class AddEventViewController: UIViewController, UITextViewDelegate, UIPickerViewDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
     var eventtitle: String = ""
     var hasEventPic: Bool = false
@@ -36,18 +36,44 @@ class AddEventViewController: UIViewController, UIPickerViewDelegate, UIImagePic
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var eventImage: UIImageView!
     
+    @IBAction func touchZip(sender: UITextField) {
+        scrollView.contentOffset.y = 150
+    }
     
+    func textViewDidBeginEditing(textView: UITextView) {
+        scrollView.contentOffset.y = 200
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+        // NSNotificationCenter.defaultCenter().addObserver(self, selector: "keyboardNotification:", name: UIKeyboardWillChangeFrameNotification, object: nil)
+        
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("keyboardWillShow:"), name:UIKeyboardWillShowNotification, object: nil);
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("keyboardWillHide:"), name:UIKeyboardWillHideNotification, object: nil);
         
         scrollView.canCancelContentTouches = false
         scrollView.delaysContentTouches = false
         StatePicker.delegate = self
         
         StatePicker.selectRow(thisSort, inComponent: 0, animated: true)
+        
+        println("check it")
+    }
+    
+    func keyboardWillShow(sender: NSNotification) {
+        //self.view.frame.origin.y -= 150
+        //scrollView.contentOffset.y += 150
+        scrollView.contentSize.height += 300
+        //scrollView.frame.size.height
+
+    }
+    
+    func keyboardWillHide(sender: NSNotification) {
+        //self.view.frame.origin.y += 150
+        //scrollView.contentOffset.y -= 150
+        scrollView.contentSize.height -= 300
     }
     
     override func viewWillAppear(animated: Bool) {

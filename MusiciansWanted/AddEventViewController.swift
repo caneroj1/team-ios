@@ -14,11 +14,9 @@ class AddEventViewController: UIViewController, UITextViewDelegate, UIPickerView
     
     var eventtitle: String = ""
     var hasEventPic: Bool = false
-    var address: String = ""
-    var city: String = ""
-    var eventStateRow: Int = 0
-    var zip: String = ""
+    var eventLocation: String = ""
     var eventdescription: String = ""
+    var eventDate: String = ""
     var hasBeenSaved: Bool = false
     var eventID: String = ""
     
@@ -97,11 +95,29 @@ class AddEventViewController: UIViewController, UITextViewDelegate, UIPickerView
     
     override func viewWillAppear(animated: Bool) {
         EventTitle.text = eventtitle
-        EventAddress.text = address
+        
+        //Format and display the location
+        var newLoc = eventLocation.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceCharacterSet())
+        
+        var tmpArray1 : [String] = newLoc.componentsSeparatedByCharactersInSet(NSCharacterSet (charactersInString: ","))
+        
+        if tmpArray1.count > 2 {
+            newLoc = tmpArray1[1].stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceCharacterSet()) + ", " + tmpArray1[2].stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceCharacterSet())
+            
+            var tmpArray2 : [String] = newLoc.componentsSeparatedByCharactersInSet(NSCharacterSet (charactersInString: "0123456789"))
+            
+            if tmpArray2.count > 0 {
+                newLoc = tmpArray2[0].stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceCharacterSet())
+            }
+            
+        }
+
+        
+        /*EventAddress.text = address
         EventCity.text = city
         thisSort = eventStateRow
         EventZip.text = String(zip)
-        EventDescription.text = eventdescription
+        EventDescription.text = eventdescription*/
     }
 
 

@@ -1904,12 +1904,19 @@
                             </mask>
                         </variation>
                     </view>
-                    <navigationItem key="navigationItem" title="Event" id="cxl-QL-VSu"/>
+                    <navigationItem key="navigationItem" title="Event" id="cxl-QL-VSu">
+                        <barButtonItem key="rightBarButtonItem" enabled="NO" systemItem="edit" id="ecd-S2-9g9">
+                            <connections>
+                                <action selector="clickEdit:" destination="7kL-oD-5dO" id="I7L-NW-kGx"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" barStyle="black" prompted="NO"/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <size key="freeformSize" width="600" height="800"/>
                     <connections>
+                        <outlet property="btnEdit" destination="ecd-S2-9g9" id="rAC-Mx-4Yx"/>
                         <outlet property="btnEventCreated" destination="HPd-ry-dYs" id="3VB-0j-x8R"/>
                         <outlet property="btnEventDate" destination="gKX-ol-3uf" id="SPZ-4j-a7A"/>
                         <outlet property="btnEventLocation" destination="mfq-zz-Lg4" id="EUV-yK-fGT"/>
@@ -1956,10 +1963,10 @@
             </objects>
             <point key="canvasLocation" x="3014" y="742"/>
         </scene>
-        <!--Add an Event-->
+        <!--AddEvent-->
         <scene sceneID="IiN-ct-ZwJ">
             <objects>
-                <viewController storyboardIdentifier="AddEvent" id="FCR-bT-rDk" customClass="AddEventViewController" customModule="MW" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="AddEvent" title="AddEvent" id="FCR-bT-rDk" customClass="AddEventViewController" customModule="MW" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="4LA-Q7-vM5"/>
                         <viewControllerLayoutGuide type="bottom" id="mOC-9N-uE4"/>

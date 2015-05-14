@@ -34,6 +34,11 @@ class AddEventViewController: UIViewController, UITextViewDelegate, UIPickerView
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var eventImage: UIImageView!
     @IBOutlet var datePicker: UIDatePicker!
+    @IBOutlet var btnDelete: UIButton!
+    
+    @IBAction func pressDelete(sender: UIButton) {
+        
+    }
     
     @IBAction func touchZip(sender: UITextField) {
         scrollView.contentOffset.y = scrollView.contentSize.height - scrollView.frame.size.height + 150
@@ -94,8 +99,13 @@ class AddEventViewController: UIViewController, UITextViewDelegate, UIPickerView
     }*/
     
     override func viewWillAppear(animated: Bool) {
+        btnDelete.hidden = true
+        btnDelete.enabled = false
+        
         if eventID != "" {
             
+            btnDelete.hidden = false
+            btnDelete.enabled = true
         EventTitle.text = eventtitle
         EventDescription.text = eventdescription
         

@@ -57,7 +57,15 @@ class EventsTableViewController: UITableViewController, UIScrollViewDelegate, Ev
         var event = eventManager.event[indexPath.row]
         
         // Configure the cell...
-        cell.EventDescription.text = event.eventLocation
+        var newLoc = event.eventLocation.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceCharacterSet())
+        
+        var tmpArray1 : [String] = newLoc.componentsSeparatedByCharactersInSet(NSCharacterSet (charactersInString: "\n:,"))
+        
+        if tmpArray1.count > 3 {
+            newLoc = tmpArray1[1].stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceCharacterSet()) + ", " + tmpArray1[2].stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceCharacterSet())
+        }
+        
+        cell.EventDescription.text = newLoc
         //cell.EventImage.image = event.eventPicture
         cell.EventTitle.text = event.eventName
             

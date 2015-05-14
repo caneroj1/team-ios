@@ -10,6 +10,8 @@ import UIKit
 
 class EventViewController: UIViewController {
     
+    var eventLocation = ""
+    
     @IBOutlet var lblEventName: UILabel!
     @IBOutlet var btnEventDate: UIButton!
     @IBOutlet var btnEventLocation: UIButton!
@@ -33,7 +35,7 @@ class EventViewController: UIViewController {
         editEventView.eventdescription = lblEventDescription.text
         editEventView.eventID = "\(id)"
         editEventView.eventtitle = lblEventName.text!
-        editEventView.eventLocation = (btnEventLocation.titleLabel?.text)!
+        editEventView.eventLocation = eventLocation
         editEventView.eventDate = (btnEventDate.titleLabel?.text)!
         
         self.navigationController?.pushViewController(editEventView, animated: true)
@@ -66,7 +68,18 @@ class EventViewController: UIViewController {
                 
                 self.btnEventDate.setTitle(outputter.stringFromDate(newDateObject!), forState: UIControlState.Normal)
                 
-                self.btnEventLocation.setTitle(json["location"].stringValue, forState: UIControlState.Normal)
+                self.eventLocation = json["location"].stringValue
+                
+                var newLoc = self.eventLocation.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceCharacterSet())
+                
+                var tmpArray1 : [String] = newLoc.componentsSeparatedByCharactersInSet(NSCharacterSet (charactersInString: "\n:,"))
+                
+                if tmpArray1.count > 3 {
+                    newLoc = tmpArray1[0].stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceCharacterSet()) + ", " + tmpArray1[1].stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceCharacterSet()) + ", " + tmpArray1[2].stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceCharacterSet()) + " " + tmpArray1[3].stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceCharacterSet())
+                }
+                
+                self.btnEventLocation.setTitle(newLoc, forState: UIControlState.Normal)
+                
                 
                 self.userID = json["created_by"].intValue
                 

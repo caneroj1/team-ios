@@ -2039,6 +2039,7 @@
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits"/>
                                         <connections>
+                                            <action selector="realeaseZip:" destination="FCR-bT-rDk" eventType="editingDidEnd" id="Rqn-Sg-Jd7"/>
                                             <action selector="touchZip:" destination="FCR-bT-rDk" eventType="editingDidBegin" id="nOK-tf-AKO"/>
                                         </connections>
                                     </textField>
@@ -2125,6 +2126,9 @@
                                     <constraint firstItem="Oss-9E-PN8" firstAttribute="leading" secondItem="3o6-Pk-jwc" secondAttribute="leading" id="z1e-QU-WA2"/>
                                     <constraint firstItem="aB7-dV-hbL" firstAttribute="top" secondItem="YIR-i0-ZJD" secondAttribute="top" constant="13" id="zX4-fw-IdL"/>
                                 </constraints>
+                                <connections>
+                                    <outlet property="delegate" destination="FCR-bT-rDk" id="foY-3w-aYE"/>
+                                </connections>
                             </scrollView>
                         </subviews>
                         <color key="backgroundColor" red="0.54510818599999999" green="0.56576582720000002" blue="0.63158017109999998" alpha="1" colorSpace="calibratedRGB"/>

@@ -10,7 +10,7 @@ import UIKit
 
 var thisSort = 4
 
-class AddEventViewController: UIViewController, UITextViewDelegate, UIPickerViewDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+class AddEventViewController: UIViewController, UITextViewDelegate, UIPickerViewDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UIScrollViewDelegate {
     
     var eventtitle: String = ""
     var hasEventPic: Bool = false
@@ -37,11 +37,20 @@ class AddEventViewController: UIViewController, UITextViewDelegate, UIPickerView
     @IBOutlet weak var eventImage: UIImageView!
     
     @IBAction func touchZip(sender: UITextField) {
-        scrollView.contentOffset.y = 150
+        scrollView.contentOffset.y = scrollView.contentSize.height - scrollView.frame.size.height + 150
+        //println("\(scrollView.contentOffset.y)")
+    }
+    
+    @IBAction func realeaseZip(sender: UITextField) {
+        scrollView.contentOffset.y = 0
     }
     
     func textViewDidBeginEditing(textView: UITextView) {
-        scrollView.contentOffset.y = 200
+        scrollView.contentOffset.y = scrollView.contentSize.height - scrollView.frame.size.height + 200
+    }
+    
+    func textViewDidEndEditing(textView: UITextView) {
+        scrollView.contentOffset.y = 0;
     }
     
     override func viewDidLoad() {
@@ -50,22 +59,29 @@ class AddEventViewController: UIViewController, UITextViewDelegate, UIPickerView
         // Do any additional setup after loading the view.
         // NSNotificationCenter.defaultCenter().addObserver(self, selector: "keyboardNotification:", name: UIKeyboardWillChangeFrameNotification, object: nil)
         
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("keyboardWillShow:"), name:UIKeyboardWillShowNotification, object: nil);
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("keyboardWillHide:"), name:UIKeyboardWillHideNotification, object: nil);
+        //NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("keyboardWillShow:"), name:UIKeyboardWillShowNotification, object: nil);
+        //NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("keyboardWillHide:"), name:UIKeyboardWillHideNotification, object: nil);
+        
+        /*println("\(scrollView.contentSize.height)")
+        println("\(scrollView.frame.size.height)")
+        
+        if scrollView.contentSize.height < scrollView.frame.size.height {
+            scrollView.contentSize.height = scrollView.frame.size.height + 200
+        }*/
+        
         
         scrollView.canCancelContentTouches = false
         scrollView.delaysContentTouches = false
         StatePicker.delegate = self
         
         StatePicker.selectRow(thisSort, inComponent: 0, animated: true)
-        
-        println("check it")
+
     }
     
-    func keyboardWillShow(sender: NSNotification) {
+    /*func keyboardWillShow(sender: NSNotification) {
         //self.view.frame.origin.y -= 150
         //scrollView.contentOffset.y += 150
-        scrollView.contentSize.height += 300
+        //scrollView.contentSize.height += 300
         //scrollView.frame.size.height
 
     }
@@ -73,8 +89,8 @@ class AddEventViewController: UIViewController, UITextViewDelegate, UIPickerView
     func keyboardWillHide(sender: NSNotification) {
         //self.view.frame.origin.y += 150
         //scrollView.contentOffset.y -= 150
-        scrollView.contentSize.height -= 300
-    }
+        //scrollView.contentSize.height -= 300
+    }*/
     
     override func viewWillAppear(animated: Bool) {
         EventTitle.text = eventtitle

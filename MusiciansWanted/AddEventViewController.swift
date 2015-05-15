@@ -40,7 +40,7 @@ class AddEventViewController: UIViewController, UITextViewDelegate, UIPickerView
         
         var url = "/api/events/\(eventID)"
         
-        DataManager.makeDestroyRequest(url, params: params, completion: { (data, error) -> Void in
+        DataManager.makeDestroyRequest(url, completion: { (data, error) -> Void in
             var json = JSON(data: data!)
             var errorString = DataManager.checkForErrors(json)
             if errorString != "" {
@@ -51,7 +51,7 @@ class AddEventViewController: UIViewController, UITextViewDelegate, UIPickerView
             }
             else {
                 dispatch_async(dispatch_get_main_queue()) {
-                    SweetAlert().showAlert("Success!", subTitle: "Your event has been updated.", style: AlertStyle.Success)
+                    SweetAlert().showAlert("Success!", subTitle: "Your event has been deleted.", style: AlertStyle.Success)
                     
                     self.navigationController?.popViewControllerAnimated(true)
                     
@@ -200,7 +200,7 @@ class AddEventViewController: UIViewController, UITextViewDelegate, UIPickerView
         eventImagePicker.delegate = self
         
         if hasBeenSaved == false {
-            SweetAlert().showAlert("Uh oh!", subTitle: "Click submit before selecting a picture.", style: AlertStyle.Error)
+            SweetAlert().showAlert("Uh oh!", subTitle: "You must submit the picture when updating the event, not submitting.", style: AlertStyle.Error)
             return
         }
         self.presentViewController(eventImagePicker, animated: true, completion: nil)
@@ -213,18 +213,18 @@ class AddEventViewController: UIViewController, UITextViewDelegate, UIPickerView
         let newEventImage = Toucan(image: eventPickedImage).resizeByScaling(CGSizeMake(280, 140)).image as UIImage
         
         if hasBeenSaved == false {
-            SweetAlert().showAlert("Uh oh!", subTitle: "Click submit before selecting a picture.", style: AlertStyle.Error)
+            SweetAlert().showAlert("Uh oh!", subTitle: "You must submit the picture when updating the event, not submitting.", style: AlertStyle.Error)
             return
         }
         
         
         //left off working on putting event id in below
-        //        DataManager.uploadEventImage("/api/s3EventPictureUpload", eventID: self.eventID, image: newEventImage, completion: { (data, error) -> Void in
-        //            dispatch_async(dispatch_get_main_queue()) {
-        //                SweetAlert().showAlert("Sweet!", subTitle: "Event picture successfully added!", style: AlertStyle.Success)
-        //                return
-        //            }
-        //        })
+        DataManager.uploadEventImage("/api/s3EventPictureUpload",eventID: self.eventID, image: newEventImage, completion: { (data, error) -> Void in
+            dispatch_async(dispatch_get_main_queue()) {
+                SweetAlert().showAlert("Sweet!", subTitle: "Event picture successfully added!", style: AlertStyle.Success)
+                return
+            }
+        })
         
         eventImage.image = newEventImage
     }

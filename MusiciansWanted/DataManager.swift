@@ -11,8 +11,8 @@
 import Foundation
 import UIKit
 
-let mwURL = "http://45.56.101.202"
-//let mwURL = "http://localhost:3000"
+//let mwURL = "http://45.56.101.202"
+let mwURL = "http://localhost:3000"
 
 class DataManager {
     class func makeGetRequest(url: String, completion:(data: NSData?, error: NSError?) -> Void) {
@@ -115,7 +115,7 @@ class DataManager {
 
     }
     
-    class func uploadEventImage(url: String, eventID: String, image: UIImage, completion:(data: NSData?, error: NSError?) -> Void) {
+    class func uploadEventImage(url: String, eventID: Int, image: UIImage, completion:(data: NSData?, error: NSError?) -> Void) {
         let request = NSMutableURLRequest(URL: NSURL(string: mwURL + url)!)
         let session = NSURLSession.sharedSession()
         var apiKey = "9e0030ed1249f8db6f3352d0e0993549ab369f002ca78d0c2e0b167c831c9319519024db688cfa8af19f958c4b2183c04e88d2b7f96e062ca9b1886f6127ec1c"

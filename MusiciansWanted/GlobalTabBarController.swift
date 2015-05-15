@@ -47,8 +47,15 @@ class GlobalTabBarController: UITabBarController, CLLocationManagerDelegate {
         UITabBar.appearance().barTintColor = tabbarcolor
         UINavigationBar.appearance().barTintColor = tabbarcolor
         
+        
+        let font = UIFont(name: "MarkerFelt-Wide", size: 22)
+        if let font = font {
+            UINavigationBar.appearance().titleTextAttributes = [NSFontAttributeName : font, NSForegroundColorAttributeName : tabcolor1]//UIColor.whiteColor()]
+        }
+        
         UITabBarItem.appearance().setTitleTextAttributes([NSForegroundColorAttributeName: tabcolor1], forState:.Normal)
         UITabBarItem.appearance().setTitleTextAttributes([NSForegroundColorAttributeName: tabcolor2], forState:.Selected)
+        
         
         self.tabBar.tintColor = tabcolor2
         

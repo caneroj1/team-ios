@@ -8,14 +8,21 @@
 
 import UIKit
 
-class EventsTableViewController: UITableViewController, UIScrollViewDelegate, EventsDelegate {
+class EventsTableViewController: UITableViewController, UIScrollViewDelegate, UITableViewDataSource, EventsDelegate {
     
     var eventAmount = 99;
     var eventManager = EventsManager()
+    var refreshToken = ""
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        
+        self.refreshControl = UIRefreshControl()
+        self.refreshControl?.attributedTitle = NSAttributedString(string: "Loading More Events")
+        self.refreshControl?.addTarget(self, action: "refresh:", forControlEvents: UIControlEvents.ValueChanged)
+        self.refreshControl?.layer.zPosition = -1
+        
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
@@ -82,6 +89,10 @@ class EventsTableViewController: UITableViewController, UIScrollViewDelegate, Ev
     }*/
     
     func addedNewEvent() {
+        if self.refreshControl?.refreshing == true {
+            self.refreshControl?.endRefreshing()
+        }
+        
         dispatch_async(dispatch_get_main_queue()) {
             self.tableView.reloadData()
         }
@@ -144,6 +155,16 @@ class EventsTableViewController: UITableViewController, UIScrollViewDelegate, Ev
             let destination = segue.destinationViewController as! EventMapViewController
             destination.eventManager = eventManager
         }
+    }
+    
+    // MARK: - Refresh Control
+    func stopRefreshing() {
+        self.refreshControl?.endRefreshing()
+    }
+    
+    // MARK: Refresh Control
+    func refresh(sender: AnyObject) {
+        eventManager.loadEvents(0,upper: eventAmount);
     }
 
 }

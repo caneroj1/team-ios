@@ -8,10 +8,11 @@
 
 import UIKit
 
-class PeopleTableViewController: UITableViewController, PeopleDelegate {
+class PeopleTableViewController: UITableViewController, UITableViewDataSource, PeopleDelegate {
 
-    var ttlPpl = 24;
+    var ttlPpl = 24
     var pplMgr = PeopleManager()
+    var refreshToken = ""
     
     override func viewWillAppear(animated: Bool) {
         pplMgr.loadPeople(0, upper: ttlPpl)
@@ -19,6 +20,11 @@ class PeopleTableViewController: UITableViewController, PeopleDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        self.refreshControl = UIRefreshControl()
+        self.refreshControl?.attributedTitle = NSAttributedString(string: "Loading More People")
+        self.refreshControl?.addTarget(self, action: "refresh:", forControlEvents: UIControlEvents.ValueChanged)
+        self.refreshControl?.layer.zPosition = -1
         
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
@@ -111,7 +117,7 @@ class PeopleTableViewController: UITableViewController, PeopleDelegate {
         
         if (maximumOffset - currentOffset <= 2.0 && pplMgr.isLoadingPeople == false) {
             pplMgr.isLoadingPeople = true
-            println("expanding size");
+            println("expanding size")
             ttlPpl = pplMgr.arrPerson.count + 10;
             
             
@@ -126,10 +132,15 @@ class PeopleTableViewController: UITableViewController, PeopleDelegate {
     }
     
     func addedNewItem() {
+        if self.refreshControl?.refreshing == true {
+            self.refreshControl?.endRefreshing()
+        }
+        
         dispatch_async(dispatch_get_main_queue()) {
             self.tableView.reloadData()
         }
     }
+    
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         let person = pplMgr.person[pplMgr.arrPerson[indexPath.row]]
         
@@ -140,5 +151,15 @@ class PeopleTableViewController: UITableViewController, PeopleDelegate {
         personView.id = person?.id
         
         self.navigationController?.pushViewController(personView, animated: true)
+    }
+    
+    func stopRefreshing() {
+        self.refreshControl?.endRefreshing()
+    }
+    
+    // MARK: Refresh Control
+    func refresh(sender: AnyObject) {
+        ttlPpl = pplMgr.arrPerson.count + 10;
+        pplMgr.loadPeople(pplMgr.arrPerson.count, upper: ttlPpl)
     }
 }

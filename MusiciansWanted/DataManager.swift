@@ -58,6 +58,29 @@ class DataManager {
         loadDataTask.resume()
     }
     
+    class func makeDestroyRequest(url: String, completion:(data: NSData?, error: NSError?) -> Void) {
+        var request = NSMutableURLRequest(URL: NSURL(string: mwURL + url)!)
+        var session = NSURLSession.sharedSession()
+        var apiKey = "9e0030ed1249f8db6f3352d0e0993549ab369f002ca78d0c2e0b167c831c9319519024db688cfa8af19f958c4b2183c04e88d2b7f96e062ca9b1886f6127ec1c"
+        
+        request.HTTPMethod = "DELETE"
+        //request.HTTPBody = NSJSONSerialization.dataWithJSONObject( options: .allZeros, error: nil)
+        request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+        request.addValue("application/json", forHTTPHeaderField: "Accept")
+        request.addValue(apiKey, forHTTPHeaderField: "mw-token")
+        
+        let loadDataTask = session.dataTaskWithRequest(request, completionHandler: { (data: NSData!, response: NSURLResponse!, error: NSError!) -> Void in
+            if let responseError = error {
+                println(error)
+                completion(data: nil, error: responseError)
+            } else if let requestResponse = response as? NSHTTPURLResponse {
+                completion(data: data, error: nil)
+            }
+        })
+        
+        loadDataTask.resume()
+    }
+    
     class func uploadProfileImage(url: String, userID: Int, image: UIImage, completion:(data: NSData?, error: NSError?) -> Void) {
         let request = NSMutableURLRequest(URL: NSURL(string: mwURL + url)!)
         let session = NSURLSession.sharedSession()

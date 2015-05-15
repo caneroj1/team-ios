@@ -30,6 +30,7 @@ struct Filters {
     static var upperAge = 75
 }
 
+
 class PeopleManager: NSObject {
     
     var isNearMeURL = false
@@ -91,8 +92,13 @@ class PeopleManager: NSObject {
                         
                     }
                     else {
-                        self.addUser(user.1)
-                        println("USER ADD : \(tmp)")
+                        if(self.person.indexForKey(user.1["id"].intValue) != nil) {
+                            println("user not added")
+                        }
+                        else {
+                            self.addUser(user.1)
+                            println("USER ADD : \(tmp)")
+                        }
                     }
                 }
                 
@@ -114,8 +120,13 @@ class PeopleManager: NSObject {
                         self.person.removeValueForKey(json[index]["id"].intValue)
                     }
                     else {
+                        if((self.person.indexForKey(json[index]["id"].intValue)) != nil) {
+                            println("user not added")
+                        }
+                        else {
                             self.addUser(json[index])
                             println("USER ADD : \(tmp)")
+                        }
                     }
 
                 }

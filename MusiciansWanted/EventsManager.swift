@@ -21,9 +21,10 @@ struct events {
 }
 
 class EventsManager: NSObject {
-    
+    var isNearMeURL = false
     var eventDelegate: EventsDelegate?
     var event = [events]()
+    var eventDictionary = [Int: Bool]()
     var isLoadingEvents = false
     
     func addEvents(tempId: Int, name: String, picture: UIImage, date: String, genre: String, location: String, latitude: Double, longitude: Double){
@@ -36,7 +37,11 @@ class EventsManager: NSObject {
             event[tempId-1].eventLocation = location;
         }
         else {
-            event.append(events(eventId: tempId, eventName: name, eventPicture: picture, eventDate: date, eventGenre: genre, eventLocation: location, latitude: latitude, longitude: longitude))
+            eventDictionary.updateValue(true, forKey: tempId)
+            var tmpArray = [events(eventId: tempId, eventName: name, eventPicture: picture, eventDate: date, eventGenre: genre, eventLocation: location, latitude: latitude, longitude: longitude)]
+            
+            event = tmpArray + event
+//            event.append(events(eventId: tempId, eventName: name, eventPicture: picture, eventDate: date, eventGenre: genre, eventLocation: location, latitude: latitude, longitude: longitude))
         }
         
         self.eventDelegate!.addedNewEvent()
@@ -45,7 +50,18 @@ class EventsManager: NSObject {
     
     func loadEvents(lower: Int, upper: Int) {
         
-        DataManager.makeGetRequest("/api/events", completion: { (data, error) -> Void in
+        var url: String
+        
+        switch CLLocationManager.authorizationStatus() {
+        case .AuthorizedWhenInUse:
+            url = "/api/users/\(MusiciansWanted.userId)/events_near_me"
+            isNearMeURL = true
+        case .Restricted, .Denied, .AuthorizedAlways, .NotDetermined:
+            url = "/api/events"
+            isNearMeURL = false
+        }
+        
+        DataManager.makeGetRequest(url, completion: { (data, error) -> Void in
             let json = JSON(data: data!)
             
             self.isLoadingEvents = true
@@ -70,39 +86,21 @@ class EventsManager: NSObject {
                 let longStr: NSString = NSString(string: longitude)
                 let latStr: NSString = NSString(string: latitude)
                 
-                self.addEvents(eventData["id"].intValue, name: eventData["title"].stringValue, picture: eventImage, date: eventData["event_time"].stringValue, genre: "id: " + eventData["id"].stringValue, location: eventData["location"].stringValue, latitude: latStr.doubleValue, longitude: longStr.doubleValue)
-                
-                println("Adding event \(id)");
-                
-//                self.eventDelegate?.addedNewEvent()
-                
-                //Load in profile images
-//                if eventData["has_profile_pic"].stringValue == "true"
-//                {
-//                    println("loading profile picture of \(id)");
-//                    var url = "/api/s3get?event_id=\(id)"
-//                    DataManager.makeGetRequest(url, completion: { (data, error) -> Void in
-//                        if data != nil {
-//                            var json = JSON(data: data!)
-//                            if json["picture"] != nil {
-//                                var base64String = json["picture"].stringValue
-//                                let decodedString = NSData(base64EncodedString: base64String, options: NSDataBase64DecodingOptions.IgnoreUnknownCharacters)
-//                                dispatch_async(dispatch_get_main_queue()) {
-//                                    eventImage = UIImage(data: decodedString!)!
-//                                    
-//                                    self.addEvents(eventData["id"].intValue, name: eventData["title"].stringValue, picture: eventImage, date: eventData["event_time"].stringValue, genre: "id: " + eventData["id"].stringValue, location: eventData["location"].stringValue, latitude: latStr.doubleValue, longitude: longStr.doubleValue)
-//                                }
-//                            }
-//                        }
-//                        
-//                    })
-//                }
+                if self.eventDictionary.indexForKey(eventData["id"].intValue) == nil {
+                    self.addEvents(eventData["id"].intValue, name: eventData["title"].stringValue, picture: eventImage, date: eventData["event_time"].stringValue, genre: "id: " + eventData["id"].stringValue, location: eventData["location"].stringValue, latitude: latStr.doubleValue, longitude: longStr.doubleValue)
+                    
+                    println("Adding event \(id)")
+                }
+                else {
+                    println("Did not add event")
+                }
+            }
+            
+            dispatch_async(dispatch_get_main_queue()) {
+                self.eventDelegate?.addedNewEvent()
+                println("Event Data Loaded.")
                 
             }
-//            dispatch_sync(dispatch_get_main_queue()) {
-//                self.isLoadingEvents = false
-//                println("Data Loaded.")
-//            }
         })
     }
 }

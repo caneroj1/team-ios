@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7702" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="qzr-uA-NNI">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7531" systemVersion="14D131" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="qzr-uA-NNI">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7701"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7520"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
@@ -501,7 +501,7 @@
                                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Location" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QRQ-kv-EXA">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Location" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QRQ-kv-EXA">
                                         <rect key="frame" x="22" y="108" width="568" height="21"/>
                                         <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="17"/>
                                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
@@ -800,7 +800,7 @@
                                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Location" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RC5-GY-NRD">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Location" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RC5-GY-NRD">
                                         <rect key="frame" x="22" y="108" width="564" height="21"/>
                                         <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="17"/>
                                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
@@ -1904,12 +1904,19 @@
                             </mask>
                         </variation>
                     </view>
-                    <navigationItem key="navigationItem" title="Event" id="cxl-QL-VSu"/>
+                    <navigationItem key="navigationItem" title="Event" id="cxl-QL-VSu">
+                        <barButtonItem key="rightBarButtonItem" enabled="NO" systemItem="edit" id="ecd-S2-9g9">
+                            <connections>
+                                <action selector="clickEdit:" destination="7kL-oD-5dO" id="I7L-NW-kGx"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" barStyle="black" prompted="NO"/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <size key="freeformSize" width="600" height="800"/>
                     <connections>
+                        <outlet property="btnEdit" destination="ecd-S2-9g9" id="rAC-Mx-4Yx"/>
                         <outlet property="btnEventCreated" destination="HPd-ry-dYs" id="3VB-0j-x8R"/>
                         <outlet property="btnEventDate" destination="gKX-ol-3uf" id="SPZ-4j-a7A"/>
                         <outlet property="btnEventLocation" destination="mfq-zz-Lg4" id="EUV-yK-fGT"/>
@@ -1956,10 +1963,10 @@
             </objects>
             <point key="canvasLocation" x="3014" y="742"/>
         </scene>
-        <!--Add an Event-->
+        <!--AddEvent-->
         <scene sceneID="IiN-ct-ZwJ">
             <objects>
-                <viewController storyboardIdentifier="AddEvent" id="FCR-bT-rDk" customClass="AddEventViewController" customModule="MW" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="AddEvent" title="AddEvent" id="FCR-bT-rDk" customClass="AddEventViewController" customModule="MW" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="4LA-Q7-vM5"/>
                         <viewControllerLayoutGuide type="bottom" id="mOC-9N-uE4"/>
@@ -2156,6 +2163,23 @@
                                     <outlet property="delegate" destination="FCR-bT-rDk" id="foY-3w-aYE"/>
                                 </connections>
                             </scrollView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xeQ-MW-8Zg">
+                                <rect key="frame" x="512" y="84" width="72" height="24"/>
+                                <color key="backgroundColor" red="0.77082354323308266" green="0.0" blue="0.0" alpha="0.40000000000000002" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="24" id="Alw-NK-GGu"/>
+                                    <constraint firstAttribute="width" constant="72" id="BbQ-8X-Cto"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                <state key="normal" title="Delete">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="logOut:" destination="Yfn-HE-0gN" eventType="touchUpInside" id="fFs-2z-rO3"/>
+                                    <action selector="pressDelete:" destination="FCR-bT-rDk" eventType="touchUpInside" id="CCh-TI-rfk"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="0.54510818599999999" green="0.56576582720000002" blue="0.63158017109999998" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
@@ -2174,10 +2198,12 @@
                             <constraint firstItem="YIR-i0-ZJD" firstAttribute="leading" secondItem="B3s-DV-RnB" secondAttribute="leadingMargin" constant="-24" id="hCe-Bu-RS6"/>
                             <constraint firstItem="9rg-oJ-P3A" firstAttribute="centerX" secondItem="B3s-DV-RnB" secondAttribute="centerX" id="iTg-xK-IWF"/>
                             <constraint firstItem="yrb-aX-wp2" firstAttribute="centerX" secondItem="9rg-oJ-P3A" secondAttribute="centerX" id="j1z-pY-7Ft"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="xeQ-MW-8Zg" secondAttribute="trailing" id="lf9-JM-9ad"/>
                             <constraint firstItem="YIR-i0-ZJD" firstAttribute="top" secondItem="yrb-aX-wp2" secondAttribute="bottom" constant="15" id="oQW-YJ-3en"/>
                             <constraint firstItem="fcI-PP-Fdz" firstAttribute="trailing" secondItem="yrb-aX-wp2" secondAttribute="trailing" id="qR9-AF-tWm"/>
                             <constraint firstAttribute="centerX" secondItem="9rg-oJ-P3A" secondAttribute="centerX" id="vQq-eT-NzK"/>
                             <constraint firstAttribute="trailingMargin" secondItem="YIR-i0-ZJD" secondAttribute="trailing" constant="-20" id="vXR-Of-FGH"/>
+                            <constraint firstItem="xeQ-MW-8Zg" firstAttribute="top" secondItem="4LA-Q7-vM5" secondAttribute="bottom" constant="20" id="vxM-UW-J8N"/>
                             <constraint firstItem="fcI-PP-Fdz" firstAttribute="bottom" secondItem="yrb-aX-wp2" secondAttribute="bottom" id="xpT-z1-cMq"/>
                             <constraint firstAttribute="trailingMargin" secondItem="9rg-oJ-P3A" secondAttribute="trailing" constant="10" id="zLi-xc-gBh"/>
                         </constraints>
@@ -2216,6 +2242,7 @@
                         <outlet property="EventTitle" destination="Nc6-c7-QUR" id="tDv-i0-RYZ"/>
                         <outlet property="EventZip" destination="iRT-3m-GqF" id="h7H-QT-NCf"/>
                         <outlet property="StatePicker" destination="sMc-3h-T2H" id="SpW-0m-bSE"/>
+                        <outlet property="btnDelete" destination="xeQ-MW-8Zg" id="HDq-AR-aRN"/>
                         <outlet property="datePicker" destination="NEs-47-64D" id="FhY-rG-dW6"/>
                         <outlet property="eventImage" destination="yrb-aX-wp2" id="deQ-OP-l2k"/>
                         <outlet property="scrollView" destination="YIR-i0-ZJD" id="eNB-lc-EZ2"/>

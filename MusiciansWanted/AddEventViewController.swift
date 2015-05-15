@@ -14,13 +14,11 @@ class AddEventViewController: UIViewController, UITextViewDelegate, UIPickerView
     
     var eventtitle: String = ""
     var hasEventPic: Bool = false
-    var address: String = ""
-    var city: String = ""
-    var eventStateRow: Int = 0
-    var zip: String = ""
+    var eventLocation: String = ""
     var eventdescription: String = ""
+    var eventDate: String = ""
     var hasBeenSaved: Bool = false
-    var eventID: String = ""
+    var eventID: Int = -1
     
     var states = [
         "Alabama", "Alaska", "American Samoa", "Arizona", "Arkansas", "California", "Colorado", "Connecticut", "Delaware", "District of Columbia", "Florida", "Georgia", "Guam", "Hawaii", "Idaho", "Illinois", "Indiana", "Iowa", "Kansas", "Kentucky", "Louisiana", "Maine", "Maryland", "Massachusetts", "Michigan", "Minnesota", "Mississippi", "Missouri", "Montana", "Nebraska", "Nevada", "New Hampshire", "New Jersey", "New Mexico", "New York", "North Carolina", "North Dakota", "Northern Marianas Islands", "Ohio", "Oklahoma", "Oregon", "Pennsylvania", "Puerto Rico", "Rhode Island", "South Carolina", "South Dakota", "Tennessee", "Texas", "Utah", "Vermont", "Virginia", "Virgin Islands", "Washington", "West Virginia", "Wisconsin", "Wyoming"
@@ -29,13 +27,18 @@ class AddEventViewController: UIViewController, UITextViewDelegate, UIPickerView
     
     @IBOutlet weak var EventTitle: UITextField!
     @IBOutlet weak var EventAddress: UITextField!
-    @IBOutlet weak var EventCity: UITextField!    
+    @IBOutlet weak var EventCity: UITextField!
     @IBOutlet weak var StatePicker: UIPickerView!
     @IBOutlet weak var EventZip: UITextField!
     @IBOutlet weak var EventDescription: UITextView!
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var eventImage: UIImageView!
     @IBOutlet var datePicker: UIDatePicker!
+    @IBOutlet var btnDelete: UIButton!
+    
+    @IBAction func pressDelete(sender: UIButton) {
+        
+    }
     
     @IBAction func touchZip(sender: UITextField) {
         scrollView.contentOffset.y = scrollView.contentSize.height - scrollView.frame.size.height + 150
@@ -58,7 +61,7 @@ class AddEventViewController: UIViewController, UITextViewDelegate, UIPickerView
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         // Do any additional setup after loading the view.
         // NSNotificationCenter.defaultCenter().addObserver(self, selector: "keyboardNotification:", name: UIKeyboardWillChangeFrameNotification, object: nil)
         
@@ -69,7 +72,7 @@ class AddEventViewController: UIViewController, UITextViewDelegate, UIPickerView
         println("\(scrollView.frame.size.height)")
         
         if scrollView.contentSize.height < scrollView.frame.size.height {
-            scrollView.contentSize.height = scrollView.frame.size.height + 200
+        scrollView.contentSize.height = scrollView.frame.size.height + 200
         }*/
         
         
@@ -78,33 +81,66 @@ class AddEventViewController: UIViewController, UITextViewDelegate, UIPickerView
         StatePicker.delegate = self
         
         StatePicker.selectRow(thisSort, inComponent: 0, animated: true)
-
+        
     }
     
     /*func keyboardWillShow(sender: NSNotification) {
-        //self.view.frame.origin.y -= 150
-        //scrollView.contentOffset.y += 150
-        //scrollView.contentSize.height += 300
-        //scrollView.frame.size.height
-
+    //self.view.frame.origin.y -= 150
+    //scrollView.contentOffset.y += 150
+    //scrollView.contentSize.height += 300
+    //scrollView.frame.size.height
+    
     }
     
     func keyboardWillHide(sender: NSNotification) {
-        //self.view.frame.origin.y += 150
-        //scrollView.contentOffset.y -= 150
-        //scrollView.contentSize.height -= 300
+    //self.view.frame.origin.y += 150
+    //scrollView.contentOffset.y -= 150
+    //scrollView.contentSize.height -= 300
     }*/
     
     override func viewWillAppear(animated: Bool) {
-        EventTitle.text = eventtitle
-        EventAddress.text = address
-        EventCity.text = city
-        thisSort = eventStateRow
-        EventZip.text = String(zip)
-        EventDescription.text = eventdescription
+        btnDelete.hidden = true
+        btnDelete.enabled = false
+        
+        if eventID >= 0 {
+            println("EventID: \(eventID)")
+            btnDelete.hidden = false
+            btnDelete.enabled = true
+            EventTitle.text = eventtitle
+            EventDescription.text = eventdescription
+            hasBeenSaved = true
+            
+            
+            //Format and display the location
+            //[0] Address [1] City [2] State [3] Zip [4] Country
+            var newLoc = eventLocation.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceCharacterSet())
+            
+            var tmpArray1 : [String] = newLoc.componentsSeparatedByCharactersInSet(NSCharacterSet (charactersInString: "\n:,"))
+            
+            if tmpArray1.count > 3 {
+                EventAddress.text = tmpArray1[0].stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceCharacterSet())
+                EventCity.text = tmpArray1[1].stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceCharacterSet())
+                EventZip.text = tmpArray1[3].stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceCharacterSet())
+                var eventState = tmpArray1[2].stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceCharacterSet())
+                
+                for index in 0...states.count-1 {
+                    if states[index] == eventState {
+                        thisSort = index
+                        break
+                    }
+                }
+                StatePicker.selectRow(thisSort, inComponent: 0, animated: true)
+            }
+            
+            let dateFormatter = NSDateFormatter()
+            dateFormatter.dateFormat = "M/d/yy, h:mm a"
+            let date = dateFormatter.dateFromString(eventDate)
+            
+            datePicker.setDate(date!, animated: true)
+        }
     }
-
-
+    
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -147,7 +183,7 @@ class AddEventViewController: UIViewController, UITextViewDelegate, UIPickerView
         }
         self.presentViewController(eventImagePicker, animated: true, completion: nil)
     }
-
+    
     
     func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [NSObject : AnyObject]) {
         self.dismissViewControllerAnimated(true, completion: nil)
@@ -161,12 +197,12 @@ class AddEventViewController: UIViewController, UITextViewDelegate, UIPickerView
         
         
         //left off working on putting event id in below
-//        DataManager.uploadEventImage("/api/s3EventPictureUpload", eventID: self.eventID, image: newEventImage, completion: { (data, error) -> Void in
-//            dispatch_async(dispatch_get_main_queue()) {
-//                SweetAlert().showAlert("Sweet!", subTitle: "Event picture successfully added!", style: AlertStyle.Success)
-//                return
-//            }
-//        })
+        //        DataManager.uploadEventImage("/api/s3EventPictureUpload", eventID: self.eventID, image: newEventImage, completion: { (data, error) -> Void in
+        //            dispatch_async(dispatch_get_main_queue()) {
+        //                SweetAlert().showAlert("Sweet!", subTitle: "Event picture successfully added!", style: AlertStyle.Success)
+        //                return
+        //            }
+        //        })
         
         eventImage.image = newEventImage
     }
@@ -177,11 +213,11 @@ class AddEventViewController: UIViewController, UITextViewDelegate, UIPickerView
         let timeZone = NSTimeZone(abbreviation: "UTC");
         formatter.timeZone = timeZone
         
-//        let outputter = NSDateFormatter()
-//        outputter.dateStyle = NSDateFormatterStyle.ShortStyle
-//        outputter.timeStyle = NSDateFormatterStyle.ShortStyle
-//        
-//        let offset = Double(formatter.timeZone.secondsFromGMT)
+        //        let outputter = NSDateFormatter()
+        //        outputter.dateStyle = NSDateFormatterStyle.ShortStyle
+        //        outputter.timeStyle = NSDateFormatterStyle.ShortStyle
+        //
+        //        let offset = Double(formatter.timeZone.secondsFromGMT)
         return formatter.stringFromDate(date)
     }
     
@@ -190,18 +226,21 @@ class AddEventViewController: UIViewController, UITextViewDelegate, UIPickerView
             SweetAlert().showAlert("Uh oh!", subTitle: "Some required fields were left blank.", style: AlertStyle.Error)
             return
         }
+        
+        var location = EventAddress.text.capitalizedString.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceCharacterSet()) + "\n" +  EventCity.text.capitalizedString.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceCharacterSet()) + ", " + states[thisSort] + " : " + EventZip.text.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceCharacterSet())
+        
+        var date = formatDate(datePicker.date)
+        println("\(date)")
+        
+        var eventParams: Dictionary<String, AnyObject> = ["title": EventTitle.text.capitalizedString, "location": location, "description": EventDescription.text, "event_time": date,"created_by": MusiciansWanted.userId]
+        
+        //var eventParams: Dictionary<String, AnyObject> = ["title": "joe's pajama party", "location": "1101 Arch Street, Philadelphia, PA 19107", "description": "this will be fun", "event_time": "2015-05-05 14:31:20 -0400","created_by": MusiciansWanted.userId]
+        var params = ["event": eventParams]
+        
+        if eventID < 0 {
+            
             var url = "/api/events"
-        
-            var location = EventAddress.text.capitalizedString.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceCharacterSet()) + ", " +  EventCity.text.capitalizedString.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceCharacterSet()) + ", " + states[thisSort] + " " + EventZip.text.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceCharacterSet())
-        
-            var date = formatDate(datePicker.date)
-            println("\(date)")
-        
-            var eventParams: Dictionary<String, AnyObject> = ["title": EventTitle.text.capitalizedString, "location": location, "description": EventDescription.text, "event_time": date,"created_by": MusiciansWanted.userId]
-        
-            //var eventParams: Dictionary<String, AnyObject> = ["title": "joe's pajama party", "location": "1101 Arch Street, Philadelphia, PA 19107", "description": "this will be fun", "event_time": "2015-05-05 14:31:20 -0400","created_by": MusiciansWanted.userId]
-            var params = ["event": eventParams]
-        
+            
             DataManager.makePostRequest(url, params: params, completion: { (data, error) -> Void in
                 var json = JSON(data: data!)
                 var errorString = DataManager.checkForErrors(json)
@@ -214,24 +253,42 @@ class AddEventViewController: UIViewController, UITextViewDelegate, UIPickerView
                 else {
                     dispatch_async(dispatch_get_main_queue()) {
                         SweetAlert().showAlert("Success!", subTitle: "Your event has been submitted.", style: AlertStyle.Success)
-                        var tempHold = ""
                         
-                        self.hasBeenSaved = true
-                        for (key, value) in json["event"] {
-                            for tempVal in value {
-                                tempHold = tempVal.1.stringValue
-                                print(tempVal)
-                            }
-                        
-                        }
-                        print(tempHold)
-                        self.eventID = tempHold
+                        self.eventID = json["id"].intValue
+
+                        self.navigationController?.popViewControllerAnimated(true)
                         
                         return
                     }
                 }
             })
         }
+        else
+        {
+            var url = "/api/events/\(eventID)"
+            println(url)
+            DataManager.makePatchRequest(url, params: params, completion: { (data, error) -> Void in
+                var json = JSON(data: data!)
+                var errorString = DataManager.checkForErrors(json)
+                if errorString != "" {
+                    dispatch_async(dispatch_get_main_queue()) {
+                        SweetAlert().showAlert("Oops!", subTitle: errorString, style: AlertStyle.Error)
+                        return
+                    }
+                }
+                else {
+                    dispatch_async(dispatch_get_main_queue()) {
+                        SweetAlert().showAlert("Success!", subTitle: "Your event has been updated.", style: AlertStyle.Success)
+                        
+                        self.navigationController?.popViewControllerAnimated(true)
+                        
+                        return
+                    }
+                }
+            })
+            
+        }
+    }
         
     }
 

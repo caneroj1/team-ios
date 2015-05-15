@@ -23,32 +23,13 @@ struct events {
 class EventsManager: NSObject {
     var isNearMeURL = false
     var eventDelegate: EventsDelegate?
-    var event = [events]()
-    var eventDictionary = [Int: Bool]()
+    var event = [Int]()
+    var eventDictionary = [Int: events]()
     var isLoadingEvents = false
     
-    func addEvents(tempId: Int, name: String, picture: UIImage, date: String, genre: String, location: String, latitude: Double, longitude: Double){
-        
-        if event.count >= tempId {
-            event[tempId-1].eventName = name;
-            event[tempId-1].eventPicture = picture;
-            event[tempId-1].eventDate = date;
-            event[tempId-1].eventGenre = genre;
-            event[tempId-1].eventLocation = location;
-        }
-        else {
-            eventDictionary.updateValue(true, forKey: tempId)
-            var tmpArray = [events(eventId: tempId, eventName: name, eventPicture: picture, eventDate: date, eventGenre: genre, eventLocation: location, latitude: latitude, longitude: longitude)]
-            
-            event = tmpArray + event
-//            event.append(events(eventId: tempId, eventName: name, eventPicture: picture, eventDate: date, eventGenre: genre, eventLocation: location, latitude: latitude, longitude: longitude))
-        }
-        
-        self.eventDelegate!.addedNewEvent()
-
-    }
-    
     func loadEvents(lower: Int, upper: Int) {
+        
+        eventDictionary = [Int: events]()
         
         var url: String
         
@@ -74,8 +55,8 @@ class EventsManager: NSObject {
                     break;
                 }
                 var eventData = json[index]
-                var id = eventData["id"];
-                
+                var id = eventData["id"].intValue;
+                var title = eventData["title"].stringValue
                 //write if statement that filters setting based on age, looking to jam, and band
                 //Add basic information of events
                 var eventImage = UIImage(named: "UltraLord")!
@@ -86,18 +67,18 @@ class EventsManager: NSObject {
                 let longStr: NSString = NSString(string: longitude)
                 let latStr: NSString = NSString(string: latitude)
                 
-                if self.eventDictionary.indexForKey(eventData["id"].intValue) == nil {
-                    self.addEvents(eventData["id"].intValue, name: eventData["title"].stringValue, picture: eventImage, date: eventData["event_time"].stringValue, genre: "id: " + eventData["id"].stringValue, location: eventData["location"].stringValue, latitude: latStr.doubleValue, longitude: longStr.doubleValue)
-                    
-                    println("Adding event \(id)")
-                }
-                else {
-                    println("Did not add event")
-                }
+                //self.person.removeValueForKey(user.1["id"].intValue)
+
+                println("\(id) : \(title)")
+                
+               self.eventDictionary[id] = events(eventId: eventData["id"].intValue, eventName: eventData["title"].stringValue, eventPicture: eventImage, eventDate: eventData["event_time"].stringValue, eventGenre: "id: " + eventData["id"].stringValue, eventLocation: eventData["location"].stringValue, latitude: latStr.doubleValue, longitude: longStr.doubleValue)
+                
             }
             
             dispatch_async(dispatch_get_main_queue()) {
                 self.eventDelegate?.addedNewEvent()
+                self.event = Array(self.eventDictionary.keys).sorted(<)
+
                 println("Event Data Loaded.")
                 
             }

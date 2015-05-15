@@ -40,7 +40,7 @@ class AddEventViewController: UIViewController, UITextViewDelegate, UIPickerView
         
         var url = "/api/events/\(eventID)"
         
-        DataManager.makeDestroyRequest(url, params: params, completion: { (data, error) -> Void in
+        DataManager.makeDestroyRequest(url, completion: { (data, error) -> Void in
             var json = JSON(data: data!)
             var errorString = DataManager.checkForErrors(json)
             if errorString != "" {
@@ -51,9 +51,10 @@ class AddEventViewController: UIViewController, UITextViewDelegate, UIPickerView
             }
             else {
                 dispatch_async(dispatch_get_main_queue()) {
-                    SweetAlert().showAlert("Success!", subTitle: "Your event has been updated.", style: AlertStyle.Success)
+                    SweetAlert().showAlert("Success!", subTitle: "Your event has been deleted.", style: AlertStyle.Success)
                     
-                    self.navigationController?.popViewControllerAnimated(true)
+                    //self.navigationController?.popViewControllerAnimated(true)
+                    self.navigationController?.popToRootViewControllerAnimated(true)
                     
                     return
                 }

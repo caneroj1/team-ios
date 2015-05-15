@@ -29,10 +29,14 @@ class EventsTableViewController: UITableViewController, UIScrollViewDelegate, UI
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem()
         eventManager.eventDelegate = self
-        eventManager.loadEvents(0,upper: eventAmount);
 //        tableView.reloadData()
     }
 
+    override func viewWillAppear(animated: Bool) {
+        eventManager.loadEvents(0,upper: eventAmount);
+
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -61,10 +65,10 @@ class EventsTableViewController: UITableViewController, UIScrollViewDelegate, UI
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("Event", forIndexPath: indexPath) as! EventsCell
 
-        var event = eventManager.event[indexPath.row]
-        
+        var event = eventManager.eventDictionary[eventManager.event[indexPath.row]]
+                
         // Configure the cell...
-        var newLoc = event.eventLocation.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceCharacterSet())
+        var newLoc = event!.eventLocation.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceCharacterSet())
         
         var tmpArray1 : [String] = newLoc.componentsSeparatedByCharactersInSet(NSCharacterSet (charactersInString: "\n:,"))
         
@@ -74,7 +78,7 @@ class EventsTableViewController: UITableViewController, UIScrollViewDelegate, UI
         
         cell.EventDescription.text = newLoc
         //cell.EventImage.image = event.eventPicture
-        cell.EventTitle.text = event.eventName
+        cell.EventTitle.text = event!.eventName
             
         //cell.EventDescription.text = "The time to see ultra lord"
         cell.EventImage.image = UIImage(named: "UltraLord")
@@ -107,14 +111,14 @@ class EventsTableViewController: UITableViewController, UIScrollViewDelegate, UI
     }
 
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        let event = eventManager.event[indexPath.row]
+        let event = eventManager.eventDictionary[eventManager.event[indexPath.row]]
         
         println("Instantiate event view...")
         let eventView = self.storyboard?.instantiateViewControllerWithIdentifier("EventViewController") as! EventViewController
         
         eventView.controller = "events"
-        eventView.icon = event.eventPicture
-        eventView.id = event.eventId
+        eventView.icon = event!.eventPicture
+        eventView.id = event!.eventId
         
         self.navigationController?.pushViewController(eventView, animated: true)
     }

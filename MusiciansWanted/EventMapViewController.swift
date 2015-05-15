@@ -25,8 +25,10 @@ class EventMapViewController: UIViewController, MKMapViewDelegate {
         }
         eventMap.delegate = self
         
-        for event in eventManager!.event {
-            var mapAnnotation = Event(title: event.eventName, locationName: event.eventLocation, id: event.eventId, icon: event.eventPicture!, coordinate: CLLocationCoordinate2D(latitude: event.latitude, longitude: event.longitude))
+        for index in eventManager!.event {
+            var event = eventManager?.eventDictionary[index]
+            
+            var mapAnnotation = Event(title: event!.eventName, locationName: event!.eventLocation, id: event!.eventId, icon: event!.eventPicture!, coordinate: CLLocationCoordinate2D(latitude: event!.latitude, longitude: event!.longitude))
             dispatch_async(dispatch_get_main_queue()) {
                 self.eventMap.addAnnotation(mapAnnotation)
             }

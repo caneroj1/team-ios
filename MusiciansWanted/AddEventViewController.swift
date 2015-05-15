@@ -37,7 +37,29 @@ class AddEventViewController: UIViewController, UITextViewDelegate, UIPickerView
     @IBOutlet var btnDelete: UIButton!
     
     @IBAction func pressDelete(sender: UIButton) {
-        //DataManager.makeDestroyRequest()
+        
+        var url = "/api/events/\(eventID)"
+        
+        DataManager.makeDestroyRequest(url, params: params, completion: { (data, error) -> Void in
+            var json = JSON(data: data!)
+            var errorString = DataManager.checkForErrors(json)
+            if errorString != "" {
+                dispatch_async(dispatch_get_main_queue()) {
+                    SweetAlert().showAlert("Oops!", subTitle: errorString, style: AlertStyle.Error)
+                    return
+                }
+            }
+            else {
+                dispatch_async(dispatch_get_main_queue()) {
+                    SweetAlert().showAlert("Success!", subTitle: "Your event has been updated.", style: AlertStyle.Success)
+                    
+                    self.navigationController?.popViewControllerAnimated(true)
+                    
+                    return
+                }
+            }
+        })
+
     }
     
     @IBAction func touchZip(sender: UITextField) {

@@ -33,7 +33,7 @@ class EventViewController: UIViewController {
         
         //personView.controller = "people"
         editEventView.eventdescription = lblEventDescription.text
-        editEventView.eventID = "\(id)"
+        editEventView.eventID = id!
         editEventView.eventtitle = lblEventName.text!
         editEventView.eventLocation = eventLocation
         editEventView.eventDate = (btnEventDate.titleLabel?.text)!

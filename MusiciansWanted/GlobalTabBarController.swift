@@ -120,6 +120,8 @@ class GlobalTabBarController: UITabBarController, CLLocationManagerDelegate {
         let thoroughfare: String = (placemark.thoroughfare != nil) ? placemark.thoroughfare : ""
         var locationString = "\(subThoroughfare) \(thoroughfare)\n\(placemark.subLocality), "
         
+        //SweetAlert().showAlert("Check It!", subTitle: "\(subThoroughfare) : \(thoroughfare) : \(placemark.subLocality) : \(placemark.locality) ", style: AlertStyle.Warning)
+        
         var locality = placemark.locality
         
         switch placemark.locality.lowercaseString.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceCharacterSet()) {

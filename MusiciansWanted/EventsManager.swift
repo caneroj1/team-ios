@@ -38,7 +38,10 @@ class EventsManager: NSObject {
         }
         else {
             eventDictionary.updateValue(true, forKey: tempId)
-            event.append(events(eventId: tempId, eventName: name, eventPicture: picture, eventDate: date, eventGenre: genre, eventLocation: location, latitude: latitude, longitude: longitude))
+            var tmpArray = [events(eventId: tempId, eventName: name, eventPicture: picture, eventDate: date, eventGenre: genre, eventLocation: location, latitude: latitude, longitude: longitude)]
+            
+            event = tmpArray + event
+//            event.append(events(eventId: tempId, eventName: name, eventPicture: picture, eventDate: date, eventGenre: genre, eventLocation: location, latitude: latitude, longitude: longitude))
         }
         
         self.eventDelegate!.addedNewEvent()

@@ -21,7 +21,7 @@ struct events {
 }
 
 class EventsManager: NSObject {
-    
+    var isNearMeURL = false
     var eventDelegate: EventsDelegate?
     var event = [events]()
     var eventDictionary = [Int: Bool]()
@@ -50,7 +50,18 @@ class EventsManager: NSObject {
     
     func loadEvents(lower: Int, upper: Int) {
         
-        DataManager.makeGetRequest("/api/events", completion: { (data, error) -> Void in
+        var url: String
+        
+        switch CLLocationManager.authorizationStatus() {
+        case .AuthorizedWhenInUse:
+            url = "/api/users/\(MusiciansWanted.userId)/events_near_me"
+            isNearMeURL = true
+        case .Restricted, .Denied, .AuthorizedAlways, .NotDetermined:
+            url = "/api/events"
+            isNearMeURL = false
+        }
+        
+        DataManager.makeGetRequest(url, completion: { (data, error) -> Void in
             let json = JSON(data: data!)
             
             self.isLoadingEvents = true

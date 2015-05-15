@@ -201,7 +201,7 @@ class AddEventViewController: UIViewController, UITextViewDelegate, UIPickerView
         eventImagePicker.delegate = self
         
         if hasBeenSaved == false {
-            SweetAlert().showAlert("Uh oh!", subTitle: "Click submit before selecting a picture.", style: AlertStyle.Error)
+            SweetAlert().showAlert("Uh oh!", subTitle: "You must submit the picture when updating the event, not submitting.", style: AlertStyle.Error)
             return
         }
         self.presentViewController(eventImagePicker, animated: true, completion: nil)
@@ -214,18 +214,18 @@ class AddEventViewController: UIViewController, UITextViewDelegate, UIPickerView
         let newEventImage = Toucan(image: eventPickedImage).resizeByScaling(CGSizeMake(280, 140)).image as UIImage
         
         if hasBeenSaved == false {
-            SweetAlert().showAlert("Uh oh!", subTitle: "Click submit before selecting a picture.", style: AlertStyle.Error)
+            SweetAlert().showAlert("Uh oh!", subTitle: "You must submit the picture when updating the event, not submitting.", style: AlertStyle.Error)
             return
         }
         
         
         //left off working on putting event id in below
-        //        DataManager.uploadEventImage("/api/s3EventPictureUpload", eventID: self.eventID, image: newEventImage, completion: { (data, error) -> Void in
-        //            dispatch_async(dispatch_get_main_queue()) {
-        //                SweetAlert().showAlert("Sweet!", subTitle: "Event picture successfully added!", style: AlertStyle.Success)
-        //                return
-        //            }
-        //        })
+        DataManager.uploadEventImage("/api/s3EventPictureUpload",eventID: self.eventID, image: newEventImage, completion: { (data, error) -> Void in
+            dispatch_async(dispatch_get_main_queue()) {
+                SweetAlert().showAlert("Sweet!", subTitle: "Event picture successfully added!", style: AlertStyle.Success)
+                return
+            }
+        })
         
         eventImage.image = newEventImage
     }

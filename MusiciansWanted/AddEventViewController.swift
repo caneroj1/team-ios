@@ -37,7 +37,7 @@ class AddEventViewController: UIViewController, UITextViewDelegate, UIPickerView
     @IBOutlet var btnDelete: UIButton!
     
     @IBAction func pressDelete(sender: UIButton) {
-        
+        //DataManager.makeDestroyRequest()
     }
     
     @IBAction func touchZip(sender: UITextField) {

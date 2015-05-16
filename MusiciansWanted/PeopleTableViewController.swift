@@ -75,11 +75,31 @@ class PeopleTableViewController: UITableViewController, UITableViewDataSource, P
             newLoc = tmpArray1[1].stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceCharacterSet())
         }
         
+        var dist = "\(person!.distance)"
+        dist = dist.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceCharacterSet())
+        if person?.distance < 0 || person?.distance == nil || count(dist) < 3 {
+            dist = ""
+        }
+        else
+        {
+            if person!.distance >= 10 && count(dist) >= 4
+            {
+                dist = dist.substringToIndex(advance(dist.startIndex, 4)) + " mi - "
+            }
+            else
+            {
+                dist = dist.substringToIndex(advance(dist.startIndex, 3)) + " mi - "
+
+            }
+        }
+        
+        
         if newLoc == "" || newLoc == nil {
             cell.lblLocation.text = "Location Disabled"
         }
         else {
-            cell.lblLocation.text = newLoc
+            cell.lblLocation.text = dist + newLoc!
+
         }
     
         

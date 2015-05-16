@@ -157,6 +157,8 @@ class PeopleManager: NSObject {
         
         println("Adding user \(userId)");
         
+        var dist = user["distance"].doubleValue
+        println("Distance: \(dist)");
         
         //Load in profile images
         if user["has_profile_pic"].stringValue == "true"

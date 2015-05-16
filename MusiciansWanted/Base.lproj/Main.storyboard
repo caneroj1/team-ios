@@ -1752,7 +1752,7 @@
                                     </mask>
                                 </variation>
                             </imageView>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XEt-mK-BjY">
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XEt-mK-BjY">
                                 <rect key="frame" x="-8" y="271" width="612" height="480"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Description:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9uJ-FF-p43">
@@ -1778,15 +1778,20 @@
                                             <action selector="viewUser:" destination="7kL-oD-5dO" eventType="touchUpInside" id="LPo-oD-wFO"/>
                                         </connections>
                                     </button>
-                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" editable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="z2k-vq-Nus">
-                                        <rect key="frame" x="20" y="161" width="572" height="120"/>
+                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" showsHorizontalScrollIndicator="NO" editable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="z2k-vq-Nus">
+                                        <rect key="frame" x="20" y="161" width="572" height="500"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="120" id="QqI-if-5uK"/>
-                                            <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="120" id="W3e-Pf-NOd"/>
+                                            <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="500" id="W3e-Pf-NOd"/>
                                         </constraints>
                                         <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                        <variation key="default">
+                                            <mask key="constraints">
+                                                <exclude reference="QqI-if-5uK"/>
+                                            </mask>
+                                        </variation>
                                     </textView>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gKX-ol-3uf">
                                         <rect key="frame" x="20" y="20" width="572" height="30"/>
@@ -1812,7 +1817,7 @@
                                     <constraint firstItem="9uJ-FF-p43" firstAttribute="leading" secondItem="XEt-mK-BjY" secondAttribute="leading" constant="22" id="VDB-8S-ye7"/>
                                     <constraint firstAttribute="bottom" secondItem="z2k-vq-Nus" secondAttribute="bottom" constant="125" id="bIW-Ji-dRz"/>
                                     <constraint firstItem="gKX-ol-3uf" firstAttribute="top" secondItem="XEt-mK-BjY" secondAttribute="top" constant="20" id="bio-W6-3wv"/>
-                                    <constraint firstAttribute="bottom" secondItem="z2k-vq-Nus" secondAttribute="bottom" constant="199" id="gIG-VL-V1W"/>
+                                    <constraint firstAttribute="bottom" secondItem="z2k-vq-Nus" secondAttribute="bottom" constant="20" id="gIG-VL-V1W"/>
                                     <constraint firstAttribute="trailing" secondItem="z2k-vq-Nus" secondAttribute="trailing" constant="20" id="gjf-yR-9dh"/>
                                     <constraint firstItem="z2k-vq-Nus" firstAttribute="top" secondItem="9uJ-FF-p43" secondAttribute="bottom" constant="2" id="nmf-MS-OMu"/>
                                     <constraint firstAttribute="trailing" secondItem="z2k-vq-Nus" secondAttribute="trailing" constant="18" id="oQo-Da-28K"/>

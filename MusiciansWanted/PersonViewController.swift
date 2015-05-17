@@ -8,7 +8,7 @@
 
 import UIKit
 
-class PersonViewController: UIViewController {
+class PersonViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource {
     @IBOutlet weak var personIcon: UIImageView!
     @IBOutlet weak var personName: UILabel!
     @IBOutlet weak var ageLabel: UILabel!
@@ -17,6 +17,7 @@ class PersonViewController: UIViewController {
     @IBOutlet weak var bandLabel: UILabel!
     @IBOutlet weak var locationlabel: UILabel!
     @IBOutlet weak var contactButton: UIButton!
+    @IBOutlet var genreCollection: UICollectionView!
     
     var icon: UIImage?
     var controller: String?
@@ -24,6 +25,9 @@ class PersonViewController: UIViewController {
     
     let darkenedColor = UIColor(red: 200.0/255.0, green: 90.0/255.0, blue: 0.0/255.0, alpha: 0.5)
     let brightColor = UIColor(red: 255.0/255.0, green: 90.0/255.0, blue: 0.0/255.0, alpha: 1.0)
+    
+    var arrGenre = [String]()
+    var genre: String = ""
     
     override func viewWillAppear(animated: Bool) {
         contactButton.hidden = true
@@ -64,6 +68,12 @@ class PersonViewController: UIViewController {
                 else if gender == "female" {
                     self.ageLabel.text = "Female, \(self.ageLabel.text!)"
                 }
+                
+                self.genre = json["genre"].stringValue
+                self.arrGenre = self.genre.componentsSeparatedByCharactersInSet(NSCharacterSet (charactersInString: ":"))
+                
+                self.genreCollection.reloadData()
+                
             }
             
             if let presenter = self.controller {
@@ -146,6 +156,29 @@ class PersonViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
+    func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int{
+        //if genreCollection == collectionView {
+        return arrGenre.count
+        //}
+    }
+    
+    // The cell that is returned must be retrieved from a call to -dequeueReusableCellWithReuseIdentifier:forIndexPath:
+    func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
+        
+        //if genreCollection == collectionView {
+        
+        let cell: GenreCell = collectionView.dequeueReusableCellWithReuseIdentifier("genreCell", forIndexPath: indexPath) as! GenreCell
+        
+        var imageName: String = "btn" + arrGenre[indexPath.row]
+        
+        cell.imgEditGenre.image = UIImage(named: imageName)
+        
+        return cell
+        
+        //}
+        
+    }
+
 
     /*
     // MARK: - Navigation

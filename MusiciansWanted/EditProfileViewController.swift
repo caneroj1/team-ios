@@ -21,6 +21,7 @@ class EditProfileViewController: UITableViewController, UITextFieldDelegate, UIC
     var cellSent: Bool = false
     var cellPhone: String?
     
+    var genre: String = ""
     var genreDict:[String:Bool] = ["African":false, "Asian":false, "Blues":false, "Caribbean": false, "Classical":false, "Country":false, "Electronic":false, "Folk":false, "Hip-Hop":false, "Jazz":false, "Latin":false, "Pop":false, "Polka":false, "R&B":false, "Rock":false, "Metal":false]
     var genreIndex = [String]()
     
@@ -64,6 +65,14 @@ class EditProfileViewController: UITableViewController, UITextFieldDelegate, UIC
             var genderIndex = (gender == "male") ? 0 : 1
             genderControl.selectedSegmentIndex = genderIndex
 
+        }
+        
+        if genre != "" {
+            var arrGenres : [String] = genre.componentsSeparatedByCharactersInSet(NSCharacterSet (charactersInString: ":"))
+            
+            for genre in arrGenres {
+                genreDict[genre] = true
+            }
         }
     }
 
@@ -112,7 +121,8 @@ class EditProfileViewController: UITableViewController, UITextFieldDelegate, UIC
             }
             
             var url = "/api/users/\(MusiciansWanted.userId)"
-            var userParams: Dictionary<String, AnyObject> = ["name": nameField.text, "email": emailField.text, "age": Int(ageSlider.value), "looking_to_jam": jamSwitch.on, "looking_for_band": bandSwitch.on, "search_radius": Int(locationRadiusSlider.value), "gender": gender!]
+            var userParams: Dictionary<String, AnyObject> = ["name": nameField.text, "email": emailField.text, "age": Int(ageSlider.value), "looking_to_jam": jamSwitch.on, "looking_for_band": bandSwitch.on, "search_radius": Int(locationRadiusSlider.value), "gender": gender!, "genre":genre]
+            
             var params = ["user": userParams]
             DataManager.makePatchRequest(url, params: params, completion: { (data, error) -> Void in
                 var json = JSON(data: data!)
@@ -202,24 +212,24 @@ class EditProfileViewController: UITableViewController, UITextFieldDelegate, UIC
             if (genreDict[genreIndex[indexPath.row]] == true) {
                 genreDict[genreIndex[indexPath.row]] = false
                 
-                /*if ((Filters.genre).rangeOfString(genreIndex[indexPath.row]) != nil) {
+                if (genre.rangeOfString(genreIndex[indexPath.row]) != nil) {
                     var str = genreIndex[indexPath.row] + ":"
                     
-                    let aString: String = Filters.genre
+                    let aString: String = genre
                     let newString = aString.stringByReplacingOccurrencesOfString(str, withString: "")
                     
-                    Filters.genre = newString
-                }*/
+                    genre = newString
+                }
             }
             else {
                 genreDict[genreIndex[indexPath.row]] = true
                 
-                /*if ((Filters.genre).rangeOfString(genreIndex[indexPath.row]) == nil) {
-                    Filters.genre = Filters.genre + genreIndex[indexPath.row] + ":"
-                }*/
+                if ((genre).rangeOfString(genreIndex[indexPath.row]) == nil) {
+                    genre = genre + genreIndex[indexPath.row] + ":"
+                }
             }
             
-            println(Filters.genre)
+            println(genre)
         //}
     
         genreCollection.reloadData()

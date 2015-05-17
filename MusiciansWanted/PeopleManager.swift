@@ -184,7 +184,7 @@ class PeopleManager: NSObject {
         //Add basic information of users
         var profileImage = UIImage(named: "anonymous")!
         
-        self.addPerson(user["id"].intValue, name: user["name"].stringValue, pic: profileImage, age: user["age"].stringValue, genre: "Unknown", instru: "Unknown", loc: user["location"].stringValue, distance: user["distance"].doubleValue, band: user["looking_for_band"].boolValue, jam: user["looking_to_jam"].boolValue, email: user["email"].stringValue, gender: user["gender"].stringValue)
+        self.addPerson(user["id"].intValue, name: user["name"].stringValue, pic: profileImage, age: user["age"].stringValue, genre: user["genre"].stringValue, instru: "Unknown", loc: user["location"].stringValue, distance: user["distance"].doubleValue, band: user["looking_for_band"].boolValue, jam: user["looking_to_jam"].boolValue, email: user["email"].stringValue, gender: user["gender"].stringValue)
         
         println("Adding user \(userId)");
                 
@@ -202,7 +202,7 @@ class PeopleManager: NSObject {
                         dispatch_async(dispatch_get_main_queue()) {
                             profileImage = UIImage(data: decodedString!)!
                             
-                            self.addPerson(user["id"].intValue, name: user["name"].stringValue, pic: profileImage, age: user["age"].stringValue, genre: "Unknown", instru: "Unknown", loc: user["location"].stringValue, distance: user["distance"].doubleValue, band: user["looking_for_band"].boolValue, jam: user["looking_to_jam"].boolValue, email: user["email"].stringValue, gender: user["gender"].stringValue)
+                            self.addPerson(user["id"].intValue, name: user["name"].stringValue, pic: profileImage, age: user["age"].stringValue, genre: user["genre"].stringValue, instru: "Unknown", loc: user["location"].stringValue, distance: user["distance"].doubleValue, band: user["looking_for_band"].boolValue, jam: user["looking_to_jam"].boolValue, email: user["email"].stringValue, gender: user["gender"].stringValue)
                             
                             println("loaded image of \(userId)")
                             self.peopleDelegate!.addedNewItem()

@@ -25,7 +25,6 @@ struct Filters {
     static var looking_for_band = false
     static var looking_to_jam = false
     static var contactsOnly = false
-    static var ageOn = false
     static var lowerAge = 13
     static var upperAge = 75
 }
@@ -85,7 +84,7 @@ class PeopleManager: NSObject {
                     // Still need to check contactsOnly, genres, and instruments
                     var tmp = user.1["name"].stringValue
                     
-                    if (Filters.looking_for_band && user.1["looking_for_band"].boolValue == false) || (Filters.looking_to_jam && user.1["looking_to_jam"].boolValue == false) || (Filters.ageOn && (Filters.lowerAge > user.1["age"].intValue || Filters.upperAge < user.1["age"].intValue)) {
+                    if (Filters.looking_for_band && user.1["looking_for_band"].boolValue == false) || (Filters.looking_to_jam && user.1["looking_to_jam"].boolValue == false) || (user.1["age"].stringValue != "" && (Filters.lowerAge > user.1["age"].intValue || Filters.upperAge < user.1["age"].intValue)) {
                         
                         println("\(tmp) not added.")
                         self.person.removeValueForKey(user.1["id"].intValue)
@@ -114,7 +113,7 @@ class PeopleManager: NSObject {
                     //Check Filters
                     var tmp = json[index]["name"].stringValue
                     
-                    if (Filters.looking_for_band && json[index]["looking_for_band"].boolValue == false) || (Filters.looking_to_jam && json[index]["looking_to_jam"].boolValue == false) || (Filters.ageOn && (Filters.lowerAge > json[index]["age"].intValue || Filters.upperAge < json[index]["age"].intValue)) {
+                    if (Filters.looking_for_band && json[index]["looking_for_band"].boolValue == false) || (Filters.looking_to_jam && json[index]["looking_to_jam"].boolValue == false) || (json[index]["age"].stringValue != "" && (Filters.lowerAge > json[index]["age"].intValue || Filters.upperAge < json[index]["age"].intValue)) {
                         
                         println("\(tmp) not added.")
                         self.person.removeValueForKey(json[index]["id"].intValue)
@@ -156,10 +155,7 @@ class PeopleManager: NSObject {
         self.addPerson(user["id"].intValue, name: user["name"].stringValue, pic: profileImage, age: user["age"].stringValue, genre: "Unknown", instru: "Unknown", loc: user["location"].stringValue, distance: user["distance"].doubleValue, band: user["looking_for_band"].boolValue, jam: user["looking_to_jam"].boolValue, email: user["email"].stringValue, gender: user["gender"].stringValue)
         
         println("Adding user \(userId)");
-        
-        var dist = user["distance"].doubleValue
-        println("Distance: \(dist)");
-        
+                
         //Load in profile images
         if user["has_profile_pic"].stringValue == "true"
         {

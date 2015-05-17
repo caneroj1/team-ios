@@ -21,6 +21,7 @@
 		014A67321ADAD18300729E82 /* EventViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 014A67311ADAD18300729E82 /* EventViewController.swift */; };
 		014C5C0A1AD97645008680D0 /* EventsDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 014C5C091AD97645008680D0 /* EventsDelegate.swift */; };
 		01B594161AB35B090044AA16 /* InboxManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01B594151AB35B090044AA16 /* InboxManager.swift */; };
+		01EA06431B0810FC00DBD350 /* GenreCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01EA06421B0810FC00DBD350 /* GenreCell.swift */; };
 		01F50F931AB20E4300FE9051 /* GlobalTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01F50F921AB20E4300FE9051 /* GlobalTabBarController.swift */; };
 		01F50F951AB2424A00FE9051 /* FeedSettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01F50F941AB2424A00FE9051 /* FeedSettingsViewController.swift */; };
 		01FCDE841ACF0500002F3A56 /* InboxTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01FCDE831ACF0500002F3A56 /* InboxTableViewController.swift */; };
@@ -81,6 +82,7 @@
 		014A67311ADAD18300729E82 /* EventViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventViewController.swift; sourceTree = "<group>"; };
 		014C5C091AD97645008680D0 /* EventsDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventsDelegate.swift; sourceTree = "<group>"; };
 		01B594151AB35B090044AA16 /* InboxManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InboxManager.swift; sourceTree = "<group>"; };
+		01EA06421B0810FC00DBD350 /* GenreCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GenreCell.swift; sourceTree = "<group>"; };
 		01F50F921AB20E4300FE9051 /* GlobalTabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GlobalTabBarController.swift; sourceTree = "<group>"; };
 		01F50F941AB2424A00FE9051 /* FeedSettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeedSettingsViewController.swift; sourceTree = "<group>"; };
 		01FCDE831ACF0500002F3A56 /* InboxTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InboxTableViewController.swift; sourceTree = "<group>"; };
@@ -218,6 +220,7 @@
 			isa = PBXGroup;
 			children = (
 				010AEBD01ACE239D0066E4FA /* PeopleTableViewController.swift */,
+				01EA06421B0810FC00DBD350 /* GenreCell.swift */,
 				0104A50F1AD837E800173F96 /* PeopleDelegate.swift */,
 				01153FA51AB2980100B96401 /* PeopleSettingsViewController.swift */,
 				010AEBCF1ACE239D0066E4FA /* PeopleManager.swift */,
@@ -457,6 +460,7 @@
 				44470F551AC884F30077B042 /* EditProfileViewController.swift in Sources */,
 				44C1D55C1ADCAFD5006388E5 /* EventMapData.swift in Sources */,
 				44C1D55A1ADCA375006388E5 /* EventMapViewController.swift in Sources */,
+				01EA06431B0810FC00DBD350 /* GenreCell.swift in Sources */,
 				01F50F931AB20E4300FE9051 /* GlobalTabBarController.swift in Sources */,
 				44D3089F1ACB32350000F435 /* ApiData.swift in Sources */,
 				AD37E3AC1AEAAF2C0051B737 /* AddEventViewController.swift in Sources */,

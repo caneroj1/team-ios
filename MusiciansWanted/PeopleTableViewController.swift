@@ -114,8 +114,14 @@ class PeopleTableViewController: UITableViewController, UITableViewDataSource, P
         }
 
         cell.lblInstrument.text = person?.instrument
-        cell.lblGenre.text = person?.genre
         
+        //Format genre
+        let aString: String = dropLast((person!.genre).isEmpty ? ":" : person!.genre)
+        let newString = aString.stringByReplacingOccurrencesOfString(":", withString: ", ")
+        
+        println(newString)
+
+        cell.lblGenre.text = aString.isEmpty ? "Unknown" : newString
         
         let mobileAnalytics = AWSMobileAnalytics(forAppId: MobileAnalyticsAppId)
         let eventRecordClient = mobileAnalytics.eventClient

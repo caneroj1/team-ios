@@ -70,7 +70,7 @@ class AddEventViewController: UIViewController, UITextViewDelegate, UIPickerView
     @IBAction func realeaseZip(sender: UITextField) {
         scrollView.contentOffset.y = scrollView.contentSize.height - scrollView.frame.size.height
         var date = formatDate(datePicker.date)
-        println("\(date)")
+        //println("\(date)")
     }
     
     func textViewDidBeginEditing(textView: UITextView) {
@@ -125,7 +125,7 @@ class AddEventViewController: UIViewController, UITextViewDelegate, UIPickerView
         btnDelete.enabled = false
         
         if eventID >= 0 {
-            println("EventID: \(eventID)")
+            //println("EventID: \(eventID)")
             btnDelete.hidden = false
             btnDelete.enabled = true
             EventTitle.text = eventtitle
@@ -133,10 +133,35 @@ class AddEventViewController: UIViewController, UITextViewDelegate, UIPickerView
             hasBeenSaved = true
             
             
+            var url = "/api/s3EventGet?event_id=\(eventID)"
+            
+            DataManager.makeGetRequest(url, completion: { (data, error) -> Void in
+                if data != nil {
+                    var eventjson = JSON(data: data!)
+                    if eventjson["picture"] != nil {
+                        var base64String = eventjson["picture"].stringValue
+                        
+                        let decodedString = NSData(base64EncodedString: base64String, options: NSDataBase64DecodingOptions.IgnoreUnknownCharacters)
+                        var downloadedImage = UIImage(data: decodedString!)!
+                        var newImage = Toucan(image: downloadedImage).resize(CGSizeMake(280, 140), fitMode: Toucan.Resize.FitMode.Scale).image
+                        dispatch_async(dispatch_get_main_queue()) {
+                            self.eventImage.image = newImage
+                            
+                        }
+                            
+                        
+                    }
+                }
+                
+            })
+        
+
+    
+    
             //Format and display the location
             //[0] Address [1] City [2] State [3] Zip [4] Country
             var newLoc = eventLocation.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceCharacterSet())
-            
+    
             var tmpArray1 : [String] = newLoc.componentsSeparatedByCharactersInSet(NSCharacterSet (charactersInString: "\n:,"))
             
             if tmpArray1.count > 3 {
@@ -252,7 +277,7 @@ class AddEventViewController: UIViewController, UITextViewDelegate, UIPickerView
         var location = EventAddress.text.capitalizedString.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceCharacterSet()) + "\n" +  EventCity.text.capitalizedString.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceCharacterSet()) + ", " + states[thisSort] + " : " + EventZip.text.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceCharacterSet())
         
         var date = formatDate(datePicker.date)
-        println("\(date)")
+        //println("\(date)")
         
         var eventParams: Dictionary<String, AnyObject> = ["title": EventTitle.text.capitalizedString, "location": location, "description": EventDescription.text, "event_time": date,"created_by": MusiciansWanted.userId]
         
@@ -288,7 +313,7 @@ class AddEventViewController: UIViewController, UITextViewDelegate, UIPickerView
         else
         {
             var url = "/api/events/\(eventID)"
-            println(url)
+            //println(url)
             DataManager.makePatchRequest(url, params: params, completion: { (data, error) -> Void in
                 var json = JSON(data: data!)
                 var errorString = DataManager.checkForErrors(json)

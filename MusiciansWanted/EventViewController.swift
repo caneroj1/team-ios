@@ -45,6 +45,7 @@ class EventViewController: UIViewController {
     override func viewWillAppear(animated: Bool) {
         btnEdit.enabled = false
         
+        
         let url = "/api/events/\(id!)"
         
         DataManager.makeGetRequest(url, completion: { (data, error) -> Void in
@@ -104,7 +105,7 @@ class EventViewController: UIViewController {
                     }
                 })
                 
-                println("EventCreator:\t \(self.userID) \nUser:\t \(MusiciansWanted.userId)")
+                //println("EventCreator:\t \(self.userID) \nUser:\t \(MusiciansWanted.userId)")
                 if self.userID == MusiciansWanted.userId {
                     self.btnEdit.enabled = true
                 }
@@ -114,8 +115,32 @@ class EventViewController: UIViewController {
             if let presenter = self.controller {
                 if presenter == "events" || presenter == "maps" {
                     dispatch_async(dispatch_get_main_queue()) {
-                        self.imgEvent.image = self.icon
+                        
+                        var url = "/api/s3EventGet?event_id=\(self.id!)"
+                        
+                        DataManager.makeGetRequest(url, completion: { (data, error) -> Void in
+                            if data != nil {
+                                var eventjson = JSON(data: data!)
+                                if eventjson["picture"] != nil {
+                                    var base64String = eventjson["picture"].stringValue
+                                    
+                                    let decodedString = NSData(base64EncodedString: base64String, options: NSDataBase64DecodingOptions.IgnoreUnknownCharacters)
+                                    var downloadedImage = UIImage(data: decodedString!)!
+                                    var newImage = Toucan(image: downloadedImage).resize(CGSizeMake(280, 140), fitMode: Toucan.Resize.FitMode.Scale).image
+                                    
+                                    dispatch_async(dispatch_get_main_queue()) {
+                                        self.imgEvent.image = newImage
+                                        //self.events[id].eventPicture = newImage;
+                                        
+                                    }
+                                }
+                            }
+                            
+                        })
                     }
+                } else {
+                    self.imgEvent.image = self.icon
+                    
                 }
             }
             else {
@@ -136,7 +161,7 @@ class EventViewController: UIViewController {
                 }
                 else {*/
                     dispatch_async(dispatch_get_main_queue()) {
-                        self.imgEvent.image = UIImage(named: "anonymous")
+                        self.imgEvent.image = UIImage(named: "default")
                     //}
                 }
             }

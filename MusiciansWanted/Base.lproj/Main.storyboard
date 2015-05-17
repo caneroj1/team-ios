@@ -6,6 +6,108 @@
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
+        <!--Musician Request Table View Controller-->
+        <scene sceneID="d4d-Cj-Wnz">
+            <objects>
+                <tableViewController id="hJP-b6-UHJ" customClass="MusicianRequestTableViewController" customModule="MW" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="grouped" separatorStyle="none" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" id="Llw-gE-bfz">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="800"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                        <sections>
+                            <tableViewSection headerTitle="Create New Musician Request" id="F5o-vP-otR">
+                                <cells>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="116" id="jhQ-9S-At5">
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="jhQ-9S-At5" id="jDK-AT-QRm">
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6dq-0Y-poR">
+                                                    <rect key="frame" x="0.0" y="0.0" width="600" height="107"/>
+                                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <string key="text">A new musician request will create a new notification on users' feeds. The notification will read that you are looking for a musician that plays the selected instrument.</string>
+                                                    <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="18"/>
+                                                    <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                                </textView>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="6dq-0Y-poR" firstAttribute="top" secondItem="jDK-AT-QRm" secondAttribute="top" id="K1y-XM-IQh"/>
+                                                <constraint firstAttribute="centerY" secondItem="6dq-0Y-poR" secondAttribute="centerY" constant="4" id="bI3-HA-Ish"/>
+                                                <constraint firstItem="6dq-0Y-poR" firstAttribute="leading" secondItem="jDK-AT-QRm" secondAttribute="leading" id="hWU-rq-qc5"/>
+                                                <constraint firstAttribute="centerX" secondItem="6dq-0Y-poR" secondAttribute="centerX" id="xAe-dJ-Shb"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </cells>
+                            </tableViewSection>
+                            <tableViewSection headerTitle="Select Instrument" id="FPW-KA-oGH">
+                                <cells>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="206" id="SOU-pK-9u9">
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="SOU-pK-9u9" id="K7L-zf-T4Q">
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="LIq-QY-ZJK">
+                                                    <rect key="frame" x="140" y="22" width="320" height="162"/>
+                                                    <color key="tintColor" red="0.96470588239999999" green="0.30980392159999998" blue="0.023529411760000001" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <connections>
+                                                        <outlet property="dataSource" destination="hJP-b6-UHJ" id="Iud-eZ-wjE"/>
+                                                        <outlet property="delegate" destination="hJP-b6-UHJ" id="5fK-fE-VBM"/>
+                                                    </connections>
+                                                </pickerView>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="centerY" secondItem="LIq-QY-ZJK" secondAttribute="centerY" id="7q6-Oc-0D3"/>
+                                                <constraint firstAttribute="centerX" secondItem="LIq-QY-ZJK" secondAttribute="centerX" id="Dgo-ht-c8T"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </cells>
+                            </tableViewSection>
+                            <tableViewSection headerTitle="" id="D0A-WS-dIE">
+                                <cells>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="100" id="fbr-XG-K5s">
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="fbr-XG-K5s" id="Dvi-Qa-qj3">
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hwG-Da-ipr">
+                                                    <rect key="frame" x="203" y="31" width="196" height="38"/>
+                                                    <color key="backgroundColor" red="0.96470588239999999" green="0.30980392159999998" blue="0.023529411760000001" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <inset key="contentEdgeInsets" minX="10" minY="10" maxX="10" maxY="10"/>
+                                                    <state key="normal" title="Submit Musician Request">
+                                                        <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                                    </state>
+                                                    <connections>
+                                                        <action selector="submitMusicianRequest:" destination="hJP-b6-UHJ" eventType="touchUpInside" id="Cr7-5B-un4"/>
+                                                    </connections>
+                                                </button>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="centerY" secondItem="hwG-Da-ipr" secondAttribute="centerY" id="cS4-pA-kt3"/>
+                                                <constraint firstAttribute="centerX" secondItem="hwG-Da-ipr" secondAttribute="centerX" constant="-0.5" id="e25-n2-HlB"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </cells>
+                            </tableViewSection>
+                        </sections>
+                        <connections>
+                            <outlet property="dataSource" destination="hJP-b6-UHJ" id="LoU-95-L5G"/>
+                            <outlet property="delegate" destination="hJP-b6-UHJ" id="H3c-Ty-U7N"/>
+                        </connections>
+                    </tableView>
+                    <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+                    <size key="freeformSize" width="600" height="800"/>
+                    <connections>
+                        <outlet property="instrumentPickerView" destination="LIq-QY-ZJK" id="rid-KY-fn4"/>
+                    </connections>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="FML-C6-UmH" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1685" y="-2382"/>
+        </scene>
         <!--Recent Notifications-->
         <scene sceneID="hm1-Lw-qZs">
             <objects>
@@ -91,7 +193,11 @@
                     </tableView>
                     <toolbarItems/>
                     <navigationItem key="navigationItem" title="Recent Notifications" id="gEH-8m-zAv">
-                        <barButtonItem key="leftBarButtonItem" image="write" id="dQD-CK-RFp"/>
+                        <barButtonItem key="leftBarButtonItem" image="write" id="dQD-CK-RFp">
+                            <connections>
+                                <segue destination="hJP-b6-UHJ" kind="show" id="qQh-2Z-vdh"/>
+                            </connections>
+                        </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" image="options" id="PpM-wk-TU3">
                             <connections>
                                 <segue destination="DtW-tB-GFW" kind="show" id="C4A-xP-lyb"/>

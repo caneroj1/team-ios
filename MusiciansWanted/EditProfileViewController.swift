@@ -8,7 +8,7 @@
 
 import UIKit
 
-class EditProfileViewController: UIViewController, UITextFieldDelegate {
+class EditProfileViewController: UITableViewController, UITextFieldDelegate, UICollectionViewDataSource, UICollectionViewDelegate {
     var ageText: String = ""
     var emailText: String = ""
     var nameText: String = ""
@@ -21,6 +21,9 @@ class EditProfileViewController: UIViewController, UITextFieldDelegate {
     var cellSent: Bool = false
     var cellPhone: String?
     
+    var genreDict:[String:Bool] = ["African":false, "Asian":false, "Blues":false, "Caribbean": false, "Classical":false, "Country":false, "Electronic":false, "Folk":false, "Hip-Hop":false, "Jazz":false, "Latin":false, "Pop":false, "Polka":false, "R&B":false, "Rock":false, "Metal":false]
+    var genreIndex = [String]()
+    
     @IBOutlet weak var ageSlider: UISlider!
     @IBOutlet weak var emailField: UITextField!
     @IBOutlet weak var nameField: UITextField!
@@ -30,9 +33,10 @@ class EditProfileViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var locationRadiusSlider: UISlider!
     @IBOutlet weak var locationRadiusLabel: UILabel!
     @IBOutlet weak var genderControl: UISegmentedControl!
-    @IBOutlet var scrollView: UIScrollView!
+   // @IBOutlet var scrollView: UIScrollView!
     @IBOutlet weak var subscribeButton: UIButton!
     @IBOutlet weak var phoneNumberField: UITextField!
+    @IBOutlet var genreCollection: UICollectionView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -40,6 +44,9 @@ class EditProfileViewController: UIViewController, UITextFieldDelegate {
         
 //        scrollView.contentSize.height = 800
 //        scrollView.contentSize.width = self.view.frame.width
+        
+        genreIndex = Array(genreDict.keys).sorted(<)
+
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -156,6 +163,68 @@ class EditProfileViewController: UIViewController, UITextFieldDelegate {
             }
         }
     }
+    
+    func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int{
+        //if genreCollection == collectionView {
+            return genreIndex.count
+        
+    }
+    
+    // The cell that is returned must be retrieved from a call to -dequeueReusableCellWithReuseIdentifier:forIndexPath:
+    func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
+        
+        //if genreCollection == collectionView {
+            
+            let cell: GenreCell = collectionView.dequeueReusableCellWithReuseIdentifier("genreCell", forIndexPath: indexPath) as! GenreCell
+            
+            var imageName: String = "btn" + genreIndex[indexPath.row]
+            
+            cell.imgEditGenre.image = UIImage(named: imageName)
+            
+            var genre = genreDict[genreIndex[indexPath.row]]
+            
+            if genre == true {
+                //cell.backgroundColor = UIColor(red: 5.0/255.0, green: 5.0/255.0, blue: 10.0/255.0, alpha: 0.2)
+                cell.backgroundView = UIImageView(image: UIImage(named: "btnSelection"))
+            }
+            else{
+                //cell.backgroundColor = UIColor.clearColor()
+                cell.backgroundView = UIView()
+            }
+            
+            return cell
+        
+    }
+    
+    func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
+        
+        //if collectionView == genreCollection {
+            if (genreDict[genreIndex[indexPath.row]] == true) {
+                genreDict[genreIndex[indexPath.row]] = false
+                
+                /*if ((Filters.genre).rangeOfString(genreIndex[indexPath.row]) != nil) {
+                    var str = genreIndex[indexPath.row] + ":"
+                    
+                    let aString: String = Filters.genre
+                    let newString = aString.stringByReplacingOccurrencesOfString(str, withString: "")
+                    
+                    Filters.genre = newString
+                }*/
+            }
+            else {
+                genreDict[genreIndex[indexPath.row]] = true
+                
+                /*if ((Filters.genre).rangeOfString(genreIndex[indexPath.row]) == nil) {
+                    Filters.genre = Filters.genre + genreIndex[indexPath.row] + ":"
+                }*/
+            }
+            
+            println(Filters.genre)
+        //}
+    
+        genreCollection.reloadData()
+    
+}
     
     // MARK: - Navigation
 

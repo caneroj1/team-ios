@@ -84,7 +84,26 @@ class PeopleManager: NSObject {
                     // Still need to check contactsOnly, genres, and instruments
                     var tmp = user.1["name"].stringValue
                     
-                    if (Filters.looking_for_band && user.1["looking_for_band"].boolValue == false) || (Filters.looking_to_jam && user.1["looking_to_jam"].boolValue == false) || (user.1["age"].stringValue != "" && (Filters.lowerAge > user.1["age"].intValue || Filters.upperAge < user.1["age"].intValue)) {
+                    var isGenresMatch = true
+                    
+                    if Filters.genre != "" {
+                        
+                        println(Filters.genre)
+                        println(user.1["genre"].stringValue)
+                        
+                        var arrGenres : [String] = (dropLast(Filters.genre)).componentsSeparatedByCharactersInSet(NSCharacterSet (charactersInString: ":"))
+                        
+                        for genre in arrGenres {
+                            if ((user.1["genre"].stringValue).rangeOfString(genre) == nil) {
+                                isGenresMatch = false
+                                
+                                println(genre + " not found")
+                            }
+                            println(genre + " found")
+                        }
+                    }
+                    
+                    if (Filters.looking_for_band && user.1["looking_for_band"].boolValue == false) || (Filters.looking_to_jam && user.1["looking_to_jam"].boolValue == false) || (user.1["age"].stringValue != "" && (Filters.lowerAge > user.1["age"].intValue || Filters.upperAge < user.1["age"].intValue)) || isGenresMatch == false {
                         
                         println("\(tmp) not added.")
                         self.person.removeValueForKey(user.1["id"].intValue)
@@ -111,9 +130,22 @@ class PeopleManager: NSObject {
                     }
                     
                     //Check Filters
+                    var isGenresMatch = true
+                    
+                    if Filters.genre != "" {
+                        
+                        var arrGenres : [String] = (Filters.genre).componentsSeparatedByCharactersInSet(NSCharacterSet (charactersInString: ":"))
+                        
+                        for genre in arrGenres {
+                            if ((json[index]["genre"].stringValue).rangeOfString(genre) == nil) {
+                                isGenresMatch = false
+                            }
+                        }
+                    }
+                    
                     var tmp = json[index]["name"].stringValue
                     
-                    if (Filters.looking_for_band && json[index]["looking_for_band"].boolValue == false) || (Filters.looking_to_jam && json[index]["looking_to_jam"].boolValue == false) || (json[index]["age"].stringValue != "" && (Filters.lowerAge > json[index]["age"].intValue || Filters.upperAge < json[index]["age"].intValue)) {
+                    if (Filters.looking_for_band && json[index]["looking_for_band"].boolValue == false) || (Filters.looking_to_jam && json[index]["looking_to_jam"].boolValue == false) || (json[index]["age"].stringValue != "" && (Filters.lowerAge > json[index]["age"].intValue || Filters.upperAge < json[index]["age"].intValue)) || isGenresMatch == false {
                         
                         println("\(tmp) not added.")
                         self.person.removeValueForKey(json[index]["id"].intValue)

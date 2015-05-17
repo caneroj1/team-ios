@@ -11,6 +11,7 @@ import UIKit
 class GenreCell: UICollectionViewCell {
     
     @IBOutlet var imgGenre: UIImageView!
+    @IBOutlet var imgEditGenre: UIImageView!
     
     override func awakeFromNib() {
         super.awakeFromNib()

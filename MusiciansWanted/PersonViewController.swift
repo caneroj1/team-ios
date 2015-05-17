@@ -37,7 +37,24 @@ class PersonViewController: UIViewController {
                 self.jamLabel.text = json["looking_to_jam"] ? "Yes" : "No"
                 self.bandLabel.text = json["looking_for_band"] ? "Yes" : "No"
                 self.ageLabel.text = json["age"].stringValue
-                self.locationlabel.text = (json["location"] == nil || json["location"] == "") ? "No Location Given" : json["location"].stringValue
+                
+                //Format and display the location
+                if (json["location"] == nil || json["location"] == "") {
+                    self.locationlabel.text = "No Location Given"
+                }
+                else {
+                    var newLoc = (json["location"].stringValue).stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceCharacterSet())
+                    
+                    var tmpArray1 : [String] = newLoc.componentsSeparatedByCharactersInSet(NSCharacterSet (charactersInString: "\n:"))
+                    
+                    if tmpArray1.count > 2 {
+                        newLoc = tmpArray1[1].stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceCharacterSet())
+                    }
+                    
+                    
+                    self.locationlabel.text = newLoc
+                }
+                
                 self.title = self.personName.text
                 
                 let gender = json["gender"].stringValue

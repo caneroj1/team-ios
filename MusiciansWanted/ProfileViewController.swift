@@ -100,7 +100,24 @@ class ProfileViewController: UIViewController, UINavigationControllerDelegate, U
                 self.ageText = self.ageLabel.text!
                 self.noAge = (self.ageLabel.text == "No Age Given")
                 
-                self.locationLabel.text = (json["location"] == nil || json["location"] == "") ? "No Location Given" : json["location"].stringValue
+                
+                //Format and display the location
+                if (json["location"] == nil || json["location"] == "") {
+                    self.locationLabel.text = "No Location Given"
+                }
+                else {
+                    var newLoc = (json["location"].stringValue).stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceCharacterSet())
+                    
+                    var tmpArray1 : [String] = newLoc.componentsSeparatedByCharactersInSet(NSCharacterSet (charactersInString: "\n:"))
+                    
+                    if tmpArray1.count > 2 {
+                        newLoc = tmpArray1[1].stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceCharacterSet())
+                    }
+                    
+                    
+                    self.locationLabel.text = newLoc
+                }
+                
                 self.jamLabel.text = json["looking_to_jam"] ? "Yes" : "No"
                 self.bandLabel.text = json["looking_for_band"] ? "Yes" : "No"
                 self.searchRadius = json["search_radius"].stringValue.toInt()!
@@ -192,6 +209,7 @@ class ProfileViewController: UIViewController, UINavigationControllerDelegate, U
         if(segue.identifier == "editProfileSegue") {
             var destination = segue.destinationViewController as! EditProfileViewController
             destination.nameText = self.nameLabel.text!
+            println(self.nameLabel.text!)
             destination.emailText = self.emailLabel.text!
             destination.radiusValue = Float(self.searchRadius)
             destination.radiusLabel = "\(self.searchRadius) miles"

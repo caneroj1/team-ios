@@ -2734,8 +2734,8 @@
                                     </mask>
                                 </variation>
                             </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Event Picture" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9rg-oJ-P3A">
-                                <rect key="frame" x="232" y="221" width="137" height="29"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="New Event" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9rg-oJ-P3A">
+                                <rect key="frame" x="24" y="221" width="552" height="29"/>
                                 <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="24"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
@@ -2772,6 +2772,9 @@
                                         <rect key="frame" x="22" y="45" width="582" height="30"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits"/>
+                                        <connections>
+                                            <action selector="eventTitleChanged:" destination="FCR-bT-rDk" eventType="editingChanged" id="Xxw-XU-P7n"/>
+                                        </connections>
                                     </textField>
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="3o6-Pk-jwc">
                                         <rect key="frame" x="22" y="309" width="582" height="30"/>
@@ -2933,6 +2936,7 @@
                         <constraints>
                             <constraint firstItem="9rg-oJ-P3A" firstAttribute="top" secondItem="yrb-aX-wp2" secondAttribute="bottom" constant="10" id="9sC-HY-J2c"/>
                             <constraint firstItem="yrb-aX-wp2" firstAttribute="leading" secondItem="B3s-DV-RnB" secondAttribute="leadingMargin" constant="5" id="Eci-37-46O"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="9rg-oJ-P3A" secondAttribute="trailing" constant="8" id="Glc-iZ-xWD"/>
                             <constraint firstItem="9rg-oJ-P3A" firstAttribute="top" secondItem="yrb-aX-wp2" secondAttribute="top" id="IZG-57-EQ7"/>
                             <constraint firstItem="YIR-i0-ZJD" firstAttribute="bottom" secondItem="mOC-9N-uE4" secondAttribute="top" id="KlI-AX-82k"/>
                             <constraint firstItem="YIR-i0-ZJD" firstAttribute="trailing" secondItem="B3s-DV-RnB" secondAttribute="trailingMargin" id="Qbd-sp-RFB"/>
@@ -2948,6 +2952,7 @@
                             <constraint firstItem="yrb-aX-wp2" firstAttribute="centerX" secondItem="9rg-oJ-P3A" secondAttribute="centerX" id="j1z-pY-7Ft"/>
                             <constraint firstAttribute="trailingMargin" secondItem="xeQ-MW-8Zg" secondAttribute="trailing" id="lf9-JM-9ad"/>
                             <constraint firstItem="YIR-i0-ZJD" firstAttribute="top" secondItem="yrb-aX-wp2" secondAttribute="bottom" constant="15" id="oQW-YJ-3en"/>
+                            <constraint firstItem="9rg-oJ-P3A" firstAttribute="leading" secondItem="B3s-DV-RnB" secondAttribute="leadingMargin" constant="8" id="p7i-oe-elr"/>
                             <constraint firstItem="fcI-PP-Fdz" firstAttribute="trailing" secondItem="yrb-aX-wp2" secondAttribute="trailing" id="qR9-AF-tWm"/>
                             <constraint firstAttribute="centerX" secondItem="9rg-oJ-P3A" secondAttribute="centerX" id="vQq-eT-NzK"/>
                             <constraint firstAttribute="trailingMargin" secondItem="YIR-i0-ZJD" secondAttribute="trailing" constant="-20" id="vXR-Of-FGH"/>
@@ -2993,7 +2998,9 @@
                         <outlet property="btnDelete" destination="xeQ-MW-8Zg" id="HDq-AR-aRN"/>
                         <outlet property="datePicker" destination="NEs-47-64D" id="FhY-rG-dW6"/>
                         <outlet property="eventImage" destination="yrb-aX-wp2" id="deQ-OP-l2k"/>
+                        <outlet property="lblEvent" destination="9rg-oJ-P3A" id="Og2-hL-HWm"/>
                         <outlet property="scrollView" destination="YIR-i0-ZJD" id="eNB-lc-EZ2"/>
+                        <outlet property="viewConstraint" destination="g7T-f0-nIK" id="CPJ-Rt-FTu"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="0Re-NP-B8n" userLabel="First Responder" sceneMemberID="firstResponder"/>

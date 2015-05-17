@@ -25,6 +25,7 @@ class AddEventViewController: UIViewController, UITextViewDelegate, UIPickerView
     ]
     
     
+    @IBOutlet var lblEvent: UILabel!
     @IBOutlet weak var EventTitle: UITextField!
     @IBOutlet weak var EventAddress: UITextField!
     @IBOutlet weak var EventCity: UITextField!
@@ -35,6 +36,16 @@ class AddEventViewController: UIViewController, UITextViewDelegate, UIPickerView
     @IBOutlet weak var eventImage: UIImageView!
     @IBOutlet var datePicker: UIDatePicker!
     @IBOutlet var btnDelete: UIButton!
+    @IBOutlet var viewConstraint: NSLayoutConstraint!
+    
+    @IBAction func eventTitleChanged(sender: UITextField) {
+        if EventTitle.text == "" {
+            lblEvent.text = "New Event"
+        }
+        else {
+            lblEvent.text = EventTitle.text.capitalizedString
+        }
+    }
     
     @IBAction func pressDelete(sender: UIButton) {
         
@@ -127,8 +138,10 @@ class AddEventViewController: UIViewController, UITextViewDelegate, UIPickerView
         
         if eventID >= 0 {
             println("EventID: \(eventID)")
+            viewConstraint.constant = 0
             btnDelete.hidden = false
             btnDelete.enabled = true
+            lblEvent.text = eventtitle
             EventTitle.text = eventtitle
             EventDescription.text = eventdescription
             hasBeenSaved = true
@@ -160,6 +173,9 @@ class AddEventViewController: UIViewController, UITextViewDelegate, UIPickerView
             let date = dateFormatter.dateFromString(eventDate)
             
             datePicker.setDate(date!, animated: true)
+        }
+        else {
+            viewConstraint.constant = -185
         }
     }
     

@@ -79,7 +79,7 @@ class EventsManager: NSObject {
                 self.eventDelegate?.addedNewEvent()
                 self.event = Array(self.eventDictionary.keys).sorted(<)
 
-                println("Event Data Loaded.")
+                //println("Event Data Loaded.")
                 
             }
         })

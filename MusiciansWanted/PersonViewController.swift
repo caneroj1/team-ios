@@ -112,7 +112,7 @@ class PersonViewController: UIViewController, UICollectionViewDelegate, UICollec
             let json = JSON(data: data!)
             dispatch_async(dispatch_get_main_queue()) {
                 self.contactButton.hidden = false
-                if json["knows"] == true {
+                if json["knows"] == true || self.id == MusiciansWanted.userId {
                     self.contactButton.backgroundColor = self.darkenedColor
                     self.contactButton.enabled = false
                 }

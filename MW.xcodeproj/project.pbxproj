@@ -36,6 +36,7 @@
 		444951C21AD71B3D0013A4DD /* FeedViewDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 444951C11AD71B3D0013A4DD /* FeedViewDataManager.swift */; };
 		444951C41AD72B420013A4DD /* Notification.swift in Sources */ = {isa = PBXBuildFile; fileRef = 444951C31AD72B420013A4DD /* Notification.swift */; };
 		44566E871ACB4E3200D9F6A4 /* Toucan.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44566E861ACB4E3200D9F6A4 /* Toucan.swift */; };
+		446ED1F21B0922C500855F58 /* MusicianRequestTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 446ED1F11B0922C500855F58 /* MusicianRequestTableViewController.swift */; };
 		44C1D55A1ADCA375006388E5 /* EventMapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44C1D5591ADCA375006388E5 /* EventMapViewController.swift */; };
 		44C1D55C1ADCAFD5006388E5 /* EventMapData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44C1D55B1ADCAFD5006388E5 /* EventMapData.swift */; };
 		44CFD5231AE73F7900E536F3 /* ContactsDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44CFD5221AE73F7900E536F3 /* ContactsDataManager.swift */; };
@@ -98,6 +99,7 @@
 		444951C11AD71B3D0013A4DD /* FeedViewDataManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeedViewDataManager.swift; sourceTree = "<group>"; };
 		444951C31AD72B420013A4DD /* Notification.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Notification.swift; sourceTree = "<group>"; };
 		44566E861ACB4E3200D9F6A4 /* Toucan.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Toucan.swift; sourceTree = "<group>"; };
+		446ED1F11B0922C500855F58 /* MusicianRequestTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MusicianRequestTableViewController.swift; sourceTree = "<group>"; };
 		44C1D5591ADCA375006388E5 /* EventMapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventMapViewController.swift; sourceTree = "<group>"; };
 		44C1D55B1ADCAFD5006388E5 /* EventMapData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventMapData.swift; sourceTree = "<group>"; };
 		44CFD5221AE73F7900E536F3 /* ContactsDataManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContactsDataManager.swift; sourceTree = "<group>"; };
@@ -214,6 +216,7 @@
 				444951C11AD71B3D0013A4DD /* FeedViewDataManager.swift */,
 				444951C31AD72B420013A4DD /* Notification.swift */,
 				44DFBAAE1AD7731E00DDA8AB /* FeedViewDelegate.swift */,
+				446ED1F11B0922C500855F58 /* MusicianRequestTableViewController.swift */,
 			);
 			name = "News Feed";
 			sourceTree = "<group>";
@@ -472,6 +475,7 @@
 				44566E871ACB4E3200D9F6A4 /* Toucan.swift in Sources */,
 				44D308A31ACB32450000F435 /* SweetAlert copy.swift in Sources */,
 				012C27C61AAB7CEE0024F5C3 /* AppDelegate.swift in Sources */,
+				446ED1F21B0922C500855F58 /* MusicianRequestTableViewController.swift in Sources */,
 				01F50F951AB2424A00FE9051 /* FeedSettingsViewController.swift in Sources */,
 				442E54F01AE1979300718014 /* FeedTableViewController.swift in Sources */,
 				01266BC31AB0F03F003D2354 /* ProfileViewController.swift in Sources */,

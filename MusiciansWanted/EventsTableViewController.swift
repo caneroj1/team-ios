@@ -65,10 +65,10 @@ class EventsTableViewController: UITableViewController, UIScrollViewDelegate, UI
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("Event", forIndexPath: indexPath) as! EventsCell
 
-        var event = eventManager.eventDictionary[eventManager.event[indexPath.row]]
+        var event = eventManager.event[indexPath.row]
                 
         // Configure the cell...
-        var newLoc = event!.eventLocation.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceCharacterSet())
+        var newLoc = event.eventLocation.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceCharacterSet())
         
         var tmpArray1 : [String] = newLoc.componentsSeparatedByCharactersInSet(NSCharacterSet (charactersInString: "\n:,"))
         
@@ -78,13 +78,13 @@ class EventsTableViewController: UITableViewController, UIScrollViewDelegate, UI
         
         cell.EventDescription.text = newLoc
         //cell.EventImage.image = event.eventPicture
-        cell.EventTitle.text = event!.eventName
+        cell.EventTitle.text = event.eventName
             
         //cell.EventDescription.text = "The time to see ultra lord"
         
-        if (event!.hasEventPic == "true")
+        if (event.hasEventPic == "true")
         {
-            var url = "/api/s3EventGet?event_id=\(event!.eventId)"
+            var url = "/api/s3EventGet?event_id=\(event.eventId)"
             
             DataManager.makeGetRequest(url, completion: { (data, error) -> Void in
                 if data != nil {
@@ -106,7 +106,7 @@ class EventsTableViewController: UITableViewController, UIScrollViewDelegate, UI
                 
             })
         } else {
-            cell.EventImage.image = event!.eventPicture
+            cell.EventImage.image = event.eventPicture
             
         }
 
@@ -141,7 +141,7 @@ class EventsTableViewController: UITableViewController, UIScrollViewDelegate, UI
     }
 
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        let event = eventManager.eventDictionary[eventManager.event[indexPath.row]]
+        let event = eventManager.event[indexPath.row]
         
         //println("Instantiate event view...")
         let eventView = self.storyboard?.instantiateViewControllerWithIdentifier("EventViewController") as! EventViewController

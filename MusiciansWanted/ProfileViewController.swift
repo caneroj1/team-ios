@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ProfileViewController: UIViewController, UINavigationControllerDelegate, UIImagePickerControllerDelegate, UITableViewDelegate, UITableViewDataSource, ContactTableDelegate {
+class ProfileViewController: UIViewController, UINavigationControllerDelegate, UIImagePickerControllerDelegate, UITableViewDelegate, UITableViewDataSource, ContactTableDelegate, UICollectionViewDataSource, UICollectionViewDelegate {
     
     // MARK: - Instances Variables and IB Outlets
     var needToLoadPicture = true
@@ -20,6 +20,8 @@ class ProfileViewController: UIViewController, UINavigationControllerDelegate, U
     var hasCell = false
     var myCell: String?
     var contactsManager = ContactsDataManager()
+    var arrGenre = [String]()
+    var genre: String = ""
     
     // IB items for the main profile view
     @IBOutlet weak var nameLabel: UILabel!
@@ -32,6 +34,7 @@ class ProfileViewController: UIViewController, UINavigationControllerDelegate, U
     @IBOutlet weak var editProfileButton: UIBarButtonItem!
     @IBOutlet var scrollView: UIScrollView!
     @IBOutlet weak var contactsTable: UITableView!
+    @IBOutlet var genreCollection: UICollectionView!
     
     // MARK: - Image Functionality
     
@@ -89,6 +92,7 @@ class ProfileViewController: UIViewController, UINavigationControllerDelegate, U
         DataManager.makeGetRequest(url, completion: { (data, error) -> Void in
             var json = JSON(data: data!)
             dispatch_async(dispatch_get_main_queue()) {
+                
                 self.nameLabel.text = (json["name"] != nil) ? json["name"].stringValue : "No Name Given"
                 self.emailLabel.text = json["email"].stringValue
                 self.ageLabel.text = (json["age"] != nil) ? json["age"].stringValue : "No Age Given"
@@ -100,7 +104,24 @@ class ProfileViewController: UIViewController, UINavigationControllerDelegate, U
                 self.ageText = self.ageLabel.text!
                 self.noAge = (self.ageLabel.text == "No Age Given")
                 
-                self.locationLabel.text = (json["location"] == nil || json["location"] == "") ? "No Location Given" : json["location"].stringValue
+                
+                //Format and display the location
+                if (json["location"] == nil || json["location"] == "") {
+                    self.locationLabel.text = "No Location Given"
+                }
+                else {
+                    var newLoc = (json["location"].stringValue).stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceCharacterSet())
+                    
+                    var tmpArray1 : [String] = newLoc.componentsSeparatedByCharactersInSet(NSCharacterSet (charactersInString: "\n:"))
+                    
+                    if tmpArray1.count > 2 {
+                        newLoc = tmpArray1[1].stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceCharacterSet())
+                    }
+                    
+                    
+                    self.locationLabel.text = newLoc
+                }
+                
                 self.jamLabel.text = json["looking_to_jam"] ? "Yes" : "No"
                 self.bandLabel.text = json["looking_for_band"] ? "Yes" : "No"
                 self.searchRadius = json["search_radius"].stringValue.toInt()!
@@ -114,6 +135,11 @@ class ProfileViewController: UIViewController, UINavigationControllerDelegate, U
                 if self.genderString != "none" {
                     self.ageLabel.text = "\(self.genderString!.capitalizedString), \(self.ageLabel.text!)"
                 }
+                
+                self.genre = json["genre"].stringValue
+                self.arrGenre = self.genre.componentsSeparatedByCharactersInSet(NSCharacterSet (charactersInString: ":"))
+                
+                self.genreCollection.reloadData()
                 
                 self.editProfileButton.enabled = true
             }
@@ -192,6 +218,7 @@ class ProfileViewController: UIViewController, UINavigationControllerDelegate, U
         if(segue.identifier == "editProfileSegue") {
             var destination = segue.destinationViewController as! EditProfileViewController
             destination.nameText = self.nameLabel.text!
+            println(self.nameLabel.text!)
             destination.emailText = self.emailLabel.text!
             destination.radiusValue = Float(self.searchRadius)
             destination.radiusLabel = "\(self.searchRadius) miles"
@@ -231,6 +258,32 @@ class ProfileViewController: UIViewController, UINavigationControllerDelegate, U
             else {
                 destination.cellSent = false
             }
+            
+            destination.genre = genre
         }
     }
+    
+    func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int{
+        //if genreCollection == collectionView {
+            return arrGenre.count
+        //}
+    }
+    
+    // The cell that is returned must be retrieved from a call to -dequeueReusableCellWithReuseIdentifier:forIndexPath:
+    func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
+        
+        //if genreCollection == collectionView {
+            
+            let cell: GenreCell = collectionView.dequeueReusableCellWithReuseIdentifier("genreCell", forIndexPath: indexPath) as! GenreCell
+            
+            var imageName: String = "btn" + arrGenre[indexPath.row]
+            
+            cell.imgEditGenre.image = UIImage(named: imageName)
+            
+            return cell
+            
+        //}
+        
+    }
+
 }

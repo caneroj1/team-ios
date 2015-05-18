@@ -25,6 +25,7 @@ class AddEventViewController: UIViewController, UITextViewDelegate, UIPickerView
     ]
     
     
+    @IBOutlet var lblEvent: UILabel!
     @IBOutlet weak var EventTitle: UITextField!
     @IBOutlet weak var EventAddress: UITextField!
     @IBOutlet weak var EventCity: UITextField!
@@ -35,9 +36,42 @@ class AddEventViewController: UIViewController, UITextViewDelegate, UIPickerView
     @IBOutlet weak var eventImage: UIImageView!
     @IBOutlet var datePicker: UIDatePicker!
     @IBOutlet var btnDelete: UIButton!
+    @IBOutlet var viewConstraint: NSLayoutConstraint!
+    
+    @IBAction func eventTitleChanged(sender: UITextField) {
+        if EventTitle.text == "" {
+            lblEvent.text = "New Event"
+        }
+        else {
+            lblEvent.text = EventTitle.text.capitalizedString
+        }
+    }
     
     @IBAction func pressDelete(sender: UIButton) {
-        //DataManager.makeDestroyRequest()
+        
+        var url = "/api/events/\(eventID)"
+        
+        DataManager.makeDestroyRequest(url, completion: { (data, error) -> Void in
+            var json = JSON(data: data!)
+            var errorString = DataManager.checkForErrors(json)
+            if errorString != "" {
+                dispatch_async(dispatch_get_main_queue()) {
+                    SweetAlert().showAlert("Oops!", subTitle: errorString, style: AlertStyle.Error)
+                    return
+                }
+            }
+            else {
+                dispatch_async(dispatch_get_main_queue()) {
+                    SweetAlert().showAlert("Success!", subTitle: "Your event has been deleted.", style: AlertStyle.Success)
+                    
+                    //self.navigationController?.popViewControllerAnimated(true)
+                    self.navigationController?.popToRootViewControllerAnimated(true)
+                    
+                    return
+                }
+            }
+        })
+
     }
     
     @IBAction func touchZip(sender: UITextField) {
@@ -48,7 +82,7 @@ class AddEventViewController: UIViewController, UITextViewDelegate, UIPickerView
     @IBAction func realeaseZip(sender: UITextField) {
         scrollView.contentOffset.y = scrollView.contentSize.height - scrollView.frame.size.height
         var date = formatDate(datePicker.date)
-        println("\(date)")
+        //println("\(date)")
     }
     
     func textViewDidBeginEditing(textView: UITextView) {
@@ -104,17 +138,44 @@ class AddEventViewController: UIViewController, UITextViewDelegate, UIPickerView
         
         if eventID >= 0 {
             println("EventID: \(eventID)")
+            viewConstraint.constant = 0
             btnDelete.hidden = false
             btnDelete.enabled = true
+            lblEvent.text = eventtitle
             EventTitle.text = eventtitle
             EventDescription.text = eventdescription
             hasBeenSaved = true
             
             
+            var url = "/api/s3EventGet?event_id=\(eventID)"
+            
+            DataManager.makeGetRequest(url, completion: { (data, error) -> Void in
+                if data != nil {
+                    var eventjson = JSON(data: data!)
+                    if eventjson["picture"] != nil {
+                        var base64String = eventjson["picture"].stringValue
+                        
+                        let decodedString = NSData(base64EncodedString: base64String, options: NSDataBase64DecodingOptions.IgnoreUnknownCharacters)
+                        var downloadedImage = UIImage(data: decodedString!)!
+                        var newImage = Toucan(image: downloadedImage).resize(CGSizeMake(280, 140), fitMode: Toucan.Resize.FitMode.Scale).image
+                        dispatch_async(dispatch_get_main_queue()) {
+                            self.eventImage.image = newImage
+                            
+                        }
+                            
+                        
+                    }
+                }
+                
+            })
+        
+
+    
+    
             //Format and display the location
             //[0] Address [1] City [2] State [3] Zip [4] Country
             var newLoc = eventLocation.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceCharacterSet())
-            
+    
             var tmpArray1 : [String] = newLoc.componentsSeparatedByCharactersInSet(NSCharacterSet (charactersInString: "\n:,"))
             
             if tmpArray1.count > 3 {
@@ -137,6 +198,9 @@ class AddEventViewController: UIViewController, UITextViewDelegate, UIPickerView
             let date = dateFormatter.dateFromString(eventDate)
             
             datePicker.setDate(date!, animated: true)
+        }
+        else {
+            viewConstraint.constant = -185
         }
     }
     
@@ -178,7 +242,7 @@ class AddEventViewController: UIViewController, UITextViewDelegate, UIPickerView
         eventImagePicker.delegate = self
         
         if hasBeenSaved == false {
-            SweetAlert().showAlert("Uh oh!", subTitle: "Click submit before selecting a picture.", style: AlertStyle.Error)
+            SweetAlert().showAlert("Uh oh!", subTitle: "You must submit the picture when updating the event, not submitting.", style: AlertStyle.Error)
             return
         }
         self.presentViewController(eventImagePicker, animated: true, completion: nil)
@@ -191,20 +255,21 @@ class AddEventViewController: UIViewController, UITextViewDelegate, UIPickerView
         let newEventImage = Toucan(image: eventPickedImage).resizeByScaling(CGSizeMake(280, 140)).image as UIImage
         
         if hasBeenSaved == false {
-            SweetAlert().showAlert("Uh oh!", subTitle: "Click submit before selecting a picture.", style: AlertStyle.Error)
+            SweetAlert().showAlert("Uh oh!", subTitle: "You must submit the picture when updating the event, not submitting.", style: AlertStyle.Error)
             return
         }
         
         
         //left off working on putting event id in below
-        //        DataManager.uploadEventImage("/api/s3EventPictureUpload", eventID: self.eventID, image: newEventImage, completion: { (data, error) -> Void in
-        //            dispatch_async(dispatch_get_main_queue()) {
-        //                SweetAlert().showAlert("Sweet!", subTitle: "Event picture successfully added!", style: AlertStyle.Success)
-        //                return
-        //            }
-        //        })
+        DataManager.uploadEventImage("/api/s3EventPictureUpload",eventID: self.eventID, image: newEventImage, completion: { (data, error) -> Void in
+            dispatch_async(dispatch_get_main_queue()) {
+                SweetAlert().showAlert("Sweet!", subTitle: "Event picture successfully added!", style: AlertStyle.Success)
+                self.eventImage.image = newEventImage
+                return
+            }
+        })
         
-        eventImage.image = newEventImage
+        
     }
     
     func formatDate(date: NSDate) -> String {
@@ -230,7 +295,7 @@ class AddEventViewController: UIViewController, UITextViewDelegate, UIPickerView
         var location = EventAddress.text.capitalizedString.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceCharacterSet()) + "\n" +  EventCity.text.capitalizedString.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceCharacterSet()) + ", " + states[thisSort] + " : " + EventZip.text.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceCharacterSet())
         
         var date = formatDate(datePicker.date)
-        println("\(date)")
+        //println("\(date)")
         
         var eventParams: Dictionary<String, AnyObject> = ["title": EventTitle.text.capitalizedString, "location": location, "description": EventDescription.text, "event_time": date,"created_by": MusiciansWanted.userId]
         
@@ -266,7 +331,7 @@ class AddEventViewController: UIViewController, UITextViewDelegate, UIPickerView
         else
         {
             var url = "/api/events/\(eventID)"
-            println(url)
+            //println(url)
             DataManager.makePatchRequest(url, params: params, completion: { (data, error) -> Void in
                 var json = JSON(data: data!)
                 var errorString = DataManager.checkForErrors(json)

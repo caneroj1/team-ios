@@ -13,6 +13,7 @@ struct events {
     var eventId = 0
     var eventName = "Un-named"
     var eventPicture = UIImage(named: "default")
+    var hasEventPic = "false"
     var eventDate = "None"
     var eventGenre = "None"
     var eventLocation = "Unknown"
@@ -23,34 +24,14 @@ struct events {
 class EventsManager: NSObject {
     var isNearMeURL = false
     var eventDelegate: EventsDelegate?
-    var event = [events]()
-    var eventDictionary = [Int: Bool]()
+    var event = [Int]()
+    var eventDictionary = [Int: events]()
     var isLoadingEvents = false
     
-    func addEvents(tempId: Int, name: String, picture: UIImage, date: String, genre: String, location: String, latitude: Double, longitude: Double){
-        
-        if event.count >= tempId {
-            event[tempId-1].eventName = name;
-            event[tempId-1].eventPicture = picture;
-            event[tempId-1].eventDate = date;
-            event[tempId-1].eventGenre = genre;
-            event[tempId-1].eventLocation = location;
-        }
-        else {
-            eventDictionary.updateValue(true, forKey: tempId)
-            var tmpArray = [events(eventId: tempId, eventName: name, eventPicture: picture, eventDate: date, eventGenre: genre, eventLocation: location, latitude: latitude, longitude: longitude)]
-            
-            event = tmpArray + event
-//            event.append(events(eventId: tempId, eventName: name, eventPicture: picture, eventDate: date, eventGenre: genre, eventLocation: location, latitude: latitude, longitude: longitude))
-        }
-        
-        self.eventDelegate!.addedNewEvent()
-
-    }
-    
     func loadEvents(lower: Int, upper: Int) {
-        
         var url: String
+        
+        eventDictionary = [Int: events]()
         
         switch CLLocationManager.authorizationStatus() {
         case .AuthorizedWhenInUse:
@@ -70,15 +51,17 @@ class EventsManager: NSObject {
             for index in lower...upper {
                 
                 if index >= json.count {
-                    println("loop broken.");
+                    //println("loop broken.");
                     break;
                 }
                 var eventData = json[index]
-                var id = eventData["id"];
+                var id = eventData["id"].intValue;
+                var title = eventData["title"].stringValue
+                var tempPic = eventData["has_event_pic"];
+                var hasPicString = tempPic.stringValue
                 
-                //write if statement that filters setting based on age, looking to jam, and band
-                //Add basic information of events
-                var eventImage = UIImage(named: "UltraLord")!
+                
+                var eventImage = UIImage(named: "default")!
                 
                 var longitude = eventData["longitude"].stringValue
                 var latitude = eventData["latitude"].stringValue
@@ -86,19 +69,17 @@ class EventsManager: NSObject {
                 let longStr: NSString = NSString(string: longitude)
                 let latStr: NSString = NSString(string: latitude)
                 
-                if self.eventDictionary.indexForKey(eventData["id"].intValue) == nil {
-                    self.addEvents(eventData["id"].intValue, name: eventData["title"].stringValue, picture: eventImage, date: eventData["event_time"].stringValue, genre: "id: " + eventData["id"].stringValue, location: eventData["location"].stringValue, latitude: latStr.doubleValue, longitude: longStr.doubleValue)
-                    
-                    println("Adding event \(id)")
-                }
-                else {
-                    println("Did not add event")
-                }
+
+                println("\(id) : \(title)")
+                
+                self.eventDictionary[id] = events(eventId: eventData["id"].intValue, eventName: eventData["title"].stringValue, eventPicture: eventImage, hasEventPic: hasPicString, eventDate: eventData["event_time"].stringValue, eventGenre: "id: " + eventData["id"].stringValue, eventLocation: eventData["location"].stringValue, latitude: latStr.doubleValue, longitude: longStr.doubleValue)
             }
             
             dispatch_async(dispatch_get_main_queue()) {
                 self.eventDelegate?.addedNewEvent()
-                println("Event Data Loaded.")
+                self.event = Array(self.eventDictionary.keys).sorted(<)
+
+                //println("Event Data Loaded.")
                 
             }
         })

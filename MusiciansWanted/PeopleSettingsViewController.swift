@@ -8,23 +8,30 @@
 
 import UIKit
 
-class PeopleSettingViewController: UIViewController, UITextFieldDelegate {
+class PeopleSettingViewController: UITableViewController, UITextFieldDelegate, UICollectionViewDataSource, UICollectionViewDelegate {
     
     @IBOutlet var contactsOnly: UISwitch!
-    @IBOutlet var agesOption: UISwitch!
     @IBOutlet var jamOption: UISwitch!
     @IBOutlet var bandOption: UISwitch!
     
     @IBOutlet var lowerAgeTxt: UITextField!
     @IBOutlet var upperAgeTxt: UITextField!
     
+    @IBOutlet var genreCollection: UICollectionView!
+    @IBOutlet var instruCollection: UICollectionView!
+    
     var lowerAge:Int = 13;
     var upperAge:Int = 75;
+    
+    var genreDict:[String:Bool] = ["African":false, "Asian":false, "Blues":false, "Caribbean": false, "Classical":false, "Country":false, "Electronic":false, "Folk":false, "Hip-Hop":false, "Jazz":false, "Latin":false, "Pop":false, "Polka":false, "R&B":false, "Rock":false, "Metal":false]
+    var genreIndex = [String]()
+    
+    var instruDict:[String:Bool] = ["African":false, "Asian":false, "Blues":false, "Caribbean": false, "Classical":false, "Country":false, "Electronic":false, "Folk":false, "Hip-Hop":false, "Jazz":false, "Latin":false, "Pop":false, "Polka":false, "R&B":false, "Rock":false, "Metal":false, "Guitar":false, "Base":false, "Drums":false, "Violin":false]
+    var instruIndex = [String]()
     
     //Check Filters
     override func viewWillAppear(animated: Bool) {
         contactsOnly.on = Filters.contactsOnly
-        agesOption.on = Filters.ageOn
         jamOption.on = Filters.looking_to_jam
         bandOption.on = Filters.looking_for_band
         upperAge = Filters.upperAge
@@ -32,21 +39,13 @@ class PeopleSettingViewController: UIViewController, UITextFieldDelegate {
         lowerAgeTxt.text = "\(Filters.lowerAge)"
         upperAgeTxt.text = "\(Filters.upperAge)"
         
-        if agesOption.on {
-            lowerAgeTxt.enabled = true
-            lowerAgeTxt.backgroundColor = UIColor.whiteColor()
-            upperAgeTxt.enabled = true
-            upperAgeTxt.backgroundColor = UIColor.whiteColor()
+        if Filters.genre != "" {
+            var arrGenres : [String] = (Filters.genre).componentsSeparatedByCharactersInSet(NSCharacterSet (charactersInString: ":"))
+            
+            for genre in arrGenres {
+                genreDict[genre] = true
+            }
         }
-        else {
-            lowerAgeTxt.enabled = false
-            lowerAgeTxt.backgroundColor = UIColor.lightGrayColor()
-            upperAgeTxt.enabled = false
-            upperAgeTxt.backgroundColor = UIColor.lightGrayColor()
-        }
-        
-        println(Filters.upperAge)
-        
         println("dat update.")
         
     }
@@ -54,6 +53,9 @@ class PeopleSettingViewController: UIViewController, UITextFieldDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
+        genreIndex = Array(genreDict.keys).sorted(<)
+        instruIndex = Array(instruDict.keys).sorted(<)
+
     }
     
     override func didReceiveMemoryWarning() {
@@ -78,29 +80,6 @@ class PeopleSettingViewController: UIViewController, UITextFieldDelegate {
         else {
             Filters.contactsOnly = false
         }
-    }
-    
-    @IBAction func ageStateChanged(sender: AnyObject) {
-        
-        if agesOption.on {
-            lowerAgeTxt.enabled = true
-            lowerAgeTxt.backgroundColor = UIColor.whiteColor()
-            upperAgeTxt.enabled = true
-            upperAgeTxt.backgroundColor = UIColor.whiteColor()
-            lowerAge = lowerAgeTxt.text.toInt()!
-            upperAge = upperAgeTxt.text.toInt()!
-            Filters.ageOn = true
-        } else {
-            lowerAgeTxt.enabled = false
-            lowerAgeTxt.backgroundColor = UIColor.lightGrayColor()
-            upperAgeTxt.enabled = false
-            upperAgeTxt.backgroundColor = UIColor.lightGrayColor()
-            lowerAge = 13
-            upperAge = 75
-            Filters.ageOn = false
-        }
-        Filters.lowerAge = lowerAge
-        Filters.upperAge = upperAge
     }
     
     @IBAction func jamStateChanged(sender: UISwitch) {
@@ -165,4 +144,117 @@ class PeopleSettingViewController: UIViewController, UITextFieldDelegate {
         Filters.lowerAge = lowerAge
         Filters.upperAge = upperAge
     }
+    
+    func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int{
+        if genreCollection == collectionView {
+            return genreIndex.count
+        }
+        else
+        {
+            return instruIndex.count
+        }
+    }
+    
+    // The cell that is returned must be retrieved from a call to -dequeueReusableCellWithReuseIdentifier:forIndexPath:
+    func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
+        
+        if genreCollection == collectionView {
+            
+            let cell: GenreCell = collectionView.dequeueReusableCellWithReuseIdentifier("genreCell", forIndexPath: indexPath) as! GenreCell
+            
+            var imageName: String = "btn" + genreIndex[indexPath.row]
+            
+            cell.imgGenre.image = UIImage(named: imageName)
+            
+            var genre = genreDict[genreIndex[indexPath.row]]
+            
+            if genre == true {
+                //cell.backgroundColor = UIColor(red: 5.0/255.0, green: 5.0/255.0, blue: 10.0/255.0, alpha: 0.2)
+                cell.backgroundView = UIImageView(image: UIImage(named: "btnSelection"))
+            }
+            else{
+                //cell.backgroundColor = UIColor.clearColor()
+                cell.backgroundView = UIView()
+            }
+            
+            return cell
+            
+        } else {
+            
+            let cell: InstruCell = collectionView.dequeueReusableCellWithReuseIdentifier("instruCell", forIndexPath: indexPath) as! InstruCell
+            
+            //var imageName: String = "btn" + instruIndex[indexPath.row]
+            
+            cell.imgInstru.image = UIImage(named: "guitar")
+            
+            var instru = instruDict[instruIndex[indexPath.row]]
+            
+            if instru == true {
+                //cell.backgroundColor = UIColor(red: 5.0/255.0, green: 5.0/255.0, blue: 10.0/255.0, alpha: 0.2)
+                cell.backgroundView = UIImageView(image: UIImage(named: "btnSelection"))
+            }
+            else{
+                //cell.backgroundColor = UIColor.clearColor()
+                cell.backgroundView = UIView()
+            }
+            
+            return cell
+            
+        }
+        
+    }
+    
+    func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
+        
+        if collectionView == genreCollection {
+            if (genreDict[genreIndex[indexPath.row]] == true) {
+                genreDict[genreIndex[indexPath.row]] = false
+                
+                if ((Filters.genre).rangeOfString(genreIndex[indexPath.row]) != nil) {
+                    var str = genreIndex[indexPath.row] + ":"
+                    
+                    let aString: String = Filters.genre
+                    let newString = aString.stringByReplacingOccurrencesOfString(str, withString: "")
+                    
+                    Filters.genre = newString
+                }
+            }
+            else {
+                genreDict[genreIndex[indexPath.row]] = true
+                
+                if ((Filters.genre).rangeOfString(genreIndex[indexPath.row]) == nil) {
+                    Filters.genre = Filters.genre + genreIndex[indexPath.row] + ":"
+                }
+            }
+            
+            println(Filters.genre)
+        }
+        else {
+            if (instruDict[instruIndex[indexPath.row]] == true) {
+                instruDict[instruIndex[indexPath.row]] = false
+                
+                /*if ((Filters.genre).rangeOfString(genreIndex[indexPath.row]) != nil) {
+                var str = genreIndex[indexPath.row] + ":"
+                
+                let aString: String = Filters.genre
+                let newString = aString.stringByReplacingOccurrencesOfString(str, withString: "")
+                
+                Filters.genre = newString
+                }*/
+            }
+            else {
+                instruDict[instruIndex[indexPath.row]] = true
+                
+                /*if ((Filters.genre).rangeOfString(genreIndex[indexPath.row]) == nil) {
+                Filters.genre = Filters.genre + genreIndex[indexPath.row] + ":"
+                }*/
+            }
+            
+            println("\(indexPath.row): " + instruIndex[indexPath.row])
+        }
+        
+        genreCollection.reloadData()
+        instruCollection.reloadData()
+    }
+
 }

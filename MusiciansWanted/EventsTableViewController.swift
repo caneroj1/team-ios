@@ -81,7 +81,37 @@ class EventsTableViewController: UITableViewController, UIScrollViewDelegate, UI
         cell.EventTitle.text = event!.eventName
             
         //cell.EventDescription.text = "The time to see ultra lord"
-        cell.EventImage.image = UIImage(named: "UltraLord")
+        
+        if (event!.hasEventPic == "true")
+        {
+            var url = "/api/s3EventGet?event_id=\(event!.eventId)"
+            
+            DataManager.makeGetRequest(url, completion: { (data, error) -> Void in
+                if data != nil {
+                    var eventjson = JSON(data: data!)
+                    if eventjson["picture"] != nil {
+                        var base64String = eventjson["picture"].stringValue
+                        
+                        let decodedString = NSData(base64EncodedString: base64String, options: NSDataBase64DecodingOptions.IgnoreUnknownCharacters)
+                        var downloadedImage = UIImage(data: decodedString!)!
+                        var newImage = Toucan(image: downloadedImage).resize(CGSizeMake(280, 140), fitMode: Toucan.Resize.FitMode.Scale).image
+                        
+                        dispatch_async(dispatch_get_main_queue()) {
+                            cell.EventImage.image = newImage
+                            //self.events[id].eventPicture = newImage;
+                            
+                        }
+                    }
+                }
+                
+            })
+        } else {
+            cell.EventImage.image = event!.eventPicture
+            
+        }
+
+        
+        //println("\(event.eventPicture)")
         //cell.EventTitle.text = "The Event"
         
         
@@ -113,12 +143,39 @@ class EventsTableViewController: UITableViewController, UIScrollViewDelegate, UI
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         let event = eventManager.eventDictionary[eventManager.event[indexPath.row]]
         
-        println("Instantiate event view...")
+        //println("Instantiate event view...")
         let eventView = self.storyboard?.instantiateViewControllerWithIdentifier("EventViewController") as! EventViewController
         
         eventView.controller = "events"
-        eventView.icon = event!.eventPicture
-        eventView.id = event!.eventId
+        if (event.hasEventPic == "true")
+        {
+            var url = "/api/s3EventGet?event_id=\(event.eventId)"
+            
+            DataManager.makeGetRequest(url, completion: { (data, error) -> Void in
+                if data != nil {
+                    var eventjson = JSON(data: data!)
+                    if eventjson["picture"] != nil {
+                        var base64String = eventjson["picture"].stringValue
+                        
+                        let decodedString = NSData(base64EncodedString: base64String, options: NSDataBase64DecodingOptions.IgnoreUnknownCharacters)
+                        var downloadedImage = UIImage(data: decodedString!)!
+                        var newImage = Toucan(image: downloadedImage).resize(CGSizeMake(280, 140), fitMode: Toucan.Resize.FitMode.Scale).image
+                        
+                        dispatch_async(dispatch_get_main_queue()) {
+                            eventView.icon = newImage
+                            //self.events[id].eventPicture = newImage;
+                            
+                        }
+                    }
+                }
+                
+            })
+        } else {
+            eventView.icon = event.eventPicture
+            
+        }
+        
+        eventView.id = event.eventId
         
         self.navigationController?.pushViewController(eventView, animated: true)
     }

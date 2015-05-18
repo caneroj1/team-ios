@@ -264,11 +264,12 @@ class AddEventViewController: UIViewController, UITextViewDelegate, UIPickerView
         DataManager.uploadEventImage("/api/s3EventPictureUpload",eventID: self.eventID, image: newEventImage, completion: { (data, error) -> Void in
             dispatch_async(dispatch_get_main_queue()) {
                 SweetAlert().showAlert("Sweet!", subTitle: "Event picture successfully added!", style: AlertStyle.Success)
+                self.eventImage.image = newEventImage
                 return
             }
         })
         
-        eventImage.image = newEventImage
+        
     }
     
     func formatDate(date: NSDate) -> String {

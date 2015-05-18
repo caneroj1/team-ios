@@ -98,6 +98,7 @@ class EventsTableViewController: UITableViewController, UIScrollViewDelegate, UI
                         
                         dispatch_async(dispatch_get_main_queue()) {
                             cell.EventImage.image = newImage
+                           
                             //self.events[id].eventPicture = newImage;
                             
                         }

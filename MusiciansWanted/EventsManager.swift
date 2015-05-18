@@ -96,7 +96,7 @@ class EventsManager: NSObject {
                 let latStr: NSString = NSString(string: latitude)
                 
 
-                println("\(id) : \(title)")
+                //println("\(id) : \(title)")
                 if self.eventDictionary.indexForKey(eventData["id"].intValue) == nil {
                     self.addEvents(eventData["id"].intValue, name: eventData["title"].stringValue, picture: eventImage, hasPic: hasPicString, date: eventData["event_time"].stringValue, genre: "id: " + eventData["id"].stringValue, location: eventData["location"].stringValue, latitude: latStr.doubleValue, longitude: longStr.doubleValue)
                     
@@ -111,7 +111,7 @@ class EventsManager: NSObject {
                 self.eventDelegate?.addedNewEvent()
 //                self.event = Array(self.eventDictionary.keys).sorted(<)
 
-                println("Event Data Loaded.")
+                //println("Event Data Loaded.")
                 
             }
         })

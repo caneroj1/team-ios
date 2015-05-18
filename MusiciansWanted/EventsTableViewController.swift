@@ -23,13 +23,9 @@ class EventsTableViewController: UITableViewController, UIScrollViewDelegate, UI
         self.refreshControl?.addTarget(self, action: "refresh:", forControlEvents: UIControlEvents.ValueChanged)
         self.refreshControl?.layer.zPosition = -1
         
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem()
+        
         eventManager.eventDelegate = self
-//        tableView.reloadData()
+//      tableView.reloadData()
     }
 
     override func viewWillAppear(animated: Bool) {
@@ -63,12 +59,13 @@ class EventsTableViewController: UITableViewController, UIScrollViewDelegate, UI
 
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+        
         let cell = tableView.dequeueReusableCellWithIdentifier("Event", forIndexPath: indexPath) as! EventsCell
-
-        var event = eventManager.event[indexPath.row]
-                
+        
+        var event = eventManager.eventDictionary[eventManager.event[indexPath.row]]
+        
         // Configure the cell...
-        var newLoc = event.eventLocation.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceCharacterSet())
+        var newLoc = event!.eventLocation.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceCharacterSet())
         
         var tmpArray1 : [String] = newLoc.componentsSeparatedByCharactersInSet(NSCharacterSet (charactersInString: "\n:,"))
         
@@ -77,14 +74,13 @@ class EventsTableViewController: UITableViewController, UIScrollViewDelegate, UI
         }
         
         cell.EventDescription.text = newLoc
-        //cell.EventImage.image = event.eventPicture
-        cell.EventTitle.text = event.eventName
-            
+        cell.EventTitle.text = event!.eventName
+        
         //cell.EventDescription.text = "The time to see ultra lord"
         
-        if (event.hasEventPic == "true")
+        if (event!.hasEventPic == "true")
         {
-            var url = "/api/s3EventGet?event_id=\(event.eventId)"
+            var url = "/api/s3EventGet?event_id=\(event!.eventId)"
             
             DataManager.makeGetRequest(url, completion: { (data, error) -> Void in
                 if data != nil {
@@ -105,30 +101,14 @@ class EventsTableViewController: UITableViewController, UIScrollViewDelegate, UI
                 }
                 
             })
+            
         } else {
-            cell.EventImage.image = event.eventPicture
+            cell.EventImage.image = event!.eventPicture
             
         }
-
-        
-        //println("\(event.eventPicture)")
-        //cell.EventTitle.text = "The Event"
-        
         
         return cell
     }
-    
-    /*override func scrollViewDidScroll(scrollView: UIScrollView) {
-        var currentOffset = scrollView.contentOffset.y;
-        var maximumOffset = scrollView.contentSize.height - scrollView.frame.size.height;
-        
-        if (maximumOffset - currentOffset <= 20.0 && eventManager.isLoadingEvents == false) {
-            println("expanding size");
-           
-            eventManager.isLoadingEvents = true
-            eventManager.loadEvents(eventManager.event.count, upper: eventManager.event.count + 100)
-        }
-    }*/
     
     func addedNewEvent() {
         if self.refreshControl?.refreshing == true {
@@ -141,15 +121,15 @@ class EventsTableViewController: UITableViewController, UIScrollViewDelegate, UI
     }
 
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        let event = eventManager.event[indexPath.row]
+        let event = eventManager.eventDictionary[eventManager.event[indexPath.row]]
         
         //println("Instantiate event view...")
         let eventView = self.storyboard?.instantiateViewControllerWithIdentifier("EventViewController") as! EventViewController
         
         eventView.controller = "events"
-        if (event.hasEventPic == "true")
+        if (event!.hasEventPic == "true")
         {
-            var url = "/api/s3EventGet?event_id=\(event.eventId)"
+            var url = "/api/s3EventGet?event_id=\(event!.eventId)"
             
             DataManager.makeGetRequest(url, completion: { (data, error) -> Void in
                 if data != nil {
@@ -168,14 +148,13 @@ class EventsTableViewController: UITableViewController, UIScrollViewDelegate, UI
                         }
                     }
                 }
-                
             })
-        } else {
-            eventView.icon = event.eventPicture
             
+        } else {
+            eventView.icon = event!.eventPicture
         }
         
-        eventView.id = event.eventId
+        eventView.id = event!.eventId
         
         self.navigationController?.pushViewController(eventView, animated: true)
     }

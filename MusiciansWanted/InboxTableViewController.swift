@@ -59,19 +59,57 @@ class InboxTableViewController: UITableViewController, MessageDelegate {
         let message = inboxMgr.messageDictionary[inboxMgr.messages[indexPath.row]]
        
         cell.lblProfName.text = message!.name
-        cell.lblBody.text = message!.body
-        cell.lblSubject.text = message!.subject
+        cell.lblSubject.text = message!.subject == "" ? "No Subject" : message!.subject
         cell.imgProfPic.image = message?.profpic
         cell.lblDate.text = formatDate(message!.date)
         
-        println(message!.subject)
+        var cellcolor = UIColor(red: 235.0/255.0, green: 235.0/255.0, blue: 242.0/255.0, alpha: 1.0)
+        
+        if message?.isExpanded == true {
+            cell.lblBody.text = ""
+            cell.lblFullBody.text = message?.body
+            cell.lblFullBody.hidden = false
+            cell.lblSubject.numberOfLines = 0
+            
+            let textViewFixedWidth = self.view.frame.size.width
+            let newSize = cell.lblFullBody.sizeThatFits(CGSizeMake(textViewFixedWidth, CGFloat(MAXFLOAT)))
+            
+            inboxMgr.messageDictionary[inboxMgr.messages[indexPath.row]]?.cellHeight = newSize.height + 150
+            
+            cell.lblFullBody.sizeToFit()
+            cellcolor = UIColor(red: 210.0/255.0, green: 210.0/255.0, blue: 220.0/255.0, alpha: 1.0)
+        }
+        else {
+            cell.lblSubject.numberOfLines = 1
+            cell.lblBody.text = message!.body
+            inboxMgr.messageDictionary[inboxMgr.messages[indexPath.row]]?.cellHeight = 85
+            cell.lblFullBody.text = ""
+            cell.lblFullBody.hidden = true
+        }
+        cell.bgView.backgroundColor = cellcolor
+
         
         return cell
     }
     
     override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
         
-        return 85
+        return inboxMgr.messageDictionary[inboxMgr.messages[indexPath.row]]!.cellHeight
+    }
+    
+    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        let cell = tableView.cellForRowAtIndexPath(indexPath)
+        
+        let message = inboxMgr.messageDictionary[inboxMgr.messages[indexPath.row]]
+        
+        if message?.isExpanded == true {
+            inboxMgr.messageDictionary[inboxMgr.messages[indexPath.row]]?.isExpanded = false
+        }
+        else {
+            inboxMgr.messageDictionary[inboxMgr.messages[indexPath.row]]?.isExpanded = true
+        }
+        
+        tableView.reloadData()
     }
     
     //There's definitely a much more efficient way of doing this

@@ -12,9 +12,11 @@ class InboxCell: UITableViewCell {
 
     @IBOutlet var lblProfName: UILabel!
     @IBOutlet var lblBody: UILabel!
+    @IBOutlet var lblFullBody: UILabel!
     @IBOutlet var lblDate: UILabel!
     @IBOutlet var lblSubject: UILabel!
     @IBOutlet var imgProfPic: UIImageView!
+    @IBOutlet var bgView: UIView!
     
     override func awakeFromNib() {
         super.awakeFromNib()

@@ -9,6 +9,8 @@ struct inbox {
     var senderId = -1
     var receiverId = -1
     var profpic: UIImage
+    var cellHeight: CGFloat
+    var isExpanded: Bool
 }
 
 class InboxManager: NSObject {
@@ -35,7 +37,7 @@ class InboxManager: NSObject {
                         
                         let strdate = msg.1["created_at"].stringValue
                         
-                        self.messageDictionary[msg.1["id"].intValue] = inbox(id: msg.1["id"].intValue, name: name, subject: msg.1["subject"].stringValue, date: strdate, body: msg.1["body"].stringValue, senderId: msg.1["sent_by"].intValue, receiverId: msg.1["user_id"].intValue, profpic: UIImage(named: "anonymous")!)
+                        self.messageDictionary[msg.1["id"].intValue] = inbox(id: msg.1["id"].intValue, name: name, subject: msg.1["subject"].stringValue, date: strdate, body: msg.1["body"].stringValue, senderId: msg.1["sent_by"].intValue, receiverId: msg.1["user_id"].intValue, profpic: UIImage(named: "anonymous")!, cellHeight: 85, isExpanded: false)
                         
                         self.getImage(msg.1,user: user_json)
                         

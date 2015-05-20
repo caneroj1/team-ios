@@ -63,14 +63,17 @@ class EventsTableViewController: UITableViewController, UIScrollViewDelegate, UI
         let cell = tableView.dequeueReusableCellWithIdentifier("Event", forIndexPath: indexPath) as! EventsCell
         
         var event = eventManager.eventDictionary[eventManager.event[indexPath.row]]
+        var newLoc = "No Location Given"
         
-        // Configure the cell...
-        var newLoc = event!.eventLocation.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceCharacterSet())
-        
-        var tmpArray1 : [String] = newLoc.componentsSeparatedByCharactersInSet(NSCharacterSet (charactersInString: "\n:,"))
-        
-        if tmpArray1.count > 3 {
-            newLoc = tmpArray1[1].stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceCharacterSet()) + ", " + tmpArray1[2].stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceCharacterSet())
+        if event?.eventLocation != nil && event?.eventLocation != "" {
+            
+            newLoc = event!.eventLocation.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceCharacterSet())
+            
+            var tmpArray1 : [String] = newLoc.componentsSeparatedByCharactersInSet(NSCharacterSet (charactersInString: "\n:,"))
+            
+            if tmpArray1.count > 3 {
+                newLoc = tmpArray1[1].stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceCharacterSet()) + ", " + tmpArray1[2].stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceCharacterSet())
+            }
         }
         
         cell.EventDescription.text = newLoc

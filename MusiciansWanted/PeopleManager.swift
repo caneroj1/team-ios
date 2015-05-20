@@ -77,6 +77,8 @@ class PeopleManager: NSObject {
         DataManager.makeGetRequest(url!, completion: { (data, error) -> Void in
             let json = JSON(data: data!)
            
+            println(json)
+            
             if self.isNearMeURL {
                 for user in json {
                     

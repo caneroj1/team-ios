@@ -8,7 +8,9 @@
 
 import UIKit
 
-class InboxTableViewController: UITableViewController {
+class InboxTableViewController: UITableViewController, MessageDelegate {
+    
+    var inboxMgr: InboxManager = InboxManager()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -16,12 +18,7 @@ class InboxTableViewController: UITableViewController {
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
         
-        //Sample data
-        inboxMgr.addMessage("Bob", subject: "Hey Jim, just wanted to say hi", time: "Today")
-        inboxMgr.addMessage("Robin Scherbatsky", subject: "What? That's not distracting. That's just talking about the story of a scrappy little underdog team that prevailed despite very shaky goal ending and, frankly, the declining skills of Trevor Linden.", time: "Today")
-        inboxMgr.addMessage("Marco Polo", subject: "I found you.", time: "Today")
-        inboxMgr.addMessage("Kari Gilbertson", subject: "Omg they are awesome", time: "Today")
-        
+        /*
         let mobileAnalytics = AWSMobileAnalytics(forAppId: MobileAnalyticsAppId)
         let eventRecordClient = mobileAnalytics.eventClient
         let eventRecord = eventRecordClient.createEventWithEventType("InboxViewEvent")
@@ -29,7 +26,11 @@ class InboxTableViewController: UITableViewController {
         eventRecord.addAttribute("Test", forKey: "Inbox")
         
         eventRecordClient.recordEvent(eventRecord)
-        eventRecordClient.submitEvents()
+        eventRecordClient.submitEvents()*/
+        
+        inboxMgr.messageDelegate = self
+        inboxMgr.loadInbox()
+        tableView.reloadData()
     }
     
     override func didReceiveMemoryWarning() {
@@ -55,17 +56,74 @@ class InboxTableViewController: UITableViewController {
         
         let cell = tableView.dequeueReusableCellWithIdentifier("Msg", forIndexPath: indexPath) as! InboxCell
         
-        let message = inboxMgr.messages[indexPath.row]
+        let message = inboxMgr.messageDictionary[inboxMgr.messages[indexPath.row]]
        
-        cell.lblProfName.text = message.name
-        cell.lblBody.text = message.subject
-        cell.lblDate.text = message.time
+        cell.lblProfName.text = message!.name
+        cell.lblBody.text = message!.body
+        cell.lblSubject.text = message!.subject
+        cell.imgProfPic.image = message?.profpic
+        cell.lblDate.text = formatDate(message!.date)
+        
+        println(message!.subject)
         
         return cell
     }
     
     override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
         
-        return 80
+        return 85
+    }
+    
+    //There's definitely a much more efficient way of doing this
+    func formatDate(strDate: String) -> String {
+        let formatter = NSDateFormatter()
+        formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSS'Z"
+        
+        let offset = Double(formatter.timeZone.secondsFromGMT)
+        let date = formatter.dateFromString(strDate)//!.dateByAddingTimeInterval(offset)
+        
+        let currentdate = NSDate()
+        let calendar = NSCalendar.currentCalendar()
+        
+        //Get current date information
+        let currentcomponent = calendar.components(.CalendarUnitDay | .CalendarUnitYear | .CalendarUnitMonth, fromDate: currentdate)
+        let currentday = currentcomponent.day
+        let currentyear = currentcomponent.year
+        let currentmonth = currentcomponent.month
+        
+        //Get message date information
+        let messagecomponent = calendar.components(.CalendarUnitDay | .CalendarUnitYear | .CalendarUnitMonth, fromDate: date!)
+        let messageday = messagecomponent.day
+        let messageyear = messagecomponent.year
+        let messagemonth = messagecomponent.month
+        
+        let outputter = NSDateFormatter()
+
+        //Determine how to format
+        if currentyear == messageyear && currentmonth == messagemonth {
+            if currentday == messageday {
+                outputter.timeStyle = NSDateFormatterStyle.ShortStyle
+                outputter.dateStyle = NSDateFormatterStyle.NoStyle
+
+            }
+            else if currentday - messageday < 7 {
+                outputter.dateFormat = "EEEE"
+            }
+            else {
+                outputter.dateStyle = NSDateFormatterStyle.ShortStyle
+                outputter.timeStyle = NSDateFormatterStyle.NoStyle
+            }
+            
+        }
+        else {
+            outputter.dateStyle = NSDateFormatterStyle.ShortStyle
+            outputter.timeStyle = NSDateFormatterStyle.NoStyle
+        }
+
+        return outputter.stringFromDate(date!)
+    }
+    
+    func addedNewMessage() {
+        tableView.reloadData()
     }
 }

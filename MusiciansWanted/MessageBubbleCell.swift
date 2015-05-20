@@ -8,25 +8,22 @@
 
 import UIKit
 
-class InboxCell: UITableViewCell {
-
-    @IBOutlet var lblProfName: UILabel!
-    @IBOutlet var lblBody: UILabel!
-    @IBOutlet var lblDate: UILabel!
-    @IBOutlet var lblSubject: UILabel!
-    @IBOutlet var imgProfPic: UIImageView!
-    
+class MessageBubbleCell: UITableViewCell {
+    @IBOutlet var msgText: UILabel!
+    @IBOutlet var msgView: UIView!
+    @IBOutlet var msgHeader: UILabel!
+        
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
         
         let lightestGrayColor: UIColor = UIColor( red: 224.0/255.0, green: 224.0/255.0, blue:224.0/255.0, alpha: 1.0 )
-        self.imgProfPic.layer.borderColor = lightestGrayColor.CGColor
-        self.imgProfPic.layer.borderWidth = 0.6
-        self.imgProfPic.layer.cornerRadius = self.imgProfPic.frame.size.width / 2
-        self.imgProfPic.clipsToBounds = true
-        self.imgProfPic.layer.masksToBounds = true
-        
+        self.msgView.layer.borderColor = lightestGrayColor.CGColor
+        self.msgView.layer.borderWidth = 0.6
+        self.msgView.layer.cornerRadius = 6.0
+        self.msgView.clipsToBounds = true
+        self.msgView.layer.masksToBounds = true
+
     }
     
     override func setSelected(selected: Bool, animated: Bool) {

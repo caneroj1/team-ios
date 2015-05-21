@@ -10,31 +10,32 @@
         <scene sceneID="d4d-Cj-Wnz">
             <objects>
                 <tableViewController id="hJP-b6-UHJ" customClass="MusicianRequestTableViewController" customModule="MW" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="grouped" separatorStyle="none" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" id="Llw-gE-bfz">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="grouped" separatorStyle="none" allowsSelection="NO" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" id="Llw-gE-bfz">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="800"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="0.91339819779999998" green="0.91050339209999998" blue="0.96106843580000001" alpha="1" colorSpace="calibratedRGB"/>
                         <sections>
                             <tableViewSection headerTitle="Create New Musician Request" id="F5o-vP-otR">
                                 <cells>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="90" id="jhQ-9S-At5">
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="requestDescription" rowHeight="120" id="jhQ-9S-At5">
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="jhQ-9S-At5" id="jDK-AT-QRm">
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" textAlignment="center" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6dq-0Y-poR">
-                                                    <rect key="frame" x="0.0" y="0.0" width="600" height="82"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumFontSize="12" translatesAutoresizingMaskIntoConstraints="NO" id="gmI-6J-vWz">
+                                                    <rect key="frame" x="8" y="13" width="584" height="94"/>
                                                     <string key="text">A new musician request will create a new notification on users' feeds. The notification will read that you are looking for a musician that plays the selected instrument.</string>
                                                     <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="18"/>
-                                                    <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                                                </textView>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
                                             </subviews>
                                             <color key="backgroundColor" red="0.95758174969999998" green="0.96019051980000003" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                             <constraints>
-                                                <constraint firstItem="6dq-0Y-poR" firstAttribute="top" secondItem="jDK-AT-QRm" secondAttribute="top" id="K1y-XM-IQh"/>
-                                                <constraint firstAttribute="centerY" secondItem="6dq-0Y-poR" secondAttribute="centerY" constant="4" id="bI3-HA-Ish"/>
-                                                <constraint firstItem="6dq-0Y-poR" firstAttribute="leading" secondItem="jDK-AT-QRm" secondAttribute="leading" id="hWU-rq-qc5"/>
-                                                <constraint firstAttribute="centerX" secondItem="6dq-0Y-poR" secondAttribute="centerX" id="xAe-dJ-Shb"/>
+                                                <constraint firstItem="gmI-6J-vWz" firstAttribute="leading" secondItem="jDK-AT-QRm" secondAttribute="leadingMargin" id="1uJ-bW-DhX"/>
+                                                <constraint firstItem="gmI-6J-vWz" firstAttribute="top" secondItem="jDK-AT-QRm" secondAttribute="topMargin" constant="5" id="CQR-87-MOa"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="gmI-6J-vWz" secondAttribute="trailing" id="I13-VK-j1F"/>
+                                                <constraint firstAttribute="bottomMargin" secondItem="gmI-6J-vWz" secondAttribute="bottom" constant="5" id="lEQ-i1-hdJ"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
@@ -73,7 +74,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hwG-Da-ipr">
-                                                    <rect key="frame" x="13" y="10" width="574" height="40"/>
+                                                    <rect key="frame" x="8" y="10" width="584" height="40"/>
                                                     <color key="backgroundColor" red="0.96470588239999999" green="0.30980392159999998" blue="0.023529411760000001" alpha="1" colorSpace="calibratedRGB"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="40" id="QL7-2x-89Z"/>
@@ -97,8 +98,8 @@
                                             <color key="backgroundColor" red="0.95758174969999998" green="0.96019051980000003" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                             <constraints>
                                                 <constraint firstAttribute="centerY" secondItem="hwG-Da-ipr" secondAttribute="centerY" id="9au-rY-a5R"/>
-                                                <constraint firstAttribute="trailingMargin" secondItem="hwG-Da-ipr" secondAttribute="trailing" constant="5" id="Mxp-ty-Xye"/>
-                                                <constraint firstItem="hwG-Da-ipr" firstAttribute="leading" secondItem="zc5-vC-Zcf" secondAttribute="leadingMargin" constant="5" id="SDp-5w-HO2"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="hwG-Da-ipr" secondAttribute="trailing" id="Mxp-ty-Xye"/>
+                                                <constraint firstItem="hwG-Da-ipr" firstAttribute="leading" secondItem="zc5-vC-Zcf" secondAttribute="leadingMargin" id="SDp-5w-HO2"/>
                                                 <constraint firstAttribute="centerX" secondItem="hwG-Da-ipr" secondAttribute="centerX" id="bme-ws-nG3"/>
                                             </constraints>
                                         </tableViewCellContentView>
@@ -816,16 +817,16 @@
                                     <variation key="default">
                                         <mask key="constraints">
                                             <exclude reference="4Vg-13-CHD"/>
+                                            <exclude reference="FQW-Lk-vcB"/>
                                             <exclude reference="cUr-Do-ABz"/>
                                             <exclude reference="smQ-sN-rDF"/>
-                                            <exclude reference="KwC-86-BEB"/>
-                                            <exclude reference="FQW-Lk-vcB"/>
                                             <exclude reference="7ku-EF-0GZ"/>
                                             <exclude reference="UiH-en-P14"/>
                                             <exclude reference="LN4-Ab-4FE"/>
                                             <exclude reference="qj1-RM-dRd"/>
                                             <exclude reference="tDp-uI-Pj4"/>
                                             <exclude reference="yrI-sD-FzR"/>
+                                            <exclude reference="KwC-86-BEB"/>
                                         </mask>
                                     </variation>
                                 </tableViewCellContentView>
@@ -1655,7 +1656,7 @@
                                         <constraints>
                                             <constraint firstAttribute="height" constant="60" id="LXf-rc-uGp"/>
                                         </constraints>
-                                        <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="R6b-IL-Zqz">
+                                        <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="10" minimumInteritemSpacing="10" id="R6b-IL-Zqz">
                                             <size key="itemSize" width="60" height="60"/>
                                             <size key="headerReferenceSize" width="0.0" height="0.0"/>
                                             <size key="footerReferenceSize" width="0.0" height="0.0"/>

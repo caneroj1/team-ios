@@ -77,7 +77,7 @@ class InboxTableViewController: UITableViewController, MessageDelegate {
             inboxMgr.messageDictionary[inboxMgr.messages[indexPath.row]]?.cellHeight = newSize.height + 150
             
             cell.lblFullBody.sizeToFit()
-            cellcolor = UIColor(red: 210.0/255.0, green: 210.0/255.0, blue: 220.0/255.0, alpha: 1.0)
+            //cellcolor = UIColor(red: 165.0/255.0, green: 165.0/255.0, blue: 180.0/255.0, alpha: 1.0)
         }
         else {
             cell.lblSubject.numberOfLines = 1

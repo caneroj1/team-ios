@@ -34,13 +34,19 @@ class EventsInterfaceController: WKInterfaceController {
     
     func getEvents(userDictionary: [String: String]) {
         WKInterfaceController.openParentApplication(userDictionary, reply: { (reply, error) -> Void in
+            if let message = error {
+                println(message)
+                return
+            }
+            
             if let events = reply["results"] as? [String] {
                 self.eventsTable.setNumberOfRows(events.count, withRowType: "EventRow")
                 for (index, event) in enumerate(events) {
                     var eventInfo = event.componentsSeparatedByString(",")
                     if let rowController = self.eventsTable.rowControllerAtIndex(index) as? EventRow {
                         rowController.eventTitle.setText(eventInfo[0])
-                        rowController.eventDate.setText(eventInfo[1])
+                        rowController.eventTitle.setTextColor(UIColor(red: 255.0/255.0, green: 90.0/255.0, blue: 0.0/255.0, alpha: 1.0))
+                        rowController.eventDate.setText(self.formatDateForWatch(eventInfo[1]))
                         rowController.eventLocation.setText(eventInfo[2])
                     }
                     println(event)
@@ -56,6 +62,19 @@ class EventsInterfaceController: WKInterfaceController {
                 }
             }
         })
+    }
+    
+    func formatDateForWatch(date: String) -> String {
+        let formatter = NSDateFormatter()
+        formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSS'Z"
+        
+        let outputter = NSDateFormatter()
+        outputter.dateStyle = NSDateFormatterStyle.ShortStyle
+        outputter.timeStyle = NSDateFormatterStyle.ShortStyle
+        
+        let offset = Double(formatter.timeZone.secondsFromGMT)
+        let newDateObject = formatter.dateFromString(date)?.dateByAddingTimeInterval(offset)
+        return outputter.stringFromDate(newDateObject!)
     }
     
     

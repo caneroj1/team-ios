@@ -79,49 +79,50 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     func application(application: UIApplication, handleWatchKitExtensionRequest userInfo: [NSObject : AnyObject]?, reply: (([NSObject : AnyObject]!) -> Void)!) {
-        var results = [NSObject: AnyObject]()
         
         if let find = userInfo?["find"] as? String {
             if find == "events" {
-                results = fetchEvents()
-                reply(results)
+                reply(fetchEvents())
                 return
             }
         }
         
-        reply([:])
+        reply(["mw":"bad_reply"])
+        return
     }
     
     func fetchEvents() -> [NSObject: AnyObject] {
         var url = "/api"
-        var results: [NSObject: String]?
+        var results = [NSObject: AnyObject]()
         var eventArray = [String]()
         
-        if let id = NSUserDefaults.standardUserDefaults().objectForKey("userId") as? Int {
-            url += "/users/\(id)/events_near_me"
-        }
-        else {
+//        if let id = NSUserDefaults.standardUserDefaults().objectForKey("userId") as? Int {
+//            url += "/users/\(id)/events_near_me"
+//        }
+//        else {
             url += "/events"
-        }
+//        }
 
         let json = DataManager.makeSyncGetRequest(url)
         
         for item in json {
             var str = ""
-            str += item.1["title"].stringValue + "," + item.1["event_time"].stringValue + "," + item.1["location"].stringValue
+            str += (item.1["title"].stringValue)
+            str += ("," + item.1["event_time"].stringValue)
+            str += ("," + item.1["location"].stringValue)
             eventArray.append(str)
         }
         
         if eventArray.count != 0 {
-            results?.updateValue("results", forKey: eventArray)
+            results.updateValue(eventArray, forKey: "results")
         }
         else {
-            results?.updateValue("error", forKey: "There are no nearby events.")
+            results.updateValue("There are no nearby events.", forKey: "error")
         }
         
-        return results!
+        results.updateValue("mango", forKey: eventArray.count)
+        
+        return results
     }
-
-
 }
 

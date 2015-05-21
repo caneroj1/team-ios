@@ -19,8 +19,8 @@
                                 <tableRow identifier="EventRow" id="MuQ-XZ-uOG" customClass="EventRow" customModule="MW_WatchKit_Extension">
                                     <group key="rootItem" width="1" height="0.0" alignment="left" layout="vertical" id="eIh-5C-6v1">
                                         <items>
-                                            <label width="120" alignment="left" text="Event Name" numberOfLines="0" id="vx0-fl-6o5"/>
-                                            <label width="127" alignment="left" text="Event Location" numberOfLines="0" id="rX0-GM-rwP">
+                                            <label alignment="left" text="Event Name" numberOfLines="3" id="vx0-fl-6o5"/>
+                                            <label alignment="left" text="Event Location" numberOfLines="3" id="rX0-GM-rwP">
                                                 <fontDescription key="font" style="UICTFontTextStyleCaption2"/>
                                             </label>
                                             <label alignment="left" text="Event Date" numberOfLines="0" id="x4E-Yz-fQF">

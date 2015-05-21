@@ -17,6 +17,21 @@ let mwURL = "http://45.56.101.202"
 let mwApiKey = NSProcessInfo.processInfo().environment["MW_KEY"] as! String
 
 class DataManager {
+    
+    class func makeSyncGetRequest(url: String) -> JSON {
+        let request = NSURLRequest(URL: NSURL(string: mwURL + url)!)
+        var response: NSURLResponse?
+        var error: NSError?
+        
+        if let data = NSURLConnection.sendSynchronousRequest(request, returningResponse: &response, error: &error) {
+            let json = JSON(data: data)
+            return json
+        }
+        else {
+            return nil
+        }
+    }
+    
     class func makeGetRequest(url: String, completion:(data: NSData?, error: NSError?) -> Void) {
         var session = NSURLSession.sharedSession()
         

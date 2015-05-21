@@ -7,14 +7,14 @@
 //
 
 import UIKit
+import WatchKit
 import CoreLocation
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
-
-
+    
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         // Override point for customization after application launch.
         
@@ -76,6 +76,50 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func applicationWillTerminate(application: UIApplication) {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
+    }
+    
+    func application(application: UIApplication, handleWatchKitExtensionRequest userInfo: [NSObject : AnyObject]?, reply: (([NSObject : AnyObject]!) -> Void)!) {
+        var results = [NSObject: AnyObject]()
+        
+        if let find = userInfo?["find"] as? String {
+            if find == "events" {
+                results = fetchEvents()
+                reply(results)
+                return
+            }
+        }
+        
+        reply([:])
+    }
+    
+    func fetchEvents() -> [NSObject: AnyObject] {
+        var url = "/api"
+        var results: [NSObject: String]?
+        var eventArray = [String]()
+        
+        if let id = NSUserDefaults.standardUserDefaults().objectForKey("userId") as? Int {
+            url += "/users/\(id)/events_near_me"
+        }
+        else {
+            url += "/events"
+        }
+
+        let json = DataManager.makeSyncGetRequest(url)
+        
+        for item in json {
+            var str = ""
+            str += item.1["title"].stringValue + "," + item.1["event_time"].stringValue + "," + item.1["location"].stringValue
+            eventArray.append(str)
+        }
+        
+        if eventArray.count != 0 {
+            results?.updateValue("results", forKey: eventArray)
+        }
+        else {
+            results?.updateValue("error", forKey: "There are no nearby events.")
+        }
+        
+        return results!
     }
 
 

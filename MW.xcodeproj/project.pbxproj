@@ -31,17 +31,24 @@
 		442E54F01AE1979300718014 /* FeedTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 442E54EF1AE1979300718014 /* FeedTableViewController.swift */; };
 		442E54F21AE197E300718014 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 442E54F11AE197E300718014 /* Constants.swift */; };
 		4434D3DE1AD9D02400344B04 /* PersonViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4434D3DD1AD9D02400344B04 /* PersonViewController.swift */; };
+		444452F71B0D08E5000BD5B1 /* EventsInterfaceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 444452F41B0D0842000BD5B1 /* EventsInterfaceController.swift */; };
 		44470F551AC884F30077B042 /* EditProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44470F541AC884F30077B042 /* EditProfileViewController.swift */; };
 		444951C01AD719640013A4DD /* FeedViewTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 444951BF1AD719640013A4DD /* FeedViewTableCell.swift */; };
 		444951C21AD71B3D0013A4DD /* FeedViewDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 444951C11AD71B3D0013A4DD /* FeedViewDataManager.swift */; };
 		444951C41AD72B420013A4DD /* Notification.swift in Sources */ = {isa = PBXBuildFile; fileRef = 444951C31AD72B420013A4DD /* Notification.swift */; };
 		44566E871ACB4E3200D9F6A4 /* Toucan.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44566E861ACB4E3200D9F6A4 /* Toucan.swift */; };
 		446ED1F21B0922C500855F58 /* MusicianRequestTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 446ED1F11B0922C500855F58 /* MusicianRequestTableViewController.swift */; };
+		44A2CF151B0D2155000856C1 /* EventRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44A2CF141B0D2155000856C1 /* EventRow.swift */; };
 		44C1D55A1ADCA375006388E5 /* EventMapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44C1D5591ADCA375006388E5 /* EventMapViewController.swift */; };
 		44C1D55C1ADCAFD5006388E5 /* EventMapData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44C1D55B1ADCAFD5006388E5 /* EventMapData.swift */; };
 		44CFD5231AE73F7900E536F3 /* ContactsDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44CFD5221AE73F7900E536F3 /* ContactsDataManager.swift */; };
 		44CFD5251AE73F9600E536F3 /* Contact.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44CFD5241AE73F9600E536F3 /* Contact.swift */; };
 		44CFD5271AE7407900E536F3 /* ContactTableDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44CFD5261AE7407900E536F3 /* ContactTableDelegate.swift */; };
+		44D0F3E71B0BDAB80030CAE2 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 44D0F3E61B0BDAB80030CAE2 /* Images.xcassets */; };
+		44D0F3EB1B0BDAB90030CAE2 /* MW WatchKit App.app in Resources */ = {isa = PBXBuildFile; fileRef = 44D0F3EA1B0BDAB90030CAE2 /* MW WatchKit App.app */; };
+		44D0F3F31B0BDAB90030CAE2 /* Interface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 44D0F3F11B0BDAB90030CAE2 /* Interface.storyboard */; };
+		44D0F3F51B0BDAB90030CAE2 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 44D0F3F41B0BDAB90030CAE2 /* Images.xcassets */; };
+		44D0F3F81B0BDAB90030CAE2 /* MW WatchKit Extension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 44D0F3E01B0BDAB80030CAE2 /* MW WatchKit Extension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		44D3089F1ACB32350000F435 /* ApiData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44D3089E1ACB32350000F435 /* ApiData.swift */; };
 		44D308A11ACB323D0000F435 /* LogInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44D308A01ACB323D0000F435 /* LogInViewController.swift */; };
 		44D308A31ACB32450000F435 /* SweetAlert copy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44D308A21ACB32450000F435 /* SweetAlert copy.swift */; };
@@ -63,7 +70,35 @@
 			remoteGlobalIDString = 012C27BF1AAB7CEE0024F5C3;
 			remoteInfo = MusiciansWanted;
 		};
+		44D0F3EC1B0BDAB90030CAE2 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 012C27B81AAB7CEE0024F5C3 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 44D0F3E91B0BDAB90030CAE2;
+			remoteInfo = "MW WatchKit App";
+		};
+		44D0F3F61B0BDAB90030CAE2 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 012C27B81AAB7CEE0024F5C3 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 44D0F3DF1B0BDAB80030CAE2;
+			remoteInfo = "MW WatchKit Extension";
+		};
 /* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		44D0F3FF1B0BDAB90030CAE2 /* Embed App Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				44D0F3F81B0BDAB90030CAE2 /* MW WatchKit Extension.appex in Embed App Extensions */,
+			);
+			name = "Embed App Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		0104A50F1AD837E800173F96 /* PeopleDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PeopleDelegate.swift; sourceTree = "<group>"; };
@@ -94,17 +129,27 @@
 		442E54EF1AE1979300718014 /* FeedTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeedTableViewController.swift; sourceTree = "<group>"; };
 		442E54F11AE197E300718014 /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		4434D3DD1AD9D02400344B04 /* PersonViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PersonViewController.swift; sourceTree = "<group>"; };
+		444452F41B0D0842000BD5B1 /* EventsInterfaceController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = EventsInterfaceController.swift; path = Images.xcassets/EventsInterfaceController.swift; sourceTree = "<group>"; };
 		44470F541AC884F30077B042 /* EditProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditProfileViewController.swift; sourceTree = "<group>"; };
 		444951BF1AD719640013A4DD /* FeedViewTableCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeedViewTableCell.swift; sourceTree = "<group>"; };
 		444951C11AD71B3D0013A4DD /* FeedViewDataManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeedViewDataManager.swift; sourceTree = "<group>"; };
 		444951C31AD72B420013A4DD /* Notification.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Notification.swift; sourceTree = "<group>"; };
 		44566E861ACB4E3200D9F6A4 /* Toucan.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Toucan.swift; sourceTree = "<group>"; };
 		446ED1F11B0922C500855F58 /* MusicianRequestTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MusicianRequestTableViewController.swift; sourceTree = "<group>"; };
+		44A2CF141B0D2155000856C1 /* EventRow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventRow.swift; sourceTree = "<group>"; };
 		44C1D5591ADCA375006388E5 /* EventMapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventMapViewController.swift; sourceTree = "<group>"; };
 		44C1D55B1ADCAFD5006388E5 /* EventMapData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventMapData.swift; sourceTree = "<group>"; };
 		44CFD5221AE73F7900E536F3 /* ContactsDataManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContactsDataManager.swift; sourceTree = "<group>"; };
 		44CFD5241AE73F9600E536F3 /* Contact.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Contact.swift; sourceTree = "<group>"; };
 		44CFD5261AE7407900E536F3 /* ContactTableDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContactTableDelegate.swift; sourceTree = "<group>"; };
+		44D0F3E01B0BDAB80030CAE2 /* MW WatchKit Extension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "MW WatchKit Extension.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
+		44D0F3E31B0BDAB80030CAE2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		44D0F3E61B0BDAB80030CAE2 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		44D0F3EA1B0BDAB90030CAE2 /* MW WatchKit App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "MW WatchKit App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		44D0F3F01B0BDAB90030CAE2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		44D0F3F21B0BDAB90030CAE2 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Interface.storyboard; sourceTree = "<group>"; };
+		44D0F3F41B0BDAB90030CAE2 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		44D0F4001B0BDD910030CAE2 /* MW WatchKit App-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "MW WatchKit App-Bridging-Header.h"; sourceTree = "<group>"; };
 		44D3089E1ACB32350000F435 /* ApiData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ApiData.swift; sourceTree = "<group>"; };
 		44D308A01ACB323D0000F435 /* LogInViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LogInViewController.swift; sourceTree = "<group>"; };
 		44D308A21ACB32450000F435 /* SweetAlert copy.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "SweetAlert copy.swift"; sourceTree = "<group>"; };
@@ -137,6 +182,13 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		44D0F3DD1B0BDAB80030CAE2 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -145,6 +197,8 @@
 			children = (
 				012C27C21AAB7CEE0024F5C3 /* MusiciansWanted */,
 				012C27DA1AAB7CEE0024F5C3 /* MusiciansWantedTests */,
+				44D0F3E11B0BDAB80030CAE2 /* MW WatchKit Extension */,
+				44D0F3EE1B0BDAB90030CAE2 /* MW WatchKit App */,
 				012C27C11AAB7CEE0024F5C3 /* Products */,
 				9205962C6474830AA9D121C0 /* Pods */,
 				6B2CFBC85545EC1279FC29BA /* Frameworks */,
@@ -156,6 +210,8 @@
 			children = (
 				012C27C01AAB7CEE0024F5C3 /* MW.app */,
 				012C27D71AAB7CEE0024F5C3 /* MWTests.xctest */,
+				44D0F3E01B0BDAB80030CAE2 /* MW WatchKit Extension.appex */,
+				44D0F3EA1B0BDAB90030CAE2 /* MW WatchKit App.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -302,6 +358,44 @@
 			name = Navigation;
 			sourceTree = "<group>";
 		};
+		44D0F3E11B0BDAB80030CAE2 /* MW WatchKit Extension */ = {
+			isa = PBXGroup;
+			children = (
+				44D0F3E61B0BDAB80030CAE2 /* Images.xcassets */,
+				44D0F3E21B0BDAB80030CAE2 /* Supporting Files */,
+				444452F41B0D0842000BD5B1 /* EventsInterfaceController.swift */,
+				44A2CF141B0D2155000856C1 /* EventRow.swift */,
+			);
+			path = "MW WatchKit Extension";
+			sourceTree = "<group>";
+		};
+		44D0F3E21B0BDAB80030CAE2 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				44D0F3E31B0BDAB80030CAE2 /* Info.plist */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		44D0F3EE1B0BDAB90030CAE2 /* MW WatchKit App */ = {
+			isa = PBXGroup;
+			children = (
+				44D0F3F11B0BDAB90030CAE2 /* Interface.storyboard */,
+				44D0F3F41B0BDAB90030CAE2 /* Images.xcassets */,
+				44D0F3EF1B0BDAB90030CAE2 /* Supporting Files */,
+				44D0F4001B0BDD910030CAE2 /* MW WatchKit App-Bridging-Header.h */,
+			);
+			path = "MW WatchKit App";
+			sourceTree = "<group>";
+		};
+		44D0F3EF1B0BDAB90030CAE2 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				44D0F3F01B0BDAB90030CAE2 /* Info.plist */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
 		6B2CFBC85545EC1279FC29BA /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -331,10 +425,12 @@
 				012C27BD1AAB7CEE0024F5C3 /* Frameworks */,
 				012C27BE1AAB7CEE0024F5C3 /* Resources */,
 				7729AF9D6537FD4DA9B4580F /* Copy Pods Resources */,
+				44D0F3FF1B0BDAB90030CAE2 /* Embed App Extensions */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				44D0F3F71B0BDAB90030CAE2 /* PBXTargetDependency */,
 			);
 			name = MW;
 			productName = MusiciansWanted;
@@ -359,6 +455,39 @@
 			productReference = 012C27D71AAB7CEE0024F5C3 /* MWTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
+		44D0F3DF1B0BDAB80030CAE2 /* MW WatchKit Extension */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 44D0F3FE1B0BDAB90030CAE2 /* Build configuration list for PBXNativeTarget "MW WatchKit Extension" */;
+			buildPhases = (
+				44D0F3DC1B0BDAB80030CAE2 /* Sources */,
+				44D0F3DD1B0BDAB80030CAE2 /* Frameworks */,
+				44D0F3DE1B0BDAB80030CAE2 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				44D0F3ED1B0BDAB90030CAE2 /* PBXTargetDependency */,
+			);
+			name = "MW WatchKit Extension";
+			productName = "MW WatchKit Extension";
+			productReference = 44D0F3E01B0BDAB80030CAE2 /* MW WatchKit Extension.appex */;
+			productType = "com.apple.product-type.watchkit-extension";
+		};
+		44D0F3E91B0BDAB90030CAE2 /* MW WatchKit App */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 44D0F3FD1B0BDAB90030CAE2 /* Build configuration list for PBXNativeTarget "MW WatchKit App" */;
+			buildPhases = (
+				44D0F3E81B0BDAB90030CAE2 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "MW WatchKit App";
+			productName = "MW WatchKit App";
+			productReference = 44D0F3EA1B0BDAB90030CAE2 /* MW WatchKit App.app */;
+			productType = "com.apple.product-type.application.watchapp";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -375,6 +504,13 @@
 					012C27D61AAB7CEE0024F5C3 = {
 						CreatedOnToolsVersion = 6.1.1;
 						TestTargetID = 012C27BF1AAB7CEE0024F5C3;
+					};
+					44D0F3DF1B0BDAB80030CAE2 = {
+						CreatedOnToolsVersion = 6.3.1;
+						DevelopmentTeam = RCS2VSM2RS;
+					};
+					44D0F3E91B0BDAB90030CAE2 = {
+						CreatedOnToolsVersion = 6.3.1;
 					};
 				};
 			};
@@ -393,6 +529,8 @@
 			targets = (
 				012C27BF1AAB7CEE0024F5C3 /* MW */,
 				012C27D61AAB7CEE0024F5C3 /* MWTests */,
+				44D0F3DF1B0BDAB80030CAE2 /* MW WatchKit Extension */,
+				44D0F3E91B0BDAB90030CAE2 /* MW WatchKit App */,
 			);
 		};
 /* End PBXProject section */
@@ -412,6 +550,24 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		44D0F3DE1B0BDAB80030CAE2 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				44D0F3EB1B0BDAB90030CAE2 /* MW WatchKit App.app in Resources */,
+				44D0F3E71B0BDAB80030CAE2 /* Images.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		44D0F3E81B0BDAB90030CAE2 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				44D0F3F31B0BDAB90030CAE2 /* Interface.storyboard in Resources */,
+				44D0F3F51B0BDAB90030CAE2 /* Images.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -507,6 +663,15 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		44D0F3DC1B0BDAB80030CAE2 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				444452F71B0D08E5000BD5B1 /* EventsInterfaceController.swift in Sources */,
+				44A2CF151B0D2155000856C1 /* EventRow.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
@@ -514,6 +679,16 @@
 			isa = PBXTargetDependency;
 			target = 012C27BF1AAB7CEE0024F5C3 /* MW */;
 			targetProxy = 012C27D81AAB7CEE0024F5C3 /* PBXContainerItemProxy */;
+		};
+		44D0F3ED1B0BDAB90030CAE2 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 44D0F3E91B0BDAB90030CAE2 /* MW WatchKit App */;
+			targetProxy = 44D0F3EC1B0BDAB90030CAE2 /* PBXContainerItemProxy */;
+		};
+		44D0F3F71B0BDAB90030CAE2 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 44D0F3DF1B0BDAB80030CAE2 /* MW WatchKit Extension */;
+			targetProxy = 44D0F3F61B0BDAB90030CAE2 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -532,6 +707,14 @@
 				012C27D11AAB7CEE0024F5C3 /* Base */,
 			);
 			name = LaunchScreen.xib;
+			sourceTree = "<group>";
+		};
+		44D0F3F11B0BDAB90030CAE2 /* Interface.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				44D0F3F21B0BDAB90030CAE2 /* Base */,
+			);
+			name = Interface.storyboard;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -679,6 +862,83 @@
 			};
 			name = Release;
 		};
+		44D0F3F91B0BDAB90030CAE2 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = "MW WatchKit Extension/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.2;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
+				PRODUCT_NAME = "${TARGET_NAME}";
+				SKIP_INSTALL = YES;
+			};
+			name = Debug;
+		};
+		44D0F3FA1B0BDAB90030CAE2 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				GCC_NO_COMMON_BLOCKS = YES;
+				INFOPLIST_FILE = "MW WatchKit Extension/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.2;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
+				PRODUCT_NAME = "${TARGET_NAME}";
+				SKIP_INSTALL = YES;
+			};
+			name = Release;
+		};
+		44D0F3FB1B0BDAB90030CAE2 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				IBSC_MODULE = MW_WatchKit_Extension;
+				INFOPLIST_FILE = "MW WatchKit App/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.2;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_OBJC_BRIDGING_HEADER = "MW WatchKit App/MW WatchKit App-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				TARGETED_DEVICE_FAMILY = 4;
+				"TARGETED_DEVICE_FAMILY[sdk=iphonesimulator*]" = "1,4";
+			};
+			name = Debug;
+		};
+		44D0F3FC1B0BDAB90030CAE2 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				GCC_NO_COMMON_BLOCKS = YES;
+				IBSC_MODULE = MW_WatchKit_Extension;
+				INFOPLIST_FILE = "MW WatchKit App/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.2;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_OBJC_BRIDGING_HEADER = "MW WatchKit App/MW WatchKit App-Bridging-Header.h";
+				TARGETED_DEVICE_FAMILY = 4;
+				"TARGETED_DEVICE_FAMILY[sdk=iphonesimulator*]" = "1,4";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -705,6 +965,24 @@
 			buildConfigurations = (
 				012C27E51AAB7CEE0024F5C3 /* Debug */,
 				012C27E61AAB7CEE0024F5C3 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		44D0F3FD1B0BDAB90030CAE2 /* Build configuration list for PBXNativeTarget "MW WatchKit App" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				44D0F3FB1B0BDAB90030CAE2 /* Debug */,
+				44D0F3FC1B0BDAB90030CAE2 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		44D0F3FE1B0BDAB90030CAE2 /* Build configuration list for PBXNativeTarget "MW WatchKit Extension" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				44D0F3F91B0BDAB90030CAE2 /* Debug */,
+				44D0F3FA1B0BDAB90030CAE2 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

@@ -24,7 +24,7 @@ class InboxManager: NSObject {
     
         DataManager.makeGetRequest(url, completion: { (data, error) -> Void in
             let json = JSON(data: data!)
-            
+                        
             for msg in json {
                 var sender_id = msg.1["sent_by"].intValue
                 var user_url = "/api/users/\(sender_id)"

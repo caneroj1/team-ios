@@ -25,6 +25,57 @@ class NewMessageViewController: UITableViewController, UICollectionViewDataSourc
     
     @IBAction func sendMessage(sender: UIButton) {
         
+        if subjectText.text.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceCharacterSet()) == "" || bodyText.text.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceCharacterSet()) == "" || toContacts.count < 1 {
+            SweetAlert().showAlert("Uh oh!", subTitle: "Some required fields were left blank.", style: AlertStyle.Error)
+        }
+        else {
+            
+            var url = "/api/messages"
+            
+            let formatter = NSDateFormatter()
+            formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSS'Z"
+            
+            let offset = Double(formatter.timeZone.secondsFromGMT)
+            let strdate = formatter.stringFromDate(NSDate().dateByAddingTimeInterval(offset))
+            println(formatter.stringFromDate(NSDate().dateByAddingTimeInterval(offset)))
+            println(formatter.stringFromDate(NSDate()))
+            
+            
+            var messageParams: Dictionary<String, AnyObject> = ["subject": subjectText.text.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceCharacterSet()), "body": bodyText.text.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceCharacterSet()), "created_at": strdate, "updated_at": strdate, "sent_by": MusiciansWanted.userId, "user_id": toContacts[0].id]
+            
+            /*{
+            "id" : 35,
+            "created_at" : "2015-05-17T17:39:53.236Z",
+            "subject" : "Exclusive national toolset",
+            "user_id" : 112,
+            "updated_at" : "2015-05-17T17:39:53.236Z",
+            "body" : "Laboriosam earum incidunt soluta amet aut et qui.",
+            "sent_by" : 116
+            }*/
+            
+            var params = ["message": messageParams]
+            
+            DataManager.makePostRequest(url, params: params, completion: { (data, error) -> Void in
+                var json = JSON(data: data!)
+                var errorString = DataManager.checkForErrors(json)
+                if errorString != "" {
+                    dispatch_async(dispatch_get_main_queue()) {
+                        SweetAlert().showAlert("Oops!", subTitle: errorString, style: AlertStyle.Error)
+                        return
+                    }
+                }
+                else {
+                    dispatch_async(dispatch_get_main_queue()) {
+                        SweetAlert().showAlert("Success!", subTitle: "Your message has been sent.", style: AlertStyle.Success)
+                        
+                        self.navigationController?.popToRootViewControllerAnimated(true)
+                        
+                        return
+                    }
+                }
+            })
+            
+        }
     }
     
     override func viewDidLoad() {
@@ -32,11 +83,6 @@ class NewMessageViewController: UITableViewController, UICollectionViewDataSourc
         
         // Do any additional setup after loading the view.
         let lightestGrayColor: UIColor = UIColor( red: 200.0/255.0, green: 200.0/255.0, blue:200.0/255.0, alpha: 1.0 )
-        /*self.contactCollection.layer.borderColor = lightestGrayColor.CGColor
-        self.contactCollection.layer.borderWidth = 0.6
-        self.contactCollection.layer.cornerRadius = 5.0
-        self.contactCollection.clipsToBounds = true
-        self.contactCollection.layer.masksToBounds = true*/
         
         self.bodyText.layer.borderColor = lightestGrayColor.CGColor
         self.bodyText.layer.borderWidth = 0.6
@@ -44,20 +90,13 @@ class NewMessageViewController: UITableViewController, UICollectionViewDataSourc
         self.bodyText.clipsToBounds = true
         self.bodyText.layer.masksToBounds = true
         
-        //Sample Data
-        toContacts.append(toContact(name: "Joe Canero", id: 116, cellSize: CGSize(width: 72.5, height: 22)))
-        toContacts.append(toContact(name: "Nicholas Amuso", id: 116, cellSize: CGSize(width: 102.0, height: 22)))
-        toContacts.append(toContact(name: "Hank Harvey", id: 116, cellSize: CGSize(width: 80.5, height: 22)))
-        toContacts.append(toContact(name: "Marco Polo", id: 116, cellSize: CGSize(width: 72, height: 22)))
-        toContacts.append(toContact(name: "Alex M", id: 116, cellSize: CGSize(width: 43.5, height: 22)))
-        toContacts.append(toContact(name: "Dude with really long name", id: 115, cellSize: CGSize(width: 169.5, height: 22)))
-        
         contactCollection.reloadData()
         
     }
     
     override func viewWillAppear(animated: Bool) {
         contactCollection.reloadData()
+        println("Appear: \(toContacts.count)")
     }
     
     override func didReceiveMemoryWarning() {
@@ -90,7 +129,9 @@ class NewMessageViewController: UITableViewController, UICollectionViewDataSourc
     }
     
     func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
-        toContacts.removeAtIndex(indexPath.row)
-        contactCollection.reloadData()
+        //toContacts.removeAtIndex(indexPath.row)
+        //contactCollection.reloadData()
+        self.navigationController?.popViewControllerAnimated(true)
+
     }
 }

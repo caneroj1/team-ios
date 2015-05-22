@@ -65,7 +65,7 @@ class InboxTableViewController: UITableViewController, MessageDelegate {
         
         var cellcolor = UIColor(red: 235.0/255.0, green: 235.0/255.0, blue: 242.0/255.0, alpha: 1.0)
         
-        if message?.isExpanded == true {
+        /* if message?.isExpanded == true {
             cell.lblBody.text = ""
             cell.lblFullBody.text = message?.body
             cell.lblFullBody.hidden = false
@@ -77,15 +77,14 @@ class InboxTableViewController: UITableViewController, MessageDelegate {
             inboxMgr.messageDictionary[inboxMgr.messages[indexPath.row]]?.cellHeight = newSize.height + 150
             
             cell.lblFullBody.sizeToFit()
-            //cellcolor = UIColor(red: 165.0/255.0, green: 165.0/255.0, blue: 180.0/255.0, alpha: 1.0)
         }
-        else {
+        else { */
             cell.lblSubject.numberOfLines = 1
             cell.lblBody.text = message!.body
             inboxMgr.messageDictionary[inboxMgr.messages[indexPath.row]]?.cellHeight = 85
             cell.lblFullBody.text = ""
             cell.lblFullBody.hidden = true
-        }
+        //}
         cell.bgView.backgroundColor = cellcolor
 
         
@@ -97,7 +96,7 @@ class InboxTableViewController: UITableViewController, MessageDelegate {
         return inboxMgr.messageDictionary[inboxMgr.messages[indexPath.row]]!.cellHeight
     }
     
-    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+    /*override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         let cell = tableView.cellForRowAtIndexPath(indexPath)
         
         let message = inboxMgr.messageDictionary[inboxMgr.messages[indexPath.row]]
@@ -110,6 +109,43 @@ class InboxTableViewController: UITableViewController, MessageDelegate {
         }
         
         tableView.reloadData()
+    }*/
+    
+    override func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
+        return true
+    }
+    
+    override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
+        
+        //Delete Message
+        if (editingStyle == UITableViewCellEditingStyle.Delete) {
+            var url = "/api/messages/\(inboxMgr.messages[indexPath.row])"
+            
+            DataManager.makeDestroyRequest(url, completion: { (data, error) -> Void in
+                var json = JSON(data: data!)
+                var errorString = DataManager.checkForErrors(json)
+                if errorString != "" {
+                    dispatch_async(dispatch_get_main_queue()) {
+                        SweetAlert().showAlert("Oops!", subTitle: errorString, style: AlertStyle.Error)
+                        return
+                    }
+                }
+                else {
+                    dispatch_async(dispatch_get_main_queue()) {
+                        SweetAlert().showAlert("Success!", subTitle: "Message deleted.", style: AlertStyle.Success)
+                        
+                    self.inboxMgr.messageDictionary.removeValueForKey(self.inboxMgr.messages[indexPath.row])
+                    self.inboxMgr.messages.removeAtIndex(indexPath.row)
+                    
+                    self.tableView.reloadData()
+                        
+                    return
+                    }
+                }
+            })
+            
+        }
+        
     }
     
     //There's definitely a much more efficient way of doing this
@@ -118,7 +154,7 @@ class InboxTableViewController: UITableViewController, MessageDelegate {
         formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSS'Z"
         
         let offset = Double(formatter.timeZone.secondsFromGMT)
-        let date = formatter.dateFromString(strDate)//!.dateByAddingTimeInterval(offset)
+        let date = (formatter.dateFromString(strDate))!.dateByAddingTimeInterval(offset)
         
         let currentdate = NSDate()
         let calendar = NSCalendar.currentCalendar()
@@ -130,7 +166,7 @@ class InboxTableViewController: UITableViewController, MessageDelegate {
         let currentmonth = currentcomponent.month
         
         //Get message date information
-        let messagecomponent = calendar.components(.CalendarUnitDay | .CalendarUnitYear | .CalendarUnitMonth, fromDate: date!)
+        let messagecomponent = calendar.components(.CalendarUnitDay | .CalendarUnitYear | .CalendarUnitMonth, fromDate: date)
         let messageday = messagecomponent.day
         let messageyear = messagecomponent.year
         let messagemonth = messagecomponent.month
@@ -158,7 +194,7 @@ class InboxTableViewController: UITableViewController, MessageDelegate {
             outputter.timeStyle = NSDateFormatterStyle.NoStyle
         }
 
-        return outputter.stringFromDate(date!)
+        return outputter.stringFromDate(date)
     }
     
     func addedNewMessage() {

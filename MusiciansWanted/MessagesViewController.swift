@@ -21,10 +21,63 @@ class MessagesViewController: UIViewController, UITableViewDelegate, UITableView
     var keyboardIsShowing: Bool = false
     let placeholder = "Send a message"
     
+    var inboxMgr = InboxManager()
     var msgManager = MessageManager()
+    var messageId = -1
     
     @IBAction func sendMessage(sender: UIButton) {
         self.view.endEditing(true);
+        
+        var url: String = "/api/messages/\(messageId)/replies"
+        
+        var replyParams: Dictionary<String, AnyObject> = ["id": messageId, "body": textView.text, "user_id": MusiciansWanted.userId]
+        
+        /*
+        {
+        "body" : "New Message",
+        "id" : 121,
+        "message_id" : 51,
+        "updated_at" : "2015-05-22T19:32:12.669Z",
+        "user_id" : null,
+        "created_at" : "2015-05-22T19:32:12.669Z"
+        }
+        */
+        
+        var params = ["reply": replyParams]
+        
+        DataManager.makePostRequest(url, params: params, completion: { (data, error) -> Void in
+            var json = JSON(data: data!)
+            var errorString = DataManager.checkForErrors(json)
+            
+            if errorString != "" {
+                dispatch_async(dispatch_get_main_queue()) {
+                    SweetAlert().showAlert("Oops!", subTitle: errorString, style: AlertStyle.Error)
+                    return
+                }
+            }
+            else {
+                dispatch_async(dispatch_get_main_queue()) {
+                    self.textView.textColor = UIColor.lightGrayColor()
+                    self.textView.text = self.placeholder
+                    let textViewFixedWidth: CGFloat = self.textView.frame.size.width
+                    let newSize: CGSize = self.textView.sizeThatFits(CGSizeMake(textViewFixedWidth, CGFloat(MAXFLOAT)))
+                    
+                    if newSize.height > 100 {
+                        self.textViewHeight.constant = 100
+                    }
+                    else {
+                        self.textViewHeight.constant = newSize.height
+                    }
+                    
+                    var ttlReplies = self.msgManager.replies.count < 1 ? 1 : self.msgManager.replies.count
+                    
+                    self.msgManager.loadMessages(self.messageId, lower: ttlReplies - 1, upper: ttlReplies)
+                                        
+                    return
+                }
+            }
+        })
+
     }
     
     override func touchesBegan(touches: Set<NSObject>, withEvent event: UIEvent) {
@@ -50,6 +103,7 @@ class MessagesViewController: UIViewController, UITableViewDelegate, UITableView
         self.textView.layer.masksToBounds = true
         
         msgManager.messageDelegate = self
+        msgManager.loadMessages(messageId, lower: 0, upper: 20)
 
     }
     
@@ -59,7 +113,8 @@ class MessagesViewController: UIViewController, UITableViewDelegate, UITableView
             textView.text = placeholder
         }
         
-        msgManager.loadMessages(msgManager.replies.count - 21, upper: msgManager.replies.count - 1)
+        msgManager.loadMessages(messageId, lower: 0, upper: 20)
+        //msgManager.loadMessages(messageId, lower: msgManager.replies.count - 21, upper: msgManager.replies.count - 1)
     }
     
     override func viewWillDisappear(animated: Bool) {
@@ -162,44 +217,50 @@ class MessagesViewController: UIViewController, UITableViewDelegate, UITableView
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete method implementation.
         // Return the number of rows in the section.
-        println("does this update automatically?")
-        return msgManager.replies.count
+        return msgManager.replyIndex.count
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         
-        let cell: MessageBubbleCell = tableView.dequeueReusableCellWithIdentifier("senderCell", forIndexPath: indexPath) as! MessageBubbleCell
+        let reply = msgManager.replies[msgManager.replyIndex[indexPath.row]]
         
-        let message = msgManager.replies[indexPath.row]
+        let cell: MessageBubbleCell = reply!.userId == MusiciansWanted.userId ? tableView.dequeueReusableCellWithIdentifier("senderCell", forIndexPath: indexPath) as! MessageBubbleCell : tableView.dequeueReusableCellWithIdentifier("receiverCell", forIndexPath: indexPath) as! MessageBubbleCell
                 
-        cell.msgHeader.text = message.name
-        cell.msgText.text = message.subject
+        cell.msgHeader.text = reply!.userId == MusiciansWanted.userId ? "" : reply!.name + " "
+        cell.msgHeader.text = cell.msgHeader.text! + inboxMgr.formatDate(reply!.date)
+        
+        cell.msgText.text = reply?.body
         
         let textViewFixedWidth = self.view.frame.size.width - 106
         let newSize = cell.msgText.sizeThatFits(CGSizeMake(textViewFixedWidth, CGFloat(MAXFLOAT)))
-        
-        println(newSize.height)
-        
+                
         msgManager.changeHeight(indexPath.row, height: newSize.height)
-        
-        tableView.scrollToRowAtIndexPath(indexPath, atScrollPosition: .Bottom, animated: true)
         
         return cell
     }
     
     func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-        let message = msgManager.replies[indexPath.row]
+        let message = msgManager.replies[msgManager.replyIndex[indexPath.row]]
                 
-        return message.messageHeight + 30
+        return message!.messageHeight + 30
     }
     
     func addedNewMessage() {
         /*if self.refreshControl?.refreshing == true {
             self.refreshControl?.endRefreshing()
         }*/
-        var indexP: NSIndexPath = NSIndexPath(forRow: msgManager.replies.count - 1, inSection: 0)
         
-        self.MsgTableView.reloadRowsAtIndexPaths([indexP], withRowAnimation: UITableViewRowAnimation.None)
+        //self.MsgTableView.reloadRowsAtIndexPaths([indexP], withRowAnimation: UITableViewRowAnimation.None)
         
+        self.MsgTableView.reloadData()
+        
+        //var indexP: NSIndexPath = NSIndexPath(forRow: msgManager.replies.count - 1, inSection: 0)
+        //self.MsgTableView.scrollToRowAtIndexPath(indexP, atScrollPosition: UITableViewScrollPosition.Bottom, animated: true)
+        
+        if MsgTableView.contentSize.height > MsgTableView.frame.size.height
+        {
+            let offset = CGPoint(x: 0, y: MsgTableView.contentSize.height - MsgTableView.frame.size.height)
+            MsgTableView.setContentOffset(offset, animated: false)
+        }
     }
 }

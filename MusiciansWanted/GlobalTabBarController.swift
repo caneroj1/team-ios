@@ -41,15 +41,16 @@ class GlobalTabBarController: UITabBarController, CLLocationManagerDelegate {
         // or add it to viewDidLoad method of your TabBarController class
         //let tabcolor1 = UIColor(red: 240.0/255.0, green: 240.0/255.0, blue: 239.0/255.0, alpha: 1.0)
         let navbarcolor = UIColor(red: 240.0/255.0, green: 240.0/255.0, blue: 245.0/255.0, alpha: 1.0)
-        let tabcolor1 = UIColor(red: 110.0/255.0, green: 110.0/255.0, blue: 110.0/255.0, alpha: 1.0)
+        let tabcolor1 = UIColor(red: 130.0/255.0, green: 130.0/255.0, blue: 135.0/255.0, alpha: 0.5)
         let tabcolor2 = UIColor(red: 255.0/255.0, green: 90.0/255.0, blue: 0.0/255.0, alpha: 1.0)
-        let tabbarcolor = UIColor(red: 5.0/255.0, green: 5.0/255.0, blue: 10.0/255.0, alpha: 0.5)
+        let tabbarcolor = UIColor(red: 0.0/255.0, green: 0.0/255.0, blue: 10.0/255.0, alpha: 1.0)
         
         UITabBar.appearance().barTintColor = tabbarcolor
+        UITabBar.appearance().backgroundImage = UIImage(named: "bgBar")
         UINavigationBar.appearance().barTintColor = tabbarcolor
         
         
-        let font = UIFont(name: "HelveticaNeue-Thin ", size: 20)
+        let font = UIFont(name: "HelveticaNeue-Light", size: 20)
         if let font = font {
             UINavigationBar.appearance().titleTextAttributes = [NSFontAttributeName : font, NSForegroundColorAttributeName : navbarcolor]//UIColor.whiteColor()]
         }

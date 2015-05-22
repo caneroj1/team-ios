@@ -8,9 +8,24 @@
 
 import UIKit
 
-class InboxTableViewController: UITableViewController, MessageDelegate {
+class InboxTableViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, MessageDelegate {
+    
+    @IBOutlet var receivedSent: UISegmentedControl!
+    @IBOutlet var inboxTable: UITableView!
     
     var inboxMgr: InboxManager = InboxManager()
+    
+    
+    @IBAction func selectReceivedSent(sender: AnyObject) {
+        inboxTable.reloadData()
+        
+        if receivedSent.selectedSegmentIndex == 0 {
+            inboxMgr.loadInbox()
+        }
+        else {
+            inboxMgr.loadSent()
+        }
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -30,7 +45,8 @@ class InboxTableViewController: UITableViewController, MessageDelegate {
         
         inboxMgr.messageDelegate = self
         inboxMgr.loadInbox()
-        tableView.reloadData()
+        inboxMgr.loadSent()
+        inboxTable.reloadData()
     }
     
     override func didReceiveMemoryWarning() {
@@ -40,164 +56,154 @@ class InboxTableViewController: UITableViewController, MessageDelegate {
     
     // MARK: - Table view data source
     
-    override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+    func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         // #warning Potentially incomplete method implementation.
         // Return the number of sections.
         return 1
     }
     
-    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete method implementation.
         // Return the number of rows in the section.
-        return inboxMgr.messages.count
+        if receivedSent.selectedSegmentIndex == 0 {
+            println("Received Messages: \(inboxMgr.messages.count)")
+            return inboxMgr.messages.count
+        }
+        else {
+            println("Sent Messages: \(inboxMgr.sent_messages.count)")
+            return inboxMgr.sent_messages.count
+        }
     }
     
-    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         
         let cell = tableView.dequeueReusableCellWithIdentifier("Msg", forIndexPath: indexPath) as! InboxCell
         
-        let message = inboxMgr.messageDictionary[inboxMgr.messages[indexPath.row]]
-       
-        cell.lblProfName.text = message!.name
-        cell.lblSubject.text = message!.subject == "" ? "No Subject" : message!.subject
-        cell.imgProfPic.image = message?.profpic
-        cell.lblDate.text = formatDate(message!.date)
+        println("Index: \(indexPath.row)")
         
-        var cellcolor = UIColor(red: 235.0/255.0, green: 235.0/255.0, blue: 242.0/255.0, alpha: 1.0)
+        var message: inbox
         
-        /* if message?.isExpanded == true {
-            cell.lblBody.text = ""
-            cell.lblFullBody.text = message?.body
-            cell.lblFullBody.hidden = false
-            cell.lblSubject.numberOfLines = 0
-            
-            let textViewFixedWidth = self.view.frame.size.width
-            let newSize = cell.lblFullBody.sizeThatFits(CGSizeMake(textViewFixedWidth, CGFloat(MAXFLOAT)))
-            
-            inboxMgr.messageDictionary[inboxMgr.messages[indexPath.row]]?.cellHeight = newSize.height + 150
-            
-            cell.lblFullBody.sizeToFit()
+        if receivedSent.selectedSegmentIndex == 0 {
+            message = inboxMgr.messageDictionary[inboxMgr.messages[indexPath.row]]!
         }
-        else { */
-            cell.lblSubject.numberOfLines = 1
-            cell.lblBody.text = message!.body
+        else {
+            message = inboxMgr.sent_messageDictionary[inboxMgr.sent_messages[indexPath.row]]!
+        }
+       
+        cell.lblProfName.text = message.name
+        cell.lblSubject.text = message.subject == "" ? "No Subject" : message.subject
+        cell.imgProfPic.image = message.profpic
+        cell.lblDate.text = inboxMgr.formatDate(message.date)
+        
+        //var cellcolor = UIColor(red: 245.0/255.0, green: 244.0/255.0, blue: 255.0/255.0, alpha: 1.0)
+        
+        cell.lblSubject.numberOfLines = 1
+        cell.lblBody.text = message.body
+        
+        if receivedSent.selectedSegmentIndex == 0 {
             inboxMgr.messageDictionary[inboxMgr.messages[indexPath.row]]?.cellHeight = 85
-            cell.lblFullBody.text = ""
-            cell.lblFullBody.hidden = true
-        //}
-        cell.bgView.backgroundColor = cellcolor
+        }
+        else {
+            inboxMgr.sent_messageDictionary[inboxMgr.sent_messages[indexPath.row]]?.cellHeight = 85
+        }
+
+        //cell.bgView.backgroundColor = cellcolor
 
         
         return cell
     }
     
-    override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+    func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
         
-        return inboxMgr.messageDictionary[inboxMgr.messages[indexPath.row]]!.cellHeight
-    }
-    
-    /*override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        let cell = tableView.cellForRowAtIndexPath(indexPath)
-        
-        let message = inboxMgr.messageDictionary[inboxMgr.messages[indexPath.row]]
-        
-        if message?.isExpanded == true {
-            inboxMgr.messageDictionary[inboxMgr.messages[indexPath.row]]?.isExpanded = false
+        if receivedSent.selectedSegmentIndex == 0 {
+            return inboxMgr.messageDictionary[inboxMgr.messages[indexPath.row]]!.cellHeight
         }
         else {
-            inboxMgr.messageDictionary[inboxMgr.messages[indexPath.row]]?.isExpanded = true
+            return 85
+        }
+    }
+    
+    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        
+        let messageView = self.storyboard?.instantiateViewControllerWithIdentifier("RepliesView") as! MessagesViewController
+        
+        if receivedSent.selectedSegmentIndex == 0 {
+            messageView.messageId = inboxMgr.messageDictionary[inboxMgr.messages[indexPath.row]]!.id
+        }
+        else {
+            messageView.messageId = inboxMgr.sent_messageDictionary[inboxMgr.sent_messages[indexPath.row]]!.id
         }
         
-        tableView.reloadData()
-    }*/
+        self.navigationController?.pushViewController(messageView, animated: true)
+    }
     
-    override func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
+    func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
         return true
     }
     
-    override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
+    func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
         
         //Delete Message
         if (editingStyle == UITableViewCellEditingStyle.Delete) {
-            var url = "/api/messages/\(inboxMgr.messages[indexPath.row])"
-            
-            DataManager.makeDestroyRequest(url, completion: { (data, error) -> Void in
-                var json = JSON(data: data!)
-                var errorString = DataManager.checkForErrors(json)
-                if errorString != "" {
-                    dispatch_async(dispatch_get_main_queue()) {
-                        SweetAlert().showAlert("Oops!", subTitle: errorString, style: AlertStyle.Error)
-                        return
+            if receivedSent.selectedSegmentIndex == 0 {
+                var url = "/api/messages/\(inboxMgr.messages[indexPath.row])"
+                
+                DataManager.makeDestroyRequest(url, completion: { (data, error) -> Void in
+                    var json = JSON(data: data!)
+                    var errorString = DataManager.checkForErrors(json)
+                    if errorString != "" {
+                        dispatch_async(dispatch_get_main_queue()) {
+                            SweetAlert().showAlert("Oops!", subTitle: errorString, style: AlertStyle.Error)
+                            return
+                        }
                     }
-                }
-                else {
-                    dispatch_async(dispatch_get_main_queue()) {
-                        SweetAlert().showAlert("Success!", subTitle: "Message deleted.", style: AlertStyle.Success)
-                        
-                    self.inboxMgr.messageDictionary.removeValueForKey(self.inboxMgr.messages[indexPath.row])
-                    self.inboxMgr.messages.removeAtIndex(indexPath.row)
-                    
-                    self.tableView.reloadData()
-                        
-                    return
+                    else {
+                        dispatch_async(dispatch_get_main_queue()) {
+                            SweetAlert().showAlert("Success!", subTitle: "Message deleted.", style: AlertStyle.Success)
+                            
+                            self.inboxMgr.messageDictionary.removeValueForKey(self.inboxMgr.messages[indexPath.row])
+                            self.inboxMgr.messages.removeAtIndex(indexPath.row)
+                            
+                            self.inboxTable.reloadData()
+                            
+                            return
+                        }
                     }
-                }
-            })
-            
-        }
-        
-    }
-    
-    //There's definitely a much more efficient way of doing this
-    func formatDate(strDate: String) -> String {
-        let formatter = NSDateFormatter()
-        formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSS'Z"
-        
-        let offset = Double(formatter.timeZone.secondsFromGMT)
-        let date = (formatter.dateFromString(strDate))!.dateByAddingTimeInterval(offset)
-        
-        let currentdate = NSDate()
-        let calendar = NSCalendar.currentCalendar()
-        
-        //Get current date information
-        let currentcomponent = calendar.components(.CalendarUnitDay | .CalendarUnitYear | .CalendarUnitMonth, fromDate: currentdate)
-        let currentday = currentcomponent.day
-        let currentyear = currentcomponent.year
-        let currentmonth = currentcomponent.month
-        
-        //Get message date information
-        let messagecomponent = calendar.components(.CalendarUnitDay | .CalendarUnitYear | .CalendarUnitMonth, fromDate: date)
-        let messageday = messagecomponent.day
-        let messageyear = messagecomponent.year
-        let messagemonth = messagecomponent.month
-        
-        let outputter = NSDateFormatter()
-
-        //Determine how to format
-        if currentyear == messageyear && currentmonth == messagemonth {
-            if currentday == messageday {
-                outputter.timeStyle = NSDateFormatterStyle.ShortStyle
-                outputter.dateStyle = NSDateFormatterStyle.NoStyle
-
-            }
-            else if currentday - messageday < 7 {
-                outputter.dateFormat = "EEEE"
+                })
             }
             else {
-                outputter.dateStyle = NSDateFormatterStyle.ShortStyle
-                outputter.timeStyle = NSDateFormatterStyle.NoStyle
+                var url = "/api/messages/\(inboxMgr.sent_messages[indexPath.row])"
+                
+                DataManager.makeDestroyRequest(url, completion: { (data, error) -> Void in
+                    var json = JSON(data: data!)
+                    var errorString = DataManager.checkForErrors(json)
+                    if errorString != "" {
+                        dispatch_async(dispatch_get_main_queue()) {
+                            SweetAlert().showAlert("Oops!", subTitle: errorString, style: AlertStyle.Error)
+                            return
+                        }
+                    }
+                    else {
+                        dispatch_async(dispatch_get_main_queue()) {
+                            SweetAlert().showAlert("Success!", subTitle: "Message deleted.", style: AlertStyle.Success)
+                            
+                            self.inboxMgr.sent_messageDictionary.removeValueForKey(self.inboxMgr.sent_messages[indexPath.row])
+                            self.inboxMgr.sent_messages.removeAtIndex(indexPath.row)
+                            
+                            self.inboxTable.reloadData()
+                            
+                            return
+                        }
+                    }
+                })
+                
             }
             
         }
-        else {
-            outputter.dateStyle = NSDateFormatterStyle.ShortStyle
-            outputter.timeStyle = NSDateFormatterStyle.NoStyle
-        }
-
-        return outputter.stringFromDate(date)
+        
     }
     
     func addedNewMessage() {
-        tableView.reloadData()
+        inboxTable.reloadData()
     }
 }

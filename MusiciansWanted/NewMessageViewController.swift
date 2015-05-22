@@ -68,6 +68,26 @@ class NewMessageViewController: UITableViewController, UICollectionViewDataSourc
                     dispatch_async(dispatch_get_main_queue()) {
                         SweetAlert().showAlert("Success!", subTitle: "Your message has been sent.", style: AlertStyle.Success)
                         
+                        var message_id = json["id"].intValue
+                        var newurl: String = "/api/messages/\(message_id)/replies"
+                        
+                        var replyParams: Dictionary<String, AnyObject> = ["id": message_id, "body": self.bodyText.text, "user_id": MusiciansWanted.userId]
+                 
+                        var newparams = ["reply": replyParams]
+                        
+                        DataManager.makePostRequest(newurl, params: newparams, completion: { (data, error) -> Void in
+                            var json = JSON(data: data!)
+                            var errorString = DataManager.checkForErrors(json)
+                            
+                            if errorString != "" {
+                                dispatch_async(dispatch_get_main_queue()) {
+                                    SweetAlert().showAlert("Oops!", subTitle: errorString, style: AlertStyle.Error)
+                                    return
+                                }
+                            }
+                        })
+
+                        
                         self.navigationController?.popToRootViewControllerAnimated(true)
                         
                         return

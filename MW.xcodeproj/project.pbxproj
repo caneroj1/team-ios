@@ -25,6 +25,8 @@
 		0147AFF71B0897AA00674CD4 /* InstruCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0147AFF61B0897AA00674CD4 /* InstruCell.swift */; };
 		014A67321ADAD18300729E82 /* EventViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 014A67311ADAD18300729E82 /* EventViewController.swift */; };
 		014C5C0A1AD97645008680D0 /* EventsDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 014C5C091AD97645008680D0 /* EventsDelegate.swift */; };
+		01A4FA5F1B0EB039002CA0C0 /* NewMessageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01A4FA5E1B0EB039002CA0C0 /* NewMessageViewController.swift */; };
+		01A4FA611B0EB384002CA0C0 /* ToContactCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01A4FA601B0EB384002CA0C0 /* ToContactCell.swift */; };
 		01B594161AB35B090044AA16 /* InboxManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01B594151AB35B090044AA16 /* InboxManager.swift */; };
 		01EA06431B0810FC00DBD350 /* GenreCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01EA06421B0810FC00DBD350 /* GenreCell.swift */; };
 		01EF02981B0B2BD0002227F9 /* MessageBubbleCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01EF02971B0B2BD0002227F9 /* MessageBubbleCell.swift */; };
@@ -92,6 +94,8 @@
 		0147AFF61B0897AA00674CD4 /* InstruCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InstruCell.swift; sourceTree = "<group>"; };
 		014A67311ADAD18300729E82 /* EventViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventViewController.swift; sourceTree = "<group>"; };
 		014C5C091AD97645008680D0 /* EventsDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventsDelegate.swift; sourceTree = "<group>"; };
+		01A4FA5E1B0EB039002CA0C0 /* NewMessageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewMessageViewController.swift; sourceTree = "<group>"; };
+		01A4FA601B0EB384002CA0C0 /* ToContactCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ToContactCell.swift; sourceTree = "<group>"; };
 		01B594151AB35B090044AA16 /* InboxManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InboxManager.swift; sourceTree = "<group>"; };
 		01EA06421B0810FC00DBD350 /* GenreCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GenreCell.swift; sourceTree = "<group>"; };
 		01EF02971B0B2BD0002227F9 /* MessageBubbleCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessageBubbleCell.swift; sourceTree = "<group>"; };
@@ -249,6 +253,8 @@
 			children = (
 				01B594151AB35B090044AA16 /* InboxManager.swift */,
 				01FCDE831ACF0500002F3A56 /* InboxTableViewController.swift */,
+				01A4FA5E1B0EB039002CA0C0 /* NewMessageViewController.swift */,
+				01A4FA601B0EB384002CA0C0 /* ToContactCell.swift */,
 				01FCDE851ACF05EA002F3A56 /* InboxCell.swift */,
 				01EF02971B0B2BD0002227F9 /* MessageBubbleCell.swift */,
 				012EDCDC1B0C1B9600E4DB72 /* MessageDelegate.swift */,
@@ -470,6 +476,7 @@
 				0147AFF71B0897AA00674CD4 /* InstruCell.swift in Sources */,
 				44CFD5251AE73F9600E536F3 /* Contact.swift in Sources */,
 				AD85DC5F1AD452C400D6E369 /* EventsManager.swift in Sources */,
+				01A4FA5F1B0EB039002CA0C0 /* NewMessageViewController.swift in Sources */,
 				444951C21AD71B3D0013A4DD /* FeedViewDataManager.swift in Sources */,
 				444951C41AD72B420013A4DD /* Notification.swift in Sources */,
 				01EF02981B0B2BD0002227F9 /* MessageBubbleCell.swift in Sources */,
@@ -494,6 +501,7 @@
 				442E54F01AE1979300718014 /* FeedTableViewController.swift in Sources */,
 				01266BC31AB0F03F003D2354 /* ProfileViewController.swift in Sources */,
 				44D308A51ACB324E0000F435 /* SwiftyJSON.swift in Sources */,
+				01A4FA611B0EB384002CA0C0 /* ToContactCell.swift in Sources */,
 				0108DD881B0B06FC00EBF185 /* Constants.swift in Sources */,
 				01153FA61AB2980100B96401 /* PeopleSettingsViewController.swift in Sources */,
 				010AEBD31ACE239D0066E4FA /* PeopleTableViewController.swift in Sources */,

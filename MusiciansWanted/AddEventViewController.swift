@@ -49,28 +49,37 @@ class AddEventViewController: UIViewController, UITextViewDelegate, UIPickerView
     
     @IBAction func pressDelete(sender: UIButton) {
         
-        var url = "/api/events/\(eventID)"
-        
-        DataManager.makeDestroyRequest(url, completion: { (data, error) -> Void in
-            var json = JSON(data: data!)
-            var errorString = DataManager.checkForErrors(json)
-            if errorString != "" {
-                dispatch_async(dispatch_get_main_queue()) {
-                    SweetAlert().showAlert("Oops!", subTitle: errorString, style: AlertStyle.Error)
-                    return
-                }
+        SweetAlert().showAlert("Are you sure?", subTitle: "Your event will be deleted permanently!", style: AlertStyle.Warning, buttonTitle:"Cancel", buttonColor:UIColorFromRGB(0xD0D0D0) , otherButtonTitle:  "Yes, delete the event!", otherButtonColor: UIColorFromRGB(0xDD6B55)) { (isOtherButton) -> Void in
+            if isOtherButton == true {
+                
+                return
             }
             else {
-                dispatch_async(dispatch_get_main_queue()) {
-                    SweetAlert().showAlert("Success!", subTitle: "Your event has been deleted.", style: AlertStyle.Success)
-                    
-                    //self.navigationController?.popViewControllerAnimated(true)
-                    self.navigationController?.popToRootViewControllerAnimated(true)
-                    
-                    return
-                }
+                
+                var url = "/api/events/\(self.eventID)"
+                
+                DataManager.makeDestroyRequest(url, completion: { (data, error) -> Void in
+                    var json = JSON(data: data!)
+                    var errorString = DataManager.checkForErrors(json)
+                    if errorString != "" {
+                        dispatch_async(dispatch_get_main_queue()) {
+                            SweetAlert().showAlert("Oops!", subTitle: errorString, style: AlertStyle.Error)
+                            return
+                        }
+                    }
+                    else {
+                        dispatch_async(dispatch_get_main_queue()) {
+                            SweetAlert().showAlert("Success!", subTitle: "Your event has been deleted.", style: AlertStyle.Success)
+                            
+                            //self.navigationController?.popViewControllerAnimated(true)
+                            self.navigationController?.popToRootViewControllerAnimated(true)
+                            
+                            return
+                        }
+                    }
+                })
             }
-        })
+        }
 
     }
     

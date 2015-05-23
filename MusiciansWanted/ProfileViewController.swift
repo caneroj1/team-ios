@@ -45,17 +45,29 @@ class ProfileViewController: UIViewController, UINavigationControllerDelegate, U
     }
     
     @IBAction func logOut(sender: UIButton) {
-        //Store User information
-        let defaults = NSUserDefaults.standardUserDefaults()
         
-        defaults.setObject(nil, forKey: "userId")
-        defaults.setObject(nil, forKey: "refreshToken")
-        defaults.setObject(true, forKey: "locationServicesDisabled")
-        defaults.setObject(nil, forKey: "longitude")
-        defaults.setObject(nil, forKey: "latitude")
+        SweetAlert().showAlert("Are you sure?", subTitle: "You'll have to log back in next time!", style: AlertStyle.Warning, buttonTitle:"Cancel", buttonColor:UIColorFromRGB(0xD0D0D0) , otherButtonTitle:  "Yes, log me out!", otherButtonColor: UIColorFromRGB(0xDD6B55)) { (isOtherButton) -> Void in
+            if isOtherButton == true {
+                
+                return
+            }
+            else {
+                //Store User information
+                let defaults = NSUserDefaults.standardUserDefaults()
+                
+                defaults.setObject(nil, forKey: "userId")
+                defaults.setObject(nil, forKey: "refreshToken")
+                defaults.setObject(true, forKey: "locationServicesDisabled")
+                defaults.setObject(nil, forKey: "longitude")
+                defaults.setObject(nil, forKey: "latitude")
+                
+                let viewController = self.storyboard?.instantiateViewControllerWithIdentifier("LogInViewController") as! LogInViewController
+                self.presentViewController(viewController, animated: true, completion: nil)
+            }
+        }
         
-        let viewController = self.storyboard?.instantiateViewControllerWithIdentifier("LogInViewController") as! LogInViewController
-        self.presentViewController(viewController, animated: true, completion: nil)
+        
+        
     }
     
     func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [NSObject : AnyObject]) {

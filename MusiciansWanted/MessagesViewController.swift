@@ -20,6 +20,7 @@ class MessagesViewController: UIViewController, UITableViewDelegate, UITableView
     var keyboardFrame: CGRect = CGRect.nullRect
     var keyboardIsShowing: Bool = false
     let placeholder = "Send a message"
+    var timer = NSTimer()
     
     var inboxMgr = InboxManager()
     var msgManager = MessageManager()
@@ -95,7 +96,7 @@ class MessagesViewController: UIViewController, UITableViewDelegate, UITableView
         // Make UITextView look like UITextField
         self.textView.contentInset = UIEdgeInsetsMake(0.0, 0.0, 0.0, 0.0)
         self.textView.sizeToFit()
-        let lightestGrayColor: UIColor = UIColor( red: 224.0/255.0, green: 224.0/255.0, blue:224.0/255.0, alpha: 1.0 )
+        let lightestGrayColor: UIColor = UIColor( red: 200.0/255.0, green: 200.0/255.0, blue:200.0/255.0, alpha: 1.0 )
         self.textView.layer.borderColor = lightestGrayColor.CGColor
         self.textView.layer.borderWidth = 0.6
         self.textView.layer.cornerRadius = 6.0
@@ -103,8 +104,29 @@ class MessagesViewController: UIViewController, UITableViewDelegate, UITableView
         self.textView.layer.masksToBounds = true
         
         msgManager.messageDelegate = self
-        msgManager.loadMessages(messageId, lower: 0, upper: 20)
+    }
+    
+    func update() {
+        self.msgManager.loadMessages(self.messageId, lower: 0, upper: 20)
+        
+        let numberOfSections = MsgTableView.numberOfSections()
+        let numberOfRows = MsgTableView.numberOfRowsInSection(numberOfSections-1)
+        
+        if numberOfRows < msgManager.replyIndex.count {
+            
+            MsgTableView.reloadData()
 
+            var scrolltimer = NSTimer.scheduledTimerWithTimeInterval(0.5, target: self, selector: Selector("scrollDown"), userInfo: nil, repeats: false)
+        }
+
+    }
+    
+    func scrollDown() {
+        let numberOfSections = MsgTableView.numberOfSections()
+        let numberOfRows = MsgTableView.numberOfRowsInSection(numberOfSections-1)
+        let indexPath = NSIndexPath(forRow: numberOfRows-1, inSection: (numberOfSections-1))
+        
+        MsgTableView.scrollToRowAtIndexPath(indexPath, atScrollPosition: UITableViewScrollPosition.Bottom, animated: false)
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -114,12 +136,14 @@ class MessagesViewController: UIViewController, UITableViewDelegate, UITableView
         }
         
         msgManager.loadMessages(messageId, lower: 0, upper: 20)
-        //msgManager.loadMessages(messageId, lower: msgManager.replies.count - 21, upper: msgManager.replies.count - 1)
+        
+        timer = NSTimer.scheduledTimerWithTimeInterval(10.0, target: self, selector: Selector("update"), userInfo: nil, repeats: true)
     }
     
     override func viewWillDisappear(animated: Bool) {
         super.viewWillDisappear(animated)
         NSNotificationCenter.defaultCenter().removeObserver(self)
+        timer.invalidate()
     }
     
     func keyboardWillShow(notification: NSNotification)
@@ -226,8 +250,8 @@ class MessagesViewController: UIViewController, UITableViewDelegate, UITableView
         
         let cell: MessageBubbleCell = reply!.userId == MusiciansWanted.userId ? tableView.dequeueReusableCellWithIdentifier("senderCell", forIndexPath: indexPath) as! MessageBubbleCell : tableView.dequeueReusableCellWithIdentifier("receiverCell", forIndexPath: indexPath) as! MessageBubbleCell
                 
-        cell.msgHeader.text = reply!.userId == MusiciansWanted.userId ? "" : reply!.name + " "
-        cell.msgHeader.text = cell.msgHeader.text! + inboxMgr.formatDate(reply!.date)
+        cell.msgHeader.text = reply!.userId == MusiciansWanted.userId ? "Sent " : reply!.name + " "
+        cell.msgHeader.text = cell.msgHeader.text! + "- " + inboxMgr.formatDate(reply!.date)
         
         cell.msgText.text = reply?.body
         
@@ -246,21 +270,6 @@ class MessagesViewController: UIViewController, UITableViewDelegate, UITableView
     }
     
     func addedNewMessage() {
-        /*if self.refreshControl?.refreshing == true {
-            self.refreshControl?.endRefreshing()
-        }*/
-        
-        //self.MsgTableView.reloadRowsAtIndexPaths([indexP], withRowAnimation: UITableViewRowAnimation.None)
-        
-        self.MsgTableView.reloadData()
-        
-        //var indexP: NSIndexPath = NSIndexPath(forRow: msgManager.replies.count - 1, inSection: 0)
-        //self.MsgTableView.scrollToRowAtIndexPath(indexP, atScrollPosition: UITableViewScrollPosition.Bottom, animated: true)
-        
-        if MsgTableView.contentSize.height > MsgTableView.frame.size.height
-        {
-            let offset = CGPoint(x: 0, y: MsgTableView.contentSize.height - MsgTableView.frame.size.height)
-            MsgTableView.setContentOffset(offset, animated: false)
-        }
+        var addNewtimer = NSTimer.scheduledTimerWithTimeInterval(0.1, target: self, selector: Selector("update"), userInfo: nil, repeats: false)
     }
 }

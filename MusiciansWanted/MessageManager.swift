@@ -30,6 +30,7 @@ class MessageManager: NSObject {
     }
     
     func loadMessages(messageId: Int, lower: Int, upper: Int) {
+        let constantIndex = replies.count
         
         var url: String = "/api/messages/\(messageId)/replies"
                 
@@ -49,12 +50,14 @@ class MessageManager: NSObject {
                 
                 let sender_id = json["user_id"].intValue
                 self.getName(json["created_at"].stringValue, sender_id: sender_id)
+
             }
             
             dispatch_async(dispatch_get_main_queue()) {
-                
-                self.messageDelegate!.addedNewMessage()
-                self.replyIndex = Array(self.replies.keys).sorted(<)
+                if self.replies.count > constantIndex {
+                    self.messageDelegate!.addedNewMessage()
+                    self.replyIndex = Array(self.replies.keys).sorted(<)
+                }
             }
             
         })

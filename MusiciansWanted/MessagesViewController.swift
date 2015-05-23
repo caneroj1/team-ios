@@ -25,6 +25,7 @@ class MessagesViewController: UIViewController, UITableViewDelegate, UITableView
     var inboxMgr = InboxManager()
     var msgManager = MessageManager()
     var messageId = -1
+    var subject = ""
     
     @IBAction func sendMessage(sender: UIButton) {
         self.view.endEditing(true);
@@ -135,6 +136,8 @@ class MessagesViewController: UIViewController, UITableViewDelegate, UITableView
             textView.text = placeholder
         }
         
+        self.title = subject
+            
         msgManager.loadMessages(messageId, lower: 0, upper: 20)
         
         timer = NSTimer.scheduledTimerWithTimeInterval(10.0, target: self, selector: Selector("update"), userInfo: nil, repeats: true)
@@ -250,8 +253,8 @@ class MessagesViewController: UIViewController, UITableViewDelegate, UITableView
         
         let cell: MessageBubbleCell = reply!.userId == MusiciansWanted.userId ? tableView.dequeueReusableCellWithIdentifier("senderCell", forIndexPath: indexPath) as! MessageBubbleCell : tableView.dequeueReusableCellWithIdentifier("receiverCell", forIndexPath: indexPath) as! MessageBubbleCell
                 
-        cell.msgHeader.text = reply!.userId == MusiciansWanted.userId ? "Sent " : reply!.name + " "
-        cell.msgHeader.text = cell.msgHeader.text! + "- " + inboxMgr.formatDate(reply!.date)
+        cell.msgHeader.text = reply!.userId == MusiciansWanted.userId ? "Sent " : reply!.name + " - "
+        cell.msgHeader.text = cell.msgHeader.text! + inboxMgr.formatDate(reply!.date)
         
         cell.msgText.text = reply?.body
         

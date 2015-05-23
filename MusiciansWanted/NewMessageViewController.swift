@@ -37,9 +37,6 @@ class NewMessageViewController: UITableViewController, UICollectionViewDataSourc
             
             let offset = Double(formatter.timeZone.secondsFromGMT)
             let strdate = formatter.stringFromDate(NSDate().dateByAddingTimeInterval(offset))
-            println(formatter.stringFromDate(NSDate().dateByAddingTimeInterval(offset)))
-            println(formatter.stringFromDate(NSDate()))
-            
             
             var messageParams: Dictionary<String, AnyObject> = ["subject": subjectText.text.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceCharacterSet()), "body": bodyText.text.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceCharacterSet()), "created_at": strdate, "updated_at": strdate, "sent_by": MusiciansWanted.userId, "user_id": toContacts[0].id]
             
@@ -116,7 +113,6 @@ class NewMessageViewController: UITableViewController, UICollectionViewDataSourc
     
     override func viewWillAppear(animated: Bool) {
         contactCollection.reloadData()
-        println("Appear: \(toContacts.count)")
     }
     
     override func didReceiveMemoryWarning() {

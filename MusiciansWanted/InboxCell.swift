@@ -28,6 +28,9 @@ class InboxCell: UITableViewCell {
         self.imgProfPic.clipsToBounds = true
         self.imgProfPic.layer.masksToBounds = true
         
+        self.bgView.layer.cornerRadius = self.bgView.frame.size.width / 2
+        self.bgView.clipsToBounds = true
+        self.bgView.layer.masksToBounds = true
     }
     
     override func setSelected(selected: Bool, animated: Bool) {

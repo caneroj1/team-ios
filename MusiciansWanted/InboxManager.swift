@@ -10,14 +10,15 @@ struct inbox {
     var receiverId = -1
     var profpic: UIImage
     var cellHeight: CGFloat
+    var unread = true
 }
 
 class InboxManager: NSObject {
     
-    var messageDictionary = [Int:inbox]()
-    var messages = [Int]()
-    var sent_messageDictionary = [Int:inbox]()
-    var sent_messages = [Int]()
+    var messageDictionary = [String:inbox]()
+    var messages = [String]()
+    var sent_messageDictionary = [String:inbox]()
+    var sent_messages = [String]()
     var messageDelegate: MessageDelegate?
     
     func loadInbox() {
@@ -38,12 +39,12 @@ class InboxManager: NSObject {
                         
                         let strdate = msg.1["created_at"].stringValue
                         
-                        self.messageDictionary[msg.1["id"].intValue] = inbox(id: msg.1["id"].intValue, name: name, subject: msg.1["subject"].stringValue, date: strdate, body: msg.1["body"].stringValue, senderId: msg.1["sent_by"].intValue, receiverId: msg.1["user_id"].intValue, profpic: UIImage(named: "anonymous")!, cellHeight: 85)
+                        self.messageDictionary[msg.1["updated_at"].stringValue] = inbox(id: msg.1["id"].intValue, name: name, subject: msg.1["subject"].stringValue, date: strdate, body: msg.1["body"].stringValue, senderId: msg.1["sent_by"].intValue, receiverId: msg.1["user_id"].intValue, profpic: UIImage(named: "anonymous")!, cellHeight: 85, unread: true)
                         
                         self.getImage(msg.1,user: user_json, isSent: false)
                         
                         self.messageDelegate?.addedNewMessage()
-                        self.messages = Array(self.messageDictionary.keys).sorted(<)
+                        self.messages = Array(self.messageDictionary.keys).sorted(>)
 
 
                     }
@@ -71,12 +72,12 @@ class InboxManager: NSObject {
                         
                         let strdate = msg.1["created_at"].stringValue
                         
-                        self.sent_messageDictionary[msg.1["id"].intValue] = inbox(id: msg.1["id"].intValue, name: name, subject: msg.1["subject"].stringValue, date: strdate, body: msg.1["body"].stringValue, senderId: msg.1["sent_by"].intValue, receiverId: msg.1["user_id"].intValue, profpic: UIImage(named: "anonymous")!, cellHeight: 85)
+                        self.sent_messageDictionary[msg.1["updated_at"].stringValue] = inbox(id: msg.1["id"].intValue, name: name, subject: msg.1["subject"].stringValue, date: strdate, body: msg.1["body"].stringValue, senderId: msg.1["sent_by"].intValue, receiverId: msg.1["user_id"].intValue, profpic: UIImage(named: "anonymous")!, cellHeight: 85, unread: false)
                         
                         self.getImage(msg.1,user: user_json, isSent: true)
                         
                         self.messageDelegate?.addedNewMessage()
-                        self.sent_messages = Array(self.sent_messageDictionary.keys).sorted(<)
+                        self.sent_messages = Array(self.sent_messageDictionary.keys).sorted(>)
                         
                     }
                 })
@@ -149,13 +150,12 @@ class InboxManager: NSObject {
                             var profileImage = UIImage(data: decodedString!)!
                             
                             if isSent == false {
-                                self.messageDictionary[msg["id"].intValue]?.profpic = profileImage
+                                self.messageDictionary[msg["updated_at"].stringValue]?.profpic = profileImage
                             }
                             else {
-                                self.sent_messageDictionary[msg["id"].intValue]?.profpic = profileImage
+                                self.sent_messageDictionary[msg["updated_at"].stringValue]?.profpic = profileImage
                             }
                             
-                            println("loaded image of \(userId)")
                             self.messageDelegate!.addedNewMessage()
                         }
                     }

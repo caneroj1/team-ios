@@ -49,6 +49,10 @@ class InboxTableViewController: UIViewController, UITableViewDelegate, UITableVi
         inboxTable.reloadData()
     }
     
+    override func viewWillAppear(animated: Bool) {
+        inboxTable.reloadData()
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -66,11 +70,9 @@ class InboxTableViewController: UIViewController, UITableViewDelegate, UITableVi
         // #warning Incomplete method implementation.
         // Return the number of rows in the section.
         if receivedSent.selectedSegmentIndex == 0 {
-            println("Received Messages: \(inboxMgr.messages.count)")
             return inboxMgr.messages.count
         }
         else {
-            println("Sent Messages: \(inboxMgr.sent_messages.count)")
             return inboxMgr.sent_messages.count
         }
     }
@@ -78,9 +80,7 @@ class InboxTableViewController: UIViewController, UITableViewDelegate, UITableVi
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         
         let cell = tableView.dequeueReusableCellWithIdentifier("Msg", forIndexPath: indexPath) as! InboxCell
-        
-        println("Index: \(indexPath.row)")
-        
+                
         var message: inbox
         
         if receivedSent.selectedSegmentIndex == 0 {
@@ -95,10 +95,15 @@ class InboxTableViewController: UIViewController, UITableViewDelegate, UITableVi
         cell.imgProfPic.image = message.profpic
         cell.lblDate.text = inboxMgr.formatDate(message.date)
         
-        //var cellcolor = UIColor(red: 245.0/255.0, green: 244.0/255.0, blue: 255.0/255.0, alpha: 1.0)
-        
         cell.lblSubject.numberOfLines = 1
         cell.lblBody.text = message.body
+        
+        if message.unread == true {
+            cell.bgView.hidden = false
+        }
+        else {
+            cell.bgView.hidden = true
+        }
         
         if receivedSent.selectedSegmentIndex == 0 {
             inboxMgr.messageDictionary[inboxMgr.messages[indexPath.row]]?.cellHeight = 85
@@ -106,9 +111,6 @@ class InboxTableViewController: UIViewController, UITableViewDelegate, UITableVi
         else {
             inboxMgr.sent_messageDictionary[inboxMgr.sent_messages[indexPath.row]]?.cellHeight = 85
         }
-
-        //cell.bgView.backgroundColor = cellcolor
-
         
         return cell
     }
@@ -129,9 +131,13 @@ class InboxTableViewController: UIViewController, UITableViewDelegate, UITableVi
         
         if receivedSent.selectedSegmentIndex == 0 {
             messageView.messageId = inboxMgr.messageDictionary[inboxMgr.messages[indexPath.row]]!.id
+            inboxMgr.messageDictionary[inboxMgr.messages[indexPath.row]]!.unread = false
+            
+            messageView.subject = inboxMgr.messageDictionary[inboxMgr.messages[indexPath.row]]!.subject
         }
         else {
             messageView.messageId = inboxMgr.sent_messageDictionary[inboxMgr.sent_messages[indexPath.row]]!.id
+            messageView.subject = inboxMgr.sent_messageDictionary[inboxMgr.sent_messages[indexPath.row]]!.subject
         }
         
         self.navigationController?.pushViewController(messageView, animated: true)

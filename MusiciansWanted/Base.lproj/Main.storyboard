@@ -3233,6 +3233,14 @@
                                                     <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
+                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xC8-rK-mud">
+                                                    <rect key="frame" x="23" y="56" width="10" height="10"/>
+                                                    <color key="backgroundColor" red="1" green="0.31096480789999997" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="10" id="Rya-Qc-2jQ"/>
+                                                        <constraint firstAttribute="width" constant="10" id="bc1-Eh-nYk"/>
+                                                    </constraints>
+                                                </view>
                                             </subviews>
                                             <color key="backgroundColor" red="0.95758174969999998" green="0.96019051980000003" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                             <constraints>
@@ -3243,16 +3251,24 @@
                                                 <constraint firstItem="bRj-QL-mh0" firstAttribute="top" secondItem="BuS-4r-d8P" secondAttribute="topMargin" constant="2" id="OVK-Os-4g7"/>
                                                 <constraint firstAttribute="trailingMargin" secondItem="5gN-Ol-fpo" secondAttribute="trailing" constant="5" id="Z10-c1-EOa"/>
                                                 <constraint firstItem="taJ-Uc-pmk" firstAttribute="leading" secondItem="bRj-QL-mh0" secondAttribute="trailing" constant="18" id="Zzo-SR-Mwd"/>
+                                                <constraint firstItem="xC8-rK-mud" firstAttribute="centerX" secondItem="bRj-QL-mh0" secondAttribute="centerX" id="bWd-wf-Mdw"/>
+                                                <constraint firstItem="xC8-rK-mud" firstAttribute="top" secondItem="taJ-Uc-pmk" secondAttribute="bottom" constant="12" id="cgC-ae-53P"/>
                                                 <constraint firstAttribute="trailingMargin" secondItem="7po-TM-vXk" secondAttribute="trailing" constant="1" id="dDu-Xb-7d9"/>
+                                                <constraint firstItem="xC8-rK-mud" firstAttribute="top" secondItem="bRj-QL-mh0" secondAttribute="bottom" constant="10" id="eDu-Hy-wPL"/>
                                                 <constraint firstItem="taJ-Uc-pmk" firstAttribute="top" secondItem="bRj-QL-mh0" secondAttribute="top" id="jG7-yN-FX8"/>
                                                 <constraint firstItem="5gN-Ol-fpo" firstAttribute="trailing" secondItem="DFC-Mz-dPb" secondAttribute="trailing" id="l0M-VT-Cmi"/>
                                                 <constraint firstItem="5gN-Ol-fpo" firstAttribute="leading" secondItem="DFC-Mz-dPb" secondAttribute="leading" id="ly3-Ic-9tc"/>
                                                 <constraint firstItem="bRj-QL-mh0" firstAttribute="leading" secondItem="BuS-4r-d8P" secondAttribute="leadingMargin" constant="2" id="r18-Lv-8pf"/>
                                                 <constraint firstItem="7po-TM-vXk" firstAttribute="top" secondItem="taJ-Uc-pmk" secondAttribute="top" id="rSi-un-4Cg"/>
                                             </constraints>
+                                            <variation key="default">
+                                                <mask key="constraints">
+                                                    <exclude reference="cgC-ae-53P"/>
+                                                </mask>
+                                            </variation>
                                         </tableViewCellContentView>
                                         <connections>
-                                            <outlet property="bgView" destination="BuS-4r-d8P" id="pOT-pd-9Rb"/>
+                                            <outlet property="bgView" destination="xC8-rK-mud" id="BMx-2s-tNR"/>
                                             <outlet property="imgProfPic" destination="bRj-QL-mh0" id="qb8-Xn-r5g"/>
                                             <outlet property="lblBody" destination="DFC-Mz-dPb" id="jjg-ha-sqc"/>
                                             <outlet property="lblDate" destination="7po-TM-vXk" id="Hh1-yJ-kTa"/>

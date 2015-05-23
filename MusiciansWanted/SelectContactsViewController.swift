@@ -66,7 +66,6 @@ class SelectContactsViewController: UIViewController, UITableViewDelegate, UITab
     // MARK: - Contacts Table View
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        println(contactsManager.contacts)
         return contactsManager.contacts.count
     }
     
@@ -92,6 +91,9 @@ class SelectContactsViewController: UIViewController, UITableViewDelegate, UITab
             toContacts.removeValueForKey(contactsManager.contacts[indexPath.row].id)
         }
         else {
+            //------ Single Selection -----
+            toContacts.removeAll(keepCapacity: false)
+            //-----------------------------
             toContacts[contactsManager.contacts[indexPath.row].id] = toContact(name: contactsManager.contacts[indexPath.row].name,id: contactsManager.contacts[indexPath.row].id, cellSize: CGSize(width: 100, height: 20))
         }
         
@@ -106,7 +108,6 @@ class SelectContactsViewController: UIViewController, UITableViewDelegate, UITab
         if(segue.identifier == "newMessageView") {
             var destination = segue.destinationViewController as! NewMessageViewController
             
-            println("prepare: \(toContacts.count)")
             destination.toContacts = Array(toContacts.values)
         }
     }

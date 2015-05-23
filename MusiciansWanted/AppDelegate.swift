@@ -36,7 +36,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         if (defaults.objectForKey("userId") != nil) {
             MusiciansWanted.userId = defaults.integerForKey("userId")
-            MusiciansWanted.refreshToken = defaults.stringForKey("refreshToken")!
             MusiciansWanted.locationServicesDisabled = defaults.boolForKey("locationServicesDisabled")
             MusiciansWanted.longitude = defaults.objectForKey("longitude") as? CLLocationDegrees
             MusiciansWanted.latitude = defaults.objectForKey("latitude") as? CLLocationDegrees

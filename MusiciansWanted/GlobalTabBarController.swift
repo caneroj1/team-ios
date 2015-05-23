@@ -252,7 +252,6 @@ class GlobalTabBarController: UITabBarController, CLLocationManagerDelegate {
                 let defaults = NSUserDefaults.standardUserDefaults()
                 
                 defaults.setObject(MusiciansWanted.userId, forKey: "userId")
-                defaults.setObject(MusiciansWanted.refreshToken, forKey: "refreshToken")
                 defaults.setObject(MusiciansWanted.locationServicesDisabled, forKey: "locationServicesDisabled")
                 defaults.setObject(MusiciansWanted.longitude, forKey: "longitude")
                 defaults.setObject(MusiciansWanted.latitude, forKey: "latitude")

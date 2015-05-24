@@ -45,6 +45,8 @@
 		444951C41AD72B420013A4DD /* Notification.swift in Sources */ = {isa = PBXBuildFile; fileRef = 444951C31AD72B420013A4DD /* Notification.swift */; };
 		44566E871ACB4E3200D9F6A4 /* Toucan.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44566E861ACB4E3200D9F6A4 /* Toucan.swift */; };
 		446ED1F21B0922C500855F58 /* MusicianRequestTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 446ED1F11B0922C500855F58 /* MusicianRequestTableViewController.swift */; };
+		449935CB1B123FB500467B0B /* PersonRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 449935CA1B123FB500467B0B /* PersonRow.swift */; };
+		449935CD1B12404F00467B0B /* PeopleInterfaceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 449935CC1B12404F00467B0B /* PeopleInterfaceController.swift */; };
 		44A2CF151B0D2155000856C1 /* EventRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44A2CF141B0D2155000856C1 /* EventRow.swift */; };
 		44C1D55A1ADCA375006388E5 /* EventMapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44C1D5591ADCA375006388E5 /* EventMapViewController.swift */; };
 		44C1D55C1ADCAFD5006388E5 /* EventMapData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44C1D55B1ADCAFD5006388E5 /* EventMapData.swift */; };
@@ -150,6 +152,8 @@
 		444951C31AD72B420013A4DD /* Notification.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Notification.swift; sourceTree = "<group>"; };
 		44566E861ACB4E3200D9F6A4 /* Toucan.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Toucan.swift; sourceTree = "<group>"; };
 		446ED1F11B0922C500855F58 /* MusicianRequestTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MusicianRequestTableViewController.swift; sourceTree = "<group>"; };
+		449935CA1B123FB500467B0B /* PersonRow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PersonRow.swift; sourceTree = "<group>"; };
+		449935CC1B12404F00467B0B /* PeopleInterfaceController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PeopleInterfaceController.swift; sourceTree = "<group>"; };
 		44A2CF141B0D2155000856C1 /* EventRow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventRow.swift; sourceTree = "<group>"; };
 		44C1D5591ADCA375006388E5 /* EventMapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventMapViewController.swift; sourceTree = "<group>"; };
 		44C1D55B1ADCAFD5006388E5 /* EventMapData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventMapData.swift; sourceTree = "<group>"; };
@@ -386,6 +390,8 @@
 				44D0F3E21B0BDAB80030CAE2 /* Supporting Files */,
 				444452F41B0D0842000BD5B1 /* EventsInterfaceController.swift */,
 				44A2CF141B0D2155000856C1 /* EventRow.swift */,
+				449935CA1B123FB500467B0B /* PersonRow.swift */,
+				449935CC1B12404F00467B0B /* PeopleInterfaceController.swift */,
 			);
 			path = "MW WatchKit Extension";
 			sourceTree = "<group>";
@@ -695,7 +701,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				449935CD1B12404F00467B0B /* PeopleInterfaceController.swift in Sources */,
 				444452F71B0D08E5000BD5B1 /* EventsInterfaceController.swift in Sources */,
+				449935CB1B123FB500467B0B /* PersonRow.swift in Sources */,
 				44A2CF151B0D2155000856C1 /* EventRow.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

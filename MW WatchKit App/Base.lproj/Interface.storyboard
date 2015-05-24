@@ -47,7 +47,35 @@
         <!--MW-->
         <scene sceneID="u9b-kX-tPi">
             <objects>
-                <controller identifier="People Interface Controller" title="MW" id="MIt-kt-31Y"/>
+                <controller identifier="People Interface Controller" title="MW" id="MIt-kt-31Y" customClass="PeopleInterfaceController" customModule="MW_WatchKit_Extension">
+                    <items>
+                        <label width="136" height="30" alignment="left" text="Nearby People" textAlignment="center" id="uay-9d-Vzo">
+                            <color key="textColor" red="0.96470588239999999" green="0.30980392159999998" blue="0.023529411760000001" alpha="1" colorSpace="calibratedRGB"/>
+                            <fontDescription key="font" style="UICTFontTextStyleBody"/>
+                        </label>
+                        <table alignment="left" id="YoR-Y5-i9a">
+                            <items>
+                                <tableRow identifier="PersonRow" id="31P-OT-RLO" customClass="PersonRow" customModule="MW_WatchKit_Extension">
+                                    <group key="rootItem" width="1" height="0.0" alignment="left" layout="vertical" id="eR1-j0-jkd">
+                                        <items>
+                                            <label alignment="left" text="Person Name" numberOfLines="2" id="HlX-v0-WUD"/>
+                                            <label alignment="left" text="Person Location" numberOfLines="3" id="IQ4-9g-UQb">
+                                                <fontDescription key="font" style="UICTFontTextStyleCaption2"/>
+                                            </label>
+                                        </items>
+                                    </group>
+                                    <connections>
+                                        <outlet property="personLocation" destination="IQ4-9g-UQb" id="jj8-Ln-ET6"/>
+                                        <outlet property="personName" destination="HlX-v0-WUD" id="S26-WL-jHO"/>
+                                    </connections>
+                                </tableRow>
+                            </items>
+                        </table>
+                    </items>
+                    <connections>
+                        <outlet property="peopleTable" destination="YoR-Y5-i9a" id="h9Y-7d-EgV"/>
+                    </connections>
+                </controller>
             </objects>
             <point key="canvasLocation" x="637" y="36"/>
         </scene>

@@ -24,14 +24,14 @@ struct events {
 class EventsManager: NSObject {
     var isNearMeURL = false
     var eventDelegate: EventsDelegate?
-    var event = [Int]()
-    var eventDictionary = [Int: events]()
+    var event = [String]()
+    var eventDictionary = [String: events]()
     var isLoadingEvents = false
     
     func loadEvents(lower: Int, upper: Int) {
         var url: String
         
-        eventDictionary = [Int: events]()
+        eventDictionary = [String: events]()
         
         switch CLLocationManager.authorizationStatus() {
         case .AuthorizedWhenInUse:
@@ -72,7 +72,7 @@ class EventsManager: NSObject {
 
                 println("\(id) : \(title)")
                 
-                self.eventDictionary[id] = events(eventId: eventData["id"].intValue, eventName: eventData["title"].stringValue, eventPicture: eventImage, hasEventPic: hasPicString, eventDate: eventData["event_time"].stringValue, eventGenre: "id: " + eventData["id"].stringValue, eventLocation: eventData["location"].stringValue, latitude: latStr.doubleValue, longitude: longStr.doubleValue)
+                self.eventDictionary[eventData["event_time"].stringValue + " \(id)"] = events(eventId: eventData["id"].intValue, eventName: eventData["title"].stringValue, eventPicture: eventImage, hasEventPic: hasPicString, eventDate: eventData["event_time"].stringValue, eventGenre: "id: " + eventData["id"].stringValue, eventLocation: eventData["location"].stringValue, latitude: latStr.doubleValue, longitude: longStr.doubleValue)
             }
             
             dispatch_async(dispatch_get_main_queue()) {

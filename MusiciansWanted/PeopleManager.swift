@@ -76,7 +76,9 @@ class PeopleManager: NSObject {
         
         DataManager.makeGetRequest(url!, completion: { (data, error) -> Void in
             let json = JSON(data: data!)
-           
+            
+            println(json)
+            
             if self.isNearMeURL {
                 for user in json {
                     
@@ -159,14 +161,15 @@ class PeopleManager: NSObject {
                             println("USER ADD : \(tmp)")
                         }
                     }
-
+                    
                 }
-
+                
             }
             
             dispatch_async(dispatch_get_main_queue()) {
                 
-                self.arrPerson = Array(self.person.keys).sorted(<)
+                self.arrPerson = Array(self.person.keys)
+                self.sortByDistance(0, higherIndex: self.arrPerson.count - 1)
                 
                 self.isLoadingPeople = false
                 self.peopleDelegate!.addedNewItem()
@@ -187,7 +190,7 @@ class PeopleManager: NSObject {
         self.addPerson(user["id"].intValue, name: user["name"].stringValue, pic: profileImage, age: user["age"].stringValue, genre: user["genre"].stringValue, instru: "Unknown", loc: user["location"].stringValue, distance: user["distance"].doubleValue, band: user["looking_for_band"].boolValue, jam: user["looking_to_jam"].boolValue, email: user["email"].stringValue, gender: user["gender"].stringValue)
         
         println("Adding user \(userId)");
-                
+        
         //Load in profile images
         if user["has_profile_pic"].stringValue == "true"
         {
@@ -215,5 +218,39 @@ class PeopleManager: NSObject {
         
         println("added user \(userId)")
         
+    }
+    
+    //Merge Sort arrPerson by distance values
+    func sortByDistance(lowerIndex: Int, higherIndex: Int) {
+        var i = lowerIndex;
+        var j = higherIndex;
+        // calculate pivot number
+        var pivot = person[arrPerson[lowerIndex+(higherIndex-lowerIndex)/2]]!.distance
+        // Divide into two arrays
+        while (i <= j) {
+            while (person[arrPerson[i]]!.distance < pivot) {
+                i++;
+            }
+            while (person[arrPerson[j]]!.distance > pivot) {
+                j--;
+            }
+            if (i <= j) {
+                //exchangeNumbers(i, j);
+                var temp = arrPerson[i];
+                arrPerson[i] = arrPerson[j];
+                arrPerson[j] = temp;
+                
+                //move index to next position on both sides
+                i++;
+                j--;
+            }
+        }
+        // call method recursively
+        if (lowerIndex < j) {
+            sortByDistance(lowerIndex, higherIndex: j);
+        }
+        if (i < higherIndex) {
+            sortByDistance(i, higherIndex: higherIndex);
+        }
     }
 }

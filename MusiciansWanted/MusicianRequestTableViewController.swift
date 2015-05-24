@@ -9,7 +9,7 @@
 import UIKit
 
 class MusicianRequestTableViewController: UITableViewController, UIPickerViewDelegate, UIPickerViewDataSource {
-
+    
     @IBOutlet weak var instrumentPickerView: UIPickerView!
     var instruments = ["Drummer", "Guitarist", "Bassist", "Vocalist", "Pianist", "Keyboardist", "Percussionist"]
     var selectedInstrument = 0
@@ -17,12 +17,12 @@ class MusicianRequestTableViewController: UITableViewController, UIPickerViewDel
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem()
+                
         instrumentPickerView.selectRow(0, inComponent: 0, animated: true)
     }
 

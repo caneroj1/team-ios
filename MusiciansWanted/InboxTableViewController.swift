@@ -8,7 +8,24 @@
 
 import UIKit
 
-class InboxTableViewController: UITableViewController {
+class InboxTableViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, MessageDelegate {
+    
+    @IBOutlet var receivedSent: UISegmentedControl!
+    @IBOutlet var inboxTable: UITableView!
+    
+    var inboxMgr: InboxManager = InboxManager()
+    
+    
+    @IBAction func selectReceivedSent(sender: AnyObject) {
+        inboxTable.reloadData()
+        
+        if receivedSent.selectedSegmentIndex == 0 {
+            inboxMgr.loadInbox()
+        }
+        else {
+            inboxMgr.loadSent()
+        }
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -16,12 +33,7 @@ class InboxTableViewController: UITableViewController {
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
         
-        //Sample data
-        inboxMgr.addMessage("Bob", subject: "Hey Jim, just wanted to say hi", time: "Today")
-        inboxMgr.addMessage("Robin Scherbatsky", subject: "What? That's not distracting. That's just talking about the story of a scrappy little underdog team that prevailed despite very shaky goal ending and, frankly, the declining skills of Trevor Linden.", time: "Today")
-        inboxMgr.addMessage("Marco Polo", subject: "I found you.", time: "Today")
-        inboxMgr.addMessage("Kari Gilbertson", subject: "Omg they are awesome", time: "Today")
-        
+        /*
         let mobileAnalytics = AWSMobileAnalytics(forAppId: MobileAnalyticsAppId)
         let eventRecordClient = mobileAnalytics.eventClient
         let eventRecord = eventRecordClient.createEventWithEventType("InboxViewEvent")
@@ -29,7 +41,16 @@ class InboxTableViewController: UITableViewController {
         eventRecord.addAttribute("Test", forKey: "Inbox")
         
         eventRecordClient.recordEvent(eventRecord)
-        eventRecordClient.submitEvents()
+        eventRecordClient.submitEvents()*/
+        
+        inboxMgr.messageDelegate = self
+        inboxMgr.loadInbox()
+        inboxMgr.loadSent()
+        inboxTable.reloadData()
+    }
+    
+    override func viewWillAppear(animated: Bool) {
+        inboxTable.reloadData()
     }
     
     override func didReceiveMemoryWarning() {
@@ -39,33 +60,156 @@ class InboxTableViewController: UITableViewController {
     
     // MARK: - Table view data source
     
-    override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+    func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         // #warning Potentially incomplete method implementation.
         // Return the number of sections.
         return 1
     }
     
-    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete method implementation.
         // Return the number of rows in the section.
-        return inboxMgr.messages.count
+        if receivedSent.selectedSegmentIndex == 0 {
+            return inboxMgr.messages.count
+        }
+        else {
+            return inboxMgr.sent_messages.count
+        }
     }
     
-    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         
         let cell = tableView.dequeueReusableCellWithIdentifier("Msg", forIndexPath: indexPath) as! InboxCell
+                
+        var message: inbox
         
-        let message = inboxMgr.messages[indexPath.row]
+        if receivedSent.selectedSegmentIndex == 0 {
+            message = inboxMgr.messageDictionary[inboxMgr.messages[indexPath.row]]!
+        }
+        else {
+            message = inboxMgr.sent_messageDictionary[inboxMgr.sent_messages[indexPath.row]]!
+        }
        
         cell.lblProfName.text = message.name
-        cell.lblBody.text = message.subject
-        cell.lblDate.text = message.time
+        cell.lblSubject.text = message.subject == "" ? "No Subject" : message.subject
+        cell.imgProfPic.image = message.profpic
+        cell.lblDate.text = inboxMgr.formatDate(message.date)
+        
+        cell.lblSubject.numberOfLines = 1
+        cell.lblBody.text = message.body
+        
+        if message.unread == true {
+            cell.bgView.hidden = false
+        }
+        else {
+            cell.bgView.hidden = true
+        }
+        
+        if receivedSent.selectedSegmentIndex == 0 {
+            inboxMgr.messageDictionary[inboxMgr.messages[indexPath.row]]?.cellHeight = 85
+        }
+        else {
+            inboxMgr.sent_messageDictionary[inboxMgr.sent_messages[indexPath.row]]?.cellHeight = 85
+        }
         
         return cell
     }
     
-    override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+    func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
         
-        return 80
+        if receivedSent.selectedSegmentIndex == 0 {
+            return inboxMgr.messageDictionary[inboxMgr.messages[indexPath.row]]!.cellHeight
+        }
+        else {
+            return 85
+        }
+    }
+    
+    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        
+        let messageView = self.storyboard?.instantiateViewControllerWithIdentifier("RepliesView") as! MessagesViewController
+        
+        if receivedSent.selectedSegmentIndex == 0 {
+            messageView.messageId = inboxMgr.messageDictionary[inboxMgr.messages[indexPath.row]]!.id
+            inboxMgr.messageDictionary[inboxMgr.messages[indexPath.row]]!.unread = false
+            
+            messageView.subject = inboxMgr.messageDictionary[inboxMgr.messages[indexPath.row]]!.subject
+        }
+        else {
+            messageView.messageId = inboxMgr.sent_messageDictionary[inboxMgr.sent_messages[indexPath.row]]!.id
+            messageView.subject = inboxMgr.sent_messageDictionary[inboxMgr.sent_messages[indexPath.row]]!.subject
+        }
+        
+        self.navigationController?.pushViewController(messageView, animated: true)
+    }
+    
+    func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
+        return true
+    }
+    
+    func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
+        
+        //Delete Message
+        if (editingStyle == UITableViewCellEditingStyle.Delete) {
+            if receivedSent.selectedSegmentIndex == 0 {
+                var url = "/api/messages/\(inboxMgr.messages[indexPath.row])"
+                
+                DataManager.makeDestroyRequest(url, completion: { (data, error) -> Void in
+                    var json = JSON(data: data!)
+                    var errorString = DataManager.checkForErrors(json)
+                    if errorString != "" {
+                        dispatch_async(dispatch_get_main_queue()) {
+                            SweetAlert().showAlert("Oops!", subTitle: errorString, style: AlertStyle.Error)
+                            return
+                        }
+                    }
+                    else {
+                        dispatch_async(dispatch_get_main_queue()) {
+                            SweetAlert().showAlert("Success!", subTitle: "Message deleted.", style: AlertStyle.Success)
+                            
+                            self.inboxMgr.messageDictionary.removeValueForKey(self.inboxMgr.messages[indexPath.row])
+                            self.inboxMgr.messages.removeAtIndex(indexPath.row)
+                            
+                            self.inboxTable.reloadData()
+                            
+                            return
+                        }
+                    }
+                })
+            }
+            else {
+                var url = "/api/messages/\(inboxMgr.sent_messages[indexPath.row])"
+                
+                DataManager.makeDestroyRequest(url, completion: { (data, error) -> Void in
+                    var json = JSON(data: data!)
+                    var errorString = DataManager.checkForErrors(json)
+                    if errorString != "" {
+                        dispatch_async(dispatch_get_main_queue()) {
+                            SweetAlert().showAlert("Oops!", subTitle: errorString, style: AlertStyle.Error)
+                            return
+                        }
+                    }
+                    else {
+                        dispatch_async(dispatch_get_main_queue()) {
+                            SweetAlert().showAlert("Success!", subTitle: "Message deleted.", style: AlertStyle.Success)
+                            
+                            self.inboxMgr.sent_messageDictionary.removeValueForKey(self.inboxMgr.sent_messages[indexPath.row])
+                            self.inboxMgr.sent_messages.removeAtIndex(indexPath.row)
+                            
+                            self.inboxTable.reloadData()
+                            
+                            return
+                        }
+                    }
+                })
+                
+            }
+            
+        }
+        
+    }
+    
+    func addedNewMessage() {
+        inboxTable.reloadData()
     }
 }

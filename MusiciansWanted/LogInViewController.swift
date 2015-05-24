@@ -64,8 +64,6 @@ class LogInViewController: UIViewController, CLLocationManagerDelegate, UITextFi
         }
         
         // Do any additional setup after loading the view.
-        
-        
     }
     
     
@@ -77,20 +75,18 @@ class LogInViewController: UIViewController, CLLocationManagerDelegate, UITextFi
     
     @IBAction func logInAction(sender: AnyObject!) {
         if(usernameField.text != "" && passwordField.text != "") {
-            var paramsDictionary = ["username": usernameField.text.lowercaseString, "password": passwordField.text]
+            var paramsDictionary = ["email": usernameField.text.lowercaseString, "password": passwordField.text]
             DataManager.makePostRequest("/api/login", params: paramsDictionary, completion: { (data, error) -> Void in
                 println(error)
                 let json = JSON(data: data!)
                 dispatch_async(dispatch_get_main_queue()) {
                     var alert:UIAlertController = UIAlertController()
-                    var refreshToken: String? = json["refresh_token"].stringValue
-                    if (refreshToken != "") {
+                    var userId: String? = json["user_id"].stringValue
+                    if (userId != "") {
                         let viewController = self.storyboard?.instantiateViewControllerWithIdentifier("GlobalTabBarController") as! GlobalTabBarController
                         self.presentViewController(viewController, animated: true, completion: nil)
                         // set the data for the struct so that we can access it anywhere
-                        MusiciansWanted.refreshToken = refreshToken!
-                        MusiciansWanted.userId = json["user_id"].stringValue.toInt()!
-                        //self.setLocationTracking()
+                        MusiciansWanted.userId = userId!.toInt()!
                         
                     }
                     else {

@@ -10,7 +10,7 @@ import UIKit
 
 var thisSort = 4
 
-class AddEventViewController: UIViewController, UITextViewDelegate, UIPickerViewDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UIScrollViewDelegate {
+class AddEventViewController: UIViewController, UITextViewDelegate, UITextFieldDelegate,UIPickerViewDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UIScrollViewDelegate {
     
     var eventtitle: String = ""
     var hasEventPic: Bool = false
@@ -49,28 +49,37 @@ class AddEventViewController: UIViewController, UITextViewDelegate, UIPickerView
     
     @IBAction func pressDelete(sender: UIButton) {
         
-        var url = "/api/events/\(eventID)"
-        
-        DataManager.makeDestroyRequest(url, completion: { (data, error) -> Void in
-            var json = JSON(data: data!)
-            var errorString = DataManager.checkForErrors(json)
-            if errorString != "" {
-                dispatch_async(dispatch_get_main_queue()) {
-                    SweetAlert().showAlert("Oops!", subTitle: errorString, style: AlertStyle.Error)
-                    return
-                }
+        SweetAlert().showAlert("Are you sure?", subTitle: "Your event will be deleted permanently!", style: AlertStyle.Warning, buttonTitle:"Cancel", buttonColor:UIColorFromRGB(0xD0D0D0) , otherButtonTitle:  "Yes, delete the event!", otherButtonColor: UIColorFromRGB(0xDD6B55)) { (isOtherButton) -> Void in
+            if isOtherButton == true {
+                
+                return
             }
             else {
-                dispatch_async(dispatch_get_main_queue()) {
-                    SweetAlert().showAlert("Success!", subTitle: "Your event has been deleted.", style: AlertStyle.Success)
-                    
-                    //self.navigationController?.popViewControllerAnimated(true)
-                    self.navigationController?.popToRootViewControllerAnimated(true)
-                    
-                    return
-                }
+                
+                var url = "/api/events/\(self.eventID)"
+                
+                DataManager.makeDestroyRequest(url, completion: { (data, error) -> Void in
+                    var json = JSON(data: data!)
+                    var errorString = DataManager.checkForErrors(json)
+                    if errorString != "" {
+                        dispatch_async(dispatch_get_main_queue()) {
+                            SweetAlert().showAlert("Oops!", subTitle: errorString, style: AlertStyle.Error)
+                            return
+                        }
+                    }
+                    else {
+                        dispatch_async(dispatch_get_main_queue()) {
+                            SweetAlert().showAlert("Success!", subTitle: "Your event has been deleted.", style: AlertStyle.Success)
+                            
+                            //self.navigationController?.popViewControllerAnimated(true)
+                            self.navigationController?.popToRootViewControllerAnimated(true)
+                            
+                            return
+                        }
+                    }
+                })
             }
-        })
+        }
 
     }
     
@@ -83,6 +92,15 @@ class AddEventViewController: UIViewController, UITextViewDelegate, UIPickerView
         scrollView.contentOffset.y = scrollView.contentSize.height - scrollView.frame.size.height
         var date = formatDate(datePicker.date)
         //println("\(date)")
+    }
+    
+    override func touchesBegan(touches: Set<NSObject>, withEvent event: UIEvent) {
+        self.view.endEditing(true);
+    }
+    
+    func textFieldShouldReturn(textField: UITextField) -> Bool {
+        textField.resignFirstResponder();
+        return true;
     }
     
     func textViewDidBeginEditing(textView: UITextView) {
@@ -136,8 +154,9 @@ class AddEventViewController: UIViewController, UITextViewDelegate, UIPickerView
         btnDelete.hidden = true
         btnDelete.enabled = false
         
-        if eventID >= 0 {
+        if eventID >= 0 && eventtitle != "" {
             println("EventID: \(eventID)")
+            self.title = "Update Event"
             viewConstraint.constant = 0
             btnDelete.hidden = false
             btnDelete.enabled = true
@@ -198,6 +217,12 @@ class AddEventViewController: UIViewController, UITextViewDelegate, UIPickerView
             let date = dateFormatter.dateFromString(eventDate)
             
             datePicker.setDate(date!, animated: true)
+        }
+        else if eventID >= 0 {
+            self.title = "Update Event"
+            viewConstraint.constant = 0
+            btnDelete.hidden = false
+            btnDelete.enabled = true
         }
         else {
             viewConstraint.constant = -185
@@ -297,9 +322,8 @@ class AddEventViewController: UIViewController, UITextViewDelegate, UIPickerView
         var date = formatDate(datePicker.date)
         //println("\(date)")
         
-        var eventParams: Dictionary<String, AnyObject> = ["title": EventTitle.text.capitalizedString, "location": location, "description": EventDescription.text, "event_time": date,"created_by": MusiciansWanted.userId]
-        
-        //var eventParams: Dictionary<String, AnyObject> = ["title": "joe's pajama party", "location": "1101 Arch Street, Philadelphia, PA 19107", "description": "this will be fun", "event_time": "2015-05-05 14:31:20 -0400","created_by": MusiciansWanted.userId]
+        var eventParams: Dictionary<String, AnyObject> = ["title": EventTitle.text.capitalizedString, "location": location, "description": EventDescription.text, "event_time": date, "created_by": MusiciansWanted.userId]
+
         var params = ["event": eventParams]
         
         if eventID < 0 {
@@ -320,8 +344,11 @@ class AddEventViewController: UIViewController, UITextViewDelegate, UIPickerView
                         SweetAlert().showAlert("Success!", subTitle: "Your event has been submitted.", style: AlertStyle.Success)
                         
                         self.eventID = json["id"].intValue
+                        self.title = "Update Event"
+                        self.viewConstraint.constant = 0
+                        self.hasBeenSaved = true
 
-                        self.navigationController?.popViewControllerAnimated(true)
+                        //self.navigationController?.popViewControllerAnimated(true)
                         
                         return
                     }

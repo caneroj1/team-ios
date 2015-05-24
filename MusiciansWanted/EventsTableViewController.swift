@@ -63,19 +63,33 @@ class EventsTableViewController: UITableViewController, UIScrollViewDelegate, UI
         let cell = tableView.dequeueReusableCellWithIdentifier("Event", forIndexPath: indexPath) as! EventsCell
         
         var event = eventManager.eventDictionary[eventManager.event[indexPath.row]]
+        var newLoc = "No Location Given"
         
-        // Configure the cell...
-        var newLoc = event!.eventLocation.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceCharacterSet())
-        
-        var tmpArray1 : [String] = newLoc.componentsSeparatedByCharactersInSet(NSCharacterSet (charactersInString: "\n:,"))
-        
-        if tmpArray1.count > 3 {
-            newLoc = tmpArray1[1].stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceCharacterSet()) + ", " + tmpArray1[2].stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceCharacterSet())
+        if event?.eventLocation != nil && event?.eventLocation != "" {
+            
+            newLoc = event!.eventLocation.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceCharacterSet())
+            
+            var tmpArray1 : [String] = newLoc.componentsSeparatedByCharactersInSet(NSCharacterSet (charactersInString: "\n:,"))
+            
+            if tmpArray1.count > 3 {
+                newLoc = tmpArray1[1].stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceCharacterSet()) + ", " + tmpArray1[2].stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceCharacterSet())
+            }
         }
         
         cell.EventDescription.text = newLoc
         cell.EventTitle.text = event!.eventName
         
+        let formatter = NSDateFormatter()
+        formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSS'Z"
+        
+        let outputter = NSDateFormatter()
+        outputter.dateFormat = "MM/dd/yy"
+        
+        let offset = Double(formatter.timeZone.secondsFromGMT)
+        let newDateObject = formatter.dateFromString(event!.eventDate)?.dateByAddingTimeInterval(offset)
+        
+        cell.EventDate1.text = outputter.stringFromDate(newDateObject!)
+        cell.EventDate2.text = cell.EventDate1.text
         //cell.EventDescription.text = "The time to see ultra lord"
         
         if (event!.hasEventPic == "true")
@@ -109,6 +123,10 @@ class EventsTableViewController: UITableViewController, UIScrollViewDelegate, UI
         }
         
         return cell
+    }
+    
+    override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+        return self.view.frame.size.width * (2/3) + 20
     }
     
     func addedNewEvent() {

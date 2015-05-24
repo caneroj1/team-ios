@@ -10,7 +10,7 @@ import UIKit
 
 var thisSort = 4
 
-class AddEventViewController: UIViewController, UITextViewDelegate, UIPickerViewDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UIScrollViewDelegate {
+class AddEventViewController: UIViewController, UITextViewDelegate, UITextFieldDelegate,UIPickerViewDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UIScrollViewDelegate {
     
     var eventtitle: String = ""
     var hasEventPic: Bool = false
@@ -85,6 +85,15 @@ class AddEventViewController: UIViewController, UITextViewDelegate, UIPickerView
         //println("\(date)")
     }
     
+    override func touchesBegan(touches: Set<NSObject>, withEvent event: UIEvent) {
+        self.view.endEditing(true);
+    }
+    
+    func textFieldShouldReturn(textField: UITextField) -> Bool {
+        textField.resignFirstResponder();
+        return true;
+    }
+    
     func textViewDidBeginEditing(textView: UITextView) {
         scrollView.contentOffset.y = scrollView.contentSize.height - scrollView.frame.size.height + 200
     }
@@ -136,8 +145,9 @@ class AddEventViewController: UIViewController, UITextViewDelegate, UIPickerView
         btnDelete.hidden = true
         btnDelete.enabled = false
         
-        if eventID >= 0 {
+        if eventID >= 0 && eventtitle != "" {
             println("EventID: \(eventID)")
+            self.title = "Update Event"
             viewConstraint.constant = 0
             btnDelete.hidden = false
             btnDelete.enabled = true
@@ -198,6 +208,12 @@ class AddEventViewController: UIViewController, UITextViewDelegate, UIPickerView
             let date = dateFormatter.dateFromString(eventDate)
             
             datePicker.setDate(date!, animated: true)
+        }
+        else if eventID >= 0 {
+            self.title = "Update Event"
+            viewConstraint.constant = 0
+            btnDelete.hidden = false
+            btnDelete.enabled = true
         }
         else {
             viewConstraint.constant = -185
@@ -319,8 +335,11 @@ class AddEventViewController: UIViewController, UITextViewDelegate, UIPickerView
                         SweetAlert().showAlert("Success!", subTitle: "Your event has been submitted.", style: AlertStyle.Success)
                         
                         self.eventID = json["id"].intValue
+                        self.title = "Update Event"
+                        self.viewConstraint.constant = 0
+                        self.hasBeenSaved = true
 
-                        self.navigationController?.popViewControllerAnimated(true)
+                        //self.navigationController?.popViewControllerAnimated(true)
                         
                         return
                     }

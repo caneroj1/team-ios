@@ -64,8 +64,6 @@ class LogInViewController: UIViewController, CLLocationManagerDelegate, UITextFi
         }
         
         // Do any additional setup after loading the view.
-        
-        
     }
     
     

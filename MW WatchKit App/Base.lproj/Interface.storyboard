@@ -19,11 +19,11 @@
                                 <tableRow identifier="EventRow" id="MuQ-XZ-uOG" customClass="EventRow" customModule="MW_WatchKit_Extension">
                                     <group key="rootItem" width="1" height="0.0" alignment="left" layout="vertical" id="eIh-5C-6v1">
                                         <items>
-                                            <label alignment="left" text="Event Name" numberOfLines="3" id="vx0-fl-6o5"/>
+                                            <label alignment="left" text="Event Name" numberOfLines="2" id="9FK-tq-JlY"/>
                                             <label alignment="left" text="Event Location" numberOfLines="3" id="rX0-GM-rwP">
                                                 <fontDescription key="font" style="UICTFontTextStyleCaption2"/>
                                             </label>
-                                            <label alignment="left" text="Event Date" numberOfLines="0" id="x4E-Yz-fQF">
+                                            <label alignment="left" text="Event Date" id="x4E-Yz-fQF">
                                                 <fontDescription key="font" style="UICTFontTextStyleCaption2"/>
                                             </label>
                                         </items>
@@ -31,7 +31,7 @@
                                     <connections>
                                         <outlet property="eventDate" destination="x4E-Yz-fQF" id="qUp-Wf-h5Y"/>
                                         <outlet property="eventLocation" destination="rX0-GM-rwP" id="Qtx-i9-flf"/>
-                                        <outlet property="eventTitle" destination="vx0-fl-6o5" id="J9r-gK-9Ib"/>
+                                        <outlet property="eventTitle" destination="9FK-tq-JlY" id="kdF-PD-68I"/>
                                     </connections>
                                 </tableRow>
                             </items>

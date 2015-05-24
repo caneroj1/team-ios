@@ -93,24 +93,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func fetchEvents() -> [NSObject: AnyObject] {
         var url = "/api"
         var results = [NSObject: AnyObject]()
-        var eventArray = [String]()
         
-//        if let id = NSUserDefaults.standardUserDefaults().objectForKey("userId") as? Int {
-//            url += "/users/\(id)/events_near_me"
-//        }
-//        else {
-            url += "/events"
-//        }
-
-        let json = DataManager.makeSyncGetRequest(url)
-        
-        for item in json {
-            var str = ""
-            str += (item.1["title"].stringValue)
-            str += ("," + item.1["event_time"].stringValue)
-            str += ("," + item.1["location"].stringValue)
-            eventArray.append(str)
+        if let id = NSUserDefaults.standardUserDefaults().objectForKey("userId") as? Int {
+            url += "/users/\(id)/events_near_me"
         }
+        else {
+            url += "/events"
+        }
+        
+        var eventArray = populateEvents(DataManager.makeSyncGetRequest(url))
         
         if eventArray.count != 0 {
             results.updateValue(eventArray, forKey: "results")
@@ -119,9 +110,20 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             results.updateValue("There are no nearby events.", forKey: "error")
         }
         
-        results.updateValue("mango", forKey: eventArray.count)
-        
         return results
+    }
+    
+    func populateEvents(data: JSON) -> [String] {
+        var eventArray = [String]()
+        for item in data {
+            var str = ""
+            str += (item.1["title"].stringValue)
+            str += ("," + item.1["event_time"].stringValue)
+            str += ("," + item.1["location"].stringValue)
+            eventArray.append(str)
+        }
+        
+        return eventArray
     }
 }
 

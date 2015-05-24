@@ -297,9 +297,8 @@ class AddEventViewController: UIViewController, UITextViewDelegate, UIPickerView
         var date = formatDate(datePicker.date)
         //println("\(date)")
         
-        var eventParams: Dictionary<String, AnyObject> = ["title": EventTitle.text.capitalizedString, "location": location, "description": EventDescription.text, "event_time": date,"created_by": MusiciansWanted.userId]
-        
-        //var eventParams: Dictionary<String, AnyObject> = ["title": "joe's pajama party", "location": "1101 Arch Street, Philadelphia, PA 19107", "description": "this will be fun", "event_time": "2015-05-05 14:31:20 -0400","created_by": MusiciansWanted.userId]
+        var eventParams: Dictionary<String, AnyObject> = ["title": EventTitle.text.capitalizedString, "location": location, "description": EventDescription.text, "event_time": date, "created_by": MusiciansWanted.userId]
+
         var params = ["event": eventParams]
         
         if eventID < 0 {

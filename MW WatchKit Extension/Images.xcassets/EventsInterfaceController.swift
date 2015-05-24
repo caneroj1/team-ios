@@ -19,6 +19,7 @@ class EventsInterfaceController: WKInterfaceController {
         
         // Configure interface objects here.
         let userDictionary: [String: String] = ["find": "events"]
+        setLoadingStatus()
         getEvents(userDictionary)
     }
     
@@ -77,5 +78,12 @@ class EventsInterfaceController: WKInterfaceController {
         return outputter.stringFromDate(newDateObject!)
     }
     
-    
+    func setLoadingStatus() {
+        eventsTable.setNumberOfRows(1, withRowType: "EventRow")
+        if let rowController = eventsTable.rowControllerAtIndex(0) as? EventRow {
+            rowController.eventTitle.setText("Loading Events")
+            rowController.eventDate.setText("")
+            rowController.eventLocation.setText("")
+        }
+    }
 }

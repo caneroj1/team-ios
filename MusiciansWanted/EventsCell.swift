@@ -12,6 +12,8 @@ class EventsCell: UITableViewCell {
     
     @IBOutlet weak var EventTitle: UILabel!
     @IBOutlet weak var EventDescription: UILabel!
+    @IBOutlet weak var EventDate1: UILabel!
+    @IBOutlet weak var EventDate2: UILabel!
     @IBOutlet weak var EventImage: UIImageView!
     
     

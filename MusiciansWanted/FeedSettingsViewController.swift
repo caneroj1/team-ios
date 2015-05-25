@@ -9,10 +9,10 @@
 import UIKit
 
 
-class FeedSettingsViewController: UIViewController, UIPickerViewDelegate {
+class FeedSettingsViewController: UITableViewController, UIPickerViewDelegate {
 
-    var sortBy = ["Near Me","Most Recent","My Contacts","My Posts"]
-    var selectedSort = NSUserDefaults.standardUserDefaults().integerForKey("selectedSort")
+    var sortBy = ["Everyone","My Contacts","Only Me"]
+    var selectedSort = NSUserDefaults.standardUserDefaults().objectForKey("selectedSort") == nil ? 1 : NSUserDefaults.standardUserDefaults().integerForKey("selectedSort")
 
     @IBOutlet weak var sortPicker: UIPickerView!
     
@@ -41,10 +41,10 @@ class FeedSettingsViewController: UIViewController, UIPickerViewDelegate {
     func pickerView(pickerView: UIPickerView, viewForRow row: Int, forComponent component: Int, reusingView view: UIView!) -> UIView{
         
         var pickerLabel = UILabel()
-        pickerLabel.textColor = UIColor.whiteColor()
+        pickerLabel.textColor = UIColor.blackColor()
         pickerLabel.text = sortBy[row]
         // pickerLabel.font = UIFont(name: pickerLabel.font.fontName, size: 15)
-        pickerLabel.font = UIFont(name: "Marker Felt", size: 24) // In this use your custom font
+        pickerLabel.font = UIFont(name: "HelveticaNeue-Thin", size: 20)
         pickerLabel.textAlignment = NSTextAlignment.Center
         
         return pickerLabel

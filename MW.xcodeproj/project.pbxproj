@@ -529,7 +529,7 @@
 				TargetAttributes = {
 					012C27BF1AAB7CEE0024F5C3 = {
 						CreatedOnToolsVersion = 6.1.1;
-						DevelopmentTeam = RCS2VSM2RS;
+						DevelopmentTeam = X65RD8N6BL;
 					};
 					012C27D61AAB7CEE0024F5C3 = {
 						CreatedOnToolsVersion = 6.1.1;
@@ -537,10 +537,11 @@
 					};
 					44D0F3DF1B0BDAB80030CAE2 = {
 						CreatedOnToolsVersion = 6.3.1;
-						DevelopmentTeam = RCS2VSM2RS;
+						DevelopmentTeam = X65RD8N6BL;
 					};
 					44D0F3E91B0BDAB90030CAE2 = {
 						CreatedOnToolsVersion = 6.3.1;
+						DevelopmentTeam = X65RD8N6BL;
 					};
 				};
 			};
@@ -940,6 +941,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_PREPROCESSOR_DEFINITIONS = (
@@ -964,6 +966,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				GCC_NO_COMMON_BLOCKS = YES;

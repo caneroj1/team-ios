@@ -47,7 +47,7 @@ class FeedViewDataManager: NSData {
                 var id = notificationData["id"].stringValue.toInt()!
                 if (self.notificationDict.indexForKey(id) == nil) {
                     var title = notificationData["title"].stringValue
-                    var location = notificationData["location"].stringValue
+                    var location = DataManager.formatLocation(notificationData["location"].stringValue)
                     var distanceString = notificationData["distance"].stringValue
                     var date = notificationData["created_at"].stringValue
                     var type = notificationData["notification_type"].stringValue.toInt()!
@@ -92,7 +92,7 @@ class FeedViewDataManager: NSData {
                 var id = notificationData["id"].stringValue.toInt()!
             
                 var title = notificationData["title"].stringValue
-                var location = notificationData["location"].stringValue
+                var location = DataManager.formatLocation(notificationData["location"].stringValue)
                 var distanceString = notificationData["distance"].stringValue
                 var date = notificationData["created_at"].stringValue
                 var type = notificationData["notification_type"].stringValue.toInt()!

@@ -8,6 +8,7 @@
 
 import UIKit
 import CoreLocation
+import AddressBookUI
 
 extension UIImage {
     func imageWithColor(tintColor: UIColor) -> UIImage {
@@ -125,118 +126,7 @@ class GlobalTabBarController: UITabBarController, CLLocationManagerDelegate {
     
     func useLocationInfo(placemark: CLPlacemark) {
         locationManager.stopUpdatingLocation()
-        let subThoroughfare: String = (placemark.subThoroughfare != nil) ? placemark.subThoroughfare : ""
-        let thoroughfare: String = (placemark.thoroughfare != nil) ? placemark.thoroughfare : ""
-        var locationString = "\(subThoroughfare) \(thoroughfare)\n\(placemark.subLocality), "
-        
-        var locality = placemark.locality
-        
-        switch placemark.locality.lowercaseString.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceCharacterSet()) {
-        case "alabama":
-            locality = "AL"
-        case "alaska":
-            locality = "AK"
-        case "arizona":
-            locality = "AZ"
-        case "arkinsas":
-            locality = "AR"
-        case "california":
-            locality = "CA"
-        case "colorado":
-            locality = "CO"
-        case "connecticut":
-            locality = "CT"
-        case "delaware":
-            locality = "DE"
-        case "florida":
-            locality = "FL"
-        case "georgia":
-            locality = "GA"
-        case "hawaii":
-            locality = "HI"
-        case "idaho":
-            locality = "ID"
-        case "illinois":
-            locality = "IL"
-        case "indiana":
-            locality = "IN"
-        case "iowa":
-            locality = "IA"
-        case "kansas":
-            locality = "KS"
-        case "kentucky":
-            locality = "KY"
-        case "louisiana":
-            locality = "LA"
-        case "maine":
-            locality = "ME"
-        case "maryland":
-            locality = "MD"
-        case "massachusetts":
-            locality = "MA"
-        case "michigan":
-            locality = "MI"
-        case "minnesota":
-            locality = "MN"
-        case "missouri":
-            locality = "MO"
-        case "montana":
-            locality = "MT"
-        case "nebraska":
-            locality = "NE"
-        case "nevada":
-            locality = "NV"
-        case "new hampshire":
-            locality = "NH"
-        case "new jersey":
-            locality = "NJ"
-        case "new mexico":
-            locality = "NM"
-        case "new york":
-            locality = "NY"
-        case "north carolina":
-            locality = "NC"
-        case "north dakota":
-            locality = "ND"
-        case "ohio":
-            locality = "OH"
-        case "oklahoma":
-            locality = "OK"
-        case "oregon":
-            locality = "OR"
-        case "pennsylvania":
-            locality = "PA"
-        case "rhode island":
-            locality = "RI"
-        case "south carolina":
-            locality = "SC"
-        case "south dakota":
-            locality = "SD"
-        case "tennessee":
-            locality = "TN"
-        case "texas":
-            locality = "TX"
-        case "utah":
-            locality = "UT"
-        case "vermont":
-            locality = "VT"
-        case "virginia":
-            locality = "VA"
-        case "washington":
-            locality = "WA"
-        case "west virginia":
-            locality = "WV"
-        case "wisconsin":
-            locality = "WI"
-        case "wyoming":
-            locality = "WY"
-        default:
-            locality = placemark.locality
-        }
-        
-        locationString = locationString.stringByAppendingString("\(locality) : \(placemark.postalCode)\n\(placemark.country)")
-        
-        setLocationTracking(locationString)
+        setLocationTracking(ABCreateStringWithAddressDictionary(placemark.addressDictionary, true))
     }
     
     func setLocationTracking(location: String) {
@@ -246,8 +136,19 @@ class GlobalTabBarController: UITabBarController, CLLocationManagerDelegate {
         
         DataManager.makePatchRequest(url, params: params, completion: { (data, error) -> Void in
             dispatch_async(dispatch_get_main_queue()) {
+
+                // Get info from patch request
+                let json = JSON(data: data!)
                 
-                //Store User information
+                // Get latitude and longitude as NSStrings
+                let longitude: NSString = json["longitude"].stringValue
+                let latitude: NSString = json["latitude"].stringValue
+                
+                // Store latitude and longitude as Doubles (type alias of CLLocationDegrees)
+                MusiciansWanted.longitude = Double(longitude.floatValue)
+                MusiciansWanted.latitude = Double(latitude.floatValue)
+                
+                // Store User information
                 let defaults = NSUserDefaults.standardUserDefaults()
                 
                 defaults.setObject(MusiciansWanted.userId, forKey: "userId")

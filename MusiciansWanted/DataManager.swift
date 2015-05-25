@@ -18,6 +18,14 @@ let mwApiKey = NSProcessInfo.processInfo().environment["MW_KEY"] as! String
 
 class DataManager {
     
+    class func formatLocation(location: String) -> String {
+        var locationString: String = location.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceCharacterSet())
+        var tmpArray: [String] = locationString.componentsSeparatedByCharactersInSet(NSCharacterSet(charactersInString: "\n:"))
+        locationString = tmpArray[1].stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceCharacterSet()) as String
+        
+        return locationString
+    }
+    
     class func makeSyncGetRequest(url: String) -> JSON {
         let request = NSURLRequest(URL: NSURL(string: mwURL + url)!)
         var response: NSURLResponse?

@@ -26,26 +26,6 @@ class LogInViewController: UIViewController, CLLocationManagerDelegate, UITextFi
         return true;
     }
     
-    /*override func viewWillAppear(animated: Bool) {
-        // Determine if user logged in:
-        
-        let defaults = NSUserDefaults.standardUserDefaults()
-        
-        if (defaults.objectForKey("userId") != nil) {
-            MusiciansWanted.userId = defaults.integerForKey("userId")
-            MusiciansWanted.refreshToken = defaults.stringForKey("refreshToken")!
-            MusiciansWanted.locationServicesDisabled = defaults.boolForKey("locationServicesDisabled")
-            MusiciansWanted.longitude = defaults.objectForKey("longitude") as! CLLocationDegrees
-            MusiciansWanted.latitude = defaults.objectForKey("latitude")as! CLLocationDegrees
-            
-            println("!= nil");
-            
-            let viewController = self.storyboard?.instantiateViewControllerWithIdentifier("FeedTableViewController") as! FeedTableViewController
-            self.presentViewController(viewController, animated: true, completion: nil)
-        }
-        
-    }*/
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -77,7 +57,6 @@ class LogInViewController: UIViewController, CLLocationManagerDelegate, UITextFi
         if(usernameField.text != "" && passwordField.text != "") {
             var paramsDictionary = ["email": usernameField.text.lowercaseString, "password": passwordField.text]
             DataManager.makePostRequest("/api/login", params: paramsDictionary, completion: { (data, error) -> Void in
-                println(error)
                 let json = JSON(data: data!)
                 dispatch_async(dispatch_get_main_queue()) {
                     var alert:UIAlertController = UIAlertController()

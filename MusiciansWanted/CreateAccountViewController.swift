@@ -1,71 +1,28 @@
 //
-//  GlobalTabBarController.swift
-//  MusiciansWanted
+//  CreateAccountViewController.swift
+//  MW
 //
-//  Created by Nick on 3/12/15.
+//  Created by Joseph Canero on 5/25/15.
 //  Copyright (c) 2015 iOS Team. All rights reserved.
 //
 
 import UIKit
 import CoreLocation
 
-extension UIImage {
-    func imageWithColor(tintColor: UIColor) -> UIImage {
-        UIGraphicsBeginImageContextWithOptions(self.size, false, self.scale)
-        
-        let context = UIGraphicsGetCurrentContext() as CGContextRef
-        CGContextTranslateCTM(context, 0, self.size.height)
-        CGContextScaleCTM(context, 1.0, -1.0);
-        CGContextSetBlendMode(context, kCGBlendModeNormal)
-        
-        let rect = CGRectMake(0, 0, self.size.width, self.size.height) as CGRect
-        CGContextClipToMask(context, rect, self.CGImage)
-        tintColor.setFill()
-        CGContextFillRect(context, rect)
-        
-        let newImage = UIGraphicsGetImageFromCurrentImageContext() as UIImage
-        UIGraphicsEndImageContext()
-        
-        return newImage
-    }
-}
+class CreateAccountViewController: UIViewController, CLLocationManagerDelegate {
 
-class GlobalTabBarController: UITabBarController, CLLocationManagerDelegate {
-    var refreshToken:String = ""
-    var userID:Int = 0
     let locationManager = CLLocationManager()
+    var location: String?
+    
+    @IBOutlet weak var userName: UITextField!
+    @IBOutlet weak var userEmail: UITextField!
+    @IBOutlet weak var userPassword: UITextField!
+    @IBOutlet weak var userPasswordConfirmation: UITextField!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // you can add this code to you AppDelegate application:didFinishLaunchingWithOptions:
-        // or add it to viewDidLoad method of your TabBarController class
-        //let tabcolor1 = UIColor(red: 240.0/255.0, green: 240.0/255.0, blue: 239.0/255.0, alpha: 1.0)
-        let navbarcolor = UIColor(red: 240.0/255.0, green: 240.0/255.0, blue: 245.0/255.0, alpha: 1.0)
-        let tabcolor1 = UIColor(red: 130.0/255.0, green: 130.0/255.0, blue: 135.0/255.0, alpha: 0.5)
-        let tabcolor2 = UIColor(red: 255.0/255.0, green: 90.0/255.0, blue: 0.0/255.0, alpha: 1.0)
-        let tabbarcolor = UIColor(red: 0.0/255.0, green: 0.0/255.0, blue: 10.0/255.0, alpha: 1.0)
-        
-        UITabBar.appearance().barTintColor = tabbarcolor
-        UITabBar.appearance().backgroundImage = UIImage(named: "bgBar")
-        UINavigationBar.appearance().barTintColor = tabbarcolor
-        
-        
-        let font = UIFont(name: "HelveticaNeue-Light", size: 20)
-        if let font = font {
-            UINavigationBar.appearance().titleTextAttributes = [NSFontAttributeName : font, NSForegroundColorAttributeName : navbarcolor]//UIColor.whiteColor()]
-        }
-        
-        UITabBarItem.appearance().setTitleTextAttributes([NSForegroundColorAttributeName: tabcolor1], forState:.Normal)
-        UITabBarItem.appearance().setTitleTextAttributes([NSForegroundColorAttributeName: tabcolor2], forState:.Selected)
-        
-        
-        self.tabBar.tintColor = tabcolor2
-        
-        for item in self.tabBar.items as! [UITabBarItem] {
-            if let image = item.image {
-                item.image = image.imageWithColor(tabcolor1).imageWithRenderingMode(.AlwaysOriginal)
-            }
-        }
+
+        // Do any additional setup after loading the view.
         
         // start up location services
         locationManager.delegate = self
@@ -73,23 +30,64 @@ class GlobalTabBarController: UITabBarController, CLLocationManagerDelegate {
         
         switch CLLocationManager.authorizationStatus() {
         case .AuthorizedWhenInUse:
+            println("gonna update location")
             locationManager.startUpdatingLocation()
             MusiciansWanted.locationServicesDisabled = false
         case .NotDetermined:
             locationManager.requestWhenInUseAuthorization()
         case .Restricted, .Denied, .AuthorizedAlways:
+            location = ""
             MusiciansWanted.locationServicesDisabled = true
         }
     }
-    
+
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
     
+    @IBAction func createAccountAction(sender: UIButton) {
+        let userParams = ["name": userName.text, "email": userEmail.text, "password": userPassword.text, "password_confirmation": userPasswordConfirmation.text, "location": location!]
+        let params = ["user": userParams]
+        
+        DataManager.makePostRequest("/api/users", params: params, completion: { (data, error) -> Void in
+            let json = JSON(data: data!)
+            
+            let errors = DataManager.checkForErrors(json)
+            if errors != "" {
+                dispatch_async(dispatch_get_main_queue()) {
+                    SweetAlert().showAlert("Uh oh!", subTitle: errors, style: AlertStyle.Error)
+                    return
+                }
+            }
+            else {
+                let userId = json["id"].stringValue
+                if userId != "" {
+                    dispatch_async(dispatch_get_main_queue()) {
+                        let viewController = self.storyboard?.instantiateViewControllerWithIdentifier("GlobalTabBarController") as! GlobalTabBarController
+                        self.presentViewController(viewController, animated: true, completion: nil)
+                        MusiciansWanted.userId = userId.toInt()!
+                    }
+                }
+            }
+        })
+        
+    }
+
+    /*
+    // MARK: - Navigation
+
+    // In a storyboard-based application, you will often want to do a little preparation before navigation
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        // Get the new view controller using segue.destinationViewController.
+        // Pass the selected object to the new view controller.
+    }
+    */
+    
     // MARK: - Location Services
     func locationManager(manager: CLLocationManager!, didUpdateLocations locations: [AnyObject]!) {
         CLGeocoder().reverseGeocodeLocation(locationManager.location, completionHandler: { (placemarks, error) -> Void in
+            println("GOT LOCATIONNNNNN")
             if (error != nil) {
                 println("Reverse geocoder failed with error " + error.localizedDescription)
                 return
@@ -113,13 +111,13 @@ class GlobalTabBarController: UITabBarController, CLLocationManagerDelegate {
         case .NotDetermined:
             locationManager.requestWhenInUseAuthorization()
         case .Restricted, .Denied, .AuthorizedAlways:
-            setLocationTracking("")
+            location = ""
             MusiciansWanted.locationServicesDisabled = true
         }
     }
     
     func locationManager(manager: CLLocationManager!, didFailWithError error: NSError!) {
-        setLocationTracking("")
+        location = ""
         println("Error while updating location " + error.localizedDescription)
     }
     
@@ -236,35 +234,7 @@ class GlobalTabBarController: UITabBarController, CLLocationManagerDelegate {
         
         locationString = locationString.stringByAppendingString("\(locality) : \(placemark.postalCode)\n\(placemark.country)")
         
-        setLocationTracking(locationString)
+        println("IT IS \(locationString)")
+        location = locationString
     }
-    
-    func setLocationTracking(location: String) {
-        let url = "/api/users/\(MusiciansWanted.userId)"
-        let userParams = ["location": location]
-        let params = ["user": userParams]
-        
-        DataManager.makePatchRequest(url, params: params, completion: { (data, error) -> Void in
-            dispatch_async(dispatch_get_main_queue()) {
-                
-                //Store User information
-                let defaults = NSUserDefaults.standardUserDefaults()
-                
-                defaults.setObject(MusiciansWanted.userId, forKey: "userId")
-                defaults.setObject(MusiciansWanted.locationServicesDisabled, forKey: "locationServicesDisabled")
-                defaults.setObject(MusiciansWanted.longitude, forKey: "longitude")
-                defaults.setObject(MusiciansWanted.latitude, forKey: "latitude")
-            }
-        })
-    }
-    
-    /*
-    // MARK: - Navigation
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-    // Get the new view controller using segue.destinationViewController.
-    // Pass the selected object to the new view controller.
-    }
-    */
-    
 }

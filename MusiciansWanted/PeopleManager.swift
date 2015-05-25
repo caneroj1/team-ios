@@ -169,7 +169,9 @@ class PeopleManager: NSObject {
             dispatch_async(dispatch_get_main_queue()) {
                 
                 self.arrPerson = Array(self.person.keys)
-                self.sortByDistance(0, higherIndex: self.arrPerson.count - 1)
+                if self.arrPerson.count > 0 {
+                    self.sortByDistance(0, higherIndex: self.arrPerson.count - 1)
+                }
                 
                 self.isLoadingPeople = false
                 self.peopleDelegate!.addedNewItem()

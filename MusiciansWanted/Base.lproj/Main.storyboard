@@ -6,41 +6,15 @@
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
-        <!--Musician Request Table View Controller-->
+        <!--New Musician Request-->
         <scene sceneID="d4d-Cj-Wnz">
             <objects>
-                <tableViewController id="hJP-b6-UHJ" customClass="MusicianRequestTableViewController" customModule="MW" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController title="New Musician Request" id="hJP-b6-UHJ" customClass="MusicianRequestTableViewController" customModule="MW" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="grouped" separatorStyle="none" allowsSelection="NO" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" id="Llw-gE-bfz">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="800"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="0.91339819779999998" green="0.91050339209999998" blue="0.96106843580000001" alpha="1" colorSpace="calibratedRGB"/>
                         <sections>
-                            <tableViewSection headerTitle="Create New Musician Request" id="F5o-vP-otR">
-                                <cells>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="requestDescription" rowHeight="120" id="jhQ-9S-At5">
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="jhQ-9S-At5" id="jDK-AT-QRm">
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumFontSize="12" translatesAutoresizingMaskIntoConstraints="NO" id="gmI-6J-vWz">
-                                                    <rect key="frame" x="8" y="13" width="584" height="94"/>
-                                                    <string key="text">A new musician request will create a new notification on users' feeds. The notification will read that you are looking for a musician that plays the selected instrument.</string>
-                                                    <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="18"/>
-                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                            </subviews>
-                                            <color key="backgroundColor" red="0.95758174969999998" green="0.96019051980000003" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                            <constraints>
-                                                <constraint firstItem="gmI-6J-vWz" firstAttribute="leading" secondItem="jDK-AT-QRm" secondAttribute="leadingMargin" id="1uJ-bW-DhX"/>
-                                                <constraint firstItem="gmI-6J-vWz" firstAttribute="top" secondItem="jDK-AT-QRm" secondAttribute="topMargin" constant="5" id="CQR-87-MOa"/>
-                                                <constraint firstAttribute="trailingMargin" secondItem="gmI-6J-vWz" secondAttribute="trailing" id="I13-VK-j1F"/>
-                                                <constraint firstAttribute="bottomMargin" secondItem="gmI-6J-vWz" secondAttribute="bottom" constant="5" id="lEQ-i1-hdJ"/>
-                                            </constraints>
-                                        </tableViewCellContentView>
-                                    </tableViewCell>
-                                </cells>
-                            </tableViewSection>
                             <tableViewSection headerTitle="Select Instrument" id="FPW-KA-oGH">
                                 <cells>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="200" id="SOU-pK-9u9">
@@ -2854,8 +2828,8 @@
                                         <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                         <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
                                     </textField>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Re-type Password" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oqk-U4-VEG">
-                                        <rect key="frame" x="41" y="353" width="126" height="19"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Password Confirmation" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oqk-U4-VEG">
+                                        <rect key="frame" x="41" y="353" width="165" height="19"/>
                                         <fontDescription key="fontDescription" name="MarkerFelt-Thin" family="Marker Felt" pointSize="17"/>
                                         <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>

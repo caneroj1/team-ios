@@ -187,18 +187,29 @@ class DataManager {
         var errorString = ""
         if json["errors"] != nil {
             for (key, value) in json["errors"] {
-                errorString += "\(key.capitalizedString) "
+                errorString += "\(transformKey(key)) "
                 var errors:Array<String> = []
-                var str = "and "
+                var str = ", and "
                 
                 for error in value {
-                    errors.append("\(error.1.stringValue)")
+                    errors.append(transformError(error.1.stringValue))
                 }
                 
-                errorString += "\(str.join(errors))\n"
+                errorString += "\(str.join(errors))\n\n"
             }
         }
         return errorString
+    }
+    
+    private
+    class func transformKey(key: String) -> String {
+        var newKey = key.capitalizedString
+        newKey = newKey.stringByReplacingOccurrencesOfString("_", withString: " ", options: NSStringCompareOptions.allZeros, range: Range<String.Index>(start: key.startIndex, end: key.endIndex))
+        return newKey
+    }
+    
+    class func transformError(error: String) -> String {
+        return error.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet())
     }
 }
 

@@ -11,19 +11,23 @@ import UIKit
 class MusicianRequestTableViewController: UITableViewController, UIPickerViewDelegate, UIPickerViewDataSource {
     
     @IBOutlet weak var instrumentPickerView: UIPickerView!
-    var instruments = ["Drummer", "Guitarist", "Bassist", "Vocalist", "Pianist", "Keyboardist", "Percussionist"]
+    var instruments = ["Vocalist", "Guitarist", "Bassist", "Drummer", "Pianist", "Keyboardist", "Percussionist"]
     var selectedInstrument = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        instruments.sort( { (a: String, b: String) -> Bool in
+            return (a <= b)
+        })
+        
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem()
                 
-        instrumentPickerView.selectRow(0, inComponent: 0, animated: true)
+        instrumentPickerView.selectRow(3, inComponent: 0, animated: true)
     }
 
     override func didReceiveMemoryWarning() {

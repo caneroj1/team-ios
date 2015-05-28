@@ -10,5 +10,6 @@ import Foundation
 
 protocol FeedViewDelegate {
     func addedNewItem()
+    func appliedFilters()
     func stopRefreshing()
 }

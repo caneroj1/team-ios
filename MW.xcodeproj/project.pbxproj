@@ -32,7 +32,6 @@
 		01EA06431B0810FC00DBD350 /* GenreCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01EA06421B0810FC00DBD350 /* GenreCell.swift */; };
 		01EF02981B0B2BD0002227F9 /* MessageBubbleCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01EF02971B0B2BD0002227F9 /* MessageBubbleCell.swift */; };
 		01F50F931AB20E4300FE9051 /* GlobalTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01F50F921AB20E4300FE9051 /* GlobalTabBarController.swift */; };
-		01F50F951AB2424A00FE9051 /* FeedSettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01F50F941AB2424A00FE9051 /* FeedSettingsViewController.swift */; };
 		01FCDE841ACF0500002F3A56 /* InboxTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01FCDE831ACF0500002F3A56 /* InboxTableViewController.swift */; };
 		01FCDE861ACF05EA002F3A56 /* InboxCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01FCDE851ACF05EA002F3A56 /* InboxCell.swift */; };
 		09D698A591F3D8F3224F63C1 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7E375FC571E426EA4D919A0A /* libPods.a */; };
@@ -45,9 +44,13 @@
 		444951C41AD72B420013A4DD /* Notification.swift in Sources */ = {isa = PBXBuildFile; fileRef = 444951C31AD72B420013A4DD /* Notification.swift */; };
 		44566E871ACB4E3200D9F6A4 /* Toucan.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44566E861ACB4E3200D9F6A4 /* Toucan.swift */; };
 		446ED1F21B0922C500855F58 /* MusicianRequestTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 446ED1F11B0922C500855F58 /* MusicianRequestTableViewController.swift */; };
+		4481C4F71B12D87F0078D7AD /* CreateAccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4481C4F61B12D87F0078D7AD /* CreateAccountViewController.swift */; };
 		449935CB1B123FB500467B0B /* PersonRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 449935CA1B123FB500467B0B /* PersonRow.swift */; };
 		449935CD1B12404F00467B0B /* PeopleInterfaceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 449935CC1B12404F00467B0B /* PeopleInterfaceController.swift */; };
 		44A2CF151B0D2155000856C1 /* EventRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44A2CF141B0D2155000856C1 /* EventRow.swift */; };
+		44C1CE761B179855006D2C29 /* FeedSettingsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44C1CE751B179855006D2C29 /* FeedSettingsTableViewController.swift */; };
+		44C1CE781B17A478006D2C29 /* PriorityQueue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44C1CE771B17A478006D2C29 /* PriorityQueue.swift */; };
+		44C1CE7A1B17A579006D2C29 /* redblacktree.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44C1CE791B17A579006D2C29 /* redblacktree.swift */; };
 		44C1D55A1ADCA375006388E5 /* EventMapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44C1D5591ADCA375006388E5 /* EventMapViewController.swift */; };
 		44C1D55C1ADCAFD5006388E5 /* EventMapData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44C1D55B1ADCAFD5006388E5 /* EventMapData.swift */; };
 		44CFD5231AE73F7900E536F3 /* ContactsDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44CFD5221AE73F7900E536F3 /* ContactsDataManager.swift */; };
@@ -139,7 +142,6 @@
 		01EA06421B0810FC00DBD350 /* GenreCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GenreCell.swift; sourceTree = "<group>"; };
 		01EF02971B0B2BD0002227F9 /* MessageBubbleCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessageBubbleCell.swift; sourceTree = "<group>"; };
 		01F50F921AB20E4300FE9051 /* GlobalTabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GlobalTabBarController.swift; sourceTree = "<group>"; };
-		01F50F941AB2424A00FE9051 /* FeedSettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeedSettingsViewController.swift; sourceTree = "<group>"; };
 		01FCDE831ACF0500002F3A56 /* InboxTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InboxTableViewController.swift; sourceTree = "<group>"; };
 		01FCDE851ACF05EA002F3A56 /* InboxCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InboxCell.swift; sourceTree = "<group>"; };
 		0E65F3C837786026AA6D9712 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
@@ -152,9 +154,13 @@
 		444951C31AD72B420013A4DD /* Notification.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Notification.swift; sourceTree = "<group>"; };
 		44566E861ACB4E3200D9F6A4 /* Toucan.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Toucan.swift; sourceTree = "<group>"; };
 		446ED1F11B0922C500855F58 /* MusicianRequestTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MusicianRequestTableViewController.swift; sourceTree = "<group>"; };
+		4481C4F61B12D87F0078D7AD /* CreateAccountViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateAccountViewController.swift; sourceTree = "<group>"; };
 		449935CA1B123FB500467B0B /* PersonRow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PersonRow.swift; sourceTree = "<group>"; };
 		449935CC1B12404F00467B0B /* PeopleInterfaceController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PeopleInterfaceController.swift; sourceTree = "<group>"; };
 		44A2CF141B0D2155000856C1 /* EventRow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventRow.swift; sourceTree = "<group>"; };
+		44C1CE751B179855006D2C29 /* FeedSettingsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeedSettingsTableViewController.swift; sourceTree = "<group>"; };
+		44C1CE771B17A478006D2C29 /* PriorityQueue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PriorityQueue.swift; sourceTree = "<group>"; };
+		44C1CE791B17A579006D2C29 /* redblacktree.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = redblacktree.swift; sourceTree = "<group>"; };
 		44C1D5591ADCA375006388E5 /* EventMapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventMapViewController.swift; sourceTree = "<group>"; };
 		44C1D55B1ADCAFD5006388E5 /* EventMapData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventMapData.swift; sourceTree = "<group>"; };
 		44CFD5221AE73F7900E536F3 /* ContactsDataManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContactsDataManager.swift; sourceTree = "<group>"; };
@@ -285,12 +291,12 @@
 			isa = PBXGroup;
 			children = (
 				442E54EF1AE1979300718014 /* FeedTableViewController.swift */,
-				01F50F941AB2424A00FE9051 /* FeedSettingsViewController.swift */,
-				444951BF1AD719640013A4DD /* FeedViewTableCell.swift */,
-				444951C11AD71B3D0013A4DD /* FeedViewDataManager.swift */,
-				444951C31AD72B420013A4DD /* Notification.swift */,
-				44DFBAAE1AD7731E00DDA8AB /* FeedViewDelegate.swift */,
+				44C1CE751B179855006D2C29 /* FeedSettingsTableViewController.swift */,
 				446ED1F11B0922C500855F58 /* MusicianRequestTableViewController.swift */,
+				444951C11AD71B3D0013A4DD /* FeedViewDataManager.swift */,
+				44DFBAAE1AD7731E00DDA8AB /* FeedViewDelegate.swift */,
+				444951C31AD72B420013A4DD /* Notification.swift */,
+				444951BF1AD719640013A4DD /* FeedViewTableCell.swift */,
 			);
 			name = "News Feed";
 			sourceTree = "<group>";
@@ -358,11 +364,13 @@
 			isa = PBXGroup;
 			children = (
 				44D3089E1ACB32350000F435 /* ApiData.swift */,
-				44D308A21ACB32450000F435 /* SweetAlert copy.swift */,
-				44566E861ACB4E3200D9F6A4 /* Toucan.swift */,
-				44D308A41ACB324E0000F435 /* SwiftyJSON.swift */,
-				44D308A61ACB32560000F435 /* DataManager.swift */,
 				0108DD871B0B06FC00EBF185 /* Constants.swift */,
+				44D308A61ACB32560000F435 /* DataManager.swift */,
+				44C1CE771B17A478006D2C29 /* PriorityQueue.swift */,
+				44C1CE791B17A579006D2C29 /* redblacktree.swift */,
+				44D308A21ACB32450000F435 /* SweetAlert copy.swift */,
+				44D308A41ACB324E0000F435 /* SwiftyJSON.swift */,
+				44566E861ACB4E3200D9F6A4 /* Toucan.swift */,
 			);
 			name = Support;
 			sourceTree = "<group>";
@@ -371,6 +379,7 @@
 			isa = PBXGroup;
 			children = (
 				44D308A01ACB323D0000F435 /* LogInViewController.swift */,
+				4481C4F61B12D87F0078D7AD /* CreateAccountViewController.swift */,
 			);
 			name = Login;
 			sourceTree = "<group>";
@@ -526,7 +535,7 @@
 				TargetAttributes = {
 					012C27BF1AAB7CEE0024F5C3 = {
 						CreatedOnToolsVersion = 6.1.1;
-						DevelopmentTeam = RCS2VSM2RS;
+						DevelopmentTeam = X65RD8N6BL;
 					};
 					012C27D61AAB7CEE0024F5C3 = {
 						CreatedOnToolsVersion = 6.1.1;
@@ -534,10 +543,11 @@
 					};
 					44D0F3DF1B0BDAB80030CAE2 = {
 						CreatedOnToolsVersion = 6.3.1;
-						DevelopmentTeam = RCS2VSM2RS;
+						DevelopmentTeam = X65RD8N6BL;
 					};
 					44D0F3E91B0BDAB90030CAE2 = {
 						CreatedOnToolsVersion = 6.3.1;
+						DevelopmentTeam = X65RD8N6BL;
 					};
 				};
 			};
@@ -643,6 +653,7 @@
 				AD85DC5F1AD452C400D6E369 /* EventsManager.swift in Sources */,
 				01A4FA5F1B0EB039002CA0C0 /* NewMessageViewController.swift in Sources */,
 				444951C21AD71B3D0013A4DD /* FeedViewDataManager.swift in Sources */,
+				44C1CE781B17A478006D2C29 /* PriorityQueue.swift in Sources */,
 				444951C41AD72B420013A4DD /* Notification.swift in Sources */,
 				01EF02981B0B2BD0002227F9 /* MessageBubbleCell.swift in Sources */,
 				01A4FA651B0EFA50002CA0C0 /* SelectContactsViewController.swift in Sources */,
@@ -663,9 +674,9 @@
 				012EDCDD1B0C1B9600E4DB72 /* MessageDelegate.swift in Sources */,
 				012C27C61AAB7CEE0024F5C3 /* AppDelegate.swift in Sources */,
 				446ED1F21B0922C500855F58 /* MusicianRequestTableViewController.swift in Sources */,
-				01F50F951AB2424A00FE9051 /* FeedSettingsViewController.swift in Sources */,
 				442E54F01AE1979300718014 /* FeedTableViewController.swift in Sources */,
 				01266BC31AB0F03F003D2354 /* ProfileViewController.swift in Sources */,
+				4481C4F71B12D87F0078D7AD /* CreateAccountViewController.swift in Sources */,
 				44D308A51ACB324E0000F435 /* SwiftyJSON.swift in Sources */,
 				01A4FA611B0EB384002CA0C0 /* ToContactCell.swift in Sources */,
 				0108DD881B0B06FC00EBF185 /* Constants.swift in Sources */,
@@ -683,6 +694,8 @@
 				01FCDE861ACF05EA002F3A56 /* InboxCell.swift in Sources */,
 				44D308A71ACB32560000F435 /* DataManager.swift in Sources */,
 				AD97B1351AD2C06B007645C1 /* EventsTableViewController.swift in Sources */,
+				44C1CE7A1B17A579006D2C29 /* redblacktree.swift in Sources */,
+				44C1CE761B179855006D2C29 /* FeedSettingsTableViewController.swift in Sources */,
 				44D308A11ACB323D0000F435 /* LogInViewController.swift in Sources */,
 				4434D3DE1AD9D02400344B04 /* PersonViewController.swift in Sources */,
 				012EDCDB1B0C1AD300E4DB72 /* MessageManager.swift in Sources */,
@@ -936,6 +949,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_PREPROCESSOR_DEFINITIONS = (
@@ -960,6 +974,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				GCC_NO_COMMON_BLOCKS = YES;

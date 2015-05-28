@@ -16,8 +16,9 @@ class Notification {
     let imageString: String
     let recordId: Int
     let notificationType: Int
+    let id: Int
     
-    init(title: String, date: String, location: String?, distance: String?, imageString: String, recordId: Int, notificationType: Int) {
+    init(title: String, date: String, location: String?, distance: String?, imageString: String, recordId: Int, notificationType: Int, id: Int) {
         self.title = title
         self.date = date
         self.location = location
@@ -25,5 +26,6 @@ class Notification {
         self.imageString = imageString
         self.recordId = recordId
         self.notificationType = notificationType
+        self.id = id
     }
 }

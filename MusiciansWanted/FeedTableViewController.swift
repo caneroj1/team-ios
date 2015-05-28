@@ -60,6 +60,7 @@ class FeedTableViewController: UITableViewController, UITableViewDataSource, Fee
     // MARK: Table View Functions
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+        println("REMAKING CELLS")
         var cell: FeedViewTableCell = tableView.dequeueReusableCellWithIdentifier("FeedViewCell") as! FeedViewTableCell
         
         let index = indexPath.row
@@ -131,9 +132,20 @@ class FeedTableViewController: UITableViewController, UITableViewDataSource, Fee
         self.refreshControl?.endRefreshing()
     }
     
+    func appliedFilters() {
+        self.tableView.reloadData()
+    }
+    
     // MARK: Refresh Control
     
     func refresh(sender: AnyObject) {
         self.tableViewDataSource.refreshNotifications(MusiciansWanted.userId)
+    }
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if segue.identifier == "Feed Settings" {
+            let destinationVC = segue.destinationViewController as! FeedSettingsTableViewController
+            destinationVC.feedDataManager = self.tableViewDataSource
+        }
     }
 }

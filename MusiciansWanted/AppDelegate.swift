@@ -144,9 +144,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         var eventArray = [String]()
         for item in data {
             var str = ""
+            var location = DataManager.formatLocation(item.1["location"].stringValue)
             str += (item.1["title"].stringValue)
             str += ("|" + item.1["event_time"].stringValue)
-            str += ("|" + item.1["location"].stringValue)
+            str += ("|" + location)
             eventArray.append(str)
         }
         

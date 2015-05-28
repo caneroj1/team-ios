@@ -47,16 +47,7 @@ class PersonViewController: UIViewController, UICollectionViewDelegate, UICollec
                     self.locationlabel.text = "No Location Given"
                 }
                 else {
-                    var newLoc = (json["location"].stringValue).stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceCharacterSet())
-                    
-                    var tmpArray1 : [String] = newLoc.componentsSeparatedByCharactersInSet(NSCharacterSet (charactersInString: "\n:"))
-                    
-                    if tmpArray1.count > 2 {
-                        newLoc = tmpArray1[1].stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceCharacterSet())
-                    }
-                    
-                    
-                    self.locationlabel.text = newLoc
+                    self.locationlabel.text = DataManager.formatLocation(json["location"].stringValue)
                 }
                 
                 self.title = self.personName.text
@@ -135,6 +126,9 @@ class PersonViewController: UIViewController, UICollectionViewDelegate, UICollec
                 dispatch_async(dispatch_get_main_queue()) {
                     sender.enabled = false
                     sender.backgroundColor = self.darkenedColor
+                    if MusiciansWanted.contacts?.findKey(self.id!) == nil {
+                        MusiciansWanted.contacts?.insertKey(self.id!, data: true)
+                    }
                 }
             }
             else {

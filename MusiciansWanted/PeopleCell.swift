@@ -16,12 +16,18 @@ class PeopleCell: UITableViewCell, UICollectionViewDataSource, UICollectionViewD
     @IBOutlet var lblAge: UILabel!
     @IBOutlet var lblInstrument: UILabel!
     @IBOutlet weak var genreCollection: UICollectionView!
+    @IBOutlet var bgView: UIView!
     
     var genres = [String]()
     
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
+        
+        //let lightShadow: UIColor = UIColor( red: 232/255.0, green: 232/255.0, blue:249/255.0, alpha: 1.0 )
+        let lightShadow: UIColor = UIColor( red: 100/255.0, green: 100/255.0, blue: 124/255.0, alpha: 0.4 )
+        self.bgView.layer.borderColor = lightShadow.CGColor
+        self.bgView.layer.borderWidth = 3.0
     }
 
     override func setSelected(selected: Bool, animated: Bool) {

@@ -13,8 +13,10 @@ class InboxTableViewController: UIViewController, UITableViewDelegate, UITableVi
     @IBOutlet var receivedSent: UISegmentedControl!
     @IBOutlet var inboxTable: UITableView!
     
+    var refreshControl = UIRefreshControl()
     var inboxMgr: InboxManager = InboxManager()
-    
+    var refreshToken = ""
+
     
     @IBAction func selectReceivedSent(sender: AnyObject) {
         inboxTable.reloadData()
@@ -33,15 +35,11 @@ class InboxTableViewController: UIViewController, UITableViewDelegate, UITableVi
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
         
-        /*
-        let mobileAnalytics = AWSMobileAnalytics(forAppId: MobileAnalyticsAppId)
-        let eventRecordClient = mobileAnalytics.eventClient
-        let eventRecord = eventRecordClient.createEventWithEventType("InboxViewEvent")
-        
-        eventRecord.addAttribute("Test", forKey: "Inbox")
-        
-        eventRecordClient.recordEvent(eventRecord)
-        eventRecordClient.submitEvents()*/
+        self.refreshControl = UIRefreshControl()
+        self.refreshControl.attributedTitle = NSAttributedString(string: "Loading More Messages")
+        self.refreshControl.addTarget(self, action: "refresh:", forControlEvents: UIControlEvents.ValueChanged)
+        self.refreshControl.layer.zPosition = -1
+        self.inboxTable.addSubview(refreshControl)
         
         inboxMgr.messageDelegate = self
         inboxMgr.loadInbox()
@@ -233,6 +231,25 @@ class InboxTableViewController: UIViewController, UITableViewDelegate, UITableVi
     }
     
     func addedNewMessage() {
+        if self.refreshControl.refreshing == true {
+            self.refreshControl.endRefreshing()
+        }
+        
         inboxTable.reloadData()
+    }
+    
+    // MARK: - Refresh Control
+    func stopRefreshing() {
+        self.refreshControl.endRefreshing()
+    }
+    
+    // MARK: Refresh Control
+    func refresh(sender: AnyObject) {
+        if receivedSent.selectedSegmentIndex == 0 {
+            inboxMgr.loadInbox()
+        }
+        else {
+            inboxMgr.loadSent()
+        }
     }
 }

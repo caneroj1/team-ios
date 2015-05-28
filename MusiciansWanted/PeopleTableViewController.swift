@@ -115,13 +115,9 @@ class PeopleTableViewController: UITableViewController, UITableViewDataSource, P
 
         cell.lblInstrument.text = person?.instrument
         
-        //Format genre
-        let aString: String = dropLast((person!.genre).isEmpty ? ":" : person!.genre)
-        let newString = aString.stringByReplacingOccurrencesOfString(":", withString: ", ")
-        
-        println(newString)
-
-        cell.lblGenre.text = aString.isEmpty ? "Unknown" : newString
+        if person!.genre != ":" {
+            cell.genres = person!.genre.componentsSeparatedByString(":")
+        }
         
         let mobileAnalytics = AWSMobileAnalytics(forAppId: MobileAnalyticsAppId)
         let eventRecordClient = mobileAnalytics.eventClient
@@ -154,7 +150,7 @@ class PeopleTableViewController: UITableViewController, UITableViewDataSource, P
     
     override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
         
-        return 80
+        return 400
     }
     
     func addedNewItem() {

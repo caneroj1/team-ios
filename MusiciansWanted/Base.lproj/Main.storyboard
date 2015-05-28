@@ -412,6 +412,13 @@
                             <outlet property="delegate" destination="XuY-Fs-Orx" id="yEL-II-JrB"/>
                         </connections>
                     </tableView>
+                    <connections>
+                        <outlet property="contactsNotificationsSwitch" destination="Sxv-G5-llw" id="0uO-4H-Gl2"/>
+                        <outlet property="eventsNotificationsSwitch" destination="7d8-fD-M7z" id="YNx-yH-dNT"/>
+                        <outlet property="musicianRequestsNotificationsSwitch" destination="8JD-D3-cPW" id="wvo-tA-N9E"/>
+                        <outlet property="myNotificationsSwitch" destination="033-Vj-Mcc" id="LXS-cq-D8a"/>
+                        <outlet property="usersNotificationsSwitch" destination="Ygg-MG-lGl" id="7wp-l6-axV"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gav-R1-tFt" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

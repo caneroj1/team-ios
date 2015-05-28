@@ -136,16 +136,19 @@ class FeedViewDataManager: NSData {
         self.feedDelegate?.appliedFilters()
     }
     
-    func filterNotifications() {
+     func filterNotifications() {
+        var tmpArray = [Notification]()
+        
         for (index, notification) in enumerate(notificationArray) {
-            println(index)
-            // filter out notification
+            // filter out notifications
             if !notificationPasses(notification) {
-                println("filtering \(notification)")
-                notificationArray.removeAtIndex(index)
                 notificationDict.removeValueForKey(notification.id)
             }
+            else {
+                tmpArray.append(notification)
+            }
         }
+        notificationArray = tmpArray
     }
     
     // 0 = event

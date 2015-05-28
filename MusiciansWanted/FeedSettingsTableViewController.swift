@@ -11,6 +11,11 @@ import UIKit
 class FeedSettingsTableViewController: UITableViewController {
 
     var feedDataManager: FeedViewDataManager?
+    @IBOutlet weak var myNotificationsSwitch: UISwitch!
+    @IBOutlet weak var contactsNotificationsSwitch: UISwitch!
+    @IBOutlet weak var eventsNotificationsSwitch: UISwitch!
+    @IBOutlet weak var usersNotificationsSwitch: UISwitch!
+    @IBOutlet weak var musicianRequestsNotificationsSwitch: UISwitch!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -20,6 +25,11 @@ class FeedSettingsTableViewController: UITableViewController {
 
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem()
+        myNotificationsSwitch.on = FeedFilters.hideMyNotifications
+        contactsNotificationsSwitch.on = FeedFilters.hideContactNotifications
+        eventsNotificationsSwitch.on = FeedFilters.hideEventNotifications
+        usersNotificationsSwitch.on = FeedFilters.hideUserNotifications
+        musicianRequestsNotificationsSwitch.on = FeedFilters.hideMusicianRequestNotification
     }
 
     override func didReceiveMemoryWarning() {

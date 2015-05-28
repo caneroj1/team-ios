@@ -135,6 +135,9 @@ class PersonViewController: UIViewController, UICollectionViewDelegate, UICollec
                 dispatch_async(dispatch_get_main_queue()) {
                     sender.enabled = false
                     sender.backgroundColor = self.darkenedColor
+                    if MusiciansWanted.contacts?.findKey(self.id!) == nil {
+                        MusiciansWanted.contacts?.insertKey(self.id!, data: true)
+                    }
                 }
             }
             else {

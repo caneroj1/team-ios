@@ -87,15 +87,17 @@ class FeedSettingsTableViewController: UITableViewController {
     }
     */
 
-    /*
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         // Get the new view controller using [segue destinationViewController].
         // Pass the selected object to the new view controller.
+        if let destinationVC = segue.destinationViewController as? FeedTableViewController {
+            println("going to table")
+            destinationVC.tableViewDataSource.applyFilters()
+        }
     }
-    */
     
     // MARK: - Storyboard Actions
     
@@ -123,6 +125,4 @@ class FeedSettingsTableViewController: UITableViewController {
         FeedFilters.hideMusicianRequestNotification = sender.on
         feedDataManager?.applyFilters()
     }
-    
-    
 }

@@ -24,7 +24,9 @@ class ContactsDataManager {
             if errorString == "" {
                 for contact in json {
                     var contactData = contact.1
-                    self.contacts.append(Contact(id: contactData["id"].stringValue.toInt()!, name: contactData["name"].stringValue))
+                    var id = contactData["id"].stringValue.toInt()!
+                    self.addContactToList(id)
+                    self.contacts.append(Contact(id: id, name: contactData["name"].stringValue))
                     self.contactDelegate?.contactSaved()
                 }
             }
@@ -34,5 +36,11 @@ class ContactsDataManager {
                 }
             }
         })
+    }
+    
+    func addContactToList(id: Int) {
+        if MusiciansWanted.contacts?.findKey(id) == nil {
+            MusiciansWanted.contacts?.insertKey(id, data: true)
+        }
     }
 }

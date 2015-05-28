@@ -48,6 +48,8 @@
 		449935CD1B12404F00467B0B /* PeopleInterfaceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 449935CC1B12404F00467B0B /* PeopleInterfaceController.swift */; };
 		44A2CF151B0D2155000856C1 /* EventRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44A2CF141B0D2155000856C1 /* EventRow.swift */; };
 		44C1CE761B179855006D2C29 /* FeedSettingsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44C1CE751B179855006D2C29 /* FeedSettingsTableViewController.swift */; };
+		44C1CE781B17A478006D2C29 /* PriorityQueue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44C1CE771B17A478006D2C29 /* PriorityQueue.swift */; };
+		44C1CE7A1B17A579006D2C29 /* redblacktree.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44C1CE791B17A579006D2C29 /* redblacktree.swift */; };
 		44C1D55A1ADCA375006388E5 /* EventMapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44C1D5591ADCA375006388E5 /* EventMapViewController.swift */; };
 		44C1D55C1ADCAFD5006388E5 /* EventMapData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44C1D55B1ADCAFD5006388E5 /* EventMapData.swift */; };
 		44CFD5231AE73F7900E536F3 /* ContactsDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44CFD5221AE73F7900E536F3 /* ContactsDataManager.swift */; };
@@ -155,6 +157,8 @@
 		449935CC1B12404F00467B0B /* PeopleInterfaceController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PeopleInterfaceController.swift; sourceTree = "<group>"; };
 		44A2CF141B0D2155000856C1 /* EventRow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventRow.swift; sourceTree = "<group>"; };
 		44C1CE751B179855006D2C29 /* FeedSettingsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeedSettingsTableViewController.swift; sourceTree = "<group>"; };
+		44C1CE771B17A478006D2C29 /* PriorityQueue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PriorityQueue.swift; sourceTree = "<group>"; };
+		44C1CE791B17A579006D2C29 /* redblacktree.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = redblacktree.swift; sourceTree = "<group>"; };
 		44C1D5591ADCA375006388E5 /* EventMapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventMapViewController.swift; sourceTree = "<group>"; };
 		44C1D55B1ADCAFD5006388E5 /* EventMapData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventMapData.swift; sourceTree = "<group>"; };
 		44CFD5221AE73F7900E536F3 /* ContactsDataManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContactsDataManager.swift; sourceTree = "<group>"; };
@@ -358,11 +362,13 @@
 			isa = PBXGroup;
 			children = (
 				44D3089E1ACB32350000F435 /* ApiData.swift */,
-				44D308A21ACB32450000F435 /* SweetAlert copy.swift */,
-				44566E861ACB4E3200D9F6A4 /* Toucan.swift */,
-				44D308A41ACB324E0000F435 /* SwiftyJSON.swift */,
-				44D308A61ACB32560000F435 /* DataManager.swift */,
 				0108DD871B0B06FC00EBF185 /* Constants.swift */,
+				44D308A61ACB32560000F435 /* DataManager.swift */,
+				44C1CE771B17A478006D2C29 /* PriorityQueue.swift */,
+				44C1CE791B17A579006D2C29 /* redblacktree.swift */,
+				44D308A21ACB32450000F435 /* SweetAlert copy.swift */,
+				44D308A41ACB324E0000F435 /* SwiftyJSON.swift */,
+				44566E861ACB4E3200D9F6A4 /* Toucan.swift */,
 			);
 			name = Support;
 			sourceTree = "<group>";
@@ -643,6 +649,7 @@
 				AD85DC5F1AD452C400D6E369 /* EventsManager.swift in Sources */,
 				01A4FA5F1B0EB039002CA0C0 /* NewMessageViewController.swift in Sources */,
 				444951C21AD71B3D0013A4DD /* FeedViewDataManager.swift in Sources */,
+				44C1CE781B17A478006D2C29 /* PriorityQueue.swift in Sources */,
 				444951C41AD72B420013A4DD /* Notification.swift in Sources */,
 				01EF02981B0B2BD0002227F9 /* MessageBubbleCell.swift in Sources */,
 				01A4FA651B0EFA50002CA0C0 /* SelectContactsViewController.swift in Sources */,
@@ -682,6 +689,7 @@
 				01FCDE861ACF05EA002F3A56 /* InboxCell.swift in Sources */,
 				44D308A71ACB32560000F435 /* DataManager.swift in Sources */,
 				AD97B1351AD2C06B007645C1 /* EventsTableViewController.swift in Sources */,
+				44C1CE7A1B17A579006D2C29 /* redblacktree.swift in Sources */,
 				44C1CE761B179855006D2C29 /* FeedSettingsTableViewController.swift in Sources */,
 				44D308A11ACB323D0000F435 /* LogInViewController.swift in Sources */,
 				4434D3DE1AD9D02400344B04 /* PersonViewController.swift in Sources */,

@@ -73,10 +73,12 @@ class FeedViewDataManager: NSData {
                         image = "icon_calendar_small.png"
                     }
                     
-                    var newNotification = Notification(title: title, date: self.formatDate(date), location: location, distance: distanceString, imageString: image, recordId: recordId, notificationType: type)
+                    var newNotification = Notification(title: title, date: self.formatDate(date), location: location, distance: distanceString, imageString: image, recordId: recordId, notificationType: type, id: id)
                     
-                    self.notificationDict.updateValue(true, forKey: id)
-                    newNotifications.append(newNotification)
+                    if self.notificationPasses(newNotification) {
+                        self.notificationDict.updateValue(true, forKey: id)
+                        newNotifications.append(newNotification)
+                    }
                 }
             }
             
@@ -118,11 +120,13 @@ class FeedViewDataManager: NSData {
                     image = "icon_calendar_small.png"
                 }
                 
-                var newNotification = Notification(title: title, date: self.formatDate(date), location: location, distance: distanceString, imageString: image, recordId: recordId, notificationType: type)
-
-                self.notificationDict.updateValue(true, forKey: id)
-                self.notificationArray.append(newNotification)
-                self.feedDelegate!.addedNewItem()
+                var newNotification = Notification(title: title, date: self.formatDate(date), location: location, distance: distanceString, imageString: image, recordId: recordId, notificationType: type, id: id)
+                
+                if self.notificationPasses(newNotification) {
+                    self.notificationDict.updateValue(true, forKey: id)
+                    self.notificationArray.append(newNotification)
+                    self.feedDelegate!.addedNewItem()
+                }
             }
         })
     }
@@ -133,6 +137,46 @@ class FeedViewDataManager: NSData {
     }
     
     func filterNotifications() {
+        for (index, notification) in enumerate(notificationArray) {
+            println(index)
+            // filter out notification
+            if !notificationPasses(notification) {
+                println("filtering \(notification)")
+                notificationArray.removeAtIndex(index)
+                notificationDict.removeValueForKey(notification.id)
+            }
+        }
+    }
+    
+    // 0 = event
+    // 1 = user
+    // 2 = request
+    func notificationPasses(notification: Notification) -> Bool {
+        var pass = true
         
+        // hide item types
+        switch notification.notificationType {
+        case 0:
+            pass = pass && !FeedFilters.hideEventNotifications
+        case 1:
+            pass = pass && !FeedFilters.hideUserNotifications
+        case 2:
+            pass = pass && !FeedFilters.hideMusicianRequestNotification
+        default:
+            pass = false // if we get in here, it's a problem
+        }
+        
+        // hide notifications from contacts
+        if FeedFilters.hideContactNotifications && notification.notificationType == 1 {
+            pass = pass && !notificationIsFromContacts(notification.recordId)
+        }
+        
+        // hide notifications that are from me
+        // TO BE IMPLEMENTED
+        return pass
+    }
+    
+    func notificationIsFromContacts(id: Int) -> Bool {
+        return MusiciansWanted.contacts?.findKey(id) != nil
     }
 }

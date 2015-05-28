@@ -14,5 +14,6 @@ struct MusiciansWanted {
     static var locationServicesDisabled: Bool?
     static var longitude: CLLocationDegrees?
     static var latitude: CLLocationDegrees?
+    static var contacts: RedBlackTree<Int, Bool>?
     //static var filters = [String:Bool]()
 }

@@ -214,7 +214,7 @@
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" image="options" id="PpM-wk-TU3">
                             <connections>
-                                <segue destination="XuY-Fs-Orx" kind="show" id="JAZ-lL-Lrl"/>
+                                <segue destination="XuY-Fs-Orx" kind="show" identifier="Feed Settings" id="JAZ-lL-Lrl"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>

@@ -39,7 +39,7 @@ class InboxManager: NSObject {
                         
                         let strdate = msg.1["created_at"].stringValue
                         
-                        self.messageDictionary[msg.1["updated_at"].stringValue] = inbox(id: msg.1["id"].intValue, name: name, subject: msg.1["subject"].stringValue, date: strdate, body: msg.1["body"].stringValue, senderId: msg.1["sent_by"].intValue, receiverId: msg.1["user_id"].intValue, profpic: UIImage(named: "anonymous")!, cellHeight: 85, read: msg.1["seen_by_receiver"].boolValue)
+                        self.messageDictionary[msg.1["created_at"].stringValue] = inbox(id: msg.1["id"].intValue, name: name, subject: msg.1["subject"].stringValue, date: strdate, body: msg.1["body"].stringValue, senderId: msg.1["sent_by"].intValue, receiverId: msg.1["user_id"].intValue, profpic: UIImage(named: "anonymous")!, cellHeight: 85, read: msg.1["seen_by_receiver"].boolValue)
                         
                         
                         self.getImage(msg.1,user: user_json, isSent: false)
@@ -73,7 +73,7 @@ class InboxManager: NSObject {
                         
                         let strdate = msg.1["created_at"].stringValue
                         
-                        self.sent_messageDictionary[msg.1["updated_at"].stringValue] = inbox(id: msg.1["id"].intValue, name: name, subject: msg.1["subject"].stringValue, date: strdate, body: msg.1["body"].stringValue, senderId: msg.1["sent_by"].intValue, receiverId: msg.1["user_id"].intValue, profpic: UIImage(named: "anonymous")!, cellHeight: 85, read: msg.1["seen_by_sender"].boolValue)
+                        self.sent_messageDictionary[msg.1["created_at"].stringValue] = inbox(id: msg.1["id"].intValue, name: name, subject: msg.1["subject"].stringValue, date: strdate, body: msg.1["body"].stringValue, senderId: msg.1["sent_by"].intValue, receiverId: msg.1["user_id"].intValue, profpic: UIImage(named: "anonymous")!, cellHeight: 85, read: msg.1["seen_by_sender"].boolValue)
                         
                         self.getImage(msg.1,user: user_json, isSent: true)
                         

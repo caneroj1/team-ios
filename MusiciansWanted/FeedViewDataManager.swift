@@ -8,6 +8,14 @@
 
 import Foundation
 
+struct FeedFilters {
+    static var hideMyNotifications: Bool = false
+    static var hideContactNotifications: Bool = false
+    static var hideUserNotifications: Bool = false
+    static var hideEventNotifications: Bool = false
+    static var hideMusicianRequestNotification: Bool = false
+}
+
 class FeedViewDataManager: NSData {
     // dictionary of notifications indexed by ID.
     // the id will be used to keep track of which notifications have been already dded.
@@ -117,5 +125,14 @@ class FeedViewDataManager: NSData {
                 self.feedDelegate!.addedNewItem()
             }
         })
+    }
+    
+    func applyFilters() {
+        filterNotifications()
+        self.feedDelegate?.appliedFilters()
+    }
+    
+    func filterNotifications() {
+        
     }
 }

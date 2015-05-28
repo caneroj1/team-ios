@@ -43,14 +43,13 @@ class EventsInterfaceController: WKInterfaceController {
             if let events = reply["results"] as? [String] {
                 self.eventsTable.setNumberOfRows(events.count, withRowType: "EventRow")
                 for (index, event) in enumerate(events) {
-                    var eventInfo = event.componentsSeparatedByString(",")
+                    var eventInfo = event.componentsSeparatedByString("|")
                     if let rowController = self.eventsTable.rowControllerAtIndex(index) as? EventRow {
                         rowController.eventTitle.setText(eventInfo[0])
                         rowController.eventTitle.setTextColor(UIColor(red: 255.0/255.0, green: 90.0/255.0, blue: 0.0/255.0, alpha: 1.0))
                         rowController.eventDate.setText(self.formatDateForWatch(eventInfo[1]))
                         rowController.eventLocation.setText(eventInfo[2])
                     }
-                    println(event)
                 }
             }
             else {

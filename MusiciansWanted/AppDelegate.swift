@@ -84,10 +84,37 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 reply(fetchEvents())
                 return
             }
+            else if find == "people" {
+                reply(fetchPeople())
+                return
+            }
         }
         
         reply(["mw":"bad_reply"])
         return
+    }
+    
+    func fetchPeople() -> [NSObject: AnyObject] {
+        var url = "/api"
+        var results = [NSObject: AnyObject]()
+        
+        if let id = NSUserDefaults.standardUserDefaults().objectForKey("userId") as? Int {
+            url += "/users/\(id)/near_me"
+        }
+        else {
+            url += "/users"
+        }
+        
+        var peopleArray = populatePeople(DataManager.makeSyncGetRequest(url))
+        
+        if peopleArray.count != 0 {
+            results.updateValue(peopleArray, forKey: "results")
+        }
+        else {
+            results.updateValue("There are no nearby people", forKey: "error")
+        }
+        
+        return results
     }
     
     func fetchEvents() -> [NSObject: AnyObject] {
@@ -118,12 +145,24 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         for item in data {
             var str = ""
             str += (item.1["title"].stringValue)
-            str += ("," + item.1["event_time"].stringValue)
-            str += ("," + item.1["location"].stringValue)
+            str += ("|" + item.1["event_time"].stringValue)
+            str += ("|" + item.1["location"].stringValue)
             eventArray.append(str)
         }
         
         return eventArray
+    }
+    
+    func populatePeople(data: JSON) -> [String] {
+        var peopleArray = [String]()
+        for item in data {
+            var str = ""
+            str += (item.1["name"].stringValue)
+            str += ("|" + item.1["location"].stringValue)
+            peopleArray.append(str)
+        }
+        
+        return peopleArray
     }
 }
 

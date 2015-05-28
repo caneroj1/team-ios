@@ -171,6 +171,7 @@ class PersonViewController: UIViewController, UICollectionViewDelegate, UICollec
         
         var imageName: String = "btn" + arrGenre[indexPath.row]
         
+        println(imageName)
         cell.imgEditGenre.image = UIImage(named: imageName)
         
         return cell

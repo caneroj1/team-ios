@@ -8,26 +8,50 @@
 
 import UIKit
 
-class PeopleCell: UITableViewCell {
+class PeopleCell: UITableViewCell, UICollectionViewDataSource, UICollectionViewDelegate {
 
     @IBOutlet var imgProfilePic: UIImageView!
     @IBOutlet var lblProfileName: UILabel!
     @IBOutlet var lblLocation: UILabel!
     @IBOutlet var lblAge: UILabel!
     @IBOutlet var lblInstrument: UILabel!
-    @IBOutlet var lblGenre: UILabel!
+    @IBOutlet weak var genreCollection: UICollectionView!
+    @IBOutlet var bgView: UIView!
+    
+    var genres = [String]()
     
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
         
-        
+        //let lightShadow: UIColor = UIColor( red: 232/255.0, green: 232/255.0, blue:249/255.0, alpha: 1.0 )
+        let lightShadow: UIColor = UIColor( red: 100/255.0, green: 100/255.0, blue: 124/255.0, alpha: 0.4 )
+        self.bgView.layer.borderColor = lightShadow.CGColor
+        self.bgView.layer.borderWidth = 3.0
     }
 
     override func setSelected(selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
 
         // Configure the view for the selected state
+    }
+    
+    func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return genres.count - 1
+    }
+    
+    func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
+        return 1
+    }
+    
+    func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
+        let cell: GenreCell = collectionView.dequeueReusableCellWithReuseIdentifier("genreCell", forIndexPath: indexPath) as! GenreCell
+        
+        var imageName: String = "btn" + genres[indexPath.row]
+        println("Name of image: \(imageName)")
+        cell.imgEditGenre.image = UIImage(named: imageName)!
+        
+        return cell
     }
 
 }

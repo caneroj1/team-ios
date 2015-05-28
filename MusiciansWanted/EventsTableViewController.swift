@@ -66,14 +66,7 @@ class EventsTableViewController: UITableViewController, UIScrollViewDelegate, UI
         var newLoc = "No Location Given"
         
         if event?.eventLocation != nil && event?.eventLocation != "" {
-            
-            newLoc = event!.eventLocation.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceCharacterSet())
-            
-            var tmpArray1 : [String] = newLoc.componentsSeparatedByCharactersInSet(NSCharacterSet (charactersInString: "\n:,"))
-            
-            if tmpArray1.count > 3 {
-                newLoc = tmpArray1[1].stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceCharacterSet()) + ", " + tmpArray1[2].stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceCharacterSet())
-            }
+            newLoc = DataManager.formatLocation(event!.eventLocation)
         }
         
         cell.EventDescription.text = newLoc

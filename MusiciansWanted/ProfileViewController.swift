@@ -122,16 +122,7 @@ class ProfileViewController: UIViewController, UINavigationControllerDelegate, U
                     self.locationLabel.text = "No Location Given"
                 }
                 else {
-                    var newLoc = (json["location"].stringValue).stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceCharacterSet())
-                    
-                    var tmpArray1 : [String] = newLoc.componentsSeparatedByCharactersInSet(NSCharacterSet (charactersInString: "\n:"))
-                    
-                    if tmpArray1.count > 2 {
-                        newLoc = tmpArray1[1].stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceCharacterSet())
-                    }
-                    
-                    
-                    self.locationLabel.text = newLoc
+                    self.locationLabel.text = DataManager.formatLocation(json["location"].stringValue)
                 }
                 
                 self.jamLabel.text = json["looking_to_jam"] ? "Yes" : "No"

@@ -44,6 +44,7 @@
 		444951C41AD72B420013A4DD /* Notification.swift in Sources */ = {isa = PBXBuildFile; fileRef = 444951C31AD72B420013A4DD /* Notification.swift */; };
 		44566E871ACB4E3200D9F6A4 /* Toucan.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44566E861ACB4E3200D9F6A4 /* Toucan.swift */; };
 		446ED1F21B0922C500855F58 /* MusicianRequestTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 446ED1F11B0922C500855F58 /* MusicianRequestTableViewController.swift */; };
+		4481C4F71B12D87F0078D7AD /* CreateAccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4481C4F61B12D87F0078D7AD /* CreateAccountViewController.swift */; };
 		449935CB1B123FB500467B0B /* PersonRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 449935CA1B123FB500467B0B /* PersonRow.swift */; };
 		449935CD1B12404F00467B0B /* PeopleInterfaceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 449935CC1B12404F00467B0B /* PeopleInterfaceController.swift */; };
 		44A2CF151B0D2155000856C1 /* EventRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44A2CF141B0D2155000856C1 /* EventRow.swift */; };
@@ -153,6 +154,7 @@
 		444951C31AD72B420013A4DD /* Notification.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Notification.swift; sourceTree = "<group>"; };
 		44566E861ACB4E3200D9F6A4 /* Toucan.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Toucan.swift; sourceTree = "<group>"; };
 		446ED1F11B0922C500855F58 /* MusicianRequestTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MusicianRequestTableViewController.swift; sourceTree = "<group>"; };
+		4481C4F61B12D87F0078D7AD /* CreateAccountViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateAccountViewController.swift; sourceTree = "<group>"; };
 		449935CA1B123FB500467B0B /* PersonRow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PersonRow.swift; sourceTree = "<group>"; };
 		449935CC1B12404F00467B0B /* PeopleInterfaceController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PeopleInterfaceController.swift; sourceTree = "<group>"; };
 		44A2CF141B0D2155000856C1 /* EventRow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventRow.swift; sourceTree = "<group>"; };
@@ -377,6 +379,7 @@
 			isa = PBXGroup;
 			children = (
 				44D308A01ACB323D0000F435 /* LogInViewController.swift */,
+				4481C4F61B12D87F0078D7AD /* CreateAccountViewController.swift */,
 			);
 			name = Login;
 			sourceTree = "<group>";
@@ -532,7 +535,7 @@
 				TargetAttributes = {
 					012C27BF1AAB7CEE0024F5C3 = {
 						CreatedOnToolsVersion = 6.1.1;
-						DevelopmentTeam = RCS2VSM2RS;
+						DevelopmentTeam = X65RD8N6BL;
 					};
 					012C27D61AAB7CEE0024F5C3 = {
 						CreatedOnToolsVersion = 6.1.1;
@@ -540,10 +543,11 @@
 					};
 					44D0F3DF1B0BDAB80030CAE2 = {
 						CreatedOnToolsVersion = 6.3.1;
-						DevelopmentTeam = RCS2VSM2RS;
+						DevelopmentTeam = X65RD8N6BL;
 					};
 					44D0F3E91B0BDAB90030CAE2 = {
 						CreatedOnToolsVersion = 6.3.1;
+						DevelopmentTeam = X65RD8N6BL;
 					};
 				};
 			};
@@ -672,6 +676,7 @@
 				446ED1F21B0922C500855F58 /* MusicianRequestTableViewController.swift in Sources */,
 				442E54F01AE1979300718014 /* FeedTableViewController.swift in Sources */,
 				01266BC31AB0F03F003D2354 /* ProfileViewController.swift in Sources */,
+				4481C4F71B12D87F0078D7AD /* CreateAccountViewController.swift in Sources */,
 				44D308A51ACB324E0000F435 /* SwiftyJSON.swift in Sources */,
 				01A4FA611B0EB384002CA0C0 /* ToContactCell.swift in Sources */,
 				0108DD881B0B06FC00EBF185 /* Constants.swift in Sources */,
@@ -944,6 +949,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_PREPROCESSOR_DEFINITIONS = (
@@ -968,6 +974,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				GCC_NO_COMMON_BLOCKS = YES;

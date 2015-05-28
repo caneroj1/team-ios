@@ -98,7 +98,7 @@ class InboxTableViewController: UIViewController, UITableViewDelegate, UITableVi
         cell.lblSubject.numberOfLines = 1
         cell.lblBody.text = message.body
         
-        if message.unread == true {
+        if message.read == false {
             cell.bgView.hidden = false
         }
         else {
@@ -129,16 +129,39 @@ class InboxTableViewController: UIViewController, UITableViewDelegate, UITableVi
         
         let messageView = self.storyboard?.instantiateViewControllerWithIdentifier("RepliesView") as! MessagesViewController
         
+        var messageParams: Dictionary<String, AnyObject>
+        
         if receivedSent.selectedSegmentIndex == 0 {
             messageView.messageId = inboxMgr.messageDictionary[inboxMgr.messages[indexPath.row]]!.id
-            inboxMgr.messageDictionary[inboxMgr.messages[indexPath.row]]!.unread = false
-            
+            inboxMgr.messageDictionary[inboxMgr.messages[indexPath.row]]!.read = true
             messageView.subject = inboxMgr.messageDictionary[inboxMgr.messages[indexPath.row]]!.subject
+            messageView.receiverId = inboxMgr.messageDictionary[inboxMgr.messages[indexPath.row]]!.receiverId
+            
+            messageParams = ["seen_by_receiver": true]
         }
         else {
             messageView.messageId = inboxMgr.sent_messageDictionary[inboxMgr.sent_messages[indexPath.row]]!.id
+            inboxMgr.sent_messageDictionary[inboxMgr.sent_messages[indexPath.row]]!.read = true
             messageView.subject = inboxMgr.sent_messageDictionary[inboxMgr.sent_messages[indexPath.row]]!.subject
+            messageView.receiverId = inboxMgr.sent_messageDictionary[inboxMgr.sent_messages[indexPath.row]]!.receiverId
+            
+            messageParams = ["seen_by_sender": true]
         }
+        
+        let mUrl = "/api/messages/\(messageView.messageId)"
+        
+        var mparams = ["message": messageParams]
+        
+        DataManager.makePatchRequest(mUrl, params: mparams, completion: { (data, error) -> Void in
+            var json = JSON(data: data!)
+            var errorString = DataManager.checkForErrors(json)
+            if errorString != "" {
+                dispatch_async(dispatch_get_main_queue()) {
+                    SweetAlert().showAlert("Oops!", subTitle: errorString, style: AlertStyle.Error)
+                    return
+                }
+            }
+        })
         
         self.navigationController?.pushViewController(messageView, animated: true)
     }

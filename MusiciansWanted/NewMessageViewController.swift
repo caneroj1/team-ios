@@ -38,7 +38,7 @@ class NewMessageViewController: UITableViewController, UICollectionViewDataSourc
             let offset = Double(formatter.timeZone.secondsFromGMT)
             let strdate = formatter.stringFromDate(NSDate().dateByAddingTimeInterval(offset))
             
-            var messageParams: Dictionary<String, AnyObject> = ["subject": subjectText.text.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceCharacterSet()), "body": bodyText.text.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceCharacterSet()), "created_at": strdate, "updated_at": strdate, "sent_by": MusiciansWanted.userId, "user_id": toContacts[0].id]
+            var messageParams: Dictionary<String, AnyObject> = ["subject": subjectText.text.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceCharacterSet()), "body": bodyText.text.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceCharacterSet()), "created_at": strdate, "updated_at": strdate, "sent_by": MusiciansWanted.userId, "user_id": toContacts[0].id, "seen_by_sender": true, "seen_by_receiver": false]
             
             /*{
             "id" : 35,

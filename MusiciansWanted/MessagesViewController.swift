@@ -25,6 +25,7 @@ class MessagesViewController: UIViewController, UITableViewDelegate, UITableView
     var inboxMgr = InboxManager()
     var msgManager = MessageManager()
     var messageId = -1
+    var receiverId = -1
     var subject = ""
     
     @IBAction func sendMessage(sender: UIButton) {
@@ -34,6 +35,7 @@ class MessagesViewController: UIViewController, UITableViewDelegate, UITableView
         
         var replyParams: Dictionary<String, AnyObject> = ["id": messageId, "body": textView.text, "user_id": MusiciansWanted.userId]
         
+        let replyBody = textView.text
         /*
         {
         "body" : "New Message",
@@ -71,10 +73,38 @@ class MessagesViewController: UIViewController, UITableViewDelegate, UITableView
                         self.textViewHeight.constant = newSize.height
                     }
                     
+                    let mUrl = "/api/messages/\(self.messageId)"
+                    
+                    var messageParams: Dictionary<String, AnyObject> = ["body": "[\(self.msgManager.replies.count + 1)] \(replyBody)", "seen_by_sender": MusiciansWanted.userId == self.receiverId ? false : true, "seen_by_receiver": MusiciansWanted.userId == self.receiverId ? true : false]
+                    
+                    /*{
+                    "id" : 35,
+                    "created_at" : "2015-05-17T17:39:53.236Z",
+                    "subject" : "Exclusive national toolset",
+                    "user_id" : 112,
+                    "updated_at" : "2015-05-17T17:39:53.236Z",
+                    "body" : "Laboriosam earum incidunt soluta amet aut et qui.",
+                    "sent_by" : 116
+                    }*/
+                    
+                    var mparams = ["message": messageParams]
+                    
+                    DataManager.makePatchRequest(mUrl, params: mparams, completion: { (data, error) -> Void in
+                        var newjson = JSON(data: data!)
+
+                        var errorString = DataManager.checkForErrors(newjson)
+                        if errorString != "" {
+                            dispatch_async(dispatch_get_main_queue()) {
+                                SweetAlert().showAlert("Oops!", subTitle: errorString, style: AlertStyle.Error)
+                                return
+                            }
+                        }
+                    })
+                    
                     var ttlReplies = self.msgManager.replies.count < 1 ? 1 : self.msgManager.replies.count
                     
                     self.msgManager.loadMessages(self.messageId, lower: ttlReplies - 1, upper: ttlReplies)
-                                        
+                    
                     return
                 }
             }

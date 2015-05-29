@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ProfileViewController: UIViewController, UINavigationControllerDelegate, UIImagePickerControllerDelegate, UITableViewDelegate, UITableViewDataSource, ContactTableDelegate, UICollectionViewDataSource, UICollectionViewDelegate {
+class ProfileViewController: UIViewController, UINavigationControllerDelegate, UIImagePickerControllerDelegate, UITableViewDelegate, UITableViewDataSource, ContactTableDelegate, UICollectionViewDataSource, UICollectionViewDelegate, GKImagePickerDelegate {
     
     // MARK: - Instances Variables and IB Outlets
     var needToLoadPicture = true
@@ -37,11 +37,14 @@ class ProfileViewController: UIViewController, UINavigationControllerDelegate, U
     @IBOutlet var genreCollection: UICollectionView!
     
     // MARK: - Image Functionality
-    
+    let imagePicker = GKImagePicker()
     @IBAction func openCameraRoll(sender: AnyObject) {
-        let imagePicker = UIImagePickerController()
+//        let imagePicker = UIImagePickerController()
+//        imagePicker.delegate = self
+        
         imagePicker.delegate = self
-        self.presentViewController(imagePicker, animated: true, completion: nil)
+        imagePicker.cropSize = CGSize(width: 140, height: 140)
+        self.presentViewController(imagePicker.imagePickerController!, animated: true, completion: nil)
     }
     
     @IBAction func logOut(sender: UIButton) {
@@ -68,6 +71,23 @@ class ProfileViewController: UIViewController, UINavigationControllerDelegate, U
         
         
         
+    }
+    
+    func imagePickerDidCancel(imagePicker: GKImagePicker!) {
+        println("canceled")
+    }
+    
+    func imagePicker(imagePicker: GKImagePicker!, pickedImage image: UIImage!) {
+        println(image)
+        self.dismissViewControllerAnimated(true, completion: nil)
+        DataManager.uploadProfileImage("/api/s3ProfilePictureUpload", userID: MusiciansWanted.userId, image: image, completion: { (data, error) -> Void in
+            dispatch_async(dispatch_get_main_queue()) {
+                SweetAlert().showAlert("Sweet!", subTitle: "Profile picture successfully changed!", style: AlertStyle.Success)
+                return
+            }
+        })
+        let newImage = Toucan(image: image).maskWithRoundedRect(cornerRadius: 20, borderWidth: 1.0, borderColor: UIColor.clearColor()).image
+        profileImage.image = newImage
     }
     
     func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [NSObject : AnyObject]) {
@@ -157,16 +177,14 @@ class ProfileViewController: UIViewController, UINavigationControllerDelegate, U
                 if json["picture"] != nil {
                     var base64String = json["picture"].stringValue
                     let decodedString = NSData(base64EncodedString: base64String, options: NSDataBase64DecodingOptions.IgnoreUnknownCharacters)
-                    var downloadedImage = UIImage(data: decodedString!)!
-                    var newImage = Toucan(image: downloadedImage).resize(CGSizeMake(280, 140), fitMode: Toucan.Resize.FitMode.Scale).image
-
+                    var downloadedImage: UIImage = UIImage(data: decodedString!)!
                     dispatch_async(dispatch_get_main_queue()) {
-                        self.profileImage.image = newImage
+                        self.profileImage.image = Toucan(image: downloadedImage).maskWithRoundedRect(cornerRadius: 20.0, borderWidth: 1.0, borderColor: UIColor.clearColor()).image
                     }
                 }
             }
             else {
-                self.profileImage.image = UIImage(named: "anonymous")
+                self.profileImage.image = Toucan(image: UIImage(named: "anonymous")!).maskWithRoundedRect(cornerRadius: 20.0, borderWidth: 1.0, borderColor: UIColor.clearColor()).image
             }
         })
     }

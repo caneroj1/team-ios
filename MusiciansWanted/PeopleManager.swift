@@ -6,7 +6,7 @@ import CoreLocation
 struct people {
     var id = 0
     var profname = "Un-named"
-    var profpic = UIImage(named: "anonymous")
+    var profpic = UIImage(named: "anonymous")!
     var age = "None"
     var genre = "None"
     var instrument = "None"

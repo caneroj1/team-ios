@@ -70,16 +70,9 @@ class EventViewController: UIViewController {
                 self.btnEventDate.setTitle(outputter.stringFromDate(newDateObject!), forState: UIControlState.Normal)
                 
                 self.eventLocation = json["location"].stringValue
-                
-                var newLoc = self.eventLocation.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceCharacterSet())
-                
-                var tmpArray1 : [String] = newLoc.componentsSeparatedByCharactersInSet(NSCharacterSet (charactersInString: "\n:,"))
-                
-                if tmpArray1.count > 3 {
-                    newLoc = tmpArray1[0].stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceCharacterSet()) + ", " + tmpArray1[1].stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceCharacterSet()) + ", " + tmpArray1[2].stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceCharacterSet()) + " " + tmpArray1[3].stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceCharacterSet())
-                }
-                
-                self.btnEventLocation.setTitle(newLoc, forState: UIControlState.Normal)
+                var newLoc = self.eventLocation.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet())
+                var locationArray = newLoc.componentsSeparatedByString("\n")
+                self.btnEventLocation.setTitle(locationArray[0] + ", " + locationArray[1], forState: UIControlState.Normal)
                 
                 
                 self.userID = json["created_by"].intValue
@@ -105,7 +98,6 @@ class EventViewController: UIViewController {
                     }
                 })
                 
-                //println("EventCreator:\t \(self.userID) \nUser:\t \(MusiciansWanted.userId)")
                 if self.userID == MusiciansWanted.userId {
                     self.btnEdit.enabled = true
                 }
@@ -144,25 +136,8 @@ class EventViewController: UIViewController {
                 }
             }
             else {
-                /*if json["has_profile_pic"].stringValue == "true" {
-                    DataManager.makeGetRequest("/api/s3get?event_id=\(self.id)", completion: { (data, error) -> Void in
-                        var picData = JSON(data: data!)
-                        if picData["picture"] != nil {
-                            var base64String = json["picture"].stringValue
-                            let decodedString = NSData(base64EncodedString: base64String, options: NSDataBase64DecodingOptions.IgnoreUnknownCharacters)
-                            var downloadedImage = UIImage(data: decodedString!)!
-                            var newImage = Toucan(image: downloadedImage).resize(CGSizeMake(280, 140), fitMode: Toucan.Resize.FitMode.Scale).image
-                            
-                            dispatch_async(dispatch_get_main_queue()) {
-                                //self.personIcon.image = newImage
-                            }
-                        }
-                    })
-                }
-                else {*/
-                    dispatch_async(dispatch_get_main_queue()) {
-                        self.imgEvent.image = UIImage(named: "default")
-                    //}
+                dispatch_async(dispatch_get_main_queue()) {
+                    self.imgEvent.image = UIImage(named: "default")
                 }
             }
         })

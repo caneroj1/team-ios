@@ -20,8 +20,13 @@ class DataManager {
     
     class func formatLocation(location: String) -> String {
         var locationString: String = location.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceCharacterSet())
-        var tmpArray: [String] = locationString.componentsSeparatedByCharactersInSet(NSCharacterSet(charactersInString: "\n:"))
-        //locationString = tmpArray[1].stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceCharacterSet()) as String
+        var tmpArray: [String] = locationString.componentsSeparatedByCharactersInSet(NSCharacterSet(charactersInString: "\n"))
+        if tmpArray.count > 2 {
+            locationString = tmpArray[1].stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceCharacterSet()) as String
+        }
+        else {
+            locationString = tmpArray[0].stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceCharacterSet()) as String
+        }
         
         return locationString
     }

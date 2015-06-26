@@ -11,7 +11,11 @@
 import Foundation
 import UIKit
 
-let mwURL = "http://45.56.101.202"
+// NEW SERVER
+let mwURL = "http://52.7.212.226/"
+// OLD SERVER
+//let mwURL = "http://45.56.101.202"
+// LOCAL SERVER
 //let mwURL = "http://localhost:3000"
 
 let mwApiKey = NSProcessInfo.processInfo().environment["MW_KEY"] as! String

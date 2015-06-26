@@ -22,6 +22,8 @@ class ProfileViewController: UIViewController, UINavigationControllerDelegate, U
     var contactsManager = ContactsDataManager()
     var arrGenre = [String]()
     var genre: String = ""
+    var arrInstru = [String]()
+    var instru: String = ""
     
     // IB items for the main profile view
     @IBOutlet weak var nameLabel: UILabel!
@@ -35,6 +37,7 @@ class ProfileViewController: UIViewController, UINavigationControllerDelegate, U
     @IBOutlet var scrollView: UIScrollView!
     @IBOutlet weak var contactsTable: UITableView!
     @IBOutlet var genreCollection: UICollectionView!
+    @IBOutlet var instruCollection: UICollectionView!
     
     // MARK: - Image Functionality
     let imagePicker = GKImagePicker()
@@ -164,6 +167,11 @@ class ProfileViewController: UIViewController, UINavigationControllerDelegate, U
                 
                 self.genreCollection.reloadData()
                 
+                self.instru = json["instrument"].stringValue
+                self.arrInstru = self.instru.componentsSeparatedByCharactersInSet(NSCharacterSet (charactersInString: ":"))
+                
+                self.instruCollection.reloadData()
+                
                 self.editProfileButton.enabled = true
             }
         })
@@ -281,19 +289,24 @@ class ProfileViewController: UIViewController, UINavigationControllerDelegate, U
             }
             
             destination.genre = genre
+            destination.instru = instru
+
         }
     }
     
     func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int{
-        //if genreCollection == collectionView {
+        if genreCollection == collectionView {
             return arrGenre.count
-        //}
+        }
+        else {
+            return arrInstru.count
+        }
     }
     
     // The cell that is returned must be retrieved from a call to -dequeueReusableCellWithReuseIdentifier:forIndexPath:
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
         
-        //if genreCollection == collectionView {
+        if genreCollection == collectionView {
             
             let cell: GenreCell = collectionView.dequeueReusableCellWithReuseIdentifier("genreCell", forIndexPath: indexPath) as! GenreCell
             
@@ -303,7 +316,18 @@ class ProfileViewController: UIViewController, UINavigationControllerDelegate, U
             
             return cell
             
-        //}
+        }
+        else {
+            
+            let cell: InstruCell = collectionView.dequeueReusableCellWithReuseIdentifier("instruCell", forIndexPath: indexPath) as! InstruCell
+            
+            var imageName: String = "anonymous" //"btn" + arrInstru[indexPath.row]
+            
+            cell.imgInstru.image = UIImage(named: imageName)
+                        
+            return cell
+            
+        }
         
     }
 

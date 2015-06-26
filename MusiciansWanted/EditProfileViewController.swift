@@ -25,6 +25,10 @@ class EditProfileViewController: UITableViewController, UITextFieldDelegate, UIC
     var genreDict:[String:Bool] = ["African":false, "Asian":false, "Blues":false, "Caribbean": false, "Classical":false, "Country":false, "Electronic":false, "Folk":false, "Hip-Hop":false, "Jazz":false, "Latin":false, "Pop":false, "Polka":false, "R&B":false, "Rock":false, "Metal":false]
     var genreIndex = [String]()
     
+    var instru: String = ""
+    var instruDict:[String:Bool] = ["Brass":false, "Electronics":false, "Keys":false, "Percussion": false, "Strings(Bowed)":false, "Strings(Plucked)":false, "Vocals":false, "Woodwinds":false]
+    var instruIndex = [String]()
+    
     @IBOutlet weak var ageSlider: UISlider!
     @IBOutlet weak var emailField: UITextField!
     @IBOutlet weak var nameField: UITextField!
@@ -38,6 +42,7 @@ class EditProfileViewController: UITableViewController, UITextFieldDelegate, UIC
     @IBOutlet weak var subscribeButton: UIButton!
     @IBOutlet weak var phoneNumberField: UITextField!
     @IBOutlet var genreCollection: UICollectionView!
+    @IBOutlet var instruCollection: UICollectionView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -47,6 +52,7 @@ class EditProfileViewController: UITableViewController, UITextFieldDelegate, UIC
 //        scrollView.contentSize.width = self.view.frame.width
         
         genreIndex = Array(genreDict.keys).sorted(<)
+        instruIndex = Array(instruDict.keys).sorted(<)
 
     }
     
@@ -72,6 +78,14 @@ class EditProfileViewController: UITableViewController, UITextFieldDelegate, UIC
             
             for genre in arrGenres {
                 genreDict[genre] = true
+            }
+        }
+        
+        if instru != "" {
+            var arrInstru : [String] = instru.componentsSeparatedByCharactersInSet(NSCharacterSet (charactersInString: ":"))
+            
+            for tmpInstru in arrInstru {
+                instruDict[tmpInstru] = true
             }
         }
     }
@@ -121,7 +135,7 @@ class EditProfileViewController: UITableViewController, UITextFieldDelegate, UIC
             }
             
             var url = "/api/users/\(MusiciansWanted.userId)"
-            var userParams: Dictionary<String, AnyObject> = ["name": nameField.text, "email": emailField.text, "age": Int(ageSlider.value), "looking_to_jam": jamSwitch.on, "looking_for_band": bandSwitch.on, "search_radius": Int(locationRadiusSlider.value), "gender": gender!, "genre":genre]
+            var userParams: Dictionary<String, AnyObject> = ["name": nameField.text, "email": emailField.text, "age": Int(ageSlider.value), "looking_to_jam": jamSwitch.on, "looking_for_band": bandSwitch.on, "search_radius": Int(locationRadiusSlider.value), "gender": gender!, "genre":genre, "instrument":instru]
             
             var params = ["user": userParams]
             DataManager.makePatchRequest(url, params: params, completion: { (data, error) -> Void in
@@ -175,15 +189,19 @@ class EditProfileViewController: UITableViewController, UITextFieldDelegate, UIC
     }
     
     func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int{
-        //if genreCollection == collectionView {
+        if genreCollection == collectionView {
             return genreIndex.count
+        }
+        else {
+            return instruIndex.count
+        }
         
     }
     
     // The cell that is returned must be retrieved from a call to -dequeueReusableCellWithReuseIdentifier:forIndexPath:
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
         
-        //if genreCollection == collectionView {
+        if genreCollection == collectionView {
             
             let cell: GenreCell = collectionView.dequeueReusableCellWithReuseIdentifier("genreCell", forIndexPath: indexPath) as! GenreCell
             
@@ -203,12 +221,34 @@ class EditProfileViewController: UITableViewController, UITextFieldDelegate, UIC
             }
             
             return cell
+        }
+        else {
+            
+            let cell: InstruCell = collectionView.dequeueReusableCellWithReuseIdentifier("instruCell", forIndexPath: indexPath) as! InstruCell
+            
+            var imageName: String = "anonymous"//"btn" + genreIndex[indexPath.row]
+            
+            cell.imgInstru.image = UIImage(named: imageName)
+            
+            var tmpInstru = instruDict[instruIndex[indexPath.row]]
+            
+            if tmpInstru == true {
+                //cell.backgroundColor = UIColor(red: 5.0/255.0, green: 5.0/255.0, blue: 10.0/255.0, alpha: 0.2)
+                cell.backgroundView = UIImageView(image: UIImage(named: "btnSelection"))
+            }
+            else{
+                //cell.backgroundColor = UIColor.clearColor()
+                cell.backgroundView = UIView()
+            }
+            
+            return cell
+        }
         
     }
     
     func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
         
-        //if collectionView == genreCollection {
+        if collectionView == genreCollection {
             if (genreDict[genreIndex[indexPath.row]] == true) {
                 genreDict[genreIndex[indexPath.row]] = false
                 
@@ -229,10 +269,34 @@ class EditProfileViewController: UITableViewController, UITextFieldDelegate, UIC
                 }
             }
             
-            println(genre)
-        //}
-    
-        genreCollection.reloadData()
+            //println(genre)
+            genreCollection.reloadData()
+        }
+        else {
+            if (instruDict[instruIndex[indexPath.row]] == true) {
+                instruDict[instruIndex[indexPath.row]] = false
+                
+                if (instru.rangeOfString(instruIndex[indexPath.row]) != nil) {
+                    var str = instruIndex[indexPath.row] + ":"
+                    
+                    let aString: String = instru
+                    let newString = aString.stringByReplacingOccurrencesOfString(str, withString: "")
+                    
+                    instru = newString
+                }
+            }
+            else {
+                instruDict[instruIndex[indexPath.row]] = true
+                
+                if ((instru).rangeOfString(instruIndex[indexPath.row]) == nil) {
+                    instru = instru + instruIndex[indexPath.row] + ":"
+                }
+            }
+            
+            println(instru)
+            instruCollection.reloadData()
+        }
+        
     
 }
     

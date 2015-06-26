@@ -81,18 +81,17 @@ class PersonViewController: UIViewController, UICollectionViewDelegate, UICollec
                         if picData["picture"] != nil {
                             var base64String = picData["picture"].stringValue
                             let decodedString = NSData(base64EncodedString: base64String, options: NSDataBase64DecodingOptions.IgnoreUnknownCharacters)
-                            var downloadedImage = UIImage(data: decodedString!)!
-                            var newImage = Toucan(image: downloadedImage).resize(CGSizeMake(280, 140), fitMode: Toucan.Resize.FitMode.Scale).image
+                            var downloadedImage: UIImage = UIImage(data: decodedString!)!
                             
                             dispatch_async(dispatch_get_main_queue()) {
-                                self.personIcon.image = newImage
+                                self.personIcon.image = Toucan(image: downloadedImage).maskWithRoundedRect(cornerRadius: 20.0, borderWidth: 1.0, borderColor: UIColor.clearColor()).image
                             }
                         }
                     })
                 }
                 else {
                     dispatch_async(dispatch_get_main_queue()) {
-                        self.personIcon.image = UIImage(named: "anonymous")
+                        self.personIcon.image = Toucan(image: UIImage(named: "anonymous")!).maskWithRoundedRect(cornerRadius: 20.0, borderWidth: 1.0, borderColor: UIColor.clearColor()).image
                     }
                 }
             }

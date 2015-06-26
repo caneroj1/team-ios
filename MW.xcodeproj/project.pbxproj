@@ -47,6 +47,20 @@
 		4481C4F71B12D87F0078D7AD /* CreateAccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4481C4F61B12D87F0078D7AD /* CreateAccountViewController.swift */; };
 		449935CB1B123FB500467B0B /* PersonRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 449935CA1B123FB500467B0B /* PersonRow.swift */; };
 		449935CD1B12404F00467B0B /* PeopleInterfaceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 449935CC1B12404F00467B0B /* PeopleInterfaceController.swift */; };
+		449C2E111B180C8900F2C116 /* PLCameraSheetButton.png in Resources */ = {isa = PBXBuildFile; fileRef = 449C2E091B180C8900F2C116 /* PLCameraSheetButton.png */; };
+		449C2E121B180C8900F2C116 /* PLCameraSheetButton@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 449C2E0A1B180C8900F2C116 /* PLCameraSheetButton@2x.png */; };
+		449C2E131B180C8900F2C116 /* PLCameraSheetButtonPressed.png in Resources */ = {isa = PBXBuildFile; fileRef = 449C2E0B1B180C8900F2C116 /* PLCameraSheetButtonPressed.png */; };
+		449C2E141B180C8900F2C116 /* PLCameraSheetButtonPressed@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 449C2E0C1B180C8900F2C116 /* PLCameraSheetButtonPressed@2x.png */; };
+		449C2E151B180C8900F2C116 /* PLCameraSheetDoneButton.png in Resources */ = {isa = PBXBuildFile; fileRef = 449C2E0D1B180C8900F2C116 /* PLCameraSheetDoneButton.png */; };
+		449C2E161B180C8900F2C116 /* PLCameraSheetDoneButton@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 449C2E0E1B180C8900F2C116 /* PLCameraSheetDoneButton@2x.png */; };
+		449C2E171B180C8900F2C116 /* PLCameraSheetDoneButtonPressed.png in Resources */ = {isa = PBXBuildFile; fileRef = 449C2E0F1B180C8900F2C116 /* PLCameraSheetDoneButtonPressed.png */; };
+		449C2E181B180C8900F2C116 /* PLCameraSheetDoneButtonPressed@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 449C2E101B180C8900F2C116 /* PLCameraSheetDoneButtonPressed@2x.png */; };
+		449C2E261B180C9000F2C116 /* GKCropBorderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 449C2E1B1B180C9000F2C116 /* GKCropBorderView.m */; };
+		449C2E271B180C9000F2C116 /* GKImageCropOverlayView.m in Sources */ = {isa = PBXBuildFile; fileRef = 449C2E1D1B180C9000F2C116 /* GKImageCropOverlayView.m */; };
+		449C2E281B180C9000F2C116 /* GKImageCropView.m in Sources */ = {isa = PBXBuildFile; fileRef = 449C2E1F1B180C9000F2C116 /* GKImageCropView.m */; };
+		449C2E291B180C9000F2C116 /* GKImageCropViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 449C2E211B180C9000F2C116 /* GKImageCropViewController.m */; };
+		449C2E2A1B180C9000F2C116 /* GKImagePicker.m in Sources */ = {isa = PBXBuildFile; fileRef = 449C2E231B180C9000F2C116 /* GKImagePicker.m */; };
+		449C2E2B1B180C9000F2C116 /* GKResizeableCropOverlayView.m in Sources */ = {isa = PBXBuildFile; fileRef = 449C2E251B180C9000F2C116 /* GKResizeableCropOverlayView.m */; };
 		44A2CF151B0D2155000856C1 /* EventRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44A2CF141B0D2155000856C1 /* EventRow.swift */; };
 		44C1CE761B179855006D2C29 /* FeedSettingsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44C1CE751B179855006D2C29 /* FeedSettingsTableViewController.swift */; };
 		44C1CE781B17A478006D2C29 /* PriorityQueue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44C1CE771B17A478006D2C29 /* PriorityQueue.swift */; };
@@ -157,6 +171,26 @@
 		4481C4F61B12D87F0078D7AD /* CreateAccountViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateAccountViewController.swift; sourceTree = "<group>"; };
 		449935CA1B123FB500467B0B /* PersonRow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PersonRow.swift; sourceTree = "<group>"; };
 		449935CC1B12404F00467B0B /* PeopleInterfaceController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PeopleInterfaceController.swift; sourceTree = "<group>"; };
+		449C2E091B180C8900F2C116 /* PLCameraSheetButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = PLCameraSheetButton.png; sourceTree = "<group>"; };
+		449C2E0A1B180C8900F2C116 /* PLCameraSheetButton@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "PLCameraSheetButton@2x.png"; sourceTree = "<group>"; };
+		449C2E0B1B180C8900F2C116 /* PLCameraSheetButtonPressed.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = PLCameraSheetButtonPressed.png; sourceTree = "<group>"; };
+		449C2E0C1B180C8900F2C116 /* PLCameraSheetButtonPressed@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "PLCameraSheetButtonPressed@2x.png"; sourceTree = "<group>"; };
+		449C2E0D1B180C8900F2C116 /* PLCameraSheetDoneButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = PLCameraSheetDoneButton.png; sourceTree = "<group>"; };
+		449C2E0E1B180C8900F2C116 /* PLCameraSheetDoneButton@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "PLCameraSheetDoneButton@2x.png"; sourceTree = "<group>"; };
+		449C2E0F1B180C8900F2C116 /* PLCameraSheetDoneButtonPressed.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = PLCameraSheetDoneButtonPressed.png; sourceTree = "<group>"; };
+		449C2E101B180C8900F2C116 /* PLCameraSheetDoneButtonPressed@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "PLCameraSheetDoneButtonPressed@2x.png"; sourceTree = "<group>"; };
+		449C2E1A1B180C9000F2C116 /* GKCropBorderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GKCropBorderView.h; sourceTree = "<group>"; };
+		449C2E1B1B180C9000F2C116 /* GKCropBorderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GKCropBorderView.m; sourceTree = "<group>"; };
+		449C2E1C1B180C9000F2C116 /* GKImageCropOverlayView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GKImageCropOverlayView.h; sourceTree = "<group>"; };
+		449C2E1D1B180C9000F2C116 /* GKImageCropOverlayView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GKImageCropOverlayView.m; sourceTree = "<group>"; };
+		449C2E1E1B180C9000F2C116 /* GKImageCropView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GKImageCropView.h; sourceTree = "<group>"; };
+		449C2E1F1B180C9000F2C116 /* GKImageCropView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GKImageCropView.m; sourceTree = "<group>"; };
+		449C2E201B180C9000F2C116 /* GKImageCropViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GKImageCropViewController.h; sourceTree = "<group>"; };
+		449C2E211B180C9000F2C116 /* GKImageCropViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GKImageCropViewController.m; sourceTree = "<group>"; };
+		449C2E221B180C9000F2C116 /* GKImagePicker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GKImagePicker.h; sourceTree = "<group>"; };
+		449C2E231B180C9000F2C116 /* GKImagePicker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GKImagePicker.m; sourceTree = "<group>"; };
+		449C2E241B180C9000F2C116 /* GKResizeableCropOverlayView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GKResizeableCropOverlayView.h; sourceTree = "<group>"; };
+		449C2E251B180C9000F2C116 /* GKResizeableCropOverlayView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GKResizeableCropOverlayView.m; sourceTree = "<group>"; };
 		44A2CF141B0D2155000856C1 /* EventRow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventRow.swift; sourceTree = "<group>"; };
 		44C1CE751B179855006D2C29 /* FeedSettingsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeedSettingsTableViewController.swift; sourceTree = "<group>"; };
 		44C1CE771B17A478006D2C29 /* PriorityQueue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PriorityQueue.swift; sourceTree = "<group>"; };
@@ -243,6 +277,8 @@
 		012C27C21AAB7CEE0024F5C3 /* MusiciansWanted */ = {
 			isa = PBXGroup;
 			children = (
+				449C2E081B180C8900F2C116 /* GKImages */,
+				449C2E191B180C9000F2C116 /* GKClasses */,
 				AD6771171ADB588700E5BF7F /* AWS.m */,
 				012C27C51AAB7CEE0024F5C3 /* AppDelegate.swift */,
 				44C06A661AD5790D004E88D7 /* Navigation */,
@@ -358,6 +394,40 @@
 				44CFD5261AE7407900E536F3 /* ContactTableDelegate.swift */,
 			);
 			name = Profile;
+			sourceTree = "<group>";
+		};
+		449C2E081B180C8900F2C116 /* GKImages */ = {
+			isa = PBXGroup;
+			children = (
+				449C2E091B180C8900F2C116 /* PLCameraSheetButton.png */,
+				449C2E0A1B180C8900F2C116 /* PLCameraSheetButton@2x.png */,
+				449C2E0B1B180C8900F2C116 /* PLCameraSheetButtonPressed.png */,
+				449C2E0C1B180C8900F2C116 /* PLCameraSheetButtonPressed@2x.png */,
+				449C2E0D1B180C8900F2C116 /* PLCameraSheetDoneButton.png */,
+				449C2E0E1B180C8900F2C116 /* PLCameraSheetDoneButton@2x.png */,
+				449C2E0F1B180C8900F2C116 /* PLCameraSheetDoneButtonPressed.png */,
+				449C2E101B180C8900F2C116 /* PLCameraSheetDoneButtonPressed@2x.png */,
+			);
+			path = GKImages;
+			sourceTree = "<group>";
+		};
+		449C2E191B180C9000F2C116 /* GKClasses */ = {
+			isa = PBXGroup;
+			children = (
+				449C2E1A1B180C9000F2C116 /* GKCropBorderView.h */,
+				449C2E1B1B180C9000F2C116 /* GKCropBorderView.m */,
+				449C2E1C1B180C9000F2C116 /* GKImageCropOverlayView.h */,
+				449C2E1D1B180C9000F2C116 /* GKImageCropOverlayView.m */,
+				449C2E1E1B180C9000F2C116 /* GKImageCropView.h */,
+				449C2E1F1B180C9000F2C116 /* GKImageCropView.m */,
+				449C2E201B180C9000F2C116 /* GKImageCropViewController.h */,
+				449C2E211B180C9000F2C116 /* GKImageCropViewController.m */,
+				449C2E221B180C9000F2C116 /* GKImagePicker.h */,
+				449C2E231B180C9000F2C116 /* GKImagePicker.m */,
+				449C2E241B180C9000F2C116 /* GKResizeableCropOverlayView.h */,
+				449C2E251B180C9000F2C116 /* GKResizeableCropOverlayView.m */,
+			);
+			path = GKClasses;
 			sourceTree = "<group>";
 		};
 		44C06A641AD578D0004E88D7 /* Support */ = {
@@ -577,9 +647,17 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				449C2E111B180C8900F2C116 /* PLCameraSheetButton.png in Resources */,
+				449C2E171B180C8900F2C116 /* PLCameraSheetDoneButtonPressed.png in Resources */,
 				012C27CD1AAB7CEE0024F5C3 /* Main.storyboard in Resources */,
 				012C27D21AAB7CEE0024F5C3 /* LaunchScreen.xib in Resources */,
+				449C2E121B180C8900F2C116 /* PLCameraSheetButton@2x.png in Resources */,
+				449C2E161B180C8900F2C116 /* PLCameraSheetDoneButton@2x.png in Resources */,
+				449C2E141B180C8900F2C116 /* PLCameraSheetButtonPressed@2x.png in Resources */,
+				449C2E181B180C8900F2C116 /* PLCameraSheetDoneButtonPressed@2x.png in Resources */,
 				012C27CF1AAB7CEE0024F5C3 /* Images.xcassets in Resources */,
+				449C2E151B180C8900F2C116 /* PLCameraSheetDoneButton.png in Resources */,
+				449C2E131B180C8900F2C116 /* PLCameraSheetButtonPressed.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -653,6 +731,7 @@
 				AD85DC5F1AD452C400D6E369 /* EventsManager.swift in Sources */,
 				01A4FA5F1B0EB039002CA0C0 /* NewMessageViewController.swift in Sources */,
 				444951C21AD71B3D0013A4DD /* FeedViewDataManager.swift in Sources */,
+				449C2E2A1B180C9000F2C116 /* GKImagePicker.m in Sources */,
 				44C1CE781B17A478006D2C29 /* PriorityQueue.swift in Sources */,
 				444951C41AD72B420013A4DD /* Notification.swift in Sources */,
 				01EF02981B0B2BD0002227F9 /* MessageBubbleCell.swift in Sources */,
@@ -667,11 +746,13 @@
 				01F50F931AB20E4300FE9051 /* GlobalTabBarController.swift in Sources */,
 				44D3089F1ACB32350000F435 /* ApiData.swift in Sources */,
 				AD37E3AC1AEAAF2C0051B737 /* AddEventViewController.swift in Sources */,
+				449C2E271B180C9000F2C116 /* GKImageCropOverlayView.m in Sources */,
 				01FCDE841ACF0500002F3A56 /* InboxTableViewController.swift in Sources */,
 				012EDCD91B0BC19800E4DB72 /* MessagesViewController.swift in Sources */,
 				44566E871ACB4E3200D9F6A4 /* Toucan.swift in Sources */,
 				44D308A31ACB32450000F435 /* SweetAlert copy.swift in Sources */,
 				012EDCDD1B0C1B9600E4DB72 /* MessageDelegate.swift in Sources */,
+				449C2E291B180C9000F2C116 /* GKImageCropViewController.m in Sources */,
 				012C27C61AAB7CEE0024F5C3 /* AppDelegate.swift in Sources */,
 				446ED1F21B0922C500855F58 /* MusicianRequestTableViewController.swift in Sources */,
 				442E54F01AE1979300718014 /* FeedTableViewController.swift in Sources */,
@@ -692,8 +773,11 @@
 				014C5C0A1AD97645008680D0 /* EventsDelegate.swift in Sources */,
 				AD6771181ADB588700E5BF7F /* AWS.m in Sources */,
 				01FCDE861ACF05EA002F3A56 /* InboxCell.swift in Sources */,
+				449C2E261B180C9000F2C116 /* GKCropBorderView.m in Sources */,
 				44D308A71ACB32560000F435 /* DataManager.swift in Sources */,
+				449C2E2B1B180C9000F2C116 /* GKResizeableCropOverlayView.m in Sources */,
 				AD97B1351AD2C06B007645C1 /* EventsTableViewController.swift in Sources */,
+				449C2E281B180C9000F2C116 /* GKImageCropView.m in Sources */,
 				44C1CE7A1B17A579006D2C29 /* redblacktree.swift in Sources */,
 				44C1CE761B179855006D2C29 /* FeedSettingsTableViewController.swift in Sources */,
 				44D308A11ACB323D0000F435 /* LogInViewController.swift in Sources */,

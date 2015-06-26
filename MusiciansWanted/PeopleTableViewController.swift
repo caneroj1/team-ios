@@ -170,6 +170,7 @@ class PeopleTableViewController: UITableViewController, UITableViewDataSource, P
         
         personView.controller = "people"
         personView.icon = person?.profpic
+        personView.icon = Toucan(image: personView.icon!).maskWithRoundedRect(cornerRadius: 20.0, borderWidth: 1.0, borderColor: UIColor.clearColor()).image
         personView.id = person?.id
         
         self.navigationController?.pushViewController(personView, animated: true)

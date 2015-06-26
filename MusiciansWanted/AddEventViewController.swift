@@ -302,12 +302,6 @@ class AddEventViewController: UIViewController, UITextViewDelegate, UITextFieldD
         formatter.dateFormat = "yyyy-MM-dd HH:mm:ss ZZZ"
         let timeZone = NSTimeZone(abbreviation: "UTC");
         formatter.timeZone = timeZone
-        
-        //        let outputter = NSDateFormatter()
-        //        outputter.dateStyle = NSDateFormatterStyle.ShortStyle
-        //        outputter.timeStyle = NSDateFormatterStyle.ShortStyle
-        //
-        //        let offset = Double(formatter.timeZone.secondsFromGMT)
         return formatter.stringFromDate(date)
     }
     
@@ -317,10 +311,10 @@ class AddEventViewController: UIViewController, UITextViewDelegate, UITextFieldD
             return
         }
         
-        var location = EventAddress.text.capitalizedString.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceCharacterSet()) + "\n" +  EventCity.text.capitalizedString.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceCharacterSet()) + ", " + states[thisSort] + " : " + EventZip.text.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceCharacterSet())
+        var location = EventAddress.text.capitalizedString.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceCharacterSet()) + "\n" +  EventCity.text.capitalizedString.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceCharacterSet()) + " " + states[thisSort] + " " + EventZip.text.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceCharacterSet())
+        location += "\n"
         
         var date = formatDate(datePicker.date)
-        //println("\(date)")
         
         var eventParams: Dictionary<String, AnyObject> = ["title": EventTitle.text.capitalizedString, "location": location, "description": EventDescription.text, "event_time": date, "created_by": MusiciansWanted.userId]
 

@@ -18,6 +18,7 @@ class PersonViewController: UIViewController, UICollectionViewDelegate, UICollec
     @IBOutlet weak var locationlabel: UILabel!
     @IBOutlet weak var contactButton: UIButton!
     @IBOutlet var genreCollection: UICollectionView!
+    @IBOutlet var instruCollection: UICollectionView!
     
     var icon: UIImage?
     var controller: String?
@@ -28,6 +29,8 @@ class PersonViewController: UIViewController, UICollectionViewDelegate, UICollec
     
     var arrGenre = [String]()
     var genre: String = ""
+    var arrInstru = [String]()
+    var instru: String = ""
     
     override func viewWillAppear(animated: Bool) {
         contactButton.hidden = true
@@ -64,6 +67,11 @@ class PersonViewController: UIViewController, UICollectionViewDelegate, UICollec
                 self.arrGenre = self.genre.componentsSeparatedByCharactersInSet(NSCharacterSet (charactersInString: ":"))
                 
                 self.genreCollection.reloadData()
+                
+                self.instru = json["instrument"].stringValue
+                self.arrInstru = self.instru.componentsSeparatedByCharactersInSet(NSCharacterSet (charactersInString: ":"))
+                
+                self.instruCollection.reloadData()
                 
             }
             
@@ -150,26 +158,39 @@ class PersonViewController: UIViewController, UICollectionViewDelegate, UICollec
     }
     
     func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int{
-        //if genreCollection == collectionView {
-        return arrGenre.count
-        //}
+        if genreCollection == collectionView {
+            return arrGenre.count - 1
+        }
+        else {
+            return arrInstru.count - 1
+        }
     }
     
     // The cell that is returned must be retrieved from a call to -dequeueReusableCellWithReuseIdentifier:forIndexPath:
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
         
-        //if genreCollection == collectionView {
+        if genreCollection == collectionView {
         
-        let cell: GenreCell = collectionView.dequeueReusableCellWithReuseIdentifier("genreCell", forIndexPath: indexPath) as! GenreCell
+            let cell: GenreCell = collectionView.dequeueReusableCellWithReuseIdentifier("genreCell", forIndexPath: indexPath) as! GenreCell
         
-        var imageName: String = "btn" + arrGenre[indexPath.row]
+            var imageName: String = "btn" + arrGenre[indexPath.row]
         
-        println(imageName)
-        cell.imgEditGenre.image = UIImage(named: imageName)
+            cell.imgEditGenre.image = UIImage(named: imageName)
         
-        return cell
+            return cell
         
-        //}
+        }
+        else {
+            
+            let cell: InstruCell = collectionView.dequeueReusableCellWithReuseIdentifier("instruCell", forIndexPath: indexPath) as! InstruCell
+            
+            var imageName: String = "guitar" //"btn" + arrInstru[indexPath.row]
+            
+            cell.imgInstru.image = UIImage(named: imageName)
+            
+            return cell
+            
+        }
         
     }
 

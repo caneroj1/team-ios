@@ -113,11 +113,16 @@ class PeopleTableViewController: UITableViewController, UITableViewDataSource, P
             cell.lblAge.text = person?.age
         }
 
-        cell.lblInstrument.text = person?.instrument
-        
-        if person!.genre != ":" {
+        if person!.genre != "" {
             cell.genres = person!.genre.componentsSeparatedByString(":")
         }
+        
+        if person!.instrument != "" {
+            cell.instru = person!.instrument.componentsSeparatedByString(":")
+        }
+        
+        cell.instruCollection.reloadData()
+        cell.genreCollection.reloadData()
         
         let mobileAnalytics = AWSMobileAnalytics(forAppId: MobileAnalyticsAppId)
         let eventRecordClient = mobileAnalytics.eventClient

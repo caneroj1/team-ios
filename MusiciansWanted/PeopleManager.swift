@@ -55,7 +55,11 @@ class PeopleManager: NSObject {
         tempPerson.email = email
         tempPerson.gender = gender
         
+        //println(name + "\nGenre: " + genre + "\nInstr: " + instru)
+        //println("-----------------------------")
+        
         person[id] = tempPerson;
+        self.peopleDelegate!.addedNewItem()
         //person.updateValue(tempPerson, forKey: id)
     }
     
@@ -77,47 +81,50 @@ class PeopleManager: NSObject {
         DataManager.makeGetRequest(url!, completion: { (data, error) -> Void in
             let json = JSON(data: data!)
             
-            println(json)
-            
             if self.isNearMeURL {
                 for user in json {
                     
                     //------- Check Filters -------
-                    // Still need to check contactsOnly, genres, and instruments
+                    // Still need to check contactsOnly, and instruments
                     var tmp = user.1["name"].stringValue
                     
                     var isGenresMatch = true
                     
                     if Filters.genre != "" {
                         
-                        println(Filters.genre)
-                        println(user.1["genre"].stringValue)
-                        
                         var arrGenres : [String] = (dropLast(Filters.genre)).componentsSeparatedByCharactersInSet(NSCharacterSet (charactersInString: ":"))
                         
                         for genre in arrGenres {
                             if ((user.1["genre"].stringValue).rangeOfString(genre) == nil) {
                                 isGenresMatch = false
-                                
-                                println(genre + " not found")
                             }
-                            println(genre + " found")
                         }
                     }
                     
-                    if (Filters.looking_for_band && user.1["looking_for_band"].boolValue == false) || (Filters.looking_to_jam && user.1["looking_to_jam"].boolValue == false) || (user.1["age"].stringValue != "" && (Filters.lowerAge > user.1["age"].intValue || Filters.upperAge < user.1["age"].intValue)) || isGenresMatch == false {
+                    var isInstruMatch = true
+                    
+                    if Filters.instrument != "" {
                         
-                        println("\(tmp) not added.")
+                        var arrInstru : [String] = (dropLast(Filters.instrument)).componentsSeparatedByCharactersInSet(NSCharacterSet (charactersInString: ":"))
+                        
+                        for instru in arrInstru {
+                            if ((user.1["instrument"].stringValue).rangeOfString(instru) == nil) {
+                                isInstruMatch = false
+                            }
+                        }
+                    }
+
+                    
+                    if (Filters.looking_for_band && user.1["looking_for_band"].boolValue == false) || (Filters.looking_to_jam && user.1["looking_to_jam"].boolValue == false) || (user.1["age"].stringValue != "" && (Filters.lowerAge > user.1["age"].intValue || Filters.upperAge < user.1["age"].intValue)) || isGenresMatch == false || isInstruMatch == false {
+                        
                         self.person.removeValueForKey(user.1["id"].intValue)
                         
                     }
                     else {
                         if(self.person.indexForKey(user.1["id"].intValue) != nil) {
-                            println("user not added")
                         }
                         else {
                             self.addUser(user.1)
-                            println("USER ADD : \(tmp)")
                         }
                     }
                 }
@@ -127,7 +134,6 @@ class PeopleManager: NSObject {
                 for index in lower...upper {
                     
                     if index >= json.count {
-                        println("loop broken.");
                         break;
                     }
                     
@@ -145,20 +151,30 @@ class PeopleManager: NSObject {
                         }
                     }
                     
+                    var isInstruMatch = true
+                    
+                    if Filters.instrument != "" {
+                        
+                        var arrInstru : [String] = (dropLast(Filters.instrument)).componentsSeparatedByCharactersInSet(NSCharacterSet (charactersInString: ":"))
+                        
+                        for instru in arrInstru {
+                            if ((json[index]["instrument"].stringValue).rangeOfString(instru) == nil) {
+                                isInstruMatch = false
+                            }
+                        }
+                    }
+                    
                     var tmp = json[index]["name"].stringValue
                     
-                    if (Filters.looking_for_band && json[index]["looking_for_band"].boolValue == false) || (Filters.looking_to_jam && json[index]["looking_to_jam"].boolValue == false) || (json[index]["age"].stringValue != "" && (Filters.lowerAge > json[index]["age"].intValue || Filters.upperAge < json[index]["age"].intValue)) || isGenresMatch == false {
+                    if (Filters.looking_for_band && json[index]["looking_for_band"].boolValue == false) || (Filters.looking_to_jam && json[index]["looking_to_jam"].boolValue == false) || (json[index]["age"].stringValue != "" && (Filters.lowerAge > json[index]["age"].intValue || Filters.upperAge < json[index]["age"].intValue)) || isGenresMatch == false || isInstruMatch == false {
                         
-                        println("\(tmp) not added.")
                         self.person.removeValueForKey(json[index]["id"].intValue)
                     }
                     else {
                         if((self.person.indexForKey(json[index]["id"].intValue)) != nil) {
-                            println("user not added")
                         }
                         else {
                             self.addUser(json[index])
-                            println("USER ADD : \(tmp)")
                         }
                     }
                     
@@ -175,7 +191,6 @@ class PeopleManager: NSObject {
                 
                 self.isLoadingPeople = false
                 self.peopleDelegate!.addedNewItem()
-                println("Data Loaded.")
                 
             }
             
@@ -189,14 +204,11 @@ class PeopleManager: NSObject {
         //Add basic information of users
         var profileImage = UIImage(named: "anonymous")!
         
-        self.addPerson(user["id"].intValue, name: user["name"].stringValue, pic: profileImage, age: user["age"].stringValue, genre: user["genre"].stringValue, instru: "Unknown", loc: user["location"].stringValue, distance: user["distance"].doubleValue, band: user["looking_for_band"].boolValue, jam: user["looking_to_jam"].boolValue, email: user["email"].stringValue, gender: user["gender"].stringValue)
-        
-        println("Adding user \(userId)");
+        self.addPerson(user["id"].intValue, name: user["name"].stringValue, pic: profileImage, age: user["age"].stringValue, genre: user["genre"].stringValue, instru: user["instrument"].stringValue, loc: user["location"].stringValue, distance: user["distance"].doubleValue, band: user["looking_for_band"].boolValue, jam: user["looking_to_jam"].boolValue, email: user["email"].stringValue, gender: user["gender"].stringValue)
         
         //Load in profile images
         if user["has_profile_pic"].stringValue == "true"
         {
-            println("loading profile picture of \(userId)");
             var url = "/api/s3ProfileGet?user_id=\(userId)"
             DataManager.makeGetRequest(url, completion: { (data, error) -> Void in
                 if data != nil {
@@ -207,19 +219,13 @@ class PeopleManager: NSObject {
                         dispatch_async(dispatch_get_main_queue()) {
                             profileImage = UIImage(data: decodedString!)!
                             
-                            self.addPerson(user["id"].intValue, name: user["name"].stringValue, pic: profileImage, age: user["age"].stringValue, genre: user["genre"].stringValue, instru: "Unknown", loc: user["location"].stringValue, distance: user["distance"].doubleValue, band: user["looking_for_band"].boolValue, jam: user["looking_to_jam"].boolValue, email: user["email"].stringValue, gender: user["gender"].stringValue)
-                            
-                            println("loaded image of \(userId)")
-                            self.peopleDelegate!.addedNewItem()
+                            self.addPerson(user["id"].intValue, name: user["name"].stringValue, pic: profileImage, age: user["age"].stringValue, genre: user["genre"].stringValue, instru: user["instrument"].stringValue, loc: user["location"].stringValue, distance: user["distance"].doubleValue, band: user["looking_for_band"].boolValue, jam: user["looking_to_jam"].boolValue, email: user["email"].stringValue, gender: user["gender"].stringValue)
                         }
                     }
                 }
                 
             })
         }
-        
-        println("added user \(userId)")
-        
     }
     
     //Merge Sort arrPerson by distance values

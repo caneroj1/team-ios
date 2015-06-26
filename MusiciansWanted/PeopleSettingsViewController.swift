@@ -26,7 +26,8 @@ class PeopleSettingViewController: UITableViewController, UITextFieldDelegate, U
     var genreDict:[String:Bool] = ["African":false, "Asian":false, "Blues":false, "Caribbean": false, "Classical":false, "Country":false, "Electronic":false, "Folk":false, "Hip-Hop":false, "Jazz":false, "Latin":false, "Pop":false, "Polka":false, "R&B":false, "Rock":false, "Metal":false]
     var genreIndex = [String]()
     
-    var instruDict:[String:Bool] = ["African":false, "Asian":false, "Blues":false, "Caribbean": false, "Classical":false, "Country":false, "Electronic":false, "Folk":false, "Hip-Hop":false, "Jazz":false, "Latin":false, "Pop":false, "Polka":false, "R&B":false, "Rock":false, "Metal":false, "Guitar":false, "Base":false, "Drums":false, "Violin":false]
+    //var instru: String = ""
+    var instruDict:[String:Bool] = ["Brass":false, "Electronics":false, "Keys":false, "Percussion": false, "Strings(Bowed)":false, "Strings(Plucked)":false, "Vocals":false, "Woodwinds":false]
     var instruIndex = [String]()
     
     //Check Filters
@@ -46,8 +47,15 @@ class PeopleSettingViewController: UITableViewController, UITextFieldDelegate, U
                 genreDict[genre] = true
             }
         }
-        println("dat update.")
         
+        if Filters.instrument != "" {
+            var arrInstru : [String] = (Filters.instrument).componentsSeparatedByCharactersInSet(NSCharacterSet (charactersInString: ":"))
+            
+            for instru in arrInstru {
+                instruDict[instru] = true
+            }
+        }
+                
     }
     
     override func viewDidLoad() {
@@ -183,9 +191,9 @@ class PeopleSettingViewController: UITableViewController, UITextFieldDelegate, U
             
             let cell: InstruCell = collectionView.dequeueReusableCellWithReuseIdentifier("instruCell", forIndexPath: indexPath) as! InstruCell
             
-            //var imageName: String = "btn" + instruIndex[indexPath.row]
+            var imageName: String = "guitar" //"btn" + instruIndex[indexPath.row]
             
-            cell.imgInstru.image = UIImage(named: "guitar")
+            cell.imgInstru.image = UIImage(named: imageName)
             
             var instru = instruDict[instruIndex[indexPath.row]]
             
@@ -227,30 +235,27 @@ class PeopleSettingViewController: UITableViewController, UITextFieldDelegate, U
                 }
             }
             
-            println(Filters.genre)
         }
         else {
             if (instruDict[instruIndex[indexPath.row]] == true) {
                 instruDict[instruIndex[indexPath.row]] = false
                 
-                /*if ((Filters.genre).rangeOfString(genreIndex[indexPath.row]) != nil) {
-                var str = genreIndex[indexPath.row] + ":"
+                if ((Filters.instrument).rangeOfString(instruIndex[indexPath.row]) != nil) {
+                var str = instruIndex[indexPath.row] + ":"
                 
-                let aString: String = Filters.genre
+                let aString: String = Filters.instrument
                 let newString = aString.stringByReplacingOccurrencesOfString(str, withString: "")
                 
-                Filters.genre = newString
-                }*/
+                Filters.instrument = newString
+                }
             }
             else {
                 instruDict[instruIndex[indexPath.row]] = true
                 
-                /*if ((Filters.genre).rangeOfString(genreIndex[indexPath.row]) == nil) {
-                Filters.genre = Filters.genre + genreIndex[indexPath.row] + ":"
-                }*/
+                if ((Filters.instrument).rangeOfString(instruIndex[indexPath.row]) == nil) {
+                    Filters.instrument = Filters.instrument + instruIndex[indexPath.row] + ":"
+                }
             }
-            
-            println("\(indexPath.row): " + instruIndex[indexPath.row])
         }
         
         genreCollection.reloadData()

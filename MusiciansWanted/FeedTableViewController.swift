@@ -75,7 +75,7 @@ class FeedTableViewController: UITableViewController, UITableViewDataSource, Fee
         let mobileAnalytics = AWSMobileAnalytics(forAppId: MobileAnalyticsAppId)
         let eventRecordClient = mobileAnalytics.eventClient
         let eventRecord = eventRecordClient.createEventWithEventType("FeedViewEvent")
-        eventRecord.addAttribute("Test", forKey: "Feed")
+        eventRecord.addAttribute("UserFeedView", forKey: "Feed")
         eventRecordClient.recordEvent(eventRecord)
         return cell
     }

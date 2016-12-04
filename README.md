@@ -1,2 +1,2 @@
-# team-ios
-This is the repository for the CSC470 iOS Cloud Computing Project.
+# Musicians Wanted (iOS)
+This is the repository for the front-end of our CSC470 Cloud Computing Project.
